@@ -2,6 +2,7 @@ using System.CommandLine;
 using Microsoft.Extensions.DependencyInjection;
 using SeamQ.Cli.Rendering;
 using SeamQ.Core.Configuration;
+using SeamQ.Core.Models;
 
 namespace SeamQ.Cli.Commands;
 
@@ -26,6 +27,7 @@ public static class ServeCommand
             if (!Directory.Exists(outputDir))
             {
                 renderer.WriteError($"Output directory not found: {outputDir}. Run 'seamq generate --all' first.");
+                Environment.ExitCode = ExitCodes.FatalError;
                 return;
             }
 

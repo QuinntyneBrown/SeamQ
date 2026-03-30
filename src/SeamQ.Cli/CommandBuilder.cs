@@ -48,25 +48,6 @@ public static class CommandBuilder
             .UseDefaults()
             .AddMiddleware(async (context, next) =>
             {
-                // Handle --version before anything else
-                if (context.ParseResult.GetValueForOption(versionOption))
-                {
-                    var renderer = serviceProvider.GetRequiredService<IConsoleRenderer>();
-                    var assembly = Assembly.GetExecutingAssembly();
-                    var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "0.0.0";
-
-                    // Strip build metadata (e.g. "+hash") for clean display
-                    var plusIndex = version.IndexOf('+');
-                    if (plusIndex >= 0)
-                        version = version[..plusIndex];
-
-                    var dotnetVersion = RuntimeInformation.FrameworkDescription; // e.g. ".NET 8.0.x"
-                    renderer.WriteLine($"seamq {version}");
-                    renderer.WriteMuted($"{dotnetVersion} | system.commandline 2.0.0-beta4");
-                    context.InvocationResult = new NoOpInvocationResult();
-                    return;
-                }
-
                 // Populate GlobalContext from parsed global options
                 var gc = serviceProvider.GetRequiredService<GlobalContext>();
                 gc.Verbose = context.ParseResult.GetValueForOption(verboseOption);
