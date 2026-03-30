@@ -1,0 +1,51 @@
+@startuml c4-component-generator
+!include <C4/C4_Component>
+
+title SeamQ.Generator - C4 Component Diagram
+
+LAYOUT_WITH_LEGEND()
+LAYOUT_LEFT_RIGHT()
+
+Person(user, "Developer / CI Pipeline", "Invokes ICD generation via CLI or API")
+
+System_Boundary(generator, "SeamQ.Generator") {
+
+  Component(icdGen, "IcdGenerator", ".NET 8 Service", "Orchestrates the full ICD generation pipeline: loads seam, iterates sections, formats, and writes output")
+
+  Component(sections, "Section Generators", "IIcdSection implementations", "15 section generators, each producing one ICD section from seam data")
+
+  Component(contentModel, "Content Model Builder", ".NET 8 Internal", "Merges section results, collects diagrams, and builds cross-references into a unified content model")
+
+  Component(templateEng, "TemplateEngine", "Handlebars.NET", "Loads and renders Handlebars templates with registered helpers and partials")
+
+  Component(mdFmt, "MarkdownFormatter", "IOutputFormatter", "Renders IcdDocument to Markdown with TOC and embedded diagram references")
+
+  Component(htmlFmt, "HtmlFormatter", "IOutputFormatter", "Renders IcdDocument to HTML with navigation sidebar and syntax highlighting")
+
+  Component(pdfFmt, "PdfFormatter", "PuppeteerSharp", "Converts HTML output to PDF using headless Chromium")
+}
+
+System_Ext(seamData, "SeamQ.Core", "Provides SeamModel and contract data from workspace scanning and seam detection")
+System_Ext(diagramGen, "SeamQ.DiagramGeneration", "Generates PlantUML diagrams referenced by ICD sections")
+System_Ext(fileSystem, "File System", "Target output directory for generated ICD files")
+System_Ext(baseline, "SeamQ.BaselineDiffing", "Provides previous ICD baselines for revision history comparison")
+
+Rel(user, icdGen, "GenerateAsync(seam, options)")
+
+Rel(icdGen, sections, "Iterates & invokes GenerateAsync()")
+Rel(icdGen, contentModel, "Builds unified content model")
+Rel(icdGen, mdFmt, "FormatAsync() if Markdown requested")
+Rel(icdGen, htmlFmt, "FormatAsync() if HTML requested")
+Rel(icdGen, pdfFmt, "FormatAsync() if PDF requested")
+
+Rel(mdFmt, templateEng, "RenderTemplate()")
+Rel(htmlFmt, templateEng, "RenderTemplate()")
+Rel(pdfFmt, htmlFmt, "Delegates HTML rendering")
+
+Rel(sections, seamData, "Reads SeamModel data")
+Rel(sections, diagramGen, "Requests diagrams")
+Rel(sections, baseline, "Reads previous baseline")
+
+Rel(icdGen, fileSystem, "Writes .md / .html / .pdf files")
+
+@enduml

@@ -1,0 +1,57 @@
+@startuml c4-component-renderer
+!include <C4/C4_Component>
+!theme plain
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title C4 Component Diagram - SeamQ.Renderer Internals
+
+Person(user, "Developer / CI", "Runs SeamQ CLI to generate ICDs and diagrams.")
+
+System_Boundary(renderer, "SeamQ.Renderer") {
+
+  Component(orchestrator, "DiagramRenderer", ".NET 8, C#", "Orchestrates diagram generation: filters applicable generators, runs them in parallel, writes .puml output.")
+
+  Component(classDiagrams, "Class Diagram Generators", ".NET 8, C#", "11 generators producing PlantUML class diagrams for API surfaces, contracts, controllers, schemas, services, telemetry, etc.")
+
+  Component(seqDiagrams, "Sequence Diagram Generators", ".NET 8, C#", "15 generators producing PlantUML sequence diagrams for request flows, lifecycles, CQRS, events, auth, caching, etc.")
+
+  Component(stateDiagrams, "State Diagram Generators", ".NET 8, C#", "2 generators producing PlantUML state diagrams for datastore and subscription lifecycle.")
+
+  Component(c4Diagrams, "C4 Diagram Generators", ".NET 8, C#", "10+ generators producing C4 diagrams at system-context, container, component, deployment, and dynamic levels.")
+
+  Component(encoder, "PlantUmlEncoder", ".NET 8, C#", "Validates PlantUML syntax, normalizes skin params, encodes text for PlantUML Server URLs.")
+
+  Component(imageRenderer, "ImageRenderer", ".NET 8, C#", "Renders .puml files to SVG/PNG via local JAR, Docker, or remote PlantUML server.")
+
+  Component(backendDetector, "RenderBackendDetector", ".NET 8, C#", "Probes the environment to select the best available rendering backend.")
+}
+
+System_Ext(seamModel, "SeamQ.Core", "Provides SeamModel with detected seam metadata.")
+System_Ext(icdGen, "SeamQ.Generator", "ICD Generator that invokes diagram generation for each seam.")
+System_Ext(plantUmlJar, "PlantUML JAR", "Local Java-based PlantUML renderer.")
+System_Ext(dockerEngine, "Docker Engine", "Runs plantuml/plantuml-server container.")
+System_Ext(plantUmlServer, "PlantUML Server", "Remote HTTP-based PlantUML rendering service.")
+System_Ext(fileSystem, "File System", "Stores .puml and rendered image output files.")
+
+Rel(user, icdGen, "Invokes via CLI")
+Rel(icdGen, orchestrator, "GenerateAsync(seam, options)")
+Rel(orchestrator, classDiagrams, "Delegates class diagrams")
+Rel(orchestrator, seqDiagrams, "Delegates sequence diagrams")
+Rel(orchestrator, stateDiagrams, "Delegates state diagrams")
+Rel(orchestrator, c4Diagrams, "Delegates C4 diagrams")
+Rel(orchestrator, encoder, "Validate & Normalize .puml")
+Rel(orchestrator, imageRenderer, "RenderBatchAsync (optional)")
+Rel(imageRenderer, backendDetector, "DetectAsync")
+Rel(imageRenderer, encoder, "EncodeForUrl (remote mode)")
+Rel(imageRenderer, plantUmlJar, "java -jar plantuml.jar")
+Rel(imageRenderer, dockerEngine, "docker run")
+Rel(imageRenderer, plantUmlServer, "HTTP GET /svg/...")
+Rel(orchestrator, fileSystem, "Write .puml files")
+Rel(imageRenderer, fileSystem, "Write image files")
+Rel_Back(orchestrator, seamModel, "Reads SeamModel")
+
+SHOW_LEGEND()
+
+@enduml

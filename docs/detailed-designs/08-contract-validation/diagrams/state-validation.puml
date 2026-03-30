@@ -1,0 +1,42 @@
+@startuml state-validation
+!pragma layout smetana
+skinparam dpi 150
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+
+title Validation Progress - State Diagram
+
+[*] --> Idle
+
+Idle --> LoadingSeam : ValidateAsync() called
+LoadingSeam : Extract contract surface\nfrom DetectedSeam
+LoadingSeam : Filter rules by options
+
+LoadingSeam --> ValidatingConsumers : Contract surface loaded
+
+state ValidatingConsumers {
+  [*] --> NextConsumer
+  NextConsumer --> EvaluatingRules : Consumer selected
+
+  state EvaluatingRules {
+    [*] --> RunRule
+    RunRule --> RunRule : Next rule
+    RunRule --> CollectFindings : All rules complete
+  }
+
+  EvaluatingRules --> BuildResult : Findings collected
+  BuildResult --> NextConsumer : More consumers
+  BuildResult --> [*] : All consumers done
+}
+
+ValidatingConsumers --> AggregatingResults : All consumers validated
+
+AggregatingResults : Merge ValidationResults
+AggregatingResults : Compute summary counts
+AggregatingResults : Apply severity filters
+
+AggregatingResults --> ReportReady : Report assembled
+
+ReportReady --> [*]
+
+@enduml

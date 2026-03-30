@@ -1,0 +1,118 @@
+@startuml class-export-schema
+!pragma layout smetana
+skinparam dpi 150
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+
+title Data Export - JSON Output Schema Models
+
+package "Contract Surface Schema" <<Frame>> {
+  class ContractSurfaceRoot {
+    +$schema: string
+    +generatedAt: string
+    +seamqVersion: string
+    +seams: SeamExport[]
+  }
+
+  class SeamExport {
+    +id: string
+    +type: string
+    +confidence: double
+    +provider: WorkspaceRef
+    +consumers: WorkspaceRef[]
+    +contracts: ContractEntry[]
+  }
+
+  class ContractEntry {
+    +kind: string
+    +name: string
+    +properties: PropertyEntry[]
+    +methods: MethodEntry[]
+    +metadata: Dictionary<string, object>
+  }
+
+  class PropertyEntry {
+    +name: string
+    +type: string
+    +optional: bool
+    +description: string?
+  }
+
+  class MethodEntry {
+    +name: string
+    +parameters: ParameterEntry[]
+    +returnType: string
+    +description: string?
+  }
+
+  class ParameterEntry {
+    +name: string
+    +type: string
+    +optional: bool
+  }
+}
+
+package "Data Dictionary Schema" <<Frame>> {
+  class DataDictionaryRoot {
+    +$schema: string
+    +generatedAt: string
+    +seamqVersion: string
+    +types: TypeEntry[]
+  }
+
+  class TypeEntry {
+    +qualifiedName: string
+    +kind: string
+    +fields: FieldEntry[]
+    +referencedBy: string[]
+    +sourceFile: string
+    +sourceLine: int
+  }
+
+  class FieldEntry {
+    +name: string
+    +type: string
+    +optional: bool
+    +description: string?
+  }
+}
+
+package "Traceability Matrix Schema" <<Frame>> {
+  class TraceabilityMatrixRoot {
+    +$schema: string
+    +generatedAt: string
+    +seamqVersion: string
+    +entries: TraceabilityEntry[]
+  }
+
+  class TraceabilityEntry {
+    +seamId: string
+    +symbolName: string
+    +qualifiedName: string
+    +kind: string
+    +role: string
+    +workspace: string
+    +project: string
+    +sourceFile: string
+    +sourceLine: int
+    +barrelExportFile: string?
+  }
+}
+
+class WorkspaceRef {
+  +workspace: string
+  +project: string
+}
+
+ContractSurfaceRoot *-- SeamExport
+SeamExport *-- ContractEntry
+SeamExport *-- WorkspaceRef
+ContractEntry *-- PropertyEntry
+ContractEntry *-- MethodEntry
+MethodEntry *-- ParameterEntry
+DataDictionaryRoot *-- TypeEntry
+TypeEntry *-- FieldEntry
+TraceabilityMatrixRoot *-- TraceabilityEntry
+
+@enduml

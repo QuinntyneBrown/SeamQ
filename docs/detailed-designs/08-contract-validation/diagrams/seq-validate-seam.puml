@@ -1,0 +1,45 @@
+@startuml seq-validate-seam
+!pragma layout smetana
+skinparam dpi 150
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+skinparam sequenceMessageAlign center
+
+title Validate Seam - Sequence Diagram
+
+actor CLI as cli
+participant ContractValidator as cv
+participant "IValidationRule\n[each rule]" as rule
+participant ValidationResult as vr
+participant ValidationReport as rpt
+
+cli -> cv : ValidateAsync(seam, consumers, options, ct)
+activate cv
+
+cv -> cv : Filter rules by options\n(enabled / suppressed)
+
+loop for each consumer workspace
+  cv -> cv : ValidateConsumerAsync(seam, consumer, rules, ct)
+  activate cv #LightBlue
+
+  loop for each IValidationRule
+    cv -> rule : EvaluateAsync(seam, consumer, ct)
+    activate rule
+
+    rule --> cv : IReadOnlyList<RuleFinding>
+    deactivate rule
+  end
+
+  cv -> cv : Collect all findings
+  cv -> vr ** : new ValidationResult(\n  seamId, consumer, findings)
+  cv --> cv : Add result to list
+  deactivate cv
+end
+
+cv -> cv : BuildReport(results)
+cv -> rpt ** : new ValidationReport(\n  results, summary counts)
+
+cv --> cli : ValidationReport
+deactivate cv
+
+@enduml

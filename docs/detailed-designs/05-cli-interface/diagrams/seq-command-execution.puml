@@ -1,0 +1,85 @@
+@startuml seq-command-execution
+!theme plain
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantPadding 20
+skinparam sequenceBoxPadding 10
+
+title Command Execution - Sequence Diagram
+
+actor User
+participant "Program.Main" as Main
+participant "CommandLineBuilder" as CLB
+participant "System.CommandLine\nParser" as Parser
+participant "Middleware\nPipeline" as MW
+participant "IServiceProvider" as DI
+participant "CommandHandler" as Handler
+participant "IConsoleRenderer" as Renderer
+
+User -> Main : seamq <command> [args]
+activate Main
+
+Main -> Main : BuildServiceProvider()
+Main -> Main : BuildRootCommand(sp)
+Main -> CLB : Build()
+activate CLB
+CLB -> CLB : UseDefaults()
+CLB -> CLB : AddMiddleware(exceptionHandler)
+CLB -> CLB : AddMiddleware(configLoader)
+CLB -> CLB : AddMiddleware(loggingConfig)
+CLB -> CLB : AddMiddleware(colorConfig)
+CLB -> CLB : AddMiddleware(diScope)
+Main <-- CLB : Parser
+deactivate CLB
+
+Main -> Parser : InvokeAsync(args)
+activate Parser
+
+Parser -> Parser : Tokenize(args)
+Parser -> Parser : Parse tokens
+Parser -> Parser : Match command & bind options
+
+alt Parse error
+    Parser --> User : Error message + usage
+    Parser --> Main : exit code 2
+else Parse success
+    Parser -> MW : Execute pipeline
+    activate MW
+
+    MW -> MW : 1. Exception handler (wrap)
+    MW -> MW : 2. Load config (--config)
+    MW -> MW : 3. Set log level (--verbose/--quiet)
+    MW -> MW : 4. Set color mode (--no-color)
+    MW -> DI : 5. CreateScope()
+    activate DI
+
+    DI --> MW : IServiceScope
+
+    MW -> DI : Resolve handler dependencies
+    DI --> MW : IWorkspaceScanner, IConsoleRenderer, etc.
+
+    MW -> Handler : HandleAsync(parsedArgs, services)
+    activate Handler
+
+    Handler -> Handler : Execute business logic\n(delegates to core services)
+    Handler -> Renderer : Render output
+    activate Renderer
+    Renderer --> User : Formatted console output
+    deactivate Renderer
+
+    Handler --> MW : exit code (0, 1, or 2)
+    deactivate Handler
+
+    MW -> DI : Dispose scope
+    deactivate DI
+
+    MW --> Parser : exit code
+    deactivate MW
+end
+
+Parser --> Main : exit code
+deactivate Parser
+
+Main --> User : Process exit code
+deactivate Main
+
+@enduml

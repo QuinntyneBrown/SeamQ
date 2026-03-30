@@ -1,0 +1,77 @@
+@startuml state-scan-progress
+skinparam dpi 150
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+
+title Workspace Scan - State Diagram
+
+[*] --> Initializing
+
+state Initializing {
+  Initializing : Validate workspace root
+  Initializing : Load ScanOptions
+  Initializing : Initialize AstCache
+}
+
+Initializing --> DetectingType : root exists
+
+state DetectingType {
+  DetectingType : Probe for angular.json
+  DetectingType : Probe for nx.json
+}
+
+DetectingType --> ParsingConfig : type detected
+DetectingType --> Failed : no workspace\nconfig found
+
+state ParsingConfig {
+  ParsingConfig : Deserialise workspace config
+  ParsingConfig : Discover projects
+  ParsingConfig : Build ProjectInfo list
+}
+
+ParsingConfig --> ResolvingPaths : config parsed
+ParsingConfig --> Failed : config parse error
+
+state ResolvingPaths {
+  ResolvingPaths : Parse tsconfig.base.json
+  ResolvingPaths : Build PathAliasMap
+  ResolvingPaths : Parse barrel exports
+}
+
+ResolvingPaths --> ParsingFiles : paths resolved
+
+state ParsingFiles {
+  ParsingFiles : Collect .ts files
+  ParsingFiles : Check AstCache per file
+  ParsingFiles : Parse uncached files (parallel)
+  ParsingFiles : Extract Angular metadata
+  ParsingFiles : Extract TSDoc comments
+  ParsingFiles : Record diagnostics for failures
+}
+
+ParsingFiles --> BuildingModel : all files processed
+ParsingFiles --> BuildingModel : cancelled (partial)
+
+state BuildingModel {
+  BuildingModel : Assemble ParsedProjects
+  BuildingModel : Attach barrel export info
+  BuildingModel : Compile diagnostics
+  BuildingModel : Persist AstCache to disk
+}
+
+BuildingModel --> Complete : model built
+
+state Complete {
+  Complete : WorkspaceModel ready
+  Complete : Diagnostics available
+}
+
+state Failed {
+  Failed : WorkspaceScanException thrown
+  Failed : Diagnostics available
+}
+
+Complete --> [*]
+Failed --> [*]
+
+@enduml

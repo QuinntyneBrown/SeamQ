@@ -1,0 +1,47 @@
+@startuml c4-component-export
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+LAYOUT_LEFT_RIGHT()
+
+title Component Diagram -- SeamQ.Export Internals
+
+Container_Boundary(export, "SeamQ.Export") {
+
+  Component(jsonExporter, "JsonDataExporter", ".NET Class", "Orchestrates the export pipeline: filters seams, delegates to sub-exporters, serialises JSON, and writes output files atomically.")
+
+  Component(contractExp, "ContractSurfaceExporter", ".NET Class", "Extracts interfaces, bindings, tokens, and Angular metadata for each seam into ContractSurfaceRoot.")
+
+  Component(dictExp, "DataDictionaryExporter", ".NET Class", "Collects and deduplicates all cross-boundary types with field-level detail into DataDictionaryRoot.")
+
+  Component(traceExp, "TraceabilityMatrixExporter", ".NET Class", "Maps every symbol to its source file, line number, workspace, and barrel export into TraceabilityMatrixRoot.")
+
+  Component(schema, "ExportSchema", ".NET Static Class", "Provides embedded JSON Schema definitions and runtime validation for export output.")
+
+  Component(exportOpts, "ExportOptions", "Record", "Configuration: output dir, seam ID filter, confidence threshold, format, stdout flag.")
+}
+
+Container_Boundary(detector, "SeamQ.Detector (External)") {
+  Component(registry, "SeamRegistry", "Model", "All detected seams with candidates, scores, and symbol references.")
+}
+
+Container_Boundary(cli, "SeamQ.CLI (External)") {
+  Component(exportCmd, "ExportCommand", "CLI Command", "Parses 'seamq export' arguments and invokes JsonDataExporter.")
+}
+
+Container_Boundary(fs, "File System") {
+  Component(outFiles, "Output Files", "JSON", "contract-surface.json, data-dictionary.json, traceability-matrix.json")
+}
+
+Rel(exportCmd, jsonExporter, "Calls ExportAsync()")
+Rel(exportCmd, exportOpts, "Supplies options")
+Rel(jsonExporter, contractExp, "Delegates extraction")
+Rel(jsonExporter, dictExp, "Delegates extraction")
+Rel(jsonExporter, traceExp, "Delegates extraction")
+Rel(jsonExporter, schema, "Validates output")
+Rel(jsonExporter, outFiles, "Writes JSON files")
+Rel(contractExp, registry, "Reads seam data")
+Rel(dictExp, registry, "Reads type data")
+Rel(traceExp, registry, "Reads symbol locations")
+
+@enduml

@@ -1,0 +1,58 @@
+@startuml class-validation-result
+!pragma layout smetana
+skinparam dpi 150
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+
+title Validation Result Model - Class Diagram
+
+enum ValidationSeverity {
+  Error
+  Warning
+  Info
+}
+
+class RuleFinding <<record>> {
+  +RuleId: string
+  +RuleName: string
+  +Severity: ValidationSeverity
+  +Message: string
+  +ContractElement: string?
+  +ConsumerFile: string?
+  +ConsumerLine: int?
+  +ExpectedSignature: string?
+  +ActualSignature: string?
+}
+
+class ValidationResult <<record>> {
+  +SeamId: string
+  +ConsumerWorkspace: string
+  +Findings: IReadOnlyList<RuleFinding>
+  +Passed: bool
+  +ErrorCount: int
+  +WarningCount: int
+  +InfoCount: int
+}
+
+class ValidationReport <<record>> {
+  +GeneratedAt: DateTime
+  +Results: IReadOnlyList<ValidationResult>
+  +TotalSeams: int
+  +TotalConsumers: int
+  +PassedCount: int
+  +FailedCount: int
+  +TotalErrors: int
+  +TotalWarnings: int
+  +TotalInfos: int
+  +AllPassed: bool
+  +GetResultsForSeam(seamId): IEnumerable<ValidationResult>
+  +GetResultsForConsumer(workspace): IEnumerable<ValidationResult>
+  +GetAllFindings(severity?): IEnumerable<RuleFinding>
+}
+
+RuleFinding --> ValidationSeverity : uses
+ValidationResult o-- "0..*" RuleFinding : contains
+ValidationReport o-- "0..*" ValidationResult : aggregates
+
+@enduml

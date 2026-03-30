@@ -1,0 +1,176 @@
+@startuml class-ast-model
+!pragma layout smetana
+skinparam dpi 150
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 10
+skinparam pageMargin 10
+
+title TypeScript AST Model - Class Diagram
+
+enum WorkspaceType {
+  Angular
+  Nx
+}
+
+enum ProjectType {
+  Application
+  Library
+}
+
+class WorkspaceModel {
+  +Type: WorkspaceType
+  +RootPath: string
+  +Projects: ParsedProject[]
+  +Diagnostics: ScanDiagnostic[]
+}
+
+class ParsedProject {
+  +Name: string
+  +RootPath: string
+  +SourceRoot: string
+  +ProjectType: ProjectType
+  +BarrelExports: string[]
+  +Files: ParsedFile[]
+}
+
+class ParsedFile {
+  +FilePath: string
+  +ContentHash: string
+  +Imports: ParsedImport[]
+  +Exports: ParsedExport[]
+  +Symbols: ParsedSymbol[]
+}
+
+class ParsedImport {
+  +ModuleSpecifier: string
+  +ResolvedPath: string?
+  +NamedImports: string[]
+  +DefaultImport: string?
+  +IsTypeOnly: bool
+}
+
+class ParsedExport {
+  +ExportedNames: string[]
+  +ModuleSpecifier: string?
+  +IsReExport: bool
+}
+
+abstract class ParsedSymbol {
+  +Name: string
+  +IsExported: bool
+  +Documentation: TsDocComment?
+  +StartLine: int
+  +EndLine: int
+}
+
+class ParsedInterface extends ParsedSymbol {
+  +TypeParameters: string[]
+  +Extends: string[]
+  +Properties: ParsedProperty[]
+  +Methods: ParsedMethod[]
+}
+
+class ParsedClass extends ParsedSymbol {
+  +TypeParameters: string[]
+  +Extends: string?
+  +Implements: string[]
+  +Decorators: ParsedDecorator[]
+  +Properties: ParsedProperty[]
+  +Methods: ParsedMethod[]
+  +IsAbstract: bool
+}
+
+class ParsedService extends ParsedClass {
+  +ProvidedIn: string?
+  +InjectedDependencies: InjectedDep[]
+}
+
+class ParsedComponent extends ParsedClass {
+  +Selector: string?
+  +TemplateUrl: string?
+  +StyleUrls: string[]
+  +Standalone: bool
+  +Imports: string[]
+  +Inputs: InputMetadata[]
+  +Outputs: OutputMetadata[]
+  +ChangeDetection: string?
+}
+
+class ParsedDirective extends ParsedClass {
+  +Selector: string?
+  +Standalone: bool
+}
+
+class ParsedPipe extends ParsedClass {
+  +PipeName: string
+  +Standalone: bool
+}
+
+class ParsedEnum extends ParsedSymbol {
+  +Members: EnumMember[]
+  +IsConst: bool
+}
+
+class ParsedTypeAlias extends ParsedSymbol {
+  +TypeParameters: string[]
+  +TypeExpression: string
+}
+
+class ParsedProperty {
+  +Name: string
+  +TypeAnnotation: string?
+  +IsOptional: bool
+  +IsReadonly: bool
+  +Decorators: ParsedDecorator[]
+  +Accessibility: Accessibility?
+  +Documentation: TsDocComment?
+}
+
+class ParsedMethod {
+  +Name: string
+  +Parameters: MethodParam[]
+  +ReturnType: string?
+  +TypeParameters: string[]
+  +Decorators: ParsedDecorator[]
+  +Accessibility: Accessibility?
+  +IsAbstract: bool
+  +IsAsync: bool
+  +Documentation: TsDocComment?
+}
+
+class ParsedDecorator {
+  +Name: string
+  +Arguments: Dictionary<string, object>
+  +RawExpression: string
+}
+
+class TsDocComment {
+  +Summary: string
+  +Params: TsDocParam[]
+  +Returns: string?
+  +Deprecated: string?
+  +Examples: string[]
+  +Tags: TsDocTag[]
+}
+
+class ScanDiagnostic {
+  +Severity: DiagnosticSeverity
+  +FilePath: string?
+  +Message: string
+  +Exception: Exception?
+}
+
+WorkspaceModel *-- "1..*" ParsedProject
+ParsedProject *-- "0..*" ParsedFile
+ParsedFile *-- "0..*" ParsedImport
+ParsedFile *-- "0..*" ParsedExport
+ParsedFile *-- "0..*" ParsedSymbol
+ParsedClass *-- "0..*" ParsedProperty
+ParsedClass *-- "0..*" ParsedMethod
+ParsedClass *-- "0..*" ParsedDecorator
+ParsedInterface *-- "0..*" ParsedProperty
+ParsedInterface *-- "0..*" ParsedMethod
+ParsedSymbol *-- "0..1" TsDocComment
+WorkspaceModel *-- "0..*" ScanDiagnostic
+
+@enduml

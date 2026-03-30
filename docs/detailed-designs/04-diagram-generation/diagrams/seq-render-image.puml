@@ -1,0 +1,88 @@
+@startuml seq-render-image
+!theme plain
+skinparam defaultFontSize 10
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title Image Rendering Sequence
+
+participant "DiagramRenderer" as caller
+participant "ImageRenderer" as renderer
+participant "RenderBackendDetector" as detector
+participant "PlantUmlEncoder" as encoder
+participant "Local JAR" as jar
+participant "Docker" as docker
+participant "Remote Server" as server
+participant "File System" as fs
+
+caller -> renderer : RenderBatchAsync(pumlPaths, options, ct)
+activate renderer
+
+renderer -> detector : DetectAsync(ct)
+activate detector
+
+detector -> detector : TryLocalJar()
+alt JAR found on PATH or configured path
+  detector --> renderer : RenderBackend.LocalJar
+else JAR not found
+  detector -> detector : TryDocker()
+  alt Docker available with plantuml image
+    detector --> renderer : RenderBackend.Docker
+  else Docker not available
+    detector -> detector : TryRemoteServer(url)
+    alt Server reachable
+      detector --> renderer : RenderBackend.RemoteServer
+    else No backend available
+      detector --> renderer : RenderBackend.None
+    end
+  end
+end
+deactivate detector
+
+alt backend == None
+  renderer --> caller : all results with Success=false
+else backend detected
+
+  loop for each .puml file (parallel, max M)
+    renderer -> fs : Read .puml content
+    activate fs
+    fs --> renderer : pumlText
+    deactivate fs
+
+    alt backend == LocalJar
+      renderer -> jar : java -jar plantuml.jar -tsvg input.puml
+      activate jar
+      jar --> renderer : exit code
+      deactivate jar
+
+    else backend == Docker
+      renderer -> docker : docker run plantuml/plantuml-server
+      activate docker
+      docker --> renderer : rendered bytes
+      deactivate docker
+
+    else backend == RemoteServer
+      renderer -> encoder : EncodeForUrl(pumlText)
+      activate encoder
+      encoder --> renderer : encodedUrl
+      deactivate encoder
+
+      renderer -> server : GET /svg/{encodedUrl}
+      activate server
+      server --> renderer : SVG/PNG bytes
+      deactivate server
+    end
+
+    renderer -> fs : Write image file
+    activate fs
+    fs --> renderer : outputPath
+    deactivate fs
+  end
+
+  renderer --> caller : IReadOnlyList<RenderResult>
+end
+deactivate renderer
+
+@enduml

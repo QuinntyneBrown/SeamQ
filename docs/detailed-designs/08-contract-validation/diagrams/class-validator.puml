@@ -1,0 +1,75 @@
+@startuml class-validator
+!pragma layout smetana
+skinparam dpi 150
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+
+title Contract Validator - Class Diagram
+
+interface IContractValidator {
+  +ValidateAsync(seam: DetectedSeam, consumers: IReadOnlyList<WorkspaceModel>, options: ValidatorOptions, ct: CancellationToken): Task<ValidationReport>
+  +ValidateAllAsync(registry: SeamRegistry, workspaces: IReadOnlyList<WorkspaceModel>, options: ValidatorOptions, ct: CancellationToken): Task<ValidationReport>
+}
+
+class ContractValidator implements IContractValidator {
+  -_rules: IReadOnlyList<IValidationRule>
+  -_logger: ILogger
+  +ValidateAsync(seam, consumers, options, ct): Task<ValidationReport>
+  +ValidateAllAsync(registry, workspaces, options, ct): Task<ValidationReport>
+  -ValidateConsumerAsync(seam, consumer, rules, ct): Task<ValidationResult>
+  -BuildReport(results): ValidationReport
+}
+
+interface IValidationRule {
+  +RuleId: string
+  +DisplayName: string
+  +EvaluateAsync(seam: DetectedSeam, consumer: WorkspaceModel, ct: CancellationToken): Task<IReadOnlyList<RuleFinding>>
+}
+
+class InterfaceImplementationRule implements IValidationRule {
+  -_logger: ILogger
+  +RuleId: string = "CV001"
+  +DisplayName: string = "Interface Implementation"
+  +EvaluateAsync(seam, consumer, ct): Task<IReadOnlyList<RuleFinding>>
+  -FindRequiredInterfaces(seam): IReadOnlyList<ParsedInterface>
+  -FindImplementingClasses(consumer, interfaceName): IReadOnlyList<ParsedClass>
+  -CompareMembers(iface: ParsedInterface, impl: ParsedClass): IReadOnlyList<RuleFinding>
+  -CompareSignature(expected: ParsedMethod, actual: ParsedMethod): RuleFinding?
+}
+
+class InjectionTokenRule implements IValidationRule {
+  -_logger: ILogger
+  +RuleId: string = "CV002"
+  +DisplayName: string = "Injection Token"
+  +EvaluateAsync(seam, consumer, ct): Task<IReadOnlyList<RuleFinding>>
+  -FindRequiredTokens(seam): IReadOnlyList<TokenDeclaration>
+  -FindProviderRegistrations(consumer, tokenName): IReadOnlyList<ProviderRegistration>
+  -CheckTypeCompatibility(expected: string, actual: string): bool
+}
+
+class InputOutputRule implements IValidationRule {
+  -_logger: ILogger
+  +RuleId: string = "CV003"
+  +DisplayName: string = "Input/Output Binding"
+  +EvaluateAsync(seam, consumer, ct): Task<IReadOnlyList<RuleFinding>>
+  -FindDeclaredBindings(seam): IReadOnlyList<BindingDeclaration>
+  -FindTemplateUsages(consumer, selector: string): IReadOnlyList<TemplateUsage>
+  -CheckRequiredInputsBound(bindings, usage): IReadOnlyList<RuleFinding>
+  -CheckBindingNamesValid(bindings, usage): IReadOnlyList<RuleFinding>
+  -CheckTypeCompatibility(declaredType: string, boundExpr: string): RuleFinding?
+}
+
+class ValidatorOptions {
+  +EnabledRuleIds: HashSet<string>
+  +SuppressedRuleIds: HashSet<string>
+  +MinimumSeverity: ValidationSeverity
+  +TreatWarningsAsErrors: bool
+  +MaxDegreeOfParallelism: int
+}
+
+ContractValidator --> IValidationRule : iterates
+ContractValidator ..> ValidatorOptions : configured by
+ContractValidator ..> ValidationReport : produces
+
+@enduml

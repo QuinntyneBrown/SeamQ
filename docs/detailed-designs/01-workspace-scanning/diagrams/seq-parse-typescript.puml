@@ -1,0 +1,85 @@
+@startuml seq-parse-typescript
+skinparam dpi 150
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+skinparam sequenceMessageAlign center
+
+title TypeScript File Parse Sequence
+
+participant "TypeScriptAstParser" as parser
+participant "AngularMetadataExtractor" as angular
+participant "TsDocParser" as tsdoc
+participant "PathAliasMap" as aliases
+
+-> parser : ParseFileAsync(filePath, aliasMap, ct)
+activate parser
+
+parser -> parser : Read file content
+parser -> parser : Compute SHA-256 hash
+
+== Parse Imports ==
+
+parser -> parser : ExtractImportStatements()
+loop each import statement
+  parser -> aliases : Resolve(moduleSpecifier)
+  activate aliases
+  aliases --> parser : resolvedPath | null
+  deactivate aliases
+  parser -> parser : Create ParsedImport
+end
+
+== Parse Declarations ==
+
+parser -> parser : ExtractDeclarations()
+note right
+  Scan top-level:
+  - interface
+  - class
+  - enum
+  - type alias
+  - export statements
+end note
+
+loop each class declaration
+  alt has Angular decorators
+    parser -> angular : Extract(classDecl, decorators)
+    activate angular
+
+    angular -> angular : ParseComponentMetadata()\nor ParseInjectableMetadata()
+    angular -> angular : DetectSignalInputs()
+    angular -> angular : DetectInjectCalls()
+    angular --> parser : AngularMetadata
+    deactivate angular
+
+    parser -> parser : Create ParsedComponent\nor ParsedService\nor ParsedDirective\nor ParsedPipe
+  else no Angular decorators
+    parser -> parser : Create ParsedClass
+  end
+end
+
+== Extract Documentation ==
+
+loop each ParsedSymbol
+  alt has preceding /** comment */
+    parser -> tsdoc : Parse(commentBlock)
+    activate tsdoc
+    tsdoc -> tsdoc : ExtractSummary()
+    tsdoc -> tsdoc : ParseTags()
+    tsdoc --> parser : TsDocComment
+    deactivate tsdoc
+    parser -> parser : Attach TsDocComment\nto ParsedSymbol
+  end
+end
+
+== Parse Exports ==
+
+parser -> parser : ExtractExportStatements()
+
+== Assemble Result ==
+
+parser -> parser : Create ParsedFile(\n  filePath, hash,\n  imports, exports, symbols\n)
+
+<-- parser : ParsedFile
+deactivate parser
+
+@enduml

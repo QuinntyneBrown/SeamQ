@@ -1,0 +1,23 @@
+@startuml c4-context
+!include <C4/C4_Context>
+
+skinparam dpi 150
+skinparam defaultFontSize 11
+skinparam wrapWidth 200
+
+title SeamQ -- System Context Diagram
+
+Person(dev, "Developer", "Angular developer who\nneeds ICD documentation")
+Person(architect, "Architect", "Reviews interface contracts\nacross workspaces")
+
+System(seamq, "SeamQ", ".NET 8 CLI tool that statically\nanalyzes Angular workspaces and\ngenerates Interface Control Documents")
+
+System_Ext(angular_ws, "Angular Workspaces", "One or more Angular CLI or Nx\nmonorepo workspace directories\ncontaining TypeScript source files")
+System_Ext(plantuml, "PlantUML Server", "Local JAR, Docker container,\nor remote server that renders\n.puml to SVG/PNG")
+
+Rel(dev, seamq, "Runs CLI commands", "scan, generate, diagram, validate")
+Rel(architect, seamq, "Reviews generated ICDs\nand diagrams")
+Rel(seamq, angular_ws, "Reads", "TypeScript, angular.json,\ntsconfig.json, nx.json")
+Rel(seamq, plantuml, "Sends .puml,\nreceives rendered images", "HTTP or local JAR")
+
+@enduml

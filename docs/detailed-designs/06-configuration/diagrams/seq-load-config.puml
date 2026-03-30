@@ -1,0 +1,109 @@
+@startuml seq-load-config
+!theme plain
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 180
+skinparam defaultFontSize 10
+skinparam pageMargin 10
+
+title Config Loading Sequence
+
+actor "CLI / Host" as CLI
+participant "ConfigLoader" as CL
+participant "IFileSystem" as FS
+participant "System.Text.Json" as JSON
+participant "ConfigValidator" as CV
+
+CLI -> CL : LoadAsync(context, ct)
+activate CL
+
+== Discovery ==
+
+CL -> CL : DiscoverConfigFile(context)
+activate CL #LightBlue
+
+alt --config path provided
+  CL -> FS : File.Exists(configPath)
+  activate FS
+  FS --> CL : true / false
+  deactivate FS
+  alt file does not exist
+    CL --> CLI : <<throws>> ConfigurationException\n"Config file not found: {path}"
+  end
+else auto-discovery
+  CL -> FS : File.Exists(cwd + "/seamq.config.json")
+  activate FS
+  FS --> CL : true / false
+  deactivate FS
+  loop walk up parent directories
+    CL -> FS : File.Exists(parent + "/seamq.config.json")
+    activate FS
+    FS --> CL : true / false
+    deactivate FS
+    CL -> FS : Directory.Exists(dir + "/.git")
+    activate FS
+    FS --> CL : true / false
+    deactivate FS
+    note right: Stop at .git root\nor filesystem root
+  end
+end
+
+deactivate CL
+
+== Parsing ==
+
+alt config file found
+  CL -> FS : ReadAllTextAsync(filePath)
+  activate FS
+  FS --> CL : jsonString
+  deactivate FS
+  CL -> JSON : Deserialize<SeamQConfig>(jsonString)
+  activate JSON
+  alt malformed JSON
+    JSON --> CL : <<throws>> JsonException
+    CL --> CLI : <<throws>> ConfigurationException\n"Invalid JSON at line:col"
+  end
+  JSON --> CL : SeamQConfig (raw)
+  deactivate JSON
+else no config file
+  CL -> CL : new SeamQConfig() with defaults
+end
+
+== Path Resolution ==
+
+CL -> CL : ResolvePaths(config, baseDir)
+note right
+  Converts relative paths
+  in Workspaces[].Path and
+  Output.Directory to absolute.
+end note
+
+== Validation ==
+
+CL -> CV : Validate(config)
+activate CV
+CV -> CV : ValidateWorkspaces()
+CV -> CV : ValidateSeamFilters()
+CV -> CV : ValidateOutput()
+CV -> CV : ValidateAnalysis()
+CV -> CV : ValidateIcdMetadata()
+CV --> CL : ConfigValidationResult
+deactivate CV
+
+alt validation errors
+  CL --> CLI : <<throws>> ConfigValidationException\n(all errors listed)
+end
+
+== CLI Overrides ==
+
+CL -> CL : MergeCliOverrides(config, overrides)
+note right
+  --output-dir -> Output.Directory
+  --confidence -> Analysis.ConfidenceThreshold
+  --max-depth -> Analysis.MaxDepth
+  etc.
+end note
+
+CL --> CLI : SeamQConfig (final)
+deactivate CL
+
+@enduml

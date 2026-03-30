@@ -1,0 +1,78 @@
+@startuml class-exporter
+!pragma layout smetana
+skinparam dpi 150
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+
+title Data Export - Exporter Class Diagram
+
+interface IDataExporter {
+  +ExportAsync(options: ExportOptions, registry: SeamRegistry, ct: CancellationToken): Task
+}
+
+class JsonDataExporter implements IDataExporter {
+  -_contractExporter: ContractSurfaceExporter
+  -_dictionaryExporter: DataDictionaryExporter
+  -_traceabilityExporter: TraceabilityMatrixExporter
+  -_serializer: JsonSerializerOptions
+  -_logger: ILogger
+  +ExportAsync(options, registry, ct): Task
+  -FilterSeams(registry, options): List<SeamCandidate>
+  -WriteFileAtomicAsync(path, json, ct): Task
+  -WriteCombinedToStdout(models, ct): Task
+}
+
+class ContractSurfaceExporter {
+  -_logger: ILogger
+  +ExtractAsync(seams: List<SeamCandidate>, ct: CancellationToken): Task<ContractSurfaceRoot>
+  -BuildContractEntries(seam): List<ContractEntry>
+  -ExtractInterfaceContract(iface: ParsedInterface): ContractEntry
+  -ExtractBindingContract(comp: ParsedComponent): ContractEntry
+  -ExtractTokenContract(svc: ParsedService): ContractEntry
+}
+
+class DataDictionaryExporter {
+  -_logger: ILogger
+  +ExtractAsync(seams: List<SeamCandidate>, ct: CancellationToken): Task<DataDictionaryRoot>
+  -CollectCrossBoundaryTypes(seams): List<ParsedSymbol>
+  -BuildTypeEntry(symbol: ParsedSymbol, seamIds: List<string>): TypeEntry
+  -DeduplicateByQualifiedName(types): List<TypeEntry>
+}
+
+class TraceabilityMatrixExporter {
+  -_logger: ILogger
+  +ExtractAsync(seams: List<SeamCandidate>, ct: CancellationToken): Task<TraceabilityMatrixRoot>
+  -BuildSymbolEntry(seam, symbol, role): TraceabilityEntry
+  -ResolveBarrelExport(symbol): string?
+}
+
+class ExportSchema <<static>> {
+  +{static} GetContractSurfaceSchema(): JsonElement
+  +{static} GetDataDictionarySchema(): JsonElement
+  +{static} GetTraceabilityMatrixSchema(): JsonElement
+  +{static} Validate(doc: JsonDocument, format: ExportFormat, out errors: List<string>): bool
+}
+
+class ExportOptions {
+  +OutputDirectory: string?
+  +SeamId: string?
+  +MinConfidence: double
+  +Format: ExportFormat
+  +WriteToStdout: bool
+  +ValidateOutput: bool
+  +PrettyPrint: bool
+}
+
+enum ExportFormat {
+  Json
+}
+
+JsonDataExporter --> ContractSurfaceExporter : delegates to
+JsonDataExporter --> DataDictionaryExporter : delegates to
+JsonDataExporter --> TraceabilityMatrixExporter : delegates to
+JsonDataExporter ..> ExportOptions : configured by
+JsonDataExporter ..> ExportSchema : validates with
+ExportOptions --> ExportFormat : uses
+
+@enduml

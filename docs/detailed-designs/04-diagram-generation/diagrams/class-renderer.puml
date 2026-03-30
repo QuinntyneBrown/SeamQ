@@ -1,0 +1,141 @@
+@startuml class-renderer
+!theme plain
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title Diagram Renderer - Core Class Hierarchy
+
+package "SeamQ.Renderer" {
+
+  interface IDiagramRenderer {
+    + GenerateAsync(seam: SeamModel, options: DiagramOptions, ct: CancellationToken): Task<IReadOnlyList<DiagramResult>>
+  }
+
+  class DiagramRenderer {
+    - _diagrams: IReadOnlyList<IPlantUmlDiagram>
+    - _encoder: PlantUmlEncoder
+    - _imageRenderer: ImageRenderer
+    - _logger: ILogger<DiagramRenderer>
+    + DiagramRenderer(diagrams, encoder, imageRenderer, logger)
+    + GenerateAsync(seam, options, ct): Task<IReadOnlyList<DiagramResult>>
+    - FilterApplicable(seam): IReadOnlyList<IPlantUmlDiagram>
+    - WriteFile(content: DiagramContent, outputDir: string): Task<string>
+  }
+
+  class DiagramOptions {
+    + RenderImages: bool
+    + ImageFormat: ImageFormat
+    + Theme: string
+    + MaxParallelism: int
+    + RenderParallelism: int
+    + PlantUmlServerUrl: string?
+    + OutputSubdirectory: string
+    + EnabledFamilies: DiagramFamily[]
+  }
+
+  class DiagramResult {
+    + DiagramName: string
+    + PumlFilePath: string
+    + ImageFilePath: string?
+    + Status: DiagramResultStatus
+    + ErrorMessage: string?
+  }
+
+  enum DiagramFamily {
+    Class
+    Sequence
+    State
+    C4
+  }
+
+  enum DiagramResultStatus {
+    Success
+    PartialFailure
+    Skipped
+    Error
+  }
+
+  IDiagramRenderer <|.. DiagramRenderer
+  DiagramRenderer --> DiagramOptions : uses
+  DiagramRenderer --> "0..*" DiagramResult : produces
+  DiagramResult --> DiagramResultStatus
+  DiagramOptions --> "1..*" DiagramFamily
+}
+
+package "Diagram Generators" {
+
+  interface IPlantUmlDiagram {
+    + DiagramType: DiagramFamily {readOnly}
+    + Name: string {readOnly}
+    + IsApplicable(seam: SeamModel): bool
+    + GenerateAsync(seam: SeamModel, ctx: RenderContext, ct: CancellationToken): Task<DiagramContent>
+  }
+
+  class DiagramContent {
+    + RawPuml: string
+    + SuggestedFileName: string
+    + Title: string
+    + Description: string
+    + CrossReferences: IReadOnlyList<string>
+  }
+
+  abstract class BaseClassDiagram {
+    # BuildPackage(name, types): string
+    # BuildRelationships(types): string
+  }
+
+  abstract class BaseSequenceDiagram {
+    # AddParticipant(name, type): void
+    # AddMessage(from, to, label): void
+  }
+
+  abstract class BaseStateDiagram {
+    # AddState(name, description): void
+    # AddTransition(from, to, trigger): void
+  }
+
+  abstract class BaseC4Diagram {
+    # AddPerson(alias, name, desc): void
+    # AddContainer(alias, name, tech, desc): void
+    # AddComponent(alias, name, tech, desc): void
+  }
+
+  IPlantUmlDiagram <|.. BaseClassDiagram
+  IPlantUmlDiagram <|.. BaseSequenceDiagram
+  IPlantUmlDiagram <|.. BaseStateDiagram
+  IPlantUmlDiagram <|.. BaseC4Diagram
+  IPlantUmlDiagram --> DiagramContent : produces
+  DiagramRenderer o-- "1..*" IPlantUmlDiagram : generators
+}
+
+package "Class Diagram Implementations" <<Rectangle>> {
+  class ApiSurfaceClassDiagram
+  class BackendContractsClassDiagram
+  class BackendControllersClassDiagram
+  class DatastoreSchemaClassDiagram
+  class DomainDataObjectsClassDiagram
+  class FrontendServicesClassDiagram
+  class MessageInterfacesClassDiagram
+  class RealtimeCommunicationClassDiagram
+  class TelemetryModelsClassDiagram
+  class TelemetryServiceClassDiagram
+  class RegistrationSystemClassDiagram
+
+  BaseClassDiagram <|-- ApiSurfaceClassDiagram
+  BaseClassDiagram <|-- BackendContractsClassDiagram
+  BaseClassDiagram <|-- BackendControllersClassDiagram
+  BaseClassDiagram <|-- DatastoreSchemaClassDiagram
+  BaseClassDiagram <|-- DomainDataObjectsClassDiagram
+  BaseClassDiagram <|-- FrontendServicesClassDiagram
+  BaseClassDiagram <|-- MessageInterfacesClassDiagram
+  BaseClassDiagram <|-- RealtimeCommunicationClassDiagram
+  BaseClassDiagram <|-- TelemetryModelsClassDiagram
+  BaseClassDiagram <|-- TelemetryServiceClassDiagram
+  BaseClassDiagram <|-- RegistrationSystemClassDiagram
+}
+
+@enduml

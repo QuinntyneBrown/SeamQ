@@ -1,0 +1,68 @@
+@startuml seq-save-baseline
+!theme plain
+skinparam defaultFontSize 10
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam pageMargin 10
+
+title Save Baseline Sequence
+
+actor Caller
+participant "BaselineSerializer" as BS
+participant "SeamRegistry" as SR
+participant "JSON Serializer\n(System.Text.Json)" as JSON
+participant "FileSystem" as FS
+
+Caller -> BS : SaveAsync(registry, filePath, ct)
+activate BS
+
+== Extract and Sort ==
+
+BS -> SR : GetAll()
+activate SR
+SR --> BS : IReadOnlyList<SeamCandidate>
+deactivate SR
+
+BS -> BS : Sort seams by ID (stable ordering)
+
+loop for each SeamCandidate (sorted)
+  BS -> BS : Sort ContractSymbols by name
+  BS -> BS : Sort ConsumerWorkspaces alphabetically
+  BS -> BS : Sort Metadata keys alphabetically
+end
+
+== Build Envelope ==
+
+BS -> BS : Create BaselineEnvelope
+note right
+  {
+    "$schemaVersion": 1,
+    "$generatedAt": "<now>",
+    "seams": { ... sorted ... }
+  }
+end note
+
+== Serialize ==
+
+BS -> JSON : Serialize(envelope, jsonOptions)
+activate JSON
+note right
+  JsonSerializerOptions:
+  - WriteIndented = true
+  - PropertyNamingPolicy = CamelCase
+  - Converters: enum as string
+end note
+JSON --> BS : string (JSON)
+deactivate JSON
+
+== Write to Disk ==
+
+BS -> FS : WriteAllTextAsync(filePath, json, ct)
+activate FS
+FS --> BS : written
+deactivate FS
+
+BS --> Caller : Task (completed)
+deactivate BS
+
+@enduml

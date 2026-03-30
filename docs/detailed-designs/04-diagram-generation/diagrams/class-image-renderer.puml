@@ -1,0 +1,93 @@
+@startuml class-image-renderer
+!theme plain
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title ImageRenderer & PlantUmlEncoder - Class Diagram
+
+package "SeamQ.Renderer.Encoding" {
+
+  class PlantUmlEncoder {
+    + Validate(puml: string): ValidationResult
+    + Normalize(puml: string, theme: string): string
+    + EncodeForUrl(puml: string): string
+    - EnsureMarkers(puml: string): string
+    - ApplySkinParams(puml: string, theme: string): string
+    - DeflateAndEncode(text: string): string
+  }
+
+  class ValidationResult {
+    + IsValid: bool
+    + Errors: IReadOnlyList<string>
+    + Warnings: IReadOnlyList<string>
+  }
+
+  PlantUmlEncoder --> ValidationResult : produces
+}
+
+package "SeamQ.Renderer.Imaging" {
+
+  class ImageRenderer {
+    - _encoder: PlantUmlEncoder
+    - _backendDetector: RenderBackendDetector
+    - _httpClient: HttpClient
+    - _logger: ILogger<ImageRenderer>
+    + ImageRenderer(encoder, backendDetector, httpClient, logger)
+    + RenderAsync(pumlPath: string, options: RenderOptions, ct: CancellationToken): Task<RenderResult>
+    + RenderBatchAsync(pumlPaths: IEnumerable<string>, options: RenderOptions, ct: CancellationToken): Task<IReadOnlyList<RenderResult>>
+    - RenderViaJar(pumlPath, options, ct): Task<RenderResult>
+    - RenderViaDocker(pumlPath, options, ct): Task<RenderResult>
+    - RenderViaServer(pumlPath, options, ct): Task<RenderResult>
+  }
+
+  class RenderOptions {
+    + Format: ImageFormat
+    + Parallelism: int
+    + TimeoutMs: int
+    + RetryCount: int
+    + OutputDirectory: string
+  }
+
+  class RenderResult {
+    + InputPath: string
+    + OutputPath: string?
+    + Format: ImageFormat
+    + Success: bool
+    + ErrorMessage: string?
+    + DurationMs: long
+  }
+
+  enum ImageFormat {
+    Svg
+    Png
+    Both
+  }
+
+  class RenderBackendDetector {
+    - _logger: ILogger<RenderBackendDetector>
+    + DetectAsync(ct: CancellationToken): Task<RenderBackend>
+    - TryLocalJar(): bool
+    - TryDocker(): bool
+    - TryRemoteServer(url: string): Task<bool>
+  }
+
+  enum RenderBackend {
+    LocalJar
+    Docker
+    RemoteServer
+    None
+  }
+
+  ImageRenderer --> PlantUmlEncoder : uses
+  ImageRenderer --> RenderBackendDetector : uses
+  ImageRenderer --> RenderOptions : configured by
+  ImageRenderer --> "0..*" RenderResult : produces
+  RenderOptions --> ImageFormat
+  RenderBackendDetector --> RenderBackend : detects
+}
+
+@enduml

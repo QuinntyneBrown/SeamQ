@@ -1,0 +1,124 @@
+@startuml class-contract-elements
+!pragma layout smetana
+skinparam dpi 150
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam classAttributeFontSize 10
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title Contract Elements and Data Dictionary
+
+enum ContractElementKind {
+  Interface
+  AbstractClass
+  InjectionToken
+  InputBinding
+  OutputBinding
+  SignalInput
+  Method
+  Property
+  Observable
+  Type
+  Enum
+  Route
+  Action
+  Selector
+}
+
+enum DataDictionaryEntryKind {
+  Interface
+  TypeAlias
+  Enum
+  Class
+}
+
+enum ProtocolCategory {
+  DiMultiProvider
+  ComponentRendering
+  ObservablePushStream
+  SignalRead
+  RequestReply
+  FireAndForget
+}
+
+enum ProtocolLifetime {
+  OneTime
+  LongLived
+  SessionScoped
+  ShortLived
+}
+
+class ContractElement {
+  + Name : string
+  + Kind : ContractElementKind
+  + SourceFile : string
+  + LineNumber : int
+  + Workspace : string
+  + TypeSignature : string?
+  + Documentation : string?
+  + IsRequired : bool
+  + GenericTypeParameters : IReadOnlyList<string>?
+}
+
+class DataDictionaryEntry {
+  + Name : string
+  + Kind : DataDictionaryEntryKind
+  + Fields : IReadOnlyList<FieldDefinition>
+  + Documentation : string?
+  + SourceFile : string
+  + LineNumber : int
+  + GenericTypeParameters : IReadOnlyList<string>?
+}
+
+class FieldDefinition {
+  + Name : string
+  + Type : string
+  + IsOptional : bool
+  + DefaultValue : string?
+  + Documentation : string?
+}
+
+class TraceabilityEntry {
+  + ElementName : string
+  + ElementKind : ContractElementKind
+  + SourceFile : string
+  + LineNumber : int
+  + Workspace : string
+  + ExternalRequirementIds : IReadOnlyList<string>?
+}
+
+class ProtocolClassification {
+  + Name : string
+  + Category : ProtocolCategory
+  + IsAsync : bool
+  + Lifetime : ProtocolLifetime
+  + InvolvedElements : IReadOnlyList<string>
+}
+
+class DiagramSpec {
+  + Type : DiagramType
+  + Title : string
+  + OutputFileName : string
+  + Participants : IReadOnlyList<string>
+  + Relationships : IReadOnlyList<DiagramRelationship>
+  + SeamId : string
+}
+
+class DiagramRelationship {
+  + From : string
+  + To : string
+  + Label : string?
+  + Style : RelationshipStyle
+}
+
+ContractElement --> ContractElementKind
+DataDictionaryEntry --> DataDictionaryEntryKind
+DataDictionaryEntry "1" *-- "0..*" FieldDefinition
+TraceabilityEntry --> ContractElementKind
+ProtocolClassification --> ProtocolCategory
+ProtocolClassification --> ProtocolLifetime
+DiagramSpec "1" *-- "0..*" DiagramRelationship
+
+@enduml

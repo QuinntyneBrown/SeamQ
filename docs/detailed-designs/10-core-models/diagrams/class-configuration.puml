@@ -1,0 +1,70 @@
+@startuml class-configuration
+!pragma layout smetana
+skinparam dpi 150
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam classAttributeFontSize 10
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title Configuration Model -- seamq.config.json
+
+class SeamQConfig {
+  + Workspaces : List<WorkspaceConfig>
+  + Seams : SeamFilterConfig?
+  + Output : OutputConfig
+  + Analysis : AnalysisConfig
+  + Icd : IcdConfig
+}
+
+class WorkspaceConfig {
+  + Path : string
+  + Alias : string?
+  + Role : string = "application"
+}
+
+class SeamFilterConfig {
+  + IncludeTypes : List<string>?
+  + ExcludeTypes : List<string>?
+  + CustomDecorators : List<string>?
+}
+
+class OutputConfig {
+  + Directory : string = "./seamq-output"
+  + Formats : List<string> = ["md"]
+  + Diagrams : DiagramOutputConfig
+}
+
+class DiagramOutputConfig {
+  + RenderFormat : string = "svg"
+  + PlantumlServer : string = "local"
+  + Theme : string = "plain"
+  + Skinparams : Dictionary<string, string>?
+}
+
+class AnalysisConfig {
+  + MaxDepth : int = 10
+  + FollowNodeModules : bool = false
+  + IncludeInternalSeams : bool = false
+  + ConfidenceThreshold : double = 0.5
+  + Exclude : List<string>?
+}
+
+class IcdConfig {
+  + Title : string = "Interface Control Document"
+  + DocumentNumber : string?
+  + Revision : string?
+  + Classification : string?
+  + Template : string?
+  + Standards : List<string>?
+}
+
+SeamQConfig "1" *-- "0..*" WorkspaceConfig
+SeamQConfig "1" *-- "0..1" SeamFilterConfig
+SeamQConfig "1" *-- "1" OutputConfig
+SeamQConfig "1" *-- "1" AnalysisConfig
+SeamQConfig "1" *-- "1" IcdConfig
+OutputConfig "1" *-- "1" DiagramOutputConfig
+
+@enduml

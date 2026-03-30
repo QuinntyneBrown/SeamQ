@@ -1,0 +1,57 @@
+@startuml c4-component-scanner
+!include <C4/C4_Component>
+
+skinparam dpi 150
+skinparam defaultFontSize 10
+skinparam pageMargin 10
+
+title SeamQ Scanner Module - C4 Component Diagram
+
+Person(dev, "Developer", "Runs SeamQ CLI to analyse\nan Angular/Nx workspace")
+
+System_Boundary(cli_boundary, "SeamQ CLI") {
+
+  Container_Boundary(scanner_boundary, "SeamQ.Scanner Module") {
+
+    Component(ws, "WorkspaceScanner", ".NET 8 Class", "Orchestrates the full\nworkspace scanning pipeline")
+
+    Component(angular_parser, "AngularWorkspaceParser", ".NET 8 Class", "Parses angular.json,\ndiscovers Angular CLI projects")
+
+    Component(nx_parser, "NxWorkspaceParser", ".NET 8 Class", "Parses nx.json and project.json,\ndiscovers Nx projects")
+
+    Component(tsconfig, "TsConfigResolver", ".NET 8 Class", "Resolves TypeScript path aliases\nand project references")
+
+    Component(barrel, "BarrelExportParser", ".NET 8 Class", "Parses public-api.ts / index.ts\nfor exported symbols")
+
+    Component(ts_parser, "TypeScriptAstParser", ".NET 8 Class", "Parses .ts files into\nParsedFile AST models")
+
+    Component(angular_meta, "AngularMetadataExtractor", ".NET 8 Class", "Extracts @Component, @Injectable,\nsignal inputs, inject() calls")
+
+    Component(tsdoc, "TsDocParser", ".NET 8 Class", "Extracts JSDoc/TSDoc\ncomments from source")
+
+    Component(cache, "AstCache", ".NET 8 Class", "SHA-256-based file cache\nfor parsed AST results")
+  }
+
+  Component(seam, "Seam Detection Module", ".NET 8", "Downstream consumer of\nWorkspaceModel")
+}
+
+System_Ext(filesystem, "File System", "Angular/Nx workspace\nfiles on disk")
+
+Rel(dev, ws, "Invokes scan via CLI")
+Rel(ws, angular_parser, "Delegates to\n(Angular workspaces)")
+Rel(ws, nx_parser, "Delegates to\n(Nx workspaces)")
+Rel(ws, tsconfig, "Resolves path aliases")
+Rel(ws, barrel, "Parses barrel exports")
+Rel(ws, ts_parser, "Parses .ts files")
+Rel(ws, cache, "Reads/writes cached results")
+Rel(ts_parser, angular_meta, "Extracts Angular metadata")
+Rel(ts_parser, tsdoc, "Extracts documentation")
+Rel(ws, seam, "Provides WorkspaceModel")
+Rel(angular_parser, filesystem, "Reads angular.json")
+Rel(nx_parser, filesystem, "Reads nx.json,\nproject.json files")
+Rel(tsconfig, filesystem, "Reads tsconfig.json files")
+Rel(barrel, filesystem, "Reads barrel files")
+Rel(ts_parser, filesystem, "Reads .ts source files")
+Rel(cache, filesystem, "Persists .seamq-cache")
+
+@enduml

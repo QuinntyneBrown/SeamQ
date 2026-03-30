@@ -1,0 +1,43 @@
+@startuml c4-component-config
+!include <C4/C4_Component>
+
+title Configuration System - C4 Component Diagram
+
+Container_Boundary(cli, "SeamQ CLI") {
+  Component(cmdParser, "Command Parser", "System.CommandLine", "Parses CLI arguments and flags into ConfigLoadContext")
+}
+
+Container_Boundary(config, "SeamQ.Configuration") {
+  Component(loader, "ConfigLoader", ".NET 8 / System.Text.Json", "Discovers, reads, and deserializes seamq.config.json; resolves paths; merges CLI overrides")
+  Component(validator, "ConfigValidator", ".NET 8", "Validates all config values: paths exist, enums valid, ranges correct")
+  Component(initializer, "ConfigInitializer", ".NET 8", "Interactive wizard for 'seamq init'; prompts user and writes config file")
+  Component(models, "Config Models", "C# records", "SeamQConfig, WorkspaceConfig, OutputConfig, AnalysisConfig, etc.")
+}
+
+Container_Boundary(di, "DI Container") {
+  Component(registry, "ServiceCollection", "Microsoft.Extensions.DI", "Registers SeamQConfig and section singletons")
+}
+
+Container_Boundary(consumers, "Consuming Modules") {
+  Component(scanner, "WorkspaceScanner", "SeamQ.Scanner", "Reads WorkspaceConfig[] for paths and roles")
+  Component(detector, "SeamDetector", "SeamQ.Detector", "Reads SeamFilterConfig and AnalysisConfig")
+  Component(generator, "IcdGenerator", "SeamQ.Generator", "Reads IcdMetadataConfig and OutputConfig")
+  Component(diagrams, "DiagramRenderer", "SeamQ.Diagrams", "Reads DiagramOutputConfig for render settings")
+}
+
+Rel(cmdParser, loader, "Provides ConfigLoadContext", "in-process")
+Rel(loader, validator, "Delegates validation")
+Rel(loader, models, "Produces")
+Rel(initializer, validator, "Validates wizard answers")
+Rel(initializer, models, "Builds config from prompts")
+Rel(loader, registry, "Registers SeamQConfig singleton")
+Rel(registry, scanner, "Injects WorkspaceConfig[]")
+Rel(registry, detector, "Injects SeamFilterConfig, AnalysisConfig")
+Rel(registry, generator, "Injects IcdMetadataConfig, OutputConfig")
+Rel(registry, diagrams, "Injects DiagramOutputConfig")
+
+Lay_D(cli, config)
+Lay_D(config, di)
+Lay_D(di, consumers)
+
+@enduml

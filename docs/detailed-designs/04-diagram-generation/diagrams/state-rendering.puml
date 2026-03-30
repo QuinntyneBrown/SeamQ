@@ -1,0 +1,93 @@
+@startuml state-rendering
+!theme plain
+skinparam defaultFontSize 10
+skinparam stateFontSize 11
+skinparam stateAttributeFontSize 9
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title Rendering Pipeline - State Machine
+
+[*] --> Idle
+
+state Idle {
+  Idle : Waiting for GenerateAsync call.
+  Idle : No resources allocated.
+}
+
+Idle --> Filtering : GenerateAsync(seam, options) invoked
+
+state Filtering {
+  Filtering : Evaluating IsApplicable()
+  Filtering : on each IPlantUmlDiagram.
+}
+
+Filtering --> GeneratingPuml : Applicable generators identified
+Filtering --> Idle : No applicable generators found
+
+state GeneratingPuml {
+  GeneratingPuml : Running generators in parallel.
+  GeneratingPuml : Bounded by MaxParallelism.
+}
+
+GeneratingPuml --> ValidatingPuml : All generators complete
+
+state ValidatingPuml {
+  ValidatingPuml : PlantUmlEncoder.Validate()
+  ValidatingPuml : and Normalize() on each output.
+}
+
+ValidatingPuml --> WritingPumlFiles : Validation pass
+
+state WritingPumlFiles {
+  WritingPumlFiles : Writing .puml files
+  WritingPumlFiles : to output directory.
+}
+
+WritingPumlFiles --> DetectingBackend : RenderImages == true
+WritingPumlFiles --> Complete : RenderImages == false
+
+state DetectingBackend {
+  DetectingBackend : RenderBackendDetector probes
+  DetectingBackend : JAR, Docker, Remote Server.
+}
+
+DetectingBackend --> RenderingImages : Backend available
+DetectingBackend --> Complete : No backend (warning logged)
+
+state RenderingImages {
+  RenderingImages : Converting .puml to SVG/PNG.
+  RenderingImages : Bounded by RenderParallelism.
+}
+
+RenderingImages --> WritingImageFiles : Rendering complete
+
+state WritingImageFiles {
+  WritingImageFiles : Writing image files
+  WritingImageFiles : alongside .puml files.
+}
+
+WritingImageFiles --> Complete
+
+state Complete {
+  Complete : DiagramResult list returned.
+  Complete : Includes per-diagram status.
+}
+
+Complete --> [*]
+
+' Error transitions
+GeneratingPuml --> ErrorRecovery : Generator throws exception
+RenderingImages --> ErrorRecovery : Render backend fails
+
+state ErrorRecovery {
+  ErrorRecovery : Log error for failed diagram.
+  ErrorRecovery : Mark DiagramResult as Error.
+  ErrorRecovery : Continue with remaining items.
+}
+
+ErrorRecovery --> GeneratingPuml : Resume next generator
+ErrorRecovery --> RenderingImages : Resume next render
+ErrorRecovery --> Complete : All items processed
+
+@enduml

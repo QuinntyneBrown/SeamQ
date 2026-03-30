@@ -1,0 +1,78 @@
+@startuml seq-scan-workspace
+skinparam dpi 150
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+skinparam sequenceMessageAlign center
+
+title Workspace Scan Sequence
+
+actor CLI as cli
+participant "WorkspaceScanner" as ws
+participant "AngularWorkspaceParser\n/ NxWorkspaceParser" as wp
+participant "TsConfigResolver" as tsc
+participant "BarrelExportParser" as barrel
+participant "TypeScriptAstParser" as tsparser
+participant "AstCache" as cache
+
+cli -> ws : ScanAsync(root, options, ct)
+activate ws
+
+== Detect Workspace Type ==
+
+ws -> ws : DetectWorkspaceType(root)
+note right: Check for angular.json\nor nx.json
+
+== Parse Workspace Config ==
+
+ws -> wp : ParseAsync(root, ct)
+activate wp
+wp --> ws : WorkspaceConfig\n(list of ProjectInfo)
+deactivate wp
+
+== Resolve TypeScript Config ==
+
+ws -> tsc : ResolveAsync(root, ct)
+activate tsc
+tsc -> tsc : ParseTsConfig(tsconfig.base.json)
+tsc -> tsc : MergeExtends(chain)
+tsc --> ws : PathAliasMap
+deactivate tsc
+
+== Parse Barrel Exports (per library) ==
+
+loop each library project
+  ws -> barrel : ParseAsync(barrelFilePath, ct)
+  activate barrel
+  barrel -> barrel : ParseExportStatements
+  barrel -> barrel : ResolveReExports
+  barrel --> ws : BarrelExportResult
+  deactivate barrel
+end
+
+== Parse TypeScript Files (parallel) ==
+
+ws -> ws : Collect all .ts files\n(apply include/exclude globs)
+
+loop each .ts file (parallel)
+  ws -> cache : TryGet(filePath, hash)
+  activate cache
+  alt cache hit
+    cache --> ws : ParsedFile (cached)
+  else cache miss
+    cache --> ws : false
+    deactivate cache
+    ws -> tsparser : ParseFileAsync(filePath, aliasMap, ct)
+    activate tsparser
+    tsparser --> ws : ParsedFile
+    deactivate tsparser
+    ws -> cache : Set(filePath, hash, ParsedFile)
+  end
+end
+
+== Build Workspace Model ==
+
+ws -> ws : Assemble WorkspaceModel\nfrom parsed data
+ws --> cli : WorkspaceModel
+deactivate ws
+
+@enduml

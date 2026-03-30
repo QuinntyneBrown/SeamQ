@@ -1,0 +1,86 @@
+@startuml seq-scan-command
+!theme plain
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantPadding 15
+skinparam sequenceBoxPadding 10
+
+title Scan Command - Sequence Diagram
+
+participant "ScanCommand\nHandler" as Handler
+participant "IConfiguration" as Config
+participant "IWorkspaceScanner" as Scanner
+participant "ISeamDetector" as Detector
+participant "IConsoleRenderer" as Renderer
+participant "File System" as FS
+
+[-> Handler : HandleAsync(paths, saveBaseline)
+activate Handler
+
+alt paths provided
+    Handler -> Handler : Use CLI paths
+else no paths
+    Handler -> Config : Get workspace paths
+    Config --> Handler : configured paths
+end
+
+Handler -> Renderer : StartProgress("Scanning workspaces...")
+activate Renderer
+Renderer --> Handler : IProgressContext
+deactivate Renderer
+
+loop for each workspace path
+    Handler -> Scanner : ScanAsync(path)
+    activate Scanner
+
+    Scanner -> FS : Read angular.json / nx.json
+    FS --> Scanner : config files
+
+    Scanner -> Scanner : Detect workspace type
+    Scanner -> Scanner : Discover projects
+
+    loop for each project
+        Scanner -> FS : Parse TypeScript sources
+        FS --> Scanner : AST nodes
+        Scanner -> Scanner : Extract exports, services,\ncomponents, models
+    end
+
+    Scanner --> Handler : WorkspaceModel
+    deactivate Scanner
+
+    Handler -> Renderer : Report progress
+end
+
+Handler -> Renderer : Complete progress
+Handler --> Handler : Collect all WorkspaceModels
+
+Handler -> Detector : DetectSeamsAsync(workspaces)
+activate Detector
+
+Detector -> Detector : Analyze cross-workspace\nboundaries
+Detector -> Detector : Classify seam types
+Detector -> Detector : Calculate confidence scores
+
+Detector --> Handler : SeamRegistry
+deactivate Detector
+
+Handler -> Renderer : WriteHeading("Scan Results")
+Handler -> Renderer : WriteTable(workspace summary)
+activate Renderer
+Renderer --> [: | Workspace | Projects | Exports |
+Renderer --> [: |----------|----------|---------|
+Renderer --> [: | app-shell| 3        | 47      |
+Renderer --> [: | plugins  | 12       | 215     |
+deactivate Renderer
+
+Handler -> Renderer : WriteSuccess("Found {n} seams")
+
+opt --save-baseline specified
+    Handler -> FS : Serialize SeamRegistry to JSON
+    Handler -> FS : Write baseline file
+    Handler -> Renderer : WriteInfo("Baseline saved to {path}")
+end
+
+[<-- Handler : exit code 0
+deactivate Handler
+
+@enduml

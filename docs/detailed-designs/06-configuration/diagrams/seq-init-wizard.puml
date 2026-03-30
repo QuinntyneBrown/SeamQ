@@ -1,0 +1,135 @@
+@startuml seq-init-wizard
+!theme plain
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 180
+skinparam defaultFontSize 10
+skinparam pageMargin 10
+
+title Init Wizard Sequence
+
+actor "User" as U
+participant "CLI (init command)" as CLI
+participant "ConfigInitializer" as CI
+participant "IConsolePrompter" as P
+participant "ConfigValidator" as CV
+participant "IFileSystem" as FS
+
+U -> CLI : seamq init
+CLI -> CI : RunAsync(cwd, ct)
+activate CI
+
+== Check Existing ==
+
+CI -> FS : File.Exists("seamq.config.json")
+activate FS
+FS --> CI : true / false
+deactivate FS
+
+alt config file exists
+  CI -> P : PromptConfirm("Overwrite existing config?", false)
+  activate P
+  P -> U : "seamq.config.json exists. Overwrite? [y/N]"
+  U --> P : response
+  P --> CI : bool
+  deactivate P
+  alt user declines
+    CI --> CLI : return 0 (cancelled)
+  end
+end
+
+== Workspace Prompts ==
+
+loop add workspaces
+  CI -> P : PromptText("Workspace path")
+  activate P
+  P -> U : "Enter workspace path:"
+  U --> P : "../framework"
+  P --> CI : path
+  deactivate P
+
+  CI -> FS : Directory.Exists(resolvedPath)
+  activate FS
+  FS --> CI : true / false
+  deactivate FS
+
+  alt path does not exist
+    CI -> P : PromptText("Path not found. Re-enter:")
+    activate P
+    P -> U : error + re-prompt
+    U --> P : corrected path
+    P --> CI : path
+    deactivate P
+  end
+
+  CI -> P : PromptText("Alias", defaultValue)
+  activate P
+  P -> U : "Alias [framework]:"
+  U --> P : alias or enter
+  P --> CI : alias
+  deactivate P
+
+  CI -> P : PromptSelection("Role", roles[])
+  activate P
+  P -> U : "Role: 1) framework 2) plugin\n       3) library 4) application"
+  U --> P : selection
+  P --> CI : WorkspaceRole
+  deactivate P
+
+  CI -> P : PromptConfirm("Add another workspace?", false)
+  activate P
+  P -> U : "Add another workspace? [y/N]"
+  U --> P : response
+  P --> CI : bool
+  deactivate P
+end
+
+== Output Prompts ==
+
+CI -> P : PromptText("Output directory", "./seamq-output")
+activate P
+P -> U : "Output directory [./seamq-output]:"
+U --> P : directory or enter
+P --> CI : directory
+deactivate P
+
+CI -> P : PromptMultiSelect("Formats", formats[])
+activate P
+P -> U : "Formats: [x] html [x] markdown [ ] json"
+U --> P : selections
+P --> CI : List<string>
+deactivate P
+
+CI -> P : PromptSelection("Diagram format", ["svg", "png"])
+activate P
+P -> U : "Diagram render format: 1) svg 2) png"
+U --> P : selection
+P --> CI : string
+deactivate P
+
+== Validate & Write ==
+
+CI -> CI : Build SeamQConfig from answers
+CI -> CV : Validate(config)
+activate CV
+CV --> CI : ConfigValidationResult
+deactivate CV
+
+alt validation errors
+  CI -> P : Display errors
+  note right: Loop back to\nrelevant prompts
+else valid
+  CI -> FS : WriteAllTextAsync(\n  "seamq.config.json",\n  serializedJson)
+  activate FS
+  FS --> CI : done
+  deactivate FS
+
+  CI -> P : Display success message
+  activate P
+  P -> U : "Created seamq.config.json"
+  deactivate P
+end
+
+CI --> CLI : return 0 (success)
+deactivate CI
+
+@enduml

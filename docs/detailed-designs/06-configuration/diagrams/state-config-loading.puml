@@ -1,0 +1,78 @@
+@startuml state-config-loading
+!theme plain
+skinparam defaultFontSize 10
+skinparam pageMargin 10
+skinparam stateFontSize 11
+
+title Config Loading States
+
+[*] --> Discovering
+
+state Discovering {
+  state "Check --config flag" as CheckFlag
+  state "Search cwd" as SearchCwd
+  state "Walk up parents" as WalkUp
+
+  [*] --> CheckFlag
+  CheckFlag --> SearchCwd : no flag provided
+  CheckFlag --> FileFound : flag path exists
+  CheckFlag --> Error : flag path missing
+  SearchCwd --> FileFound : found in cwd
+  SearchCwd --> WalkUp : not in cwd
+  WalkUp --> FileFound : found in ancestor
+  WalkUp --> NoFileFound : reached .git root\nor filesystem root
+}
+
+state Parsing {
+  state "Read file" as ReadFile
+  state "Deserialize JSON" as Deserialize
+
+  [*] --> ReadFile
+  ReadFile --> Deserialize : file content loaded
+  ReadFile --> Error : I/O error
+  Deserialize --> [*] : SeamQConfig parsed
+  Deserialize --> Error : malformed JSON
+}
+
+state Validating {
+  state "Check workspaces" as VW
+  state "Check seam filters" as VS
+  state "Check output" as VO
+  state "Check analysis" as VA
+  state "Check ICD metadata" as VI
+
+  [*] --> VW
+  VW --> VS
+  VS --> VO
+  VO --> VA
+  VA --> VI
+  VI --> [*] : all rules pass
+  VI --> Error : validation errors
+}
+
+state MergingOverrides {
+  state "Apply CLI flags" as ApplyCli
+  state "Re-validate overrides" as Revalidate
+
+  [*] --> ApplyCli
+  ApplyCli --> Revalidate
+  Revalidate --> [*] : overrides valid
+  Revalidate --> Error : invalid override value
+}
+
+state Ready <<expansive>> {
+}
+
+state Error <<expansive>> {
+}
+
+Discovering --> Parsing : config file found
+NoFileFound --> MergingOverrides : use defaults
+Parsing --> Validating : parsed successfully
+Validating --> MergingOverrides : validation passed
+MergingOverrides --> Ready : final config ready
+
+Ready --> [*]
+Error --> [*]
+
+@enduml

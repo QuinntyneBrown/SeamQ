@@ -1,0 +1,64 @@
+@startuml seq-generate-diagrams
+!theme plain
+skinparam defaultFontSize 10
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title Diagram Generation Sequence
+
+actor "ICD Generator" as caller
+participant "DiagramRenderer" as renderer
+participant "IPlantUmlDiagram\n(generator)" as gen
+participant "PlantUmlEncoder" as encoder
+participant "ImageRenderer" as imgRender
+participant "File System" as fs
+
+caller -> renderer : GenerateAsync(seam, options, ct)
+activate renderer
+
+renderer -> renderer : FilterApplicable(seam)
+note right
+  Iterates all injected IPlantUmlDiagram
+  instances and calls IsApplicable(seam).
+  Non-applicable generators are skipped.
+end note
+
+loop for each applicable generator (parallel, max N)
+  renderer -> gen : GenerateAsync(seam, ctx, ct)
+  activate gen
+  gen --> renderer : DiagramContent
+  deactivate gen
+
+  renderer -> encoder : Validate(content.RawPuml)
+  activate encoder
+  encoder --> renderer : ValidationResult
+  deactivate encoder
+
+  alt validation passed
+    renderer -> encoder : Normalize(content.RawPuml, options.Theme)
+    activate encoder
+    encoder --> renderer : normalizedPuml
+    deactivate encoder
+
+    renderer -> fs : Write .puml file
+    activate fs
+    fs --> renderer : filePath
+    deactivate fs
+  else validation failed
+    renderer -> renderer : Log warning, record Error status
+  end
+end
+
+alt options.RenderImages == true
+  renderer -> imgRender : RenderBatchAsync(pumlPaths, renderOptions, ct)
+  activate imgRender
+  imgRender --> renderer : IReadOnlyList<RenderResult>
+  deactivate imgRender
+end
+
+renderer --> caller : IReadOnlyList<DiagramResult>
+deactivate renderer
+
+@enduml

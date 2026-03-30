@@ -1,0 +1,118 @@
+@startuml class-cli-commands
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 40
+skinparam packagePadding 20
+
+title CLI Commands - Class Diagram
+
+package "System.CommandLine" <<Frame>> {
+    class RootCommand {
+        +Description : string
+        +Add(command : Command)
+        +Add(option : Option)
+        +InvokeAsync(args : string[]) : Task<int>
+    }
+
+    abstract class Command {
+        +Name : string
+        +Description : string
+        +AddArgument(arg : Argument)
+        +AddOption(opt : Option)
+        +SetHandler(handler : Delegate)
+    }
+}
+
+class GlobalOptions <<static>> {
+    +{static} Verbose : Option<bool>
+    +{static} Quiet : Option<bool>
+    +{static} NoColor : Option<bool>
+    +{static} OutputDir : Option<DirectoryInfo?>
+    +{static} Config : Option<FileInfo?>
+    +{static} AddToCommand(cmd : RootCommand)
+}
+
+class ScanCommand extends Command {
+    -paths : Argument<string[]>
+    -saveBaseline : Option<FileInfo?>
+    +ScanCommand()
+    -HandleAsync(paths, saveBaseline, scanner, detector, renderer) : Task<int>
+}
+
+class ListCommand extends Command {
+    -type : Option<string?>
+    -provider : Option<string?>
+    -confidence : Option<double?>
+    +ListCommand()
+    -HandleAsync(type, provider, confidence, registry, renderer) : Task<int>
+}
+
+class GenerateCommand extends Command {
+    -seamId : Argument<string?>
+    -format : Option<string[]>
+    -all : Option<bool>
+    +GenerateCommand()
+    -HandleAsync(seamId, format, all, generator, renderer) : Task<int>
+}
+
+class DiagramCommand extends Command {
+    -seamId : Argument<string?>
+    -type : Option<string?>
+    -all : Option<bool>
+    +DiagramCommand()
+    -HandleAsync(seamId, type, all, generator, renderer) : Task<int>
+}
+
+class InspectCommand extends Command {
+    -seamId : Argument<string>
+    +InspectCommand()
+    -HandleAsync(seamId, registry, renderer) : Task<int>
+}
+
+class ValidateCommand extends Command {
+    -seamId : Argument<string?>
+    -all : Option<bool>
+    +ValidateCommand()
+    -HandleAsync(seamId, all, validator, renderer) : Task<int>
+}
+
+class DiffCommand extends Command {
+    -baselinePath : Argument<FileInfo>
+    +DiffCommand()
+    -HandleAsync(baselinePath, differ, renderer) : Task<int>
+}
+
+class InitCommand extends Command {
+    +InitCommand()
+    -HandleAsync(renderer) : Task<int>
+}
+
+class ExportCommand extends Command {
+    -seamId : Argument<string?>
+    -all : Option<bool>
+    -format : Option<string>
+    +ExportCommand()
+    -HandleAsync(seamId, all, format, exporter, renderer) : Task<int>
+}
+
+class ServeCommand extends Command {
+    -port : Option<int>
+    +ServeCommand()
+    -HandleAsync(port, renderer) : Task<int>
+}
+
+RootCommand *-- GlobalOptions : uses
+RootCommand *-- ScanCommand
+RootCommand *-- ListCommand
+RootCommand *-- GenerateCommand
+RootCommand *-- DiagramCommand
+RootCommand *-- InspectCommand
+RootCommand *-- ValidateCommand
+RootCommand *-- DiffCommand
+RootCommand *-- InitCommand
+RootCommand *-- ExportCommand
+RootCommand *-- ServeCommand
+
+@enduml

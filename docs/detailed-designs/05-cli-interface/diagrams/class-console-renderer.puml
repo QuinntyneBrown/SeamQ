@@ -1,0 +1,87 @@
+@startuml class-console-renderer
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam nodesep 50
+skinparam ranksep 40
+
+title Console Renderer - Class Diagram
+
+interface IConsoleRenderer {
+    +WriteTable(headers : string[], rows : string[][])
+    +WriteSuccess(message : string)
+    +WriteWarning(message : string)
+    +WriteError(message : string)
+    +WriteInfo(message : string)
+    +WriteHeading(text : string)
+    +WriteKeyValue(key : string, value : string)
+    +WriteJson(obj : object)
+    +StartProgress(description : string) : IProgressContext
+    +WriteGrouped(title : string, items : string[])
+    +WriteDiff(added : string[], modified : string[], removed : string[])
+    +NewLine()
+}
+
+interface IProgressContext {
+    +Report(value : int)
+    +Complete()
+    +Dispose()
+}
+
+class ConsoleRenderer implements IConsoleRenderer {
+    -_colorEnabled : bool
+    -_quiet : bool
+    -_stdout : TextWriter
+    -_stderr : TextWriter
+    +ConsoleRenderer(colorEnabled, quiet)
+    +WriteTable(headers, rows)
+    +WriteSuccess(message)
+    +WriteWarning(message)
+    +WriteError(message)
+    +WriteInfo(message)
+    +WriteHeading(text)
+    +WriteKeyValue(key, value)
+    +WriteJson(obj)
+    +StartProgress(description) : IProgressContext
+    +WriteGrouped(title, items)
+    +WriteDiff(added, modified, removed)
+    +NewLine()
+    -FormatAnsi(text, colorCode) : string
+    -CalculateColumnWidths(headers, rows) : int[]
+}
+
+class SpinnerProgress implements IProgressContext {
+    -_description : string
+    -_writer : TextWriter
+    -_cancellation : CancellationTokenSource
+    +SpinnerProgress(description, writer)
+    +Report(value)
+    +Complete()
+    +Dispose()
+}
+
+class TableFormatter <<internal>> {
+    +ColumnWidths : int[]
+    +FormatRow(values : string[]) : string
+    +FormatSeparator() : string
+    +FormatHeader(values : string[]) : string
+    +{static} Calculate(headers, rows) : TableFormatter
+}
+
+enum AnsiColor <<internal>> {
+    Red
+    Green
+    Yellow
+    Blue
+    Cyan
+    White
+    Bold
+    Reset
+}
+
+ConsoleRenderer --> TableFormatter : uses
+ConsoleRenderer --> AnsiColor : uses
+ConsoleRenderer ..> SpinnerProgress : creates
+IConsoleRenderer ..> IProgressContext : returns
+
+@enduml

@@ -1,0 +1,54 @@
+@startuml c4-component-differ
+!theme plain
+skinparam defaultFontSize 10
+skinparam pageMargin 10
+
+!include <C4/C4_Component>
+
+title C4 Component Diagram - SeamQ.Differ Internals
+
+Container_Boundary(differ, "SeamQ.Differ") {
+
+  Component(seamDiffer, "SeamDiffer", ".NET Class", "Orchestrates baseline-to-current comparison. Coordinates loading, comparing, classifying, and report building.")
+
+  Component(baselineSerializer, "BaselineSerializer", ".NET Class", "Serializes SeamRegistry to stable JSON and deserializes baseline files back to SeamRegistry.")
+
+  Component(contractComparer, "ContractSurfaceComparer", ".NET Class", "Deep-compares two ContractSurface instances field by field. Produces FieldDifference entries.")
+
+  Component(changeClassifier, "ChangeClassifier", ".NET Class", "Classifies raw differences into typed SeamChange records with ChangeType and severity.")
+
+  Component(diffReport, "DiffReport", ".NET Record", "Immutable result containing per-seam change lists, summary statistics, and breaking-change flag.")
+
+  Component(diffOptions, "DiffOptions", ".NET Class", "Configuration: confidence epsilon, ignore flags, seam ID filter, confidence threshold.")
+}
+
+Container_Boundary(detector, "SeamQ.Detector") {
+  Component(seamRegistry, "SeamRegistry", ".NET Class", "Collection of detected SeamCandidates with lookup indices.")
+  Component(seamCandidate, "SeamCandidate", ".NET Class", "A detected seam with contract symbols, confidence score, and metadata.")
+}
+
+Container_Boundary(consumers, "Downstream Consumers") {
+  Component(cli, "CLI (seamq diff)", "Console App", "Renders DiffReport as table or JSON for developer use.")
+  Component(cicd, "CI/CD Pipeline", "Build Step", "Gates builds on HasBreakingChanges exit code.")
+  Component(generator, "SeamQ.Generator", ".NET Class", "Injects DiffReport into ICD revision history.")
+}
+
+System_Ext(filesystem, "File System", "Stores baseline JSON files.")
+
+Rel(seamDiffer, baselineSerializer, "Loads baseline via")
+Rel(seamDiffer, contractComparer, "Compares surfaces via")
+Rel(seamDiffer, changeClassifier, "Classifies changes via")
+Rel(seamDiffer, diffReport, "Produces")
+Rel(seamDiffer, diffOptions, "Configured by")
+
+Rel(baselineSerializer, filesystem, "Reads / writes JSON")
+Rel(baselineSerializer, seamRegistry, "Serializes / deserializes")
+
+Rel(seamDiffer, seamRegistry, "Reads current & baseline")
+Rel(seamRegistry, seamCandidate, "Contains")
+
+Rel(cli, seamDiffer, "Invokes diff")
+Rel(cicd, diffReport, "Checks HasBreakingChanges")
+Rel(generator, diffReport, "Reads changes for revision history")
+
+@enduml

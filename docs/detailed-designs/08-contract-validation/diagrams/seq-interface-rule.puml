@@ -1,0 +1,62 @@
+@startuml seq-interface-rule
+!pragma layout smetana
+skinparam dpi 150
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+skinparam sequenceMessageAlign center
+
+title Interface Implementation Rule - Sequence Diagram
+
+participant ContractValidator as cv
+participant InterfaceImplementationRule as rule
+participant "DetectedSeam\n(contract surface)" as seam
+participant "WorkspaceModel\n(consumer AST)" as ast
+
+cv -> rule : EvaluateAsync(seam, consumer, ct)
+activate rule
+
+rule -> seam : FindRequiredInterfaces()
+seam --> rule : List<ParsedInterface>
+
+loop for each required interface
+  rule -> ast : FindImplementingClasses(interfaceName)
+  ast --> rule : List<ParsedClass>
+
+  alt no implementing class found
+    rule -> rule : Emit Error finding:\n"Missing implementation of IFoo"
+  else implementing class(es) found
+    loop for each implementing class
+      rule -> rule : CompareMembers(interface, class)
+      activate rule #LightBlue
+
+      loop for each interface method
+        alt method not found in class
+          rule -> rule : Emit Error finding:\n"Missing method bar()"
+        else method found but signature differs
+          rule -> rule : Emit Warning finding:\n"Signature mismatch on bar()"
+        else method matches
+          note right of rule : OK -- no finding
+        end
+      end
+
+      loop for each interface property
+        alt property not found in class
+          rule -> rule : Emit Error finding:\n"Missing property baz"
+        else property type mismatch
+          rule -> rule : Emit Warning finding:\n"Type mismatch on baz"
+        end
+      end
+
+      deactivate rule
+    end
+  end
+end
+
+alt all interfaces fully implemented
+  rule -> rule : Emit Info finding:\n"All interfaces implemented"
+end
+
+rule --> cv : IReadOnlyList<RuleFinding>
+deactivate rule
+
+@enduml

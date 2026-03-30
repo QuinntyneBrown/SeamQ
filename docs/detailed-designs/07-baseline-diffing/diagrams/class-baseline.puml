@@ -1,0 +1,115 @@
+@startuml class-baseline
+!theme plain
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title BaselineSerializer and Baseline JSON Structure
+
+package "SeamQ.Differ" {
+
+  class BaselineSerializer {
+    -_jsonOptions : JsonSerializerOptions
+    -_logger : ILogger<BaselineSerializer>
+    +BaselineSerializer(logger)
+    +SaveAsync(registry : SeamRegistry, filePath : string, ct : CancellationToken) : Task
+    +LoadAsync(filePath : string, ct : CancellationToken) : Task<SeamRegistry>
+    +Serialize(registry : SeamRegistry) : string
+    +Deserialize(json : string) : SeamRegistry
+    -ConfigureJsonOptions() : JsonSerializerOptions
+    -SortKeys(registry : SeamRegistry) : OrderedSeamMap
+    -ValidateSchemaVersion(envelope : BaselineEnvelope) : void
+  }
+}
+
+package "SeamQ.Differ.Serialization" {
+
+  class BaselineEnvelope <<record>> {
+    +SchemaVersion : int
+    +GeneratedAt : DateTimeOffset
+    +Seams : SortedDictionary<string, SeamSnapshot>
+  }
+
+  class SeamSnapshot <<record>> {
+    +Id : string
+    +Name : string
+    +Type : string
+    +ProviderWorkspace : string
+    +ConsumerWorkspaces : List<string>
+    +ContractSurface : ContractSurfaceSnapshot
+    +Confidence : double
+    +Metadata : SortedDictionary<string, object>
+  }
+
+  class ContractSurfaceSnapshot <<record>> {
+    +Inputs : SortedDictionary<string, InputSnapshot>
+    +Outputs : SortedDictionary<string, OutputSnapshot>
+    +Methods : SortedDictionary<string, MethodSnapshot>
+    +Properties : SortedDictionary<string, PropertySnapshot>
+    +Types : SortedDictionary<string, TypeSnapshot>
+  }
+
+  class InputSnapshot <<record>> {
+    +Name : string
+    +Type : string
+    +Required : bool
+    +DefaultValue : string?
+    +Alias : string?
+  }
+
+  class OutputSnapshot <<record>> {
+    +Name : string
+    +PayloadType : string
+    +Alias : string?
+  }
+
+  class MethodSnapshot <<record>> {
+    +Name : string
+    +Parameters : List<ParameterSnapshot>
+    +ReturnType : string
+  }
+
+  class PropertySnapshot <<record>> {
+    +Name : string
+    +Type : string
+    +ReadOnly : bool
+    +Optional : bool
+  }
+
+  class TypeSnapshot <<record>> {
+    +Name : string
+    +Kind : string
+    +Members : SortedDictionary<string, string>
+  }
+
+  class ParameterSnapshot <<record>> {
+    +Name : string
+    +Type : string
+    +Optional : bool
+  }
+}
+
+package "Exceptions" {
+  class BaselineNotFoundException
+  class BaselineCorruptException
+  class BaselineSchemaVersionException
+}
+
+BaselineSerializer --> BaselineEnvelope : serializes / deserializes
+BaselineEnvelope *-- "0..*" SeamSnapshot : seams (sorted by ID)
+SeamSnapshot *-- "1" ContractSurfaceSnapshot
+ContractSurfaceSnapshot *-- "0..*" InputSnapshot
+ContractSurfaceSnapshot *-- "0..*" OutputSnapshot
+ContractSurfaceSnapshot *-- "0..*" MethodSnapshot
+ContractSurfaceSnapshot *-- "0..*" PropertySnapshot
+ContractSurfaceSnapshot *-- "0..*" TypeSnapshot
+MethodSnapshot *-- "0..*" ParameterSnapshot
+
+BaselineSerializer ..> BaselineNotFoundException : throws
+BaselineSerializer ..> BaselineCorruptException : throws
+BaselineSerializer ..> BaselineSchemaVersionException : throws
+
+@enduml

@@ -23,22 +23,7 @@ dotnet tool install --global SeamQ
 
 Requires .NET 8 or later.
 
-## CLI Commands
-
-| Command      | Description                                              |
-|--------------|----------------------------------------------------------|
-| `scan`       | Scan workspaces and build the seam registry              |
-| `list`       | Display all detected seams in a table                    |
-| `generate`   | Generate ICD documents (Markdown, HTML)                  |
-| `diagram`    | Generate PlantUML diagrams                               |
-| `inspect`    | Show detailed contract surface for a single seam         |
-| `validate`   | Check consumer contract compliance                       |
-| `diff`       | Compare current scan against a saved baseline            |
-| `init`       | Generate a `seamq.config.json` interactively             |
-| `export`     | Export raw seam data as JSON                             |
-| `serve`      | Launch a local web server to browse generated ICDs       |
-
-### Quick Start
+## Quick Start
 
 ```bash
 # Initialize configuration
@@ -60,6 +45,21 @@ seamq diagram --all
 seamq validate --all
 ```
 
+## CLI Commands
+
+| Command      | Description                                              |
+|--------------|----------------------------------------------------------|
+| `scan`       | Scan workspaces and build the seam registry              |
+| `list`       | Display all detected seams in a table                    |
+| `generate`   | Generate ICD documents (Markdown, HTML)                  |
+| `diagram`    | Generate PlantUML diagrams                               |
+| `inspect`    | Show detailed contract surface for a single seam         |
+| `validate`   | Check consumer contract compliance                       |
+| `diff`       | Compare current scan against a saved baseline            |
+| `init`       | Generate a `seamq.config.json` interactively             |
+| `export`     | Export raw seam data as JSON                             |
+| `serve`      | Launch a local web server to browse generated ICDs       |
+
 ### Global Flags
 
 ```
@@ -68,6 +68,28 @@ seamq validate --all
 --no-color      Disable ANSI color codes
 --output-dir    Override the configured output directory
 --config        Specify a custom config file path
+```
+
+## Solution Structure
+
+```
+SeamQ/
+├── src/
+│   ├── SeamQ.Cli/              # CLI entry point (dotnet tool, System.CommandLine)
+│   ├── SeamQ.Core/             # Core domain models and abstractions
+│   ├── SeamQ.Scanner/          # Workspace discovery and TypeScript parsing
+│   ├── SeamQ.Detector/         # Seam detection engine (strategy pattern)
+│   ├── SeamQ.Generator/        # ICD document generation (Markdown, HTML)
+│   ├── SeamQ.Renderer/         # PlantUML and C4 diagram generation
+│   ├── SeamQ.Differ/           # Baseline comparison
+│   └── SeamQ.Validator/        # Contract compliance checking
+├── test/
+│   ├── SeamQ.Tests.Unit/       # Unit tests (xUnit, FluentAssertions, NSubstitute)
+│   ├── SeamQ.Tests.Integration/# Pipeline integration tests
+│   └── SeamQ.Tests.E2E/        # End-to-end CLI tests
+└── docs/
+    ├── specs/                  # L1/L2 requirement specifications
+    └── detailed-designs/       # Feature-level designs with PlantUML diagrams
 ```
 
 ## Configuration
@@ -103,14 +125,6 @@ SeamQ is configured via a `seamq.config.json` file:
 }
 ```
 
-## Supported Environments
-
-- **.NET:** 8.0+
-- **Angular:** 15 -- 19
-- **Nx:** 16 -- 19
-- **TypeScript:** 5.0+
-- **Platforms:** Windows, macOS, Linux
-
 ## Seam Types Detected
 
 | Type               | What It Detects                                                        |
@@ -121,6 +135,28 @@ SeamQ is configured via a `seamq.config.json` file:
 | Route Contract     | `loadChildren`, `loadComponent`, route guards, route data interfaces   |
 | State Contract     | Signal state, NgRx actions/selectors, computed state shared across workspaces |
 | HTTP/API Contract  | SignalR hub methods, backend service interfaces                        |
+
+## Tech Stack
+
+- **.NET 8** with C# latest, nullable reference types, warnings as errors
+- **System.CommandLine** for CLI parsing (file-per-command pattern)
+- **Microsoft.Extensions** for DI, logging, and configuration
+- **xUnit** + **FluentAssertions** + **NSubstitute** for testing
+
+## Supported Environments
+
+- **.NET:** 8.0+
+- **Angular:** 15 -- 19
+- **Nx:** 16 -- 19
+- **TypeScript:** 5.0+
+- **Platforms:** Windows, macOS, Linux
+
+## Building
+
+```bash
+dotnet build
+dotnet test
+```
 
 ## Security
 

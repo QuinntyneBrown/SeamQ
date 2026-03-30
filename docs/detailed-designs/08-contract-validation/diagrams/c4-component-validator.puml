@@ -1,0 +1,51 @@
+@startuml c4-component-validator
+!pragma layout smetana
+skinparam dpi 150
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+
+!include <C4/C4_Component>
+
+title Contract Validation Module - C4 Component Diagram
+
+Container_Boundary(validator, "SeamQ.Validator") {
+
+  Component(cv, "ContractValidator", ".NET 8, C#", "Orchestrates validation rules against each consumer workspace and assembles the final report.")
+
+  Component(ifaceRule, "InterfaceImplementationRule", "IValidationRule", "Checks consumers implement all required interfaces and their methods.")
+
+  Component(tokenRule, "InjectionTokenRule", "IValidationRule", "Checks consumers provide all required DI injection tokens.")
+
+  Component(ioRule, "InputOutputRule", "IValidationRule", "Checks component input/output binding compliance and type matching.")
+
+  Component(result, "ValidationResult", "Record", "Per-consumer result with pass/fail/warning per contract element.")
+
+  Component(report, "ValidationReport", "Record", "Aggregates all consumer results with summary counts and query methods.")
+
+  Component(options, "ValidatorOptions", "Config", "Rule filtering, severity thresholds, parallelism settings.")
+}
+
+Container_Boundary(upstream, "Upstream Modules") {
+  Component(scanner, "SeamQ.Scanner", "Module", "Provides WorkspaceModel with parsed AST.")
+  Component(detector, "SeamQ.Detector", "Module", "Provides DetectedSeam and SeamRegistry.")
+}
+
+Container_Boundary(downstream, "Downstream Consumers") {
+  Component(cli, "CLI validate Command", "SeamQ.Cli", "Invokes validation and renders the report.")
+  Component(export, "Data Export", "SeamQ.Export", "Serialises the report to JSON.")
+}
+
+Rel(cv, ifaceRule, "Invokes")
+Rel(cv, tokenRule, "Invokes")
+Rel(cv, ioRule, "Invokes")
+Rel(cv, result, "Produces")
+Rel(cv, report, "Assembles")
+Rel(cv, options, "Configured by")
+
+Rel(scanner, cv, "Provides WorkspaceModel")
+Rel(detector, cv, "Provides DetectedSeam")
+
+Rel(cli, cv, "Calls ValidateAsync / ValidateAllAsync")
+Rel(export, report, "Serialises to JSON")
+
+@enduml

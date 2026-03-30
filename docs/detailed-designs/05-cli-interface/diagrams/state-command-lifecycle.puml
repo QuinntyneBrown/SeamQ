@@ -1,0 +1,95 @@
+@startuml state-command-lifecycle
+!theme plain
+skinparam statePadding 10
+skinparam stateAttributeFontSize 11
+
+title Command Lifecycle - State Diagram
+
+[*] --> Parsing
+
+state Parsing {
+    state "Tokenize argv" as Tokenize
+    state "Match Command" as Match
+    state "Bind Options" as Bind
+
+    [*] --> Tokenize
+    Tokenize --> Match
+    Match --> Bind
+    Bind --> [*]
+}
+
+Parsing --> ParseError : invalid args / unknown command
+Parsing --> Validating : parse success
+
+state Validating {
+    state "Check required args" as CheckReq
+    state "Validate option values" as ValOpts
+    state "Check mutual exclusions" as CheckMutex
+
+    [*] --> CheckReq
+    CheckReq --> ValOpts
+    ValOpts --> CheckMutex
+    CheckMutex --> [*]
+}
+
+Validating --> ValidationError : missing/invalid args
+Validating --> Resolving : validation passed
+
+state Resolving {
+    state "Load Configuration" as LoadConfig
+    state "Configure Logging" as ConfigLog
+    state "Create DI Scope" as CreateScope
+    state "Resolve Services" as Resolve
+
+    [*] --> LoadConfig
+    LoadConfig --> ConfigLog
+    ConfigLog --> CreateScope
+    CreateScope --> Resolve
+    Resolve --> [*]
+}
+
+Resolving --> ResolutionError : config error / DI failure
+Resolving --> Executing : services resolved
+
+state Executing {
+    state "Run Handler Logic" as RunHandler
+    state "Call Core Services" as CallCore
+    state "Collect Results" as Collect
+
+    [*] --> RunHandler
+    RunHandler --> CallCore
+    CallCore --> Collect
+    Collect --> [*]
+}
+
+Executing --> ExecutionError : unhandled exception
+Executing --> Rendering : execution complete
+
+state Rendering {
+    state "Format Output" as Format
+    state "Write to Console" as WriteOut
+    state "Dispose DI Scope" as Dispose
+
+    [*] --> Format
+    Format --> WriteOut
+    WriteOut --> Dispose
+    Dispose --> [*]
+}
+
+Rendering --> ExitCode0 : success
+
+state "Exit Code 0" as ExitCode0
+state "Exit Code 1" as ExitCode1
+state "Exit Code 2" as ExitCode2
+
+ParseError --> ExitCode2
+ValidationError --> ExitCode2
+ResolutionError --> ExitCode2
+ExecutionError -[#red]-> ExitCode2 : fatal
+Executing --> ExitCode1 : partial failure /\nvalidation errors /\nchanges detected
+
+ExitCode0 --> [*]
+ExitCode1 --> [*]
+ExitCode2 --> [*]
+
+@enduml

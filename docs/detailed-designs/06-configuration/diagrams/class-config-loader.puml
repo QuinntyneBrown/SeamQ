@@ -1,0 +1,98 @@
+@startuml class-config-loader
+!theme plain
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title Configuration Services
+
+package "SeamQ.Configuration" {
+
+  class ConfigLoader {
+    -_fileSystem : IFileSystem
+    -_validator : ConfigValidator
+    -_logger : ILogger<ConfigLoader>
+    +ConfigLoader(fileSystem, validator, logger)
+    +LoadAsync(context : ConfigLoadContext, ct) : Task<SeamQConfig>
+    -DiscoverConfigFile(context) : string?
+    -ParseJsonFile(filePath) : SeamQConfig
+    -ResolvePaths(config, baseDir) : SeamQConfig
+    -MergeCliOverrides(config, overrides) : SeamQConfig
+  }
+
+  class ConfigLoadContext <<record>> {
+    +ConfigFilePath : string?
+    +WorkingDirectory : string
+    +CliOverrides : IReadOnlyDictionary<string, string>
+  }
+
+  class ConfigValidator {
+    +Validate(config : SeamQConfig) : ConfigValidationResult
+    -ValidateWorkspaces(workspaces) : void
+    -ValidateSeamFilters(seams) : void
+    -ValidateOutput(output) : void
+    -ValidateAnalysis(analysis) : void
+    -ValidateIcdMetadata(icd) : void
+  }
+
+  class ConfigValidationResult <<record>> {
+    +IsValid : bool <<get>>
+    +Errors : IReadOnlyList<ConfigValidationError>
+    +Warnings : IReadOnlyList<ConfigValidationWarning>
+  }
+
+  class ConfigValidationError <<record>> {
+    +Path : string
+    +Message : string
+  }
+
+  class ConfigValidationWarning <<record>> {
+    +Path : string
+    +Message : string
+  }
+
+  class ConfigInitializer {
+    -_prompter : IConsolePrompter
+    -_validator : ConfigValidator
+    -_fileSystem : IFileSystem
+    -_logger : ILogger<ConfigInitializer>
+    +ConfigInitializer(prompter, validator, fileSystem, logger)
+    +RunAsync(outputDirectory : string, ct) : Task<int>
+    -PromptWorkspaces(ct) : Task<List<WorkspaceConfig>>
+    -PromptOutputSettings(ct) : Task<OutputConfig>
+    -PromptDiagramSettings(ct) : Task<DiagramOutputConfig>
+    -SerializeAndWrite(config, path) : Task
+  }
+
+  interface IConsolePrompter <<interface>> {
+    +PromptText(label : string, defaultValue : string?) : string
+    +PromptSelection<T>(label : string, choices : T[]) : T
+    +PromptMultiSelect<T>(label : string, choices : T[]) : List<T>
+    +PromptConfirm(label : string, defaultValue : bool) : bool
+  }
+
+  class ConfigurationException <<Exception>> {
+    +FilePath : string?
+    +Line : int?
+    +Column : int?
+  }
+
+  class ConfigValidationException <<Exception>> {
+    +Errors : IReadOnlyList<ConfigValidationError>
+  }
+
+  ConfigLoader --> ConfigLoadContext : uses
+  ConfigLoader --> ConfigValidator : validates with
+  ConfigLoader ..> ConfigurationException : throws
+  ConfigValidator --> ConfigValidationResult : returns
+  ConfigValidationResult *-- "0..*" ConfigValidationError
+  ConfigValidationResult *-- "0..*" ConfigValidationWarning
+  ConfigInitializer --> IConsolePrompter : prompts via
+  ConfigInitializer --> ConfigValidator : validates with
+  ConfigInitializer ..> ConfigValidationException : throws
+}
+
+@enduml

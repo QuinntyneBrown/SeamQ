@@ -1,0 +1,78 @@
+@startuml class-configuration
+!theme plain
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title Configuration Model Classes
+
+package "SeamQ.Configuration.Models" {
+
+  class SeamQConfig <<record>> {
+    +Workspaces : IReadOnlyList<WorkspaceConfig>
+    +Seams : SeamFilterConfig
+    +Output : OutputConfig
+    +Analysis : AnalysisConfig
+    +Icd : IcdMetadataConfig
+  }
+
+  class WorkspaceConfig <<record>> {
+    +Path : string <<required>>
+    +Alias : string?
+    +Role : WorkspaceRole = Application
+  }
+
+  enum WorkspaceRole {
+    Framework
+    Plugin
+    Library
+    Application
+  }
+
+  class SeamFilterConfig <<record>> {
+    +Include : IReadOnlyList<string>
+    +Exclude : IReadOnlyList<string>
+    +CustomDecorators : IReadOnlyList<string>
+  }
+
+  class OutputConfig <<record>> {
+    +Directory : string = "./seamq-output"
+    +Formats : IReadOnlyList<string>
+    +Diagrams : DiagramOutputConfig
+  }
+
+  class DiagramOutputConfig <<record>> {
+    +RenderFormat : string = "svg"
+    +PlantumlServer : string = "local"
+    +Theme : string = "plain"
+    +Skinparams : IReadOnlyDictionary<string, string>
+  }
+
+  class AnalysisConfig <<record>> {
+    +MaxDepth : int = 10
+    +FollowNodeModules : bool = false
+    +IncludeInternalSeams : bool = false
+    +ConfidenceThreshold : double = 0.5
+  }
+
+  class IcdMetadataConfig <<record>> {
+    +Title : string = "Interface Control Document"
+    +DocumentNumber : string?
+    +Revision : string?
+    +Classification : string?
+    +Template : string?
+  }
+
+  SeamQConfig *--> "0..*" WorkspaceConfig : workspaces
+  SeamQConfig *--> "1" SeamFilterConfig : seams
+  SeamQConfig *--> "1" OutputConfig : output
+  SeamQConfig *--> "1" AnalysisConfig : analysis
+  SeamQConfig *--> "1" IcdMetadataConfig : icd
+  WorkspaceConfig --> WorkspaceRole : role
+  OutputConfig *--> "1" DiagramOutputConfig : diagrams
+}
+
+@enduml

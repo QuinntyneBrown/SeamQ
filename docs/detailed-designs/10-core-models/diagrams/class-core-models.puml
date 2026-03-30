@@ -1,0 +1,92 @@
+@startuml class-core-models
+!pragma layout smetana
+skinparam dpi 150
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam classAttributeFontSize 10
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title Core Models -- Workspace and Seam
+
+enum WorkspaceRole {
+  Framework
+  Plugin
+  Library
+  Application
+}
+
+enum WorkspaceType {
+  NxMonorepo
+  AngularCli
+  Standalone
+}
+
+enum ProjectType {
+  Application
+  Library
+}
+
+enum SeamType {
+  PluginContract
+  SharedLibrary
+  MessageBus
+  RouteContract
+  StateContract
+  HttpApiContract
+}
+
+class Workspace {
+  + Path : string
+  + Alias : string
+  + Role : WorkspaceRole
+  + Type : WorkspaceType
+  + Projects : IReadOnlyList<Project>
+  + TsConfigPaths : IReadOnlyDictionary<string, string>
+  + BootstrapFile : string?
+}
+
+class Project {
+  + Name : string
+  + ProjectType : ProjectType
+  + SourceRoot : string
+  + Exports : IReadOnlyList<ExportedSymbol>
+  + BarrelFiles : IReadOnlyList<string>
+}
+
+class ExportedSymbol {
+  + Name : string
+  + Kind : ContractElementKind
+  + SourceFile : string
+  + IsReExport : bool
+}
+
+class Seam {
+  + Id : string
+  + Name : string
+  + Type : SeamType
+  + ProviderWorkspace : Workspace
+  + ConsumerWorkspaces : IReadOnlyList<Workspace>
+  + Confidence : double
+  + ContractSurface : ContractSurface
+}
+
+class ContractSurface {
+  + Elements : IReadOnlyList<ContractElement>
+  + DataDictionary : IReadOnlyList<DataDictionaryEntry>
+  + Protocols : IReadOnlyList<ProtocolClassification>
+}
+
+Workspace "1" *-- "1..*" Project : contains
+Workspace --> WorkspaceRole
+Workspace --> WorkspaceType
+Project --> ProjectType
+Project "1" *-- "0..*" ExportedSymbol : exports
+
+Seam --> SeamType
+Seam "1" --> "1" Workspace : provider
+Seam "1" --> "1..*" Workspace : consumers
+Seam "1" *-- "1" ContractSurface
+
+@enduml

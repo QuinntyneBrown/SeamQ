@@ -1,0 +1,44 @@
+@startuml c4-container
+!include <C4/C4_Container>
+
+skinparam dpi 150
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+
+title SeamQ -- Container Diagram
+
+Person(user, "Developer / Architect", "Runs SeamQ CLI")
+
+System_Boundary(seamq, "SeamQ") {
+  Container(cli, "SeamQ.Cli", ".NET 8, System.CommandLine", "CLI entry point.\nParses commands and\norchestrates pipeline.")
+  Container(core, "SeamQ.Core", ".NET 8 Class Library", "Core domain models:\nWorkspace, Project, Seam,\nContractSurface, SeamQConfig.\nZero external dependencies.")
+  Container(scanner, "SeamQ.Scanner", ".NET 8 Class Library", "Parses Angular workspaces,\nTypeScript ASTs, barrel files,\nand configuration files.")
+  Container(detector, "SeamQ.Detector", ".NET 8 Class Library", "Analyzes parsed workspaces\nto detect seams and classify\ncontract surfaces.")
+  Container(generator, "SeamQ.Generator", ".NET 8 Class Library", "Produces ICD documents\nin Markdown and HTML\nfrom seam data.")
+  Container(renderer, "SeamQ.Renderer", ".NET 8 Class Library", "Generates PlantUML source\nand renders diagrams\nvia PlantUML server.")
+  Container(differ, "SeamQ.Differ", ".NET 8 Class Library", "Compares scan baselines\nand produces change reports.")
+  Container(validator, "SeamQ.Validator", ".NET 8 Class Library", "Validates consumer\ncontract compliance.")
+}
+
+System_Ext(angular, "Angular Workspaces", "Source files on disk")
+System_Ext(plantuml, "PlantUML Server", "Renders diagrams")
+
+Rel(user, cli, "Executes", "CLI")
+Rel(cli, scanner, "Invokes scan")
+Rel(cli, detector, "Invokes detection")
+Rel(cli, generator, "Invokes ICD generation")
+Rel(cli, renderer, "Invokes diagram generation")
+Rel(cli, differ, "Invokes diff")
+Rel(cli, validator, "Invokes validation")
+
+Rel(scanner, core, "Populates models")
+Rel(detector, core, "Reads/writes models")
+Rel(generator, core, "Reads models")
+Rel(renderer, core, "Reads models")
+Rel(differ, core, "Reads models")
+Rel(validator, core, "Reads models")
+
+Rel(scanner, angular, "Reads files")
+Rel(renderer, plantuml, "Sends .puml")
+
+@enduml

@@ -1,0 +1,80 @@
+@startuml class-di-registration
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam nodesep 50
+skinparam ranksep 40
+
+title DI Registration - Class Diagram
+
+package "SeamQ.Cli" {
+    class ServiceCollectionExtensions <<static>> {
+        +{static} AddSeamQCli(services : IServiceCollection) : IServiceCollection
+        +{static} AddSeamQLogging(services, verbose, quiet) : IServiceCollection
+        +{static} AddSeamQConfiguration(services, configPath) : IServiceCollection
+    }
+
+    class Program <<static>> {
+        +{static} Main(args : string[]) : Task<int>
+        -{static} BuildServiceProvider() : IServiceProvider
+        -{static} BuildRootCommand(sp : IServiceProvider) : RootCommand
+    }
+}
+
+package "Microsoft.Extensions.DependencyInjection" <<Frame>> {
+    interface IServiceCollection
+    interface IServiceProvider {
+        +GetService<T>() : T
+    }
+    class ServiceCollection implements IServiceCollection
+}
+
+package "Service Registrations" {
+    together {
+        interface IWorkspaceScanner
+        class WorkspaceScanner implements IWorkspaceScanner
+    }
+    together {
+        interface ISeamDetector
+        class SeamDetector implements ISeamDetector
+    }
+    together {
+        interface IIcdGenerator
+        class IcdGenerator implements IIcdGenerator
+    }
+    together {
+        interface IDiagramGenerator
+        class DiagramGenerator implements IDiagramGenerator
+    }
+    together {
+        interface IBaselineDiffer
+        class BaselineDiffer implements IBaselineDiffer
+    }
+    together {
+        interface IContractValidator
+        class ContractValidator implements IContractValidator
+    }
+    together {
+        interface IDataExporter
+        class DataExporter implements IDataExporter
+    }
+    together {
+        interface IConsoleRenderer
+        class ConsoleRenderer implements IConsoleRenderer
+    }
+}
+
+Program --> ServiceCollectionExtensions : calls
+ServiceCollectionExtensions --> IServiceCollection : extends
+IServiceCollection ..> IServiceProvider : builds
+
+ServiceCollectionExtensions ..> WorkspaceScanner : registers
+ServiceCollectionExtensions ..> SeamDetector : registers
+ServiceCollectionExtensions ..> IcdGenerator : registers
+ServiceCollectionExtensions ..> DiagramGenerator : registers
+ServiceCollectionExtensions ..> BaselineDiffer : registers
+ServiceCollectionExtensions ..> ContractValidator : registers
+ServiceCollectionExtensions ..> DataExporter : registers
+ServiceCollectionExtensions ..> ConsoleRenderer : registers
+
+@enduml

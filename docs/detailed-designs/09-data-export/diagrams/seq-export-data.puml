@@ -1,0 +1,101 @@
+@startuml seq-export-data
+!theme plain
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 180
+skinparam defaultFontSize 10
+skinparam pageMargin 10
+
+title Export Data Pipeline Sequence
+
+actor "CLI / Caller" as CLI
+participant "ExportCommand" as Cmd
+participant "JsonDataExporter" as JDE
+participant "ContractSurface\nExporter" as CSE
+participant "DataDictionary\nExporter" as DDE
+participant "Traceability\nMatrixExporter" as TME
+participant "ExportSchema" as ES
+participant "File System" as FS
+
+CLI -> Cmd : seamq export --all --output-dir ./out
+activate Cmd
+
+Cmd -> Cmd : Parse options into ExportOptions
+Cmd -> JDE : ExportAsync(options, registry, ct)
+activate JDE
+
+JDE -> JDE : FilterSeams(registry, options)
+note right
+  Apply --seam-id filter
+  or --min-confidence threshold.
+  Default: all seams.
+end note
+
+JDE -> CSE : ExtractAsync(filteredSeams, ct)
+activate CSE
+loop for each seam
+  CSE -> CSE : BuildContractEntries(seam)
+  CSE -> CSE : ExtractInterfaceContract()
+  CSE -> CSE : ExtractBindingContract()
+  CSE -> CSE : ExtractTokenContract()
+end
+CSE --> JDE : ContractSurfaceRoot
+deactivate CSE
+
+JDE -> DDE : ExtractAsync(filteredSeams, ct)
+activate DDE
+DDE -> DDE : CollectCrossBoundaryTypes(seams)
+DDE -> DDE : DeduplicateByQualifiedName()
+loop for each unique type
+  DDE -> DDE : BuildTypeEntry(symbol, seamIds)
+end
+DDE --> JDE : DataDictionaryRoot
+deactivate DDE
+
+JDE -> TME : ExtractAsync(filteredSeams, ct)
+activate TME
+loop for each seam
+  loop for each symbol
+    TME -> TME : BuildSymbolEntry(seam, symbol, role)
+    TME -> TME : ResolveBarrelExport(symbol)
+  end
+end
+TME --> JDE : TraceabilityMatrixRoot
+deactivate TME
+
+opt ValidateOutput enabled
+  JDE -> ES : Validate(contractSurface, ContractSurface)
+  activate ES
+  ES --> JDE : (valid, errors)
+  deactivate ES
+  JDE -> ES : Validate(dataDictionary, DataDictionary)
+  activate ES
+  ES --> JDE : (valid, errors)
+  deactivate ES
+  JDE -> ES : Validate(traceabilityMatrix, TraceabilityMatrix)
+  activate ES
+  ES --> JDE : (valid, errors)
+  deactivate ES
+end
+
+JDE -> JDE : Serialize to JSON\n(sorted keys, stable order)
+
+JDE -> FS : WriteFileAtomicAsync("contract-surface.json")
+activate FS
+FS --> JDE : ok
+deactivate FS
+JDE -> FS : WriteFileAtomicAsync("data-dictionary.json")
+activate FS
+FS --> JDE : ok
+deactivate FS
+JDE -> FS : WriteFileAtomicAsync("traceability-matrix.json")
+activate FS
+FS --> JDE : ok
+deactivate FS
+
+JDE --> Cmd : void
+deactivate JDE
+
+Cmd --> CLI : Exit code 0 (success)
+deactivate Cmd
+
+@enduml

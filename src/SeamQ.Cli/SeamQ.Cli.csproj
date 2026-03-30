@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\SeamQ.Core\SeamQ.Core.csproj" />
+    <ProjectReference Include="..\SeamQ.Scanner\SeamQ.Scanner.csproj" />
+    <ProjectReference Include="..\SeamQ.Detector\SeamQ.Detector.csproj" />
+    <ProjectReference Include="..\SeamQ.Generator\SeamQ.Generator.csproj" />
+    <ProjectReference Include="..\SeamQ.Renderer\SeamQ.Renderer.csproj" />
+    <ProjectReference Include="..\SeamQ.Differ\SeamQ.Differ.csproj" />
+    <ProjectReference Include="..\SeamQ.Validator\SeamQ.Validator.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.5" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>seamq</ToolCommandName>
+    <PackageId>SeamQ</PackageId>
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+
+</Project>

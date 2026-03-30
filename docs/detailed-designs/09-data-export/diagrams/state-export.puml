@@ -1,0 +1,86 @@
+@startuml state-export
+!theme plain
+skinparam defaultFontSize 10
+skinparam stateFontSize 11
+skinparam pageMargin 10
+
+title Export Pipeline State Machine
+
+[*] --> Idle
+
+state Idle {
+  Idle : No export in progress.
+  Idle : Awaiting ExportAsync() call.
+}
+
+Idle --> Validating : ExportAsync(options, registry) called
+
+state Validating {
+  Validating : Validate ExportOptions.
+  Validating : Resolve and verify output directory.
+  Validating : Filter seams by ID or confidence threshold.
+}
+
+Validating --> ExtractingData : Options valid, seams available
+Validating --> Failed : Invalid options or no matching seams
+
+state ExtractingData {
+  ExtractingData : Sub-exporters extract data from SeamRegistry.
+
+  state "Sub-Exporter Execution" as SubExport {
+    [*] --> ExtractContractSurface
+    ExtractContractSurface : ContractSurfaceExporter builds\ncontract entries for each seam.
+    ExtractContractSurface --> ExtractDataDictionary
+
+    ExtractDataDictionary : DataDictionaryExporter collects\ncross-boundary types and deduplicates.
+    ExtractDataDictionary --> ExtractTraceabilityMatrix
+
+    ExtractTraceabilityMatrix : TraceabilityMatrixExporter maps\nsymbols to source locations.
+    ExtractTraceabilityMatrix --> [*]
+  }
+
+  note right of SubExport
+    Each sub-exporter runs
+    sequentially. A failure in one
+    is logged but does not block
+    the remaining sub-exporters.
+  end note
+}
+
+ExtractingData --> Serializing : All sub-exporters complete
+
+state Serializing {
+  Serializing : Serialize schema models to JSON.
+  Serializing : Apply deterministic settings:\n  sorted keys, stable array order.
+  Serializing : Optionally validate against\n  embedded JSON Schema.
+}
+
+Serializing --> WritingFiles : JSON serialization complete
+Serializing --> Failed : Serialization error
+
+state WritingFiles {
+  WritingFiles : Write each JSON file atomically.
+  WritingFiles : contract-surface.json
+  WritingFiles : data-dictionary.json
+  WritingFiles : traceability-matrix.json
+}
+
+WritingFiles --> Complete : All files written
+WritingFiles --> Failed : I/O error (directory not writable)
+
+state Complete {
+  Complete : All export files written.
+  Complete : Diagnostics logged (if any).
+  Complete : Exit code 0.
+}
+
+state Failed {
+  Failed : Error details logged.
+  Failed : Partial output may exist.
+  Failed : Exit code 1 or 2.
+}
+
+Complete --> [*]
+Failed --> [*]
+
+@enduml

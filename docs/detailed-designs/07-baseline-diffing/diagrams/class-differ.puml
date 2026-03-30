@@ -1,0 +1,145 @@
+@startuml class-differ
+!theme plain
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title SeamDiffer, ChangeClassifier, DiffReport, and SeamChange
+
+package "SeamQ.Differ" {
+
+  interface ISeamDiffer <<interface>> {
+    +DiffAsync(baseline : SeamRegistry, current : SeamRegistry, options : DiffOptions, ct : CancellationToken) : Task<DiffReport>
+    +DiffFromFileAsync(baselinePath : string, current : SeamRegistry, options : DiffOptions, ct : CancellationToken) : Task<DiffReport>
+  }
+
+  class SeamDiffer {
+    -_serializer : BaselineSerializer
+    -_comparer : ContractSurfaceComparer
+    -_classifier : ChangeClassifier
+    -_logger : ILogger<SeamDiffer>
+    +SeamDiffer(serializer, comparer, classifier, logger)
+    +DiffAsync(baseline, current, options, ct) : Task<DiffReport>
+    +DiffFromFileAsync(baselinePath, current, options, ct) : Task<DiffReport>
+    -ComputeSeamIdUnion(baseline, current) : IReadOnlySet<string>
+    -CompareSeam(baselineSeam, currentSeam, options) : SeamDiff
+    -BuildReport(seamDiffs, baseline, current) : DiffReport
+  }
+
+  class ChangeClassifier {
+    +Classify(seamId : string, differences : IReadOnlyList<FieldDifference>) : IReadOnlyList<SeamChange>
+    +DetermineSeamLevelChange(inBaseline : bool, inCurrent : bool) : ChangeType
+    -InferSeverity(difference : FieldDifference) : ChangeSeverity
+    -BuildDescription(seamId : string, difference : FieldDifference) : string
+  }
+
+  class ContractSurfaceComparer {
+    +Compare(baseline : ContractSurface, current : ContractSurface) : IReadOnlyList<FieldDifference>
+    -CompareInputs(baseline, current) : IEnumerable<FieldDifference>
+    -CompareOutputs(baseline, current) : IEnumerable<FieldDifference>
+    -CompareMethods(baseline, current) : IEnumerable<FieldDifference>
+    -CompareProperties(baseline, current) : IEnumerable<FieldDifference>
+    -CompareTypes(baseline, current) : IEnumerable<FieldDifference>
+    -CompareMetadata(baseline, current) : IEnumerable<FieldDifference>
+  }
+}
+
+package "SeamQ.Differ.Models" {
+
+  class DiffReport <<record>> {
+    +GeneratedAt : DateTimeOffset
+    +BaselinePath : string
+    +BaselineSeamCount : int
+    +CurrentSeamCount : int
+    +SeamDiffs : IReadOnlyList<SeamDiff>
+    +Summary : DiffSummary
+  }
+
+  class SeamDiff <<record>> {
+    +SeamId : string
+    +SeamName : string
+    +OverallChange : ChangeType
+    +Changes : IReadOnlyList<SeamChange>
+  }
+
+  class SeamChange <<record>> {
+    +SeamId : string
+    +Element : string
+    +ElementPath : string
+    +ChangeType : ChangeType
+    +OldValue : string?
+    +NewValue : string?
+    +Severity : ChangeSeverity
+    +Description : string
+  }
+
+  class DiffSummary <<record>> {
+    +TotalSeamsCompared : int
+    +SeamsAdded : int
+    +SeamsModified : int
+    +SeamsRemoved : int
+    +SeamsUnchanged : int
+    +TotalFieldChanges : int
+    +BreakingChanges : int
+    +NonBreakingChanges : int
+    +HasBreakingChanges : bool
+  }
+
+  enum ChangeType {
+    Added
+    Modified
+    Removed
+  }
+
+  enum ChangeSeverity {
+    Breaking
+    NonBreaking
+    Unknown
+  }
+
+  class FieldDifference <<record>> {
+    +Path : string
+    +BaselineValue : string?
+    +CurrentValue : string?
+    +Kind : FieldDifferenceKind
+  }
+
+  enum FieldDifferenceKind {
+    Added
+    Removed
+    ValueChanged
+    TypeChanged
+    OrderChanged
+  }
+
+  class DiffOptions {
+    +ConfidenceEpsilon : double = 0.01
+    +IgnoreConfidenceChanges : bool = false
+    +IgnoreMetadataChanges : bool = false
+    +IgnoreConsumerListChanges : bool = false
+    +SeamIdFilter : IReadOnlyList<string>?
+    +MinConfidenceThreshold : double?
+  }
+}
+
+ISeamDiffer <|.. SeamDiffer
+SeamDiffer --> ContractSurfaceComparer : uses
+SeamDiffer --> ChangeClassifier : uses
+SeamDiffer --> DiffReport : produces
+SeamDiffer --> DiffOptions : configured by
+
+ContractSurfaceComparer --> FieldDifference : produces
+ChangeClassifier --> SeamChange : produces
+ChangeClassifier --> FieldDifference : consumes
+
+DiffReport *-- "0..*" SeamDiff
+DiffReport *-- "1" DiffSummary
+SeamDiff *-- "0..*" SeamChange
+SeamChange --> ChangeType
+SeamChange --> ChangeSeverity
+FieldDifference --> FieldDifferenceKind
+
+@enduml

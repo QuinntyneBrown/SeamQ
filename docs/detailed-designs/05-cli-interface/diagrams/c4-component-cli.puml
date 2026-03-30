@@ -1,0 +1,66 @@
+@startuml c4-component-cli
+!include <C4/C4_Component>
+
+title SeamQ.Cli - C4 Component Diagram
+
+Person(user, "Developer", "Angular developer using SeamQ CLI")
+
+Container_Boundary(cli, "SeamQ.Cli") {
+
+    Component(program, "Program.cs", ".NET Entry Point", "Builds DI container, constructs RootCommand, invokes parser")
+
+    Component(globalOpts, "GlobalOptions", "Static Class", "Defines shared CLI options: --verbose, --quiet, --no-color, --output-dir, --config")
+
+    Component(middleware, "Middleware Pipeline", "CommandLineBuilder", "Exception handling, config loading, logging config, color mode, DI scoping")
+
+    Component(commands, "Command Classes", "System.CommandLine", "ScanCommand, ListCommand, GenerateCommand, DiagramCommand, InspectCommand, ValidateCommand, DiffCommand, InitCommand, ExportCommand, ServeCommand")
+
+    Component(renderer, "ConsoleRenderer", "IConsoleRenderer", "Formatted output: tables, colored text, progress indicators, JSON, diff views")
+
+    Component(diReg, "ServiceCollectionExtensions", "MS.Extensions.DI", "Registers all services and configures DI container")
+
+    Component(configBinding, "Configuration Binding", "MS.Extensions.Configuration", "Loads seamq.config.json, env vars, CLI args into SeamQOptions")
+
+    Component(logging, "Logging", "MS.Extensions.Logging", "Structured logging to stderr with configurable verbosity")
+}
+
+Container_Boundary(core, "SeamQ.Core") {
+    Component(scanner, "IWorkspaceScanner", "Core Service", "Parses Angular/Nx workspaces")
+    Component(detector, "ISeamDetector", "Core Service", "Detects interface seams")
+    Component(icdGen, "IIcdGenerator", "Core Service", "Generates ICD documents")
+    Component(diagGen, "IDiagramGenerator", "Core Service", "Generates PlantUML diagrams")
+    Component(differ, "IBaselineDiffer", "Core Service", "Compares against baselines")
+    Component(validator, "IContractValidator", "Core Service", "Validates consumer contracts")
+    Component(exporter, "IDataExporter", "Core Service", "Exports seam data as JSON")
+}
+
+System_Ext(filesystem, "File System", "Angular workspaces, config files, output artifacts")
+System_Ext(plantuml, "PlantUML Server", "Optional remote rendering of .puml to SVG/PNG")
+
+Rel(user, program, "Invokes", "seamq <command> [args]")
+Rel(program, globalOpts, "Registers")
+Rel(program, middleware, "Configures")
+Rel(program, commands, "Registers")
+Rel(program, diReg, "Calls AddSeamQCli()")
+
+Rel(middleware, configBinding, "Loads config")
+Rel(middleware, logging, "Configures verbosity")
+
+Rel(commands, renderer, "Renders output via")
+Rel(commands, scanner, "Delegates to")
+Rel(commands, detector, "Delegates to")
+Rel(commands, icdGen, "Delegates to")
+Rel(commands, diagGen, "Delegates to")
+Rel(commands, differ, "Delegates to")
+Rel(commands, validator, "Delegates to")
+Rel(commands, exporter, "Delegates to")
+
+Rel(scanner, filesystem, "Reads workspaces")
+Rel(icdGen, filesystem, "Writes ICDs")
+Rel(diagGen, filesystem, "Writes .puml files")
+Rel(diagGen, plantuml, "Renders diagrams", "HTTP")
+Rel(exporter, filesystem, "Writes JSON")
+
+SHOW_LEGEND()
+
+@enduml

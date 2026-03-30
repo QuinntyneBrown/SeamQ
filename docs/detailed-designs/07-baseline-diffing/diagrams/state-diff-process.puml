@@ -1,0 +1,75 @@
+@startuml state-diff-process
+!theme plain
+skinparam defaultFontSize 10
+skinparam pageMargin 10
+skinparam stateFontSize 11
+
+title Diff Process State Machine
+
+[*] --> LoadingBaseline
+
+state LoadingBaseline {
+  LoadingBaseline : Read baseline JSON file
+  LoadingBaseline : Validate schema version
+  LoadingBaseline : Deserialize to SeamRegistry
+}
+
+LoadingBaseline --> LoadingCurrent : Baseline loaded
+LoadingBaseline --> Error : File not found
+LoadingBaseline --> Error : Schema version unsupported
+LoadingBaseline --> Error : JSON corrupt / malformed
+
+state LoadingCurrent {
+  LoadingCurrent : Receive current SeamRegistry
+  LoadingCurrent : Apply SeamIdFilter (if set)
+  LoadingCurrent : Apply MinConfidenceThreshold (if set)
+}
+
+LoadingCurrent --> Comparing : Both registries ready
+
+state Comparing {
+  Comparing : Compute union of seam IDs
+  Comparing : Match seams by ID
+  Comparing : Deep-compare contract surfaces
+
+  state "Compare Inputs" as CI
+  state "Compare Outputs" as CO
+  state "Compare Methods" as CM
+  state "Compare Properties" as CP
+  state "Compare Types" as CT
+
+  [*] --> CI
+  CI --> CO
+  CO --> CM
+  CM --> CP
+  CP --> CT
+  CT --> [*]
+}
+
+Comparing --> Classifying : All seams compared
+
+state Classifying {
+  Classifying : Assign ChangeType per difference
+  Classifying : Infer severity (Breaking / NonBreaking)
+  Classifying : Build human-readable descriptions
+}
+
+Classifying --> ReportReady : Classification complete
+
+state ReportReady {
+  ReportReady : Aggregate SeamDiff entries
+  ReportReady : Compute DiffSummary statistics
+  ReportReady : Return DiffReport to caller
+}
+
+ReportReady --> [*]
+
+state Error {
+  Error : BaselineNotFoundException
+  Error : BaselineCorruptException
+  Error : BaselineSchemaVersionException
+}
+
+Error --> [*]
+
+@enduml

@@ -1,0 +1,84 @@
+@startuml seq-diff-baseline
+!theme plain
+skinparam defaultFontSize 10
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam pageMargin 10
+
+title Diff Against Baseline Sequence
+
+actor Caller
+participant "SeamDiffer" as SD
+participant "BaselineSerializer" as BS
+participant "ContractSurface\nComparer" as CSC
+participant "ChangeClassifier" as CC
+participant "DiffReport\nBuilder" as DRB
+
+Caller -> SD : DiffFromFileAsync(baselinePath, currentRegistry, options, ct)
+activate SD
+
+== Load Baseline ==
+
+SD -> BS : LoadAsync(baselinePath, ct)
+activate BS
+BS -> BS : Read JSON file
+BS -> BS : Validate $schemaVersion
+BS -> BS : Deserialize to SeamRegistry
+BS --> SD : SeamRegistry (baseline)
+deactivate BS
+
+== Compute Seam ID Union ==
+
+SD -> SD : ComputeSeamIdUnion(baseline, current)
+note right : Union of all seam IDs\nfrom both registries
+
+== Per-Seam Comparison ==
+
+loop for each seamId in union
+  alt seam only in current
+    SD -> CC : DetermineSeamLevelChange(false, true)
+    CC --> SD : ChangeType.Added
+    SD -> SD : Create SeamDiff (Added, no field changes)
+  else seam only in baseline
+    SD -> CC : DetermineSeamLevelChange(true, false)
+    CC --> SD : ChangeType.Removed
+    SD -> SD : Create SeamDiff (Removed, no field changes)
+  else seam in both
+    SD -> CSC : Compare(baselineSurface, currentSurface)
+    activate CSC
+    CSC -> CSC : CompareInputs()
+    CSC -> CSC : CompareOutputs()
+    CSC -> CSC : CompareMethods()
+    CSC -> CSC : CompareProperties()
+    CSC -> CSC : CompareTypes()
+    CSC -> CSC : CompareMetadata()
+    CSC --> SD : IReadOnlyList<FieldDifference>
+    deactivate CSC
+
+    alt differences found
+      SD -> CC : Classify(seamId, differences)
+      activate CC
+      CC -> CC : InferSeverity per difference
+      CC -> CC : BuildDescription per difference
+      CC --> SD : IReadOnlyList<SeamChange>
+      deactivate CC
+      SD -> SD : Create SeamDiff (Modified, changes)
+    else no differences
+      SD -> SD : Skip (seam unchanged)
+    end
+  end
+end
+
+== Build Report ==
+
+SD -> DRB : BuildReport(seamDiffs, baseline, current)
+activate DRB
+DRB -> DRB : Compute summary statistics
+DRB -> DRB : Count breaking / non-breaking
+DRB --> SD : DiffReport
+deactivate DRB
+
+SD --> Caller : DiffReport
+deactivate SD
+
+@enduml
