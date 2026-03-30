@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SeamQ.Core\SeamQ.Core.csproj" />
+    <ProjectReference Include="..\SeamQ.Renderer\SeamQ.Renderer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
