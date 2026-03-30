@@ -14,7 +14,7 @@ public class C4DiagramTests
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
         result.Should().NotContain("!include");
-        result.Should().Contain("!procedure System(");
+        result.Should().Contain("<<system>>");
         result.Should().Contain("TestApp");
         result.Should().Contain("PluginA");
     }
@@ -28,7 +28,7 @@ public class C4DiagramTests
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
         result.Should().NotContain("!include");
-        result.Should().Contain("!procedure Container(");
+        result.Should().Contain("<<container>>");
         result.Should().Contain("core");
         result.Should().Contain("shell");
     }
@@ -42,7 +42,7 @@ public class C4DiagramTests
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
         result.Should().NotContain("!include");
-        result.Should().Contain("!procedure Component(");
+        result.Should().Contain("<<component>>");
     }
 
     [Fact]
@@ -54,7 +54,7 @@ public class C4DiagramTests
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
         result.Should().NotContain("!include");
-        result.Should().Contain("!procedure Component(");
+        result.Should().Contain("<<component>>");
         result.Should().Contain("Registration Layer");
         result.Should().Contain("Contract Layer");
     }
@@ -68,7 +68,7 @@ public class C4DiagramTests
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
         result.Should().NotContain("!include");
-        result.Should().Contain("!procedure RelIndex(");
+        result.Should().Contain("**1.**");
     }
 
     [Fact]
@@ -80,7 +80,7 @@ public class C4DiagramTests
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
         result.Should().NotContain("!include");
-        result.Should().Contain("!procedure Container(");
+        result.Should().Contain("<<container>>");
         result.Should().Contain("Data Flow");
     }
 
