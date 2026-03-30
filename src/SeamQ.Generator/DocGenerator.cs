@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text;
 using SeamQ.Core.Abstractions;
 using SeamQ.Core.Models;
@@ -278,10 +279,37 @@ public class DocGenerator : IDocGenerator
         sb.AppendLine(description);
         sb.AppendLine();
 
+        // Type information table
+        sb.AppendLine("| Property | Value |");
+        sb.AppendLine("|----------|-------|");
+        sb.AppendLine($"| **Kind** | {symbol.Kind} |");
+        if (!string.IsNullOrWhiteSpace(symbol.FilePath))
+        {
+            var loc = symbol.LineNumber > 0 ? $"{symbol.FilePath}:{symbol.LineNumber}" : symbol.FilePath;
+            sb.AppendLine($"| **Source** | `{loc}` |");
+        }
+        if (!string.IsNullOrWhiteSpace(symbol.TypeSignature))
+        {
+            if (symbol.TypeSignature.Contains("extends ", StringComparison.OrdinalIgnoreCase))
+            {
+                var ext = ExtractAfterKeyword(symbol.TypeSignature, "extends");
+                if (ext != null) sb.AppendLine($"| **Extends** | `{ext}` |");
+            }
+            if (symbol.TypeSignature.Contains("implements ", StringComparison.OrdinalIgnoreCase))
+            {
+                var impl = ExtractAfterKeyword(symbol.TypeSignature, "implements");
+                if (impl != null) sb.AppendLine($"| **Implements** | `{impl}` |");
+            }
+        }
+        sb.AppendLine();
+
         // Diagram reference (only for types that get diagrams)
         if (TypeKinds.Contains(symbol.Kind))
         {
-            sb.AppendLine($"![{simpleName} class diagram](diagrams/{SanitizeFileName(simpleName)}.puml)");
+            var diagramBase = SanitizeFileName(simpleName);
+            sb.AppendLine($"![{simpleName} class diagram](diagrams/{diagramBase}.png)");
+            sb.AppendLine();
+            sb.AppendLine($"[PlantUML source](diagrams/{diagramBase}.puml)");
             sb.AppendLine();
         }
 
@@ -719,6 +747,104 @@ public class DocGenerator : IDocGenerator
             sanitized.Append(invalid.Contains(c) ? '-' : c);
         }
         return sanitized.ToString();
+    }
+
+    /// <summary>
+    /// Renders all .puml files under a directory to .png using the local PlantUML JAR.
+    /// Returns the number of PNGs rendered, or -1 if PlantUML is not available.
+    /// </summary>
+    public static int RenderDiagramsToPng(string outputDirectory)
+    {
+        var jarPath = FindPlantUmlJar();
+        if (jarPath is null)
+            return -1;
+
+        // Check java is available
+        try
+        {
+            var javaCheck = Process.Start(new ProcessStartInfo("java", "-version")
+            {
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            });
+            javaCheck?.WaitForExit(5000);
+            if (javaCheck is null || javaCheck.ExitCode != 0)
+                return -1;
+        }
+        catch
+        {
+            return -1;
+        }
+
+        var pumlFiles = Directory.GetFiles(outputDirectory, "*.puml", SearchOption.AllDirectories);
+        var rendered = 0;
+
+        foreach (var pumlFile in pumlFiles)
+        {
+            try
+            {
+                var dir = Path.GetDirectoryName(pumlFile)!;
+                var process = Process.Start(new ProcessStartInfo("java", $"-jar \"{jarPath}\" -tpng \"{pumlFile}\"")
+                {
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    WorkingDirectory = dir
+                });
+
+                process?.WaitForExit(30000);
+
+                var pngPath = Path.ChangeExtension(pumlFile, ".png");
+                if (File.Exists(pngPath))
+                    rendered++;
+            }
+            catch
+            {
+                // Skip individual file failures
+            }
+        }
+
+        return rendered;
+    }
+
+    /// <summary>
+    /// Discovers the PlantUML JAR by checking env var, PATH, and common locations.
+    /// </summary>
+    internal static string? FindPlantUmlJar()
+    {
+        // 1. PLANTUML_JAR env var
+        var envJar = Environment.GetEnvironmentVariable("PLANTUML_JAR");
+        if (!string.IsNullOrEmpty(envJar) && File.Exists(envJar))
+            return envJar;
+
+        // 2. Common locations
+        var candidates = new[]
+        {
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".dotnet", "tools", "plantuml.jar"),
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "plantuml.jar"),
+            "/usr/local/bin/plantuml.jar",
+            "/usr/share/plantuml/plantuml.jar",
+        };
+
+        foreach (var candidate in candidates)
+        {
+            if (File.Exists(candidate))
+                return candidate;
+        }
+
+        // 3. Search PATH directories for plantuml.jar
+        var pathDirs = Environment.GetEnvironmentVariable("PATH")?.Split(Path.PathSeparator) ?? [];
+        foreach (var dir in pathDirs)
+        {
+            var jarInPath = Path.Combine(dir, "plantuml.jar");
+            if (File.Exists(jarInPath))
+                return jarInPath;
+        }
+
+        return null;
     }
 
     /// <summary>

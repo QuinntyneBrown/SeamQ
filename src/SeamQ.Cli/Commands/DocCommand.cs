@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SeamQ.Cli.Rendering;
 using SeamQ.Core.Abstractions;
 using SeamQ.Core.Configuration;
+using SeamQ.Generator;
 using ExitCodes = SeamQ.Core.Models.ExitCodes;
 
 namespace SeamQ.Cli.Commands;
@@ -67,8 +68,20 @@ public static class DocCommand
                     }
                 }
 
+                // Render .puml → .png
+                var pngCount = DocGenerator.RenderDiagramsToPng(outputDir);
+                if (pngCount < 0)
+                {
+                    renderer.WriteWarning("PlantUML JAR or Java not found — .puml files generated but not rendered to .png");
+                    renderer.WriteMuted("  Set PLANTUML_JAR env var or place plantuml.jar on PATH");
+                }
+                else if (pngCount > 0)
+                {
+                    renderer.WriteSuccess($"rendered {pngCount} diagram(s) to .png");
+                }
+
                 renderer.WriteLine();
-                renderer.WriteInfo($"generated {totalFiles} doc file(s) in {outputDir}");
+                renderer.WriteInfo($"generated {totalFiles} doc file(s){(pngCount > 0 ? $" + {pngCount} .png" : "")} in {outputDir}");
             }
             catch (DirectoryNotFoundException ex)
             {
