@@ -66,6 +66,11 @@ public partial class TypeScriptAstParser
     [GeneratedRegex(@"^\s+(\w+)\s*(?:<[^>]*>)?\s*\(([^)]*)\)\s*:\s*([^;{]+)", RegexOptions.Multiline)]
     private static partial Regex MethodMemberRegex();
 
+    // export const FOO = new InjectionToken<Type>('...')
+    [GeneratedRegex(@"^(\s*)export\s+const\s+(\w+)\s*=\s*new\s+InjectionToken\s*<([^>]*)>\s*\(",
+        RegexOptions.Multiline)]
+    private static partial Regex InjectionTokenRegex();
+
     // selector: 'my-component' inside decorator metadata
     [GeneratedRegex(@"selector\s*:\s*['""]([^'""]+)['""]")]
     private static partial Regex SelectorRegex();
@@ -212,6 +217,25 @@ public partial class TypeScriptAstParser
                 FilePath = filePath,
                 LineNumber = lineNumber,
                 TypeSignature = typeExpression,
+                Documentation = doc
+            });
+        }
+
+        // Parse InjectionToken declarations
+        foreach (Match match in InjectionTokenRegex().Matches(content))
+        {
+            var lineNumber = GetLineNumber(content, match.Index);
+            var name = match.Groups[2].Value;
+            var typeParam = match.Groups[3].Value.Trim();
+            var doc = TsDocParser.ExtractDocComment(lines, lineNumber - 1);
+
+            declarations.Add(new ParsedDeclaration
+            {
+                Name = name,
+                Kind = DeclarationKind.InjectionToken,
+                FilePath = filePath,
+                LineNumber = lineNumber,
+                TypeSignature = $"InjectionToken<{typeParam}>",
                 Documentation = doc
             });
         }
@@ -481,7 +505,8 @@ public enum DeclarationKind
     Class,
     AbstractClass,
     Enum,
-    TypeAlias
+    TypeAlias,
+    InjectionToken
 }
 
 /// <summary>
