@@ -20,13 +20,13 @@ public static class C4SystemContext
         sb.AppendLine();
 
         // The provider is the central system
-        sb.AppendLine($"System({SanitizeId(seam.Provider.Alias)}, \"{seam.Provider.Alias}\", \"Provider workspace that defines the contract surface\")");
+        C4Macros.AddSystem(sb, SanitizeId(seam.Provider.Alias), seam.Provider.Alias, "Provider workspace that defines the contract surface");
         sb.AppendLine();
 
         // Each consumer is an external system or person
         foreach (var consumer in seam.Consumers)
         {
-            sb.AppendLine($"System_Ext({SanitizeId(consumer.Alias)}, \"{consumer.Alias}\", \"Consumer workspace\")");
+            C4Macros.AddSystemExt(sb, SanitizeId(consumer.Alias), consumer.Alias, "Consumer workspace");
         }
 
         sb.AppendLine();
@@ -37,7 +37,7 @@ public static class C4SystemContext
             var interfaceCount = seam.ContractSurface.Interfaces.Count();
             var tokenCount = seam.ContractSurface.InjectionTokens.Count();
             var description = $"Consumes {interfaceCount} interface(s), {tokenCount} token(s)";
-            sb.AppendLine($"Rel({SanitizeId(consumer.Alias)}, {SanitizeId(seam.Provider.Alias)}, \"{description}\")");
+            C4Macros.AddRel(sb, SanitizeId(consumer.Alias), SanitizeId(seam.Provider.Alias), description);
         }
 
         sb.AppendLine();
