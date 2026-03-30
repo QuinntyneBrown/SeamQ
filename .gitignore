@@ -3,6 +3,10 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# SeamQ generated output
+seamq-output/
+.seamq/cache/
+
 # dotenv files
 .env
 
