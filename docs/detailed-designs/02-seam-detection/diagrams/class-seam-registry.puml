@@ -1,0 +1,112 @@
+@startuml class-seam-registry
+!theme plain
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title SeamRegistry, SeamCandidate, and Confidence Scoring
+
+package "SeamQ.Detector.Models" {
+
+  enum SeamType {
+    PluginContract
+    SharedLibrary
+    MessageBus
+    RouteContract
+    StateContract
+    HttpApiContract
+    CustomDecorator
+  }
+
+  class SeamCandidate {
+    +Id : string
+    +Name : string
+    +Type : SeamType
+    +ProviderWorkspace : string
+    +ConsumerWorkspaces : IReadOnlyList<string>
+    +ContractSymbols : IReadOnlyList<ContractSymbol>
+    +SourceFile : string
+    +SourceLine : int
+    +RawConfidence : double
+    +FinalConfidence : double
+    +DetectedBy : string
+    +Metadata : Dictionary<string, object>
+  }
+
+  class ContractSymbol {
+    +Name : string
+    +Kind : SymbolKind
+    +TypeSignature : string
+    +FilePath : string
+    +LineNumber : int
+    +Documentation : string?
+  }
+
+  enum SymbolKind {
+    Interface
+    AbstractClass
+    InjectionToken
+    Service
+    Component
+    Directive
+    Observable
+    Signal
+    Action
+    Selector
+    RouteGuard
+    Dto
+    Interceptor
+    Decorator
+  }
+}
+
+package "SeamQ.Detector.Scoring" {
+
+  class ConfidenceScorer {
+    -_weights : ConfidenceWeights
+    +Score(candidate : SeamCandidate) : double
+    -EvidenceStrengthFactor(candidate) : double
+    -CrossBoundaryFactor(candidate) : double
+    -SymbolCountFactor(candidate) : double
+    -DocumentationFactor(candidate) : double
+    -Clamp(value : double) : double
+  }
+
+  class ConfidenceWeights {
+    +EvidenceStrength : double = 0.40
+    +CrossBoundary : double = 0.30
+    +SymbolCount : double = 0.15
+    +Documentation : double = 0.15
+  }
+}
+
+package "SeamQ.Detector.Registry" {
+
+  class SeamRegistry {
+    -_seams : Dictionary<string, SeamCandidate>
+    -_byType : ILookup<SeamType, SeamCandidate>
+    -_byProvider : ILookup<string, SeamCandidate>
+    +Count : int <<get>>
+    +Register(candidate : SeamCandidate) : void
+    +GetById(id : string) : SeamCandidate?
+    +GetByType(type : SeamType) : IReadOnlyList<SeamCandidate>
+    +GetByProvider(workspace : string) : IReadOnlyList<SeamCandidate>
+    +GetByConsumer(workspace : string) : IReadOnlyList<SeamCandidate>
+    +GetByMinConfidence(threshold : double) : IReadOnlyList<SeamCandidate>
+    +GetAll() : IReadOnlyList<SeamCandidate>
+    +Clear() : void
+    +Build() : void
+  }
+}
+
+SeamCandidate --> SeamType
+SeamCandidate o--> "0..*" ContractSymbol
+ContractSymbol --> SymbolKind
+ConfidenceScorer --> ConfidenceWeights
+ConfidenceScorer ..> SeamCandidate : scores
+SeamRegistry o--> "0..*" SeamCandidate : stores
+
+@enduml

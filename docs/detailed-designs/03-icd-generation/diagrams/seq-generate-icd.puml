@@ -1,0 +1,68 @@
+@startuml seq-generate-icd
+!theme plain
+skinparam defaultFontSize 10
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam pageMargin 10
+
+title ICD Generation Sequence
+
+actor Caller
+participant "IcdGenerator" as Gen
+participant "IIcdSection\n[ordered collection]" as Sec
+participant "ContentModel\nBuilder" as CMB
+participant "IOutputFormatter\n[per format]" as Fmt
+participant "FileSystem" as FS
+
+Caller -> Gen : GenerateAsync(seam, options, ct)
+activate Gen
+
+Gen -> Gen : Validate seam & options
+
+== Section Generation ==
+
+loop for each IIcdSection (ordered)
+  Gen -> Sec : IsApplicable(seam)
+  alt section is applicable
+    Gen -> Sec : GenerateAsync(seam, ctx, ct)
+    activate Sec
+    Sec --> Gen : IcdSectionResult
+    deactivate Sec
+    Gen -> Gen : Collect section result
+  else section not applicable
+    Gen -> Gen : Skip section
+  end
+end
+
+== Content Assembly ==
+
+Gen -> CMB : BuildContentModel(sectionResults)
+activate CMB
+CMB -> CMB : Merge sections
+CMB -> CMB : Collect diagrams
+CMB -> CMB : Build cross-references
+CMB --> Gen : ContentModel
+deactivate CMB
+
+Gen -> Gen : Create IcdDocument
+
+== Output Formatting ==
+
+loop for each requested OutputFormat
+  Gen -> Fmt : FormatAsync(document, options, ct)
+  activate Fmt
+  Fmt -> Fmt : Apply template
+  Fmt -> Fmt : Render content
+  Fmt --> Gen : Stream (formatted output)
+  deactivate Fmt
+
+  Gen -> FS : WriteAsync(stream, outputPath)
+  activate FS
+  FS --> Gen : written
+  deactivate FS
+end
+
+Gen --> Caller : IcdDocument
+deactivate Gen
+
+@enduml

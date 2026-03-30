@@ -1,0 +1,162 @@
+@startuml class-generator
+!theme plain
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title ICD Generator - Core Classes
+
+package "SeamQ.Generator" {
+
+  interface IIcdGenerator {
+    + GenerateAsync(seam: SeamModel, options: GenerationOptions, ct: CancellationToken): Task<IcdDocument>
+  }
+
+  class IcdGenerator {
+    - _sections: IReadOnlyList<IIcdSection>
+    - _formatters: IReadOnlyList<IOutputFormatter>
+    - _templateEngine: TemplateEngine
+    - _logger: ILogger<IcdGenerator>
+    + IcdGenerator(sections, formatters, templateEngine, logger)
+    + GenerateAsync(seam, options, ct): Task<IcdDocument>
+    - BuildContentModel(sectionResults): ContentModel
+    - FormatAndWrite(contentModel, options): Task
+  }
+
+  class GenerationOptions {
+    + OutputDirectory: string
+    + OutputFormats: IReadOnlyList<OutputFormat>
+    + TemplatePath: string?
+    + IncludeDiagrams: bool
+    + DiagramFormat: DiagramFormat
+  }
+
+  class IcdDocument {
+    + SeamId: string
+    + Title: string
+    + Sections: IReadOnlyList<IcdSectionResult>
+    + Diagrams: IReadOnlyList<DiagramReference>
+    + GeneratedAt: DateTimeOffset
+    + Metadata: IcdMetadata
+  }
+
+  interface IIcdSection {
+    + Order: int {readOnly}
+    + Title: string {readOnly}
+    + IsApplicable(seam: SeamModel): bool
+    + GenerateAsync(seam: SeamModel, ctx: GenerationContext, ct: CancellationToken): Task<IcdSectionResult>
+  }
+
+  class IcdSectionResult {
+    + SectionTitle: string
+    + Content: string
+    + Diagrams: IReadOnlyList<DiagramReference>
+    + CrossReferences: IReadOnlyList<CrossReference>
+  }
+
+  IIcdGenerator <|.. IcdGenerator
+  IcdGenerator o-- "1..*" IIcdSection : sections
+  IcdGenerator --> IcdDocument : produces
+  IcdGenerator --> GenerationOptions : uses
+  IIcdSection --> IcdSectionResult : produces
+  IcdDocument *-- "1..*" IcdSectionResult
+}
+
+package "Section Implementations" {
+
+  class IntroductionSection {
+    + Order: int = 1
+    + Title: string = "Introduction"
+  }
+
+  class ReferenceDocumentsSection {
+    + Order: int = 2
+    + Title: string = "Reference Documents"
+  }
+
+  class InterfaceOverviewSection {
+    + Order: int = 3
+    + Title: string = "Interface Overview"
+  }
+
+  class ScopeOfResponsibilitySection {
+    + Order: int = 4
+    + Title: string = "Scope of Responsibility"
+  }
+
+  class StandardsConventionsSection {
+    + Order: int = 5
+    + Title: string = "Standards & Conventions"
+  }
+
+  class RegistrationContractSection {
+    + Order: int = 6
+    + Title: string = "Registration Contract"
+  }
+
+  class ComponentInputContractSection {
+    + Order: int = 7
+    + Title: string = "Component Input Contract"
+  }
+
+  class InjectableServicesSection {
+    + Order: int = 8
+    + Title: string = "Injectable Services"
+  }
+
+  class UtilitiesSection {
+    + Order: int = 9
+    + Title: string = "Utilities"
+  }
+
+  class DataObjectsSection {
+    + Order: int = 10
+    + Title: string = "Data Objects"
+  }
+
+  class LifecycleStateManagementSection {
+    + Order: int = 11
+    + Title: string = "Lifecycle & State Management"
+  }
+
+  class ProtocolsSection {
+    + Order: int = 12
+    + Title: string = "Protocols"
+  }
+
+  class TraceabilityMatrixSection {
+    + Order: int = 13
+    + Title: string = "Traceability Matrix"
+  }
+
+  class DiagramIndexSection {
+    + Order: int = 14
+    + Title: string = "Diagram Index"
+  }
+
+  class RevisionHistorySection {
+    + Order: int = 15
+    + Title: string = "Revision History"
+  }
+
+  IIcdSection <|.. IntroductionSection
+  IIcdSection <|.. ReferenceDocumentsSection
+  IIcdSection <|.. InterfaceOverviewSection
+  IIcdSection <|.. ScopeOfResponsibilitySection
+  IIcdSection <|.. StandardsConventionsSection
+  IIcdSection <|.. RegistrationContractSection
+  IIcdSection <|.. ComponentInputContractSection
+  IIcdSection <|.. InjectableServicesSection
+  IIcdSection <|.. UtilitiesSection
+  IIcdSection <|.. DataObjectsSection
+  IIcdSection <|.. LifecycleStateManagementSection
+  IIcdSection <|.. ProtocolsSection
+  IIcdSection <|.. TraceabilityMatrixSection
+  IIcdSection <|.. DiagramIndexSection
+  IIcdSection <|.. RevisionHistorySection
+}
+
+@enduml

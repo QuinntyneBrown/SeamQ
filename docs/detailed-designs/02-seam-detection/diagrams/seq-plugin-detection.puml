@@ -1,0 +1,74 @@
+@startuml seq-plugin-detection
+!theme plain
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 180
+skinparam defaultFontSize 10
+skinparam pageMargin 10
+
+title PluginContractStrategy Detection Sequence
+
+participant "SeamDetector" as SD
+participant "PluginContract\nStrategy" as PCS
+participant "Workspace A\n(Provider)" as WA
+participant "Workspace B\n(Consumer)" as WB
+
+SD -> PCS : Detect(workspaces)
+activate PCS
+
+== Phase 1: Discover Exportable Symbols ==
+
+PCS -> WA : FindAbstractClasses()
+activate WA
+WA --> PCS : abstract classes in public API
+deactivate WA
+
+PCS -> WA : FindInjectableInterfaces()
+activate WA
+WA --> PCS : interfaces with @Injectable consumers
+deactivate WA
+
+PCS -> WA : FindInjectionTokens()
+activate WA
+WA --> PCS : InjectionToken declarations
+deactivate WA
+
+PCS -> WA : FindForRootForChild()
+activate WA
+WA --> PCS : modules with forRoot()/forChild()
+deactivate WA
+
+== Phase 2: Match Cross-Workspace Usage ==
+
+loop for each discovered symbol
+  PCS -> WB : Search imports for symbol
+  activate WB
+
+  alt symbol is abstract class
+    WB --> PCS : classes extending abstract class
+  else symbol is interface
+    WB --> PCS : classes implementing interface
+  else symbol is InjectionToken
+    WB --> PCS : @Inject(token) / inject(token) usages
+  else symbol is forRoot/forChild module
+    WB --> PCS : forRoot(config) / forChild(config) calls
+  end
+
+  deactivate WB
+end
+
+== Phase 3: Build Candidates ==
+
+PCS -> PCS : Create SeamCandidate\nfor each matched pair
+note right
+  Sets:
+  - Type = PluginContract
+  - ProviderWorkspace = A
+  - ConsumerWorkspaces = [B, ...]
+  - ContractSymbols = matched symbols
+  - RawConfidence based on evidence type
+end note
+
+PCS --> SD : List<SeamCandidate>
+deactivate PCS
+
+@enduml

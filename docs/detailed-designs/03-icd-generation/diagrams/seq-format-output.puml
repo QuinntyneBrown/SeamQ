@@ -1,0 +1,93 @@
+@startuml seq-format-output
+!theme plain
+skinparam defaultFontSize 10
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam pageMargin 10
+
+title Output Formatting Sequence
+
+participant "IcdGenerator" as Gen
+participant "TemplateEngine" as TE
+participant "MarkdownFormatter" as MF
+participant "HtmlFormatter" as HF
+participant "PdfFormatter" as PF
+participant "FileSystem" as FS
+
+== Markdown Output ==
+
+Gen -> MF : FormatAsync(document, options, ct)
+activate MF
+
+MF -> TE : LoadTemplate("icd-markdown")
+activate TE
+TE --> MF : HandlebarsTemplate
+deactivate TE
+
+MF -> MF : GenerateTableOfContents(document)
+
+loop for each section
+  MF -> MF : RenderSection(section)
+  MF -> MF : RenderDiagramReference(diagrams)
+  MF -> MF : RenderTable(data)
+end
+
+MF -> TE : RenderTemplate("icd-markdown", context)
+activate TE
+TE --> MF : renderedMarkdown
+deactivate TE
+
+MF --> Gen : Stream (.md content)
+deactivate MF
+
+Gen -> FS : WriteAsync(stream, "output/icd.md")
+
+== HTML Output ==
+
+Gen -> HF : FormatAsync(document, options, ct)
+activate HF
+
+HF -> TE : LoadTemplate("icd-html")
+activate TE
+TE --> HF : HandlebarsTemplate
+deactivate TE
+
+HF -> HF : RenderNavSidebar(document)
+HF -> HF : GenerateAnchorLinks(sections)
+
+loop for each section
+  HF -> HF : ApplySyntaxHighlighting(code)
+end
+
+HF -> HF : InjectCss(html, customCss)
+
+HF -> TE : RenderTemplate("icd-html", context)
+activate TE
+TE --> HF : renderedHtml
+deactivate TE
+
+HF --> Gen : Stream (.html content)
+deactivate HF
+
+Gen -> FS : WriteAsync(stream, "output/icd.html")
+
+== PDF Output ==
+
+Gen -> PF : FormatAsync(document, options, ct)
+activate PF
+
+PF -> PF : EnsureBrowserAsync()
+PF -> HF : FormatAsync(document, printOptions, ct)
+activate HF
+HF --> PF : Stream (html for print)
+deactivate HF
+
+PF -> PF : ApplyPrintStyles(html)
+PF -> PF : RenderHtmlToPdf(htmlStream, pdfOptions)
+
+PF --> Gen : Stream (.pdf content)
+deactivate PF
+
+Gen -> FS : WriteAsync(stream, "output/icd.pdf")
+
+@enduml

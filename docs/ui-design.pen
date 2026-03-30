@@ -1,0 +1,4255 @@
+{
+  "version": "2.9",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Frame",
+      "clip": true,
+      "width": 800,
+      "height": 600,
+      "fill": "#FFFFFF",
+      "layout": "none"
+    },
+    {
+      "type": "frame",
+      "id": "Ya0mA",
+      "x": 0,
+      "y": 0,
+      "name": "Component/TerminalWindow",
+      "reusable": true,
+      "width": 800,
+      "fill": "#0A0A0A",
+      "stroke": {
+        "thickness": 1,
+        "fill": "#2a2a2a"
+      },
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "gFs4W",
+          "name": "TitleBar",
+          "width": "fill_container",
+          "height": 36,
+          "fill": "#111111",
+          "stroke": {
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "#2a2a2a"
+          },
+          "gap": 8,
+          "padding": [
+            0,
+            12
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "Yc1Fr",
+              "name": "DotClose",
+              "fill": "#FF5F57",
+              "width": 12,
+              "height": 12
+            },
+            {
+              "type": "ellipse",
+              "id": "rlwHq",
+              "name": "DotMinimize",
+              "fill": "#FEBC2E",
+              "width": 12,
+              "height": 12
+            },
+            {
+              "type": "ellipse",
+              "id": "myYVW",
+              "name": "DotMaximize",
+              "fill": "#28C840",
+              "width": 12,
+              "height": 12
+            },
+            {
+              "type": "text",
+              "id": "WBu2y",
+              "name": "WindowTitle",
+              "fill": "#6B7280",
+              "content": "seamq",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ftHSL",
+          "name": "ContentArea",
+          "width": "fill_container",
+          "height": "fit_content(0)",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": 20
+        }
+      ]
+    },
+    {
+      "id": "qntkb",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq --help",
+      "x": 860,
+      "y": 0,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq --help",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "mro9n",
+              "name": "line1",
+              "fill": "#10B981",
+              "content": "seamq v1.0.0",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "kyAVP",
+              "name": "line2",
+              "fill": "#6B7280",
+              "content": "static analysis tool for angular workspace interface boundaries",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "F9Fcy",
+              "name": "spacer1",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "sofeM",
+              "name": "line3",
+              "fill": "#FAFAFA",
+              "content": "usage:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "iuBBV",
+              "name": "line4",
+              "fill": "#FAFAFA",
+              "content": "  seamq [command] [options]",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "PblBq",
+              "name": "spacer2",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "cAf1O",
+              "name": "line5",
+              "fill": "#FAFAFA",
+              "content": "commands:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "TM23t",
+              "name": "cmdRow1",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "OU854",
+                  "name": "cmd1a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  scan <paths>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "BtlXn",
+                  "name": "cmd1b",
+                  "fill": "#6B7280",
+                  "content": "scan workspaces and build the seam registry",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "TJiOl",
+              "name": "cmdRow2",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tbLJJ",
+                  "name": "cmd2a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  list",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "BAR4z",
+                  "name": "cmd2b",
+                  "fill": "#6B7280",
+                  "content": "list all detected seams",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "hGVp0",
+              "name": "cmdRow3",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "bSfp6",
+                  "name": "cmd3a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  generate <seam-id>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "yGw7B",
+                  "name": "cmd3b",
+                  "fill": "#6B7280",
+                  "content": "generate icd for a seam",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "1Kl0c",
+              "name": "cmdRow4",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "aw4sm",
+                  "name": "cmd4a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  diagram <seam-id>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "tZqyL",
+                  "name": "cmd4b",
+                  "fill": "#6B7280",
+                  "content": "generate diagrams for a seam",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "onCmh",
+              "name": "cmdRow5",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VsLZ6",
+                  "name": "cmd5a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  inspect <seam-id>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "TMsgh",
+                  "name": "cmd5b",
+                  "fill": "#6B7280",
+                  "content": "print detailed contract surface for a seam",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "W7eIS",
+              "name": "cmdRow6",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pARci",
+                  "name": "cmd6a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  validate <seam-id>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "4RQSW",
+                  "name": "cmd6b",
+                  "fill": "#6B7280",
+                  "content": "check consumer contract compliance",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "N7kg4",
+              "name": "cmdRow7",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZXeJL",
+                  "name": "cmd7a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  diff <baseline>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "QbPsM",
+                  "name": "cmd7b",
+                  "fill": "#6B7280",
+                  "content": "compare scan against a previous baseline",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "i0yQD",
+              "name": "cmdRow8",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qTh0d",
+                  "name": "cmd8a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  init",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "tzpVG",
+                  "name": "cmd8b",
+                  "fill": "#6B7280",
+                  "content": "generate seamq.config.json interactively",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "mzZjl",
+              "name": "cmdRow9",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "BnNyo",
+                  "name": "cmd9a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  export <seam-id>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "6QnS9",
+                  "name": "cmd9b",
+                  "fill": "#6B7280",
+                  "content": "export raw seam data as json",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "i17GZ",
+              "name": "cmdRow10",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "E9jzu",
+                  "name": "cmd10a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  serve",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "pS7O0",
+                  "name": "cmd10b",
+                  "fill": "#6B7280",
+                  "content": "launch local web server to browse icds",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Bx06a",
+              "name": "spacer3",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "U9DBo",
+              "name": "optTitle",
+              "fill": "#FAFAFA",
+              "content": "options:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "uIYwj",
+              "name": "optRow1",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "udR1G",
+                  "name": "opt1a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  --verbose",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "tsE9m",
+                  "name": "opt1b",
+                  "fill": "#6B7280",
+                  "content": "enable detailed logging output",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "XfzOv",
+              "name": "optRow2",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ODc8U",
+                  "name": "opt2a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  --quiet",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "v3Hvl",
+                  "name": "opt2b",
+                  "fill": "#6B7280",
+                  "content": "suppress all output except errors",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "pCsAJ",
+              "name": "optRow3",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "gnTkH",
+                  "name": "opt3a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  --no-color",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "syKOq",
+                  "name": "opt3b",
+                  "fill": "#6B7280",
+                  "content": "disable ansi color codes",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "MqwYg",
+              "name": "optRow4",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Vqrft",
+                  "name": "opt4a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  --output-dir <path>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "A3nhH",
+                  "name": "opt4b",
+                  "fill": "#6B7280",
+                  "content": "override output directory",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "7xUO3",
+              "name": "optRow5",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "T0vna",
+                  "name": "opt5a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  --config <path>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "kR8tR",
+                  "name": "opt5b",
+                  "fill": "#6B7280",
+                  "content": "specify custom config file",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Bzusz",
+              "name": "spacer4",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "frame",
+              "id": "OtOsD",
+              "name": "verRow",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "TRAI3",
+                  "name": "ver1a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  --version",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "shqPP",
+                  "name": "ver1b",
+                  "fill": "#6B7280",
+                  "content": "show version information",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xndgF",
+              "name": "helpRow",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "nYBjT",
+                  "name": "help1a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "  -?, -h, --help",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "7UoGa",
+                  "name": "help1b",
+                  "fill": "#6B7280",
+                  "content": "show help and usage information",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "M4ktj",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq scan",
+      "x": 860,
+      "y": 641,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq scan",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "nXrWh",
+              "name": "s2l1",
+              "fill": "#6B7280",
+              "content": "$ seamq scan ../dashboard-framework ../weather-tile ../alerts-tile ../shared-ui",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "JNZ5B",
+              "name": "s2sp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "d97VG",
+              "name": "s2l2",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "6hXbU",
+                  "name": "s2chk1",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "Wovjk",
+                  "name": "s2t1",
+                  "fill": "#FAFAFA",
+                  "content": "scanned dashboard framework (3 projects, 47 exports)",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vZuRK",
+              "name": "s2l3",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jmZg6",
+                  "name": "s2chk2",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "eVmnY",
+                  "name": "s2t2",
+                  "fill": "#FAFAFA",
+                  "content": "scanned weather tile (1 project, 12 imports)",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "rPwqu",
+              "name": "s2l4",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZNmoS",
+                  "name": "s2chk3",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "D1U2B",
+                  "name": "s2t3",
+                  "fill": "#FAFAFA",
+                  "content": "scanned alerts tile (1 project, 8 imports)",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "L7yww",
+              "name": "s2l5",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "91DgE",
+                  "name": "s2chk4",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "48fWr",
+                  "name": "s2t4",
+                  "fill": "#FAFAFA",
+                  "content": "scanned shared ui library (2 projects, 31 exports)",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fpE7r",
+              "name": "s2sp2",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "BV4Ew",
+              "name": "s2sum",
+              "fill": "#10B981",
+              "content": "found 5 seams across 4 workspaces.",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "fqXHd",
+              "name": "s2hint",
+              "fill": "#6B7280",
+              "content": "run `seamq list` to view detected seams.",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "7Tc5R",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq list",
+      "x": 860,
+      "y": 934,
+      "width": 950,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq list",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "width": "fill_container",
+          "height": "fit_content",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "mFn0i",
+              "name": "s3cmd",
+              "fill": "#6B7280",
+              "content": "$ seamq list",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "vxXWY",
+              "name": "s3sp",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "frame",
+              "id": "5gRhS",
+              "name": "s3hdr",
+              "width": "fill_container",
+              "stroke": {
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "#2a2a2a"
+              },
+              "padding": [
+                4,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "zTSeU",
+                  "name": "h1",
+                  "fill": "#6B7280",
+                  "textGrowth": "fixed-width",
+                  "width": 40,
+                  "content": "id",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "LyOV6",
+                  "name": "h2",
+                  "fill": "#6B7280",
+                  "textGrowth": "fixed-width",
+                  "width": 200,
+                  "content": "seam_name",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "r3mMv",
+                  "name": "h3",
+                  "fill": "#6B7280",
+                  "textGrowth": "fixed-width",
+                  "width": 140,
+                  "content": "type",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "wD3L4",
+                  "name": "h4",
+                  "fill": "#6B7280",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "provider",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "zfR6D",
+                  "name": "h5",
+                  "fill": "#6B7280",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "consumer(s)",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "RQL9E",
+                  "name": "h6",
+                  "fill": "#6B7280",
+                  "content": "conf",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "60FnZ",
+              "name": "r1",
+              "width": "fill_container",
+              "padding": [
+                4,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "DEv9s",
+                  "name": "r1c1",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 40,
+                  "content": "S1",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Wn5ks",
+                  "name": "r1c2",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 200,
+                  "content": "tile_plugin_contract",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "BasVP",
+                  "name": "r1c3",
+                  "fill": "#06B6D4",
+                  "textGrowth": "fixed-width",
+                  "width": 140,
+                  "content": "plugin_contract",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "erFt4",
+                  "name": "r1c4",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "dashboard framework",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "3lCUz",
+                  "name": "r1c5",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "weather, alerts",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "vpk2Q",
+                  "name": "r1c6",
+                  "fill": "#10B981",
+                  "content": "0.95",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yEHle",
+              "name": "r2",
+              "width": "fill_container",
+              "padding": [
+                4,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sfJED",
+                  "name": "r2c1",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 40,
+                  "content": "S2",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "J6DJW",
+                  "name": "r2c2",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 200,
+                  "content": "shared_ui_components",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "xTdP6",
+                  "name": "r2c3",
+                  "fill": "#06B6D4",
+                  "textGrowth": "fixed-width",
+                  "width": 140,
+                  "content": "shared_library",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "gnXZu",
+                  "name": "r2c4",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "shared ui library",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "aLDps",
+                  "name": "r2c5",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "dashboard, tiles",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "SGjcg",
+                  "name": "r2c6",
+                  "fill": "#10B981",
+                  "content": "0.92",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Ts2VP",
+              "name": "r3",
+              "width": "fill_container",
+              "padding": [
+                4,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Lc7Q4",
+                  "name": "r3c1",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 40,
+                  "content": "S3",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "6JD6L",
+                  "name": "r3c2",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 200,
+                  "content": "tile_message_bus",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Yn1jg",
+                  "name": "r3c3",
+                  "fill": "#06B6D4",
+                  "textGrowth": "fixed-width",
+                  "width": 140,
+                  "content": "message_bus",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "BKU2g",
+                  "name": "r3c4",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "dashboard framework",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "lB1Q5",
+                  "name": "r3c5",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "weather, alerts",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "8QPay",
+                  "name": "r3c6",
+                  "fill": "#F59E0B",
+                  "content": "0.88",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "gwUOQ",
+              "name": "r4",
+              "width": "fill_container",
+              "padding": [
+                4,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1tU3C",
+                  "name": "r4c1",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 40,
+                  "content": "S4",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "vItVD",
+                  "name": "r4c2",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 200,
+                  "content": "dashboard_routes",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "EOsrR",
+                  "name": "r4c3",
+                  "fill": "#06B6D4",
+                  "textGrowth": "fixed-width",
+                  "width": 140,
+                  "content": "route_contract",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "tVnI2",
+                  "name": "r4c4",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "dashboard framework",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "wdaZg",
+                  "name": "r4c5",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "weather, alerts",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "A1QZO",
+                  "name": "r4c6",
+                  "fill": "#F59E0B",
+                  "content": "0.85",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fptu4",
+              "name": "r5",
+              "width": "fill_container",
+              "padding": [
+                4,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Hd1lf",
+                  "name": "r5c1",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 40,
+                  "content": "S5",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "FKGTu",
+                  "name": "r5c2",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 200,
+                  "content": "shared_ui_design_tokens",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Q4RhZ",
+                  "name": "r5c3",
+                  "fill": "#06B6D4",
+                  "textGrowth": "fixed-width",
+                  "width": 140,
+                  "content": "shared_library",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "LASAq",
+                  "name": "r5c4",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "shared ui library",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "YKWA1",
+                  "name": "r5c5",
+                  "fill": "#FAFAFA",
+                  "textGrowth": "fixed-width",
+                  "width": 180,
+                  "content": "all",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "dfjDd",
+                  "name": "r5c6",
+                  "fill": "#F59E0B",
+                  "content": "0.80",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DSIUc",
+              "name": "s3sep",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#2a2a2a"
+            },
+            {
+              "type": "text",
+              "id": "WM4ZR",
+              "name": "s3footer",
+              "fill": "#6B7280",
+              "content": "5 seams detected",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ZoCCL",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq inspect",
+      "x": 860,
+      "y": 1283,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq inspect S1",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "tqdyO",
+              "name": "s4cmd",
+              "fill": "#6B7280",
+              "content": "$ seamq inspect S1",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "yiir3",
+              "name": "s4sp1",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "DjwEz",
+              "name": "s4hdr",
+              "fill": "#10B981",
+              "content": "── seam S1: tile_plugin_contract ──────────────────────────",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "iAusN",
+              "name": "s4r1",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "MULpW",
+                  "name": "s4l1",
+                  "fill": "#6B7280",
+                  "textGrowth": "fixed-width",
+                  "width": 100,
+                  "content": "type:",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "dK6oQ",
+                  "name": "s4v1",
+                  "fill": "#06B6D4",
+                  "content": "plugin_contract",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "4HoRu",
+              "name": "s4r2",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ITKJi",
+                  "name": "s4l2",
+                  "fill": "#6B7280",
+                  "textGrowth": "fixed-width",
+                  "width": 100,
+                  "content": "provider:",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "K3XEy",
+                  "name": "s4v2",
+                  "fill": "#FAFAFA",
+                  "content": "dashboard framework (dashboard-framework/libs/tile-api)",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xBpqW",
+              "name": "s4r3",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "bNI6z",
+                  "name": "s4l3",
+                  "fill": "#6B7280",
+                  "textGrowth": "fixed-width",
+                  "width": 100,
+                  "content": "consumers:",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "A86lu",
+                  "name": "s4v3",
+                  "fill": "#FAFAFA",
+                  "content": "weather tile, alerts tile",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "wwvgE",
+              "name": "s4r4",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pO2bM",
+                  "name": "s4l4",
+                  "fill": "#6B7280",
+                  "textGrowth": "fixed-width",
+                  "width": 100,
+                  "content": "confidence:",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "kf4XU",
+                  "name": "s4v4",
+                  "fill": "#10B981",
+                  "content": "0.95",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "0PFtz",
+              "name": "s4sp2",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "HPaUV",
+              "name": "s4cs",
+              "fill": "#6B7280",
+              "content": "// contract surface (14 elements)",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "IPY7Q",
+              "name": "s4g1",
+              "fill": "#FAFAFA",
+              "content": "  interfaces:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "JKd2x",
+              "name": "s4i1",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZGR1L",
+                  "name": "s4i1d",
+                  "fill": "#10B981",
+                  "content": "    > ITileComponent",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "ViJPR",
+                  "name": "s4i1p",
+                  "fill": "#4B5563",
+                  "content": "tile-api/src/lib/tile.interface.ts:4",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HxADJ",
+              "name": "s4i2",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "scODi",
+                  "name": "s4i2d",
+                  "fill": "#10B981",
+                  "content": "    > ITileConfig",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "JTCg2",
+                  "name": "s4i2p",
+                  "fill": "#4B5563",
+                  "content": "tile-api/src/lib/tile-config.interface.ts:1",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "gqJwd",
+              "name": "s4i3",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "8TKEM",
+                  "name": "s4i3d",
+                  "fill": "#10B981",
+                  "content": "    > ITileDataProvider",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "G1lHY",
+                  "name": "s4i3p",
+                  "fill": "#4B5563",
+                  "content": "tile-api/src/lib/tile-data-provider.interface.ts:1",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "AfydR",
+              "name": "s4g2",
+              "fill": "#FAFAFA",
+              "content": "  injection_tokens:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "XYrn6",
+              "name": "s4t1",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t0rhW",
+                  "name": "s4t1d",
+                  "fill": "#F59E0B",
+                  "content": "    > TILE_CONFIG_TOKEN",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "wttBK",
+                  "name": "s4t1p",
+                  "fill": "#4B5563",
+                  "content": "tile-api/src/lib/tile.tokens.ts:5",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "eKVs5",
+              "name": "s4t2",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "O8Rw5",
+                  "name": "s4t2d",
+                  "fill": "#F59E0B",
+                  "content": "    > TILE_DATA_TOKEN",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "zvZxh",
+                  "name": "s4t2p",
+                  "fill": "#4B5563",
+                  "content": "tile-api/src/lib/tile.tokens.ts:12",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "q3xCA",
+              "name": "s4g3",
+              "fill": "#FAFAFA",
+              "content": "  abstract_classes:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "hg6lD",
+              "name": "s4a1",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "71naz",
+                  "name": "s4a1d",
+                  "fill": "#06B6D4",
+                  "content": "    > BaseTileComponent",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "bmG78",
+                  "name": "s4a1p",
+                  "fill": "#4B5563",
+                  "content": "tile-api/src/lib/base-tile.component.ts:8",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t1cPb",
+              "name": "s4g4",
+              "fill": "#FAFAFA",
+              "content": "  types/enums:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "GTiPk",
+              "name": "s4e1",
+              "fill": "#FAFAFA",
+              "content": "    > TileSize                  tile-api/src/lib/tile-size.enum.ts:1",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "A54XS",
+              "name": "s4e2",
+              "fill": "#FAFAFA",
+              "content": "    > TileLifecycleEvent        tile-api/src/lib/tile-lifecycle.enum.ts:1",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "FnCsG",
+              "name": "s4g5",
+              "fill": "#FAFAFA",
+              "content": "  input/output_bindings:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "UXGvs",
+              "name": "s4b1",
+              "fill": "#FAFAFA",
+              "content": "    > BaseTileComponent.config      @Input()   ITileConfig",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "j7PqX",
+              "name": "s4b2",
+              "fill": "#FAFAFA",
+              "content": "    > BaseTileComponent.dataReady   @Output()  EventEmitter<TileDataReadyEvent>",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "5YewD",
+              "name": "s4g6",
+              "fill": "#FAFAFA",
+              "content": "  methods:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "57HaV",
+              "name": "s4m1",
+              "fill": "#FAFAFA",
+              "content": "    > ITileComponent.onTileInit()           void",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "cmtBF",
+              "name": "s4m2",
+              "fill": "#FAFAFA",
+              "content": "    > ITileComponent.onTileDestroy()        void",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "d31ul",
+              "name": "s4m3",
+              "fill": "#FAFAFA",
+              "content": "    > ITileComponent.onTileResize(size)     void",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "sjW86",
+              "name": "s4m4",
+              "fill": "#FAFAFA",
+              "content": "    > ITileDataProvider.fetchData<T>(query) Observable<T>",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "NNciZ",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq generate",
+      "x": 860,
+      "y": 1967,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq generate",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "0NfpP",
+              "name": "g1",
+              "fill": "#6B7280",
+              "content": "$ seamq generate S1 --format md --format html",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "BvPkl",
+              "name": "gsp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "xFwai",
+              "name": "g2",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "iLlTc",
+                  "name": "g2a",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "LhWCv",
+                  "name": "g2b",
+                  "fill": "#FAFAFA",
+                  "content": "generated icd for S1 (tile_plugin_contract)",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "cp4mK",
+              "name": "gsp2",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "BY7Ng",
+              "name": "g3",
+              "fill": "#10B981",
+              "content": "  >> ./seamq-output/S1-TilePlugin-Contract/S1-TilePlugin-Contract-ICD.md",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "3DdOQ",
+              "name": "g4",
+              "fill": "#10B981",
+              "content": "  >> ./seamq-output/S1-TilePlugin-Contract/S1-TilePlugin-Contract-ICD.html",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "i5L2Y",
+              "name": "gsp3",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "CF5Va",
+              "name": "g5",
+              "fill": "#6B7280",
+              "content": "  // sections: 7 | protocols: 7 | services: 12 | data objects: 25",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "FpS99",
+              "name": "g6",
+              "fill": "#6B7280",
+              "content": "  // diagrams: 39 (12 class, 15 sequence, 2 state, 10 c4)",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "GQvwb",
+              "name": "gsp4",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "IfZNs",
+              "name": "g7",
+              "fill": "#10B981",
+              "content": "completed in 3.2s",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "XGkdc",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq validate",
+      "x": 860,
+      "y": 2265,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq validate S1",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "4XkwP",
+              "name": "v1",
+              "fill": "#6B7280",
+              "content": "$ seamq validate S1",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "P8PIu",
+              "name": "vsp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "nNg75",
+              "name": "vh",
+              "fill": "#10B981",
+              "content": "── validation: S1 (tile_plugin_contract) ──────────────────",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "3sZcF",
+              "name": "vsp2",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "c4wUV",
+              "name": "vw1",
+              "fill": "#FAFAFA",
+              "content": "weather tile:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "2tgo7",
+              "name": "vc1",
+              "fill": "#10B981",
+              "content": "  [ok] implements ITileComponent",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "s1SkX",
+              "name": "vc2",
+              "fill": "#10B981",
+              "content": "  [ok] provides TILE_CONFIG_TOKEN",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "KDlHG",
+              "name": "vc3",
+              "fill": "#10B981",
+              "content": "  [ok] implements onTileInit()",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "yVM4F",
+              "name": "vc4",
+              "fill": "#10B981",
+              "content": "  [ok] implements onTileDestroy()",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "hlGZ4",
+              "name": "vc5",
+              "fill": "#F59E0B",
+              "content": "  [!!] onTileResize() not implemented (optional)",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "SFJ6B",
+              "name": "vc6",
+              "fill": "#10B981",
+              "content": "  [ok] extends BaseTileComponent",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "JbyCH",
+              "name": "vsp3",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "vtSms",
+              "name": "vw2",
+              "fill": "#FAFAFA",
+              "content": "alerts tile:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "IbiWd",
+              "name": "va1",
+              "fill": "#10B981",
+              "content": "  [ok] implements ITileComponent",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "IWeeP",
+              "name": "va2",
+              "fill": "#10B981",
+              "content": "  [ok] provides TILE_CONFIG_TOKEN",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "zpy38",
+              "name": "va3",
+              "fill": "#10B981",
+              "content": "  [ok] implements onTileInit()",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "gzuII",
+              "name": "va4",
+              "fill": "#EF4444",
+              "content": "  [!!] missing onTileDestroy() — REQUIRED",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "oONil",
+              "name": "va5",
+              "fill": "#F59E0B",
+              "content": "  [!!] onTileResize() not implemented (optional)",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "UoSzO",
+              "name": "va6",
+              "fill": "#10B981",
+              "content": "  [ok] extends BaseTileComponent",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "h06JK",
+              "name": "vsp4",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "OEu5P",
+              "name": "vsum",
+              "fill": "#EF4444",
+              "content": "result: 1 error, 2 warnings",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "BBYuq",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq diff",
+      "x": 860,
+      "y": 2774,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq diff",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "gKNGa",
+              "name": "d1",
+              "fill": "#6B7280",
+              "content": "$ seamq diff ./baselines/sprint-42.json",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "N7wSD",
+              "name": "dsp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "eo6i3",
+              "name": "dh",
+              "fill": "#06B6D4",
+              "content": "── changes since sprint-42 baseline ────────────────────────",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "30wRl",
+              "name": "dsp2",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "Bh5gf",
+              "name": "ds1",
+              "fill": "#FAFAFA",
+              "content": "S1 (tile_plugin_contract):",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "5uNfS",
+              "name": "da1",
+              "fill": "#10B981",
+              "content": "  [+added]    ITileComponent.onTileRefresh(): void",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "5aLIu",
+              "name": "da2",
+              "fill": "#F59E0B",
+              "content": "  [~modified] ITileConfig.refreshInterval — type: number >> number | null",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "7OTyh",
+              "name": "da3",
+              "fill": "#EF4444",
+              "content": "  [-removed]  TileDataReadyEvent.timestamp field",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "S6ton",
+              "name": "dsp3",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "olIAW",
+              "name": "ds2",
+              "fill": "#FAFAFA",
+              "content": "S2 (shared_ui_components):",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "FMlY0",
+              "name": "ds2n",
+              "fill": "#6B7280",
+              "content": "  no changes detected.",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "caCaF",
+              "name": "dsp4",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "XO7FD",
+              "name": "dsum",
+              "fill": "#06B6D4",
+              "content": "summary: 1 addition, 1 modification, 1 removal across 5 seams.",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "xkFW5",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq init",
+      "x": 860,
+      "y": 3122,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq init",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "MtCCY",
+              "name": "i1",
+              "fill": "#6B7280",
+              "content": "$ seamq init",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "ksCnc",
+              "name": "isp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "Bh4Um",
+              "name": "ih",
+              "fill": "#6B7280",
+              "content": "// seamq configuration wizard",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "u7NXA",
+              "name": "isp2",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "A8upN",
+              "name": "iq1",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pdjF1",
+                  "name": "iq1a",
+                  "fill": "#10B981",
+                  "content": "?",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "69x6x",
+                  "name": "iq1b",
+                  "fill": "#FAFAFA",
+                  "content": "add a workspace path:",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "XoM9W",
+                  "name": "iq1c",
+                  "fill": "#06B6D4",
+                  "content": "../dashboard-framework",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "srpXJ",
+              "name": "iq2",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "8T2nC",
+                  "name": "iq2a",
+                  "fill": "#10B981",
+                  "content": "?",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "kDfmL",
+                  "name": "iq2b",
+                  "fill": "#FAFAFA",
+                  "content": "alias for this workspace:",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "heatM",
+                  "name": "iq2c",
+                  "fill": "#06B6D4",
+                  "content": "Dashboard Framework",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NITqv",
+              "name": "iq3",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "StdFc",
+                  "name": "iq3a",
+                  "fill": "#10B981",
+                  "content": "?",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "d6sBP",
+                  "name": "iq3b",
+                  "fill": "#FAFAFA",
+                  "content": "role (framework/plugin/library/application):",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "MPuNM",
+                  "name": "iq3c",
+                  "fill": "#06B6D4",
+                  "content": "framework",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "W2pUt",
+              "name": "iq4",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "IpxxA",
+                  "name": "iq4a",
+                  "fill": "#10B981",
+                  "content": "?",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "zpUf3",
+                  "name": "iq4b",
+                  "fill": "#FAFAFA",
+                  "content": "add another workspace?",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "sNzhw",
+                  "name": "iq4c",
+                  "fill": "#06B6D4",
+                  "content": "yes",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "bOhAk",
+              "name": "iq5",
+              "fill": "#4B5563",
+              "content": "  ...",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "dGX7S",
+              "name": "isp3",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "9m0ew",
+              "name": "iq6",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Z9W08",
+                  "name": "iq6a",
+                  "fill": "#10B981",
+                  "content": "?",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "fkk8K",
+                  "name": "iq6b",
+                  "fill": "#FAFAFA",
+                  "content": "output directory:",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "I18t5",
+                  "name": "iq6c",
+                  "fill": "#06B6D4",
+                  "content": "./seamq-output",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "gC26j",
+              "name": "iq7",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "rD0Ht",
+                  "name": "iq7a",
+                  "fill": "#10B981",
+                  "content": "?",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "h4KJX",
+                  "name": "iq7b",
+                  "fill": "#FAFAFA",
+                  "content": "output formats:",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "AEWfB",
+                  "name": "iq7c",
+                  "fill": "#06B6D4",
+                  "content": "md, html",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ei7HY",
+              "name": "isp4",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "frame",
+              "id": "WkLDZ",
+              "name": "idone",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "lzrBh",
+                  "name": "idonea",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "a4D9z",
+                  "name": "idoneb",
+                  "fill": "#FAFAFA",
+                  "content": "created seamq.config.json",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "2BuiC",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq diagram",
+      "x": 860,
+      "y": 3490,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq diagram S1",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "LvWUa",
+              "name": "dg1",
+              "fill": "#6B7280",
+              "content": "$ seamq diagram S1",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "PaRTh",
+              "name": "dgsp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "H45R6",
+              "name": "dg2",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Kyby4",
+                  "name": "dg2a",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "x4mgP",
+                  "name": "dg2b",
+                  "fill": "#FAFAFA",
+                  "content": "generated diagrams for S1 (tile_plugin_contract)",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "C0XzZ",
+              "name": "dgsp2",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "xcpFS",
+              "name": "dgc",
+              "fill": "#6B7280",
+              "content": "  // class diagrams (12)",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "dHfNf",
+              "name": "dg3",
+              "fill": "#10B981",
+              "content": "  >> diagrams/puml/class-plugin-api-surface.puml",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "mObio",
+              "name": "dg4",
+              "fill": "#10B981",
+              "content": "  >> diagrams/puml/class-backend-contracts.puml",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "0gHST",
+              "name": "dg5",
+              "fill": "#10B981",
+              "content": "  >> diagrams/puml/class-datastore-schema.puml",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "gnOo5",
+              "name": "dg6",
+              "fill": "#4B5563",
+              "content": "  ... (+9 more)",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "aG9Tj",
+              "name": "dgsp3",
+              "width": "fill_container",
+              "height": 2
+            },
+            {
+              "type": "text",
+              "id": "RsFpc",
+              "name": "dgs",
+              "fill": "#6B7280",
+              "content": "  // sequence diagrams (15)",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "7XFBE",
+              "name": "dg7",
+              "fill": "#10B981",
+              "content": "  >> diagrams/puml/seq-app-startup.puml",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "d0PYD",
+              "name": "dg8",
+              "fill": "#10B981",
+              "content": "  >> diagrams/puml/seq-plugin-lifecycle.puml",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "c8AuC",
+              "name": "dg9",
+              "fill": "#4B5563",
+              "content": "  ... (+13 more)",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "pLdN1",
+              "name": "dgsp4",
+              "width": "fill_container",
+              "height": 2
+            },
+            {
+              "type": "text",
+              "id": "VtsUt",
+              "name": "dgst",
+              "fill": "#6B7280",
+              "content": "  // state diagrams (2)",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "a1Uw7",
+              "name": "dg10",
+              "fill": "#10B981",
+              "content": "  >> diagrams/puml/state-datastore.puml",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "nDMQm",
+              "name": "dg11",
+              "fill": "#10B981",
+              "content": "  >> diagrams/puml/state-subscription-lifecycle.puml",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "AZAKQ",
+              "name": "dgsp5",
+              "width": "fill_container",
+              "height": 2
+            },
+            {
+              "type": "text",
+              "id": "pwG2P",
+              "name": "dgc4",
+              "fill": "#6B7280",
+              "content": "  // c4 diagrams (10)",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "VUB4l",
+              "name": "dg12",
+              "fill": "#10B981",
+              "content": "  >> diagrams/c4/c4-system-context.puml",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "z6KHP",
+              "name": "dg13",
+              "fill": "#10B981",
+              "content": "  >> diagrams/c4/c4-container.puml",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "l2pJG",
+              "name": "dg14",
+              "fill": "#4B5563",
+              "content": "  ... (+8 more)",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "0yzwY",
+              "name": "dgsp6",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "BhYf5",
+              "name": "dgsum",
+              "fill": "#10B981",
+              "content": "39 diagrams generated in 8.4s",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Wd9Yi",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: Error - Invalid Path",
+      "x": 860,
+      "y": 4029,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "error: invalid path",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "bo8PR",
+              "name": "e1a",
+              "fill": "#6B7280",
+              "content": "$ seamq scan ../nonexistent-workspace",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "Om4Kg",
+              "name": "e1sp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "Y3b4z",
+              "name": "e1err",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "uacfO",
+                  "name": "e1tag",
+                  "fill": "#EF4444",
+                  "content": "[error]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "w7MAf",
+                  "name": "e1msg",
+                  "fill": "#EF4444",
+                  "content": "workspace path does not exist: ../nonexistent-workspace",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lG2Tx",
+              "name": "e1sp2",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "Pg9lG",
+              "name": "e1hint",
+              "fill": "#6B7280",
+              "content": "  verify the path exists and is an angular workspace.",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "2S5Qy",
+              "name": "e1hint2",
+              "fill": "#6B7280",
+              "content": "  expected: angular.json, nx.json, or workspace.json in the root.",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "1yFjD",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: Error - Parse Failure",
+      "x": 860,
+      "y": 4257,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "error: partial scan failure",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "e6h2J",
+              "name": "pf1",
+              "fill": "#6B7280",
+              "content": "$ seamq scan ../dashboard ../broken-workspace ../shared-ui",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "jAPWc",
+              "name": "pfsp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "xHIfN",
+              "name": "pf2",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ePAHw",
+                  "name": "pf2a",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "u1HYr",
+                  "name": "pf2b",
+                  "fill": "#FAFAFA",
+                  "content": "scanned dashboard (3 projects, 47 exports)",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QRrqi",
+              "name": "pf3",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "S5qg9",
+                  "name": "pf3a",
+                  "fill": "#EF4444",
+                  "content": "[!!]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "AQ6CN",
+                  "name": "pf3b",
+                  "fill": "#EF4444",
+                  "content": "failed to parse broken-workspace",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "g4rQs",
+              "name": "pfsp2",
+              "width": "fill_container",
+              "height": 2
+            },
+            {
+              "type": "text",
+              "id": "JyBJH",
+              "name": "pferr",
+              "fill": "#6B7280",
+              "content": "  angular.json: unexpected token at line 42, column 8",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "tqmFl",
+              "name": "pferr2",
+              "fill": "#F59E0B",
+              "content": "  continuing with remaining workspaces...",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "HZYr8",
+              "name": "pfsp3",
+              "width": "fill_container",
+              "height": 2
+            },
+            {
+              "type": "frame",
+              "id": "Aynta",
+              "name": "pf4",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dKi3x",
+                  "name": "pf4a",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "z4Etd",
+                  "name": "pf4b",
+                  "fill": "#FAFAFA",
+                  "content": "scanned shared ui (2 projects, 31 exports)",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "BCUd7",
+              "name": "pfsp4",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "SNdAo",
+              "name": "pfsum",
+              "fill": "#F59E0B",
+              "content": "partial scan: 2 of 3 workspaces scanned (exit code 1)",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P5XKX",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: Error - Unknown Command",
+      "x": 860,
+      "y": 4557,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "error: unknown command",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "Vz4F7",
+              "name": "uc1",
+              "fill": "#6B7280",
+              "content": "$ seamq analzye ../workspace",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "c2G5j",
+              "name": "ucsp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "mQFyM",
+              "name": "ucerr",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Clokv",
+                  "name": "ucerra",
+                  "fill": "#EF4444",
+                  "content": "[error]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "oawbA",
+                  "name": "ucerrb",
+                  "fill": "#EF4444",
+                  "content": "unrecognized command 'analzye'",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "AHjS5",
+              "name": "ucsp2",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "xExem",
+              "name": "uchint",
+              "fill": "#F59E0B",
+              "content": "  did you mean 'scan'?",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "kJiZU",
+              "name": "ucsp3",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "ZytEY",
+              "name": "uchelp",
+              "fill": "#6B7280",
+              "content": "  run 'seamq --help' to see available commands.",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "9ahLi",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq export",
+      "x": 860,
+      "y": 4793,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq export",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "IHeRG",
+              "name": "ex1",
+              "fill": "#6B7280",
+              "content": "$ seamq export S1 --format json --output-dir ./data",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "F2Wh1",
+              "name": "exsp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "GZAv6",
+              "name": "ex2",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Jb2o0",
+                  "name": "ex2a",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "bRLFe",
+                  "name": "ex2b",
+                  "fill": "#FAFAFA",
+                  "content": "exported seam data for S1 (tile_plugin_contract)",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "aMfOp",
+              "name": "exsp2",
+              "width": "fill_container",
+              "height": 2
+            },
+            {
+              "type": "text",
+              "id": "SzzWn",
+              "name": "ex3",
+              "fill": "#10B981",
+              "content": "  >> ./data/S1-contract-surface.json",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "H8JAH",
+              "name": "ex4",
+              "fill": "#10B981",
+              "content": "  >> ./data/S1-data-dictionary.json",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "6eczh",
+              "name": "ex5",
+              "fill": "#10B981",
+              "content": "  >> ./data/S1-traceability-matrix.json",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Upspm",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq serve",
+      "x": 860,
+      "y": 5036,
+      "height": "fit_content",
+      "descendants": {
+        "gFs4W": {
+          "width": "fill_container"
+        },
+        "Yc1Fr": {
+          "x": 12,
+          "y": 12
+        },
+        "rlwHq": {
+          "x": 32,
+          "y": 12
+        },
+        "myYVW": {
+          "x": 52,
+          "y": 12
+        },
+        "WBu2y": {
+          "content": "seamq serve",
+          "x": 72,
+          "y": 10
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "width": "fill_container",
+          "y": 36,
+          "children": [
+            {
+              "type": "text",
+              "id": "LEimM",
+              "name": "sv1",
+              "fill": "#6B7280",
+              "content": "$ seamq serve --port 5050",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "Wgwfz",
+              "name": "svsp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "aTYGq",
+              "name": "sv2",
+              "fill": "#6B7280",
+              "content": "// seamq icd browser",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "JejJv",
+              "name": "svsp2",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "c90SK",
+              "name": "sv3",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "k1KWI",
+                  "name": "sv3a",
+                  "fill": "#10B981",
+                  "content": "[ok]",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "lrwM0",
+                  "name": "sv3b",
+                  "fill": "#FAFAFA",
+                  "content": "serving 5 icds at http://localhost:5050",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sYnhX",
+              "name": "svsp3",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "pkonw",
+              "name": "sv4",
+              "fill": "#6B7280",
+              "content": "  available icds:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "IYuzP",
+              "name": "sv5",
+              "fill": "#10B981",
+              "content": "    /S1  tile_plugin_contract",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "fVzw6",
+              "name": "sv6",
+              "fill": "#10B981",
+              "content": "    /S2  shared_ui_components",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "v7nik",
+              "name": "sv7",
+              "fill": "#10B981",
+              "content": "    /S3  tile_message_bus",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "v4KuO",
+              "name": "sv8",
+              "fill": "#10B981",
+              "content": "    /S4  dashboard_routes",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "E76iy",
+              "name": "sv9",
+              "fill": "#10B981",
+              "content": "    /S5  shared_ui_design_tokens",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "1KyP8",
+              "name": "svsp4",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "Yy478",
+              "name": "sv10",
+              "fill": "#6B7280",
+              "content": "press ctrl+c to stop.",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "nZgox",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq scan --help",
+      "x": 860,
+      "y": 5395,
+      "height": "fit_content",
+      "descendants": {
+        "WBu2y": {
+          "content": "seamq scan --help"
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "children": [
+            {
+              "type": "text",
+              "id": "Ol27x",
+              "name": "sh1",
+              "fill": "#FAFAFA",
+              "content": "description:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "MwUpI",
+              "name": "sh2",
+              "fill": "#6B7280",
+              "content": "  scan angular workspaces and build the seam registry.",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "jsmhY",
+              "name": "shsp",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "NicCJ",
+              "name": "sh3",
+              "fill": "#FAFAFA",
+              "content": "usage:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "iQGwz",
+              "name": "sh4",
+              "fill": "#FAFAFA",
+              "content": "  seamq scan <paths> [options]",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "k7iiY",
+              "name": "shsp2",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "gKQLJ",
+              "name": "sh5",
+              "fill": "#FAFAFA",
+              "content": "arguments:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "Ir7H2",
+              "name": "shr1",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dPb5w",
+                  "name": "shr1a",
+                  "fill": "#10B981",
+                  "textGrowth": "fixed-width",
+                  "width": 260,
+                  "content": "  <paths>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "ONd5L",
+                  "name": "shr1b",
+                  "fill": "#6B7280",
+                  "content": "one or more workspace root paths",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "TsGws",
+              "name": "shsp3",
+              "width": "fill_container",
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "L3BlI",
+              "name": "sh6",
+              "fill": "#FAFAFA",
+              "content": "options:",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "USedU",
+              "name": "shr2",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pNzBE",
+                  "name": "shr2a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 260,
+                  "content": "  --save-baseline <path>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "rc0Xu",
+                  "name": "shr2b",
+                  "fill": "#6B7280",
+                  "content": "save scan result as baseline json",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HQI7P",
+              "name": "shr3",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yVQXy",
+                  "name": "shr3a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 260,
+                  "content": "  --no-cache",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "zboHS",
+                  "name": "shr3b",
+                  "fill": "#6B7280",
+                  "content": "disable ast caching",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "a26KT",
+              "name": "shr4",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1UUpf",
+                  "name": "shr4a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 260,
+                  "content": "  --exclude <pattern>",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "b4i56",
+                  "name": "shr4b",
+                  "fill": "#6B7280",
+                  "content": "glob pattern to exclude paths",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ajCT6",
+              "name": "shr5",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1msFK",
+                  "name": "shr5a",
+                  "fill": "#F59E0B",
+                  "textGrowth": "fixed-width",
+                  "width": 260,
+                  "content": "  -?, -h, --help",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "1ztho",
+                  "name": "shr5b",
+                  "fill": "#6B7280",
+                  "content": "show help and usage information",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "uKrn5",
+      "type": "ref",
+      "ref": "Ya0mA",
+      "name": "Screen: seamq --version",
+      "x": 860,
+      "y": 5783,
+      "height": "fit_content",
+      "descendants": {
+        "WBu2y": {
+          "content": "seamq --version"
+        },
+        "ftHSL": {
+          "height": "fit_content",
+          "children": [
+            {
+              "type": "text",
+              "id": "XnXyy",
+              "name": "vr1",
+              "fill": "#6B7280",
+              "content": "$ seamq --version",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "g75Ud",
+              "name": "vrsp",
+              "width": "fill_container",
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "3XPzh",
+              "name": "vr2",
+              "fill": "#10B981",
+              "content": "seamq 1.0.0",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "6E4QL",
+              "name": "vr3",
+              "fill": "#6B7280",
+              "content": ".net 8.0.0 | system.commandline 2.0.0",
+              "fontFamily": "IBM Plex Mono",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

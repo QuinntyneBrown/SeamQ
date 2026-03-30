@@ -1,0 +1,117 @@
+@startuml class-scanner
+!pragma layout smetana
+skinparam dpi 150
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 11
+skinparam pageMargin 10
+
+title Workspace Scanner - Class Diagram
+
+interface IWorkspaceScanner {
+  +ScanAsync(workspaceRoot: string, options: ScanOptions, ct: CancellationToken): Task<WorkspaceModel>
+}
+
+class WorkspaceScanner implements IWorkspaceScanner {
+  -_parsers: IWorkspaceParser[]
+  -_tsConfigResolver: TsConfigResolver
+  -_barrelParser: BarrelExportParser
+  -_tsParser: TypeScriptAstParser
+  -_cache: AstCache
+  -_logger: ILogger
+  +ScanAsync(workspaceRoot, options, ct): Task<WorkspaceModel>
+  -DetectWorkspaceType(root): WorkspaceType
+  -ParseFilesAsync(files, aliasMap, ct): Task<ParsedFile[]>
+}
+
+interface IWorkspaceParser {
+  +CanHandle(workspaceRoot: string): bool
+  +ParseAsync(workspaceRoot: string, ct: CancellationToken): Task<WorkspaceConfig>
+}
+
+class AngularWorkspaceParser implements IWorkspaceParser {
+  -_logger: ILogger
+  +CanHandle(workspaceRoot): bool
+  +ParseAsync(workspaceRoot, ct): Task<WorkspaceConfig>
+  -ParseAngularJson(path): WorkspaceConfig
+}
+
+class NxWorkspaceParser implements IWorkspaceParser {
+  -_logger: ILogger
+  +CanHandle(workspaceRoot): bool
+  +ParseAsync(workspaceRoot, ct): Task<WorkspaceConfig>
+  -ParseNxJson(path): NxConfig
+  -DiscoverProjectJsonFiles(root): string[]
+}
+
+class TsConfigResolver {
+  -_logger: ILogger
+  +ResolveAsync(workspaceRoot, ct): Task<PathAliasMap>
+  -ParseTsConfig(path): TsConfigData
+  -MergeExtends(config, basePath): TsConfigData
+}
+
+class BarrelExportParser {
+  -_logger: ILogger
+  +ParseAsync(barrelFilePath, ct): Task<BarrelExportResult>
+  -ParseExportStatements(content): ExportEntry[]
+  -ResolveReExports(entries, baseDir): string[]
+}
+
+class TypeScriptAstParser {
+  -_metadataExtractor: AngularMetadataExtractor
+  -_tsDocParser: TsDocParser
+  -_logger: ILogger
+  +ParseFileAsync(filePath, aliasMap, ct): Task<ParsedFile>
+  -ExtractDeclarations(content): ParsedSymbol[]
+  -ResolveImports(imports, aliasMap): ParsedImport[]
+}
+
+class AngularMetadataExtractor {
+  +Extract(classDecl: ParsedClass, decorators: ParsedDecorator[]): AngularMetadata
+  -ParseComponentMetadata(args): ComponentMetadata
+  -ParseInjectableMetadata(args): InjectableMetadata
+  -DetectSignalInputs(classBody): SignalInput[]
+  -DetectInjectCalls(classBody): InjectedDep[]
+}
+
+class TsDocParser {
+  +Parse(commentBlock: string): TsDocComment
+  -ParseTags(lines): TsDocTag[]
+  -ExtractSummary(lines): string
+}
+
+class AstCache {
+  -_entries: ConcurrentDictionary<string, CacheEntry>
+  +TryGet(filePath, currentHash, out ParsedFile): bool
+  +Set(filePath, hash, ParsedFile): void
+  +Invalidate(filePath): void
+  +SaveToDiskAsync(path, ct): Task
+  +LoadFromDiskAsync(path, ct): Task
+}
+
+class PathAliasMap {
+  -_aliases: Dictionary<string, string[]>
+  +Resolve(importSpecifier: string): string?
+  +GetAllAliases(): IReadOnlyDictionary
+}
+
+class ScanOptions {
+  +MaxDegreeOfParallelism: int
+  +EnableCache: bool
+  +CacheFilePath: string?
+  +ExcludePatterns: string[]
+  +IncludePatterns: string[]
+  +ParseTsDocs: bool
+}
+
+WorkspaceScanner --> IWorkspaceParser : selects
+WorkspaceScanner --> TsConfigResolver : uses
+WorkspaceScanner --> BarrelExportParser : uses
+WorkspaceScanner --> TypeScriptAstParser : uses
+WorkspaceScanner --> AstCache : uses
+WorkspaceScanner ..> ScanOptions : configured by
+TypeScriptAstParser --> AngularMetadataExtractor : delegates to
+TypeScriptAstParser --> TsDocParser : delegates to
+TypeScriptAstParser ..> PathAliasMap : resolves imports
+
+@enduml

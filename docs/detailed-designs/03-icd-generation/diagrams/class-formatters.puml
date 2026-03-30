@@ -1,0 +1,110 @@
+@startuml class-formatters
+!theme plain
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title ICD Formatters & Template Engine
+
+package "SeamQ.Generator.Formatting" {
+
+  interface IOutputFormatter {
+    + Format: OutputFormat {readOnly}
+    + FileExtension: string {readOnly}
+    + FormatAsync(document: IcdDocument, options: FormatterOptions, ct: CancellationToken): Task<Stream>
+  }
+
+  class FormatterOptions {
+    + OutputDirectory: string
+    + IncludeTableOfContents: bool
+    + IncludeNavigation: bool
+    + SyntaxHighlighting: bool
+    + EmbedDiagrams: bool
+    + CustomCss: string?
+    + TemplateName: string?
+  }
+
+  enum OutputFormat {
+    Markdown
+    Html
+    Pdf
+  }
+
+  class MarkdownFormatter {
+    - _templateEngine: TemplateEngine
+    - _logger: ILogger<MarkdownFormatter>
+    + Format: OutputFormat = Markdown
+    + FileExtension: string = ".md"
+    + FormatAsync(document, options, ct): Task<Stream>
+    - RenderSection(section: IcdSectionResult): string
+    - RenderDiagramReference(diagram: DiagramReference): string
+    - RenderTable(headers: string[], rows: string[][]): string
+    - GenerateTableOfContents(document: IcdDocument): string
+  }
+
+  class HtmlFormatter {
+    - _templateEngine: TemplateEngine
+    - _logger: ILogger<HtmlFormatter>
+    + Format: OutputFormat = Html
+    + FileExtension: string = ".html"
+    + FormatAsync(document, options, ct): Task<Stream>
+    - RenderNavSidebar(document: IcdDocument): string
+    - ApplySyntaxHighlighting(codeBlocks: string): string
+    - InjectCss(html: string, css: string): string
+    - GenerateAnchorLinks(sections: IcdSectionResult[]): string
+  }
+
+  class PdfFormatter {
+    - _htmlFormatter: HtmlFormatter
+    - _browserFetcher: BrowserFetcher
+    - _logger: ILogger<PdfFormatter>
+    + Format: OutputFormat = Pdf
+    + FileExtension: string = ".pdf"
+    + FormatAsync(document, options, ct): Task<Stream>
+    - EnsureBrowserAsync(): Task
+    - RenderHtmlToPdf(htmlStream: Stream, options: PdfOptions): Task<Stream>
+    - ApplyPrintStyles(html: string): string
+  }
+
+  class PdfOptions {
+    + PageSize: string = "Letter"
+    + Landscape: bool = false
+    + MarginTop: string = "1cm"
+    + MarginBottom: string = "1cm"
+    + HeaderTemplate: string?
+    + FooterTemplate: string?
+    + PrintBackground: bool = true
+  }
+
+  IOutputFormatter <|.. MarkdownFormatter
+  IOutputFormatter <|.. HtmlFormatter
+  IOutputFormatter <|.. PdfFormatter
+  PdfFormatter --> HtmlFormatter : delegates to
+  PdfFormatter --> PdfOptions : uses
+  IOutputFormatter --> FormatterOptions : uses
+  IOutputFormatter --> OutputFormat
+}
+
+package "SeamQ.Generator.Templating" {
+
+  class TemplateEngine {
+    - _handlebars: IHandlebars
+    - _templateCache: ConcurrentDictionary<string, HandlebarsTemplate>
+    - _logger: ILogger<TemplateEngine>
+    + TemplateEngine(logger)
+    + RegisterHelpers(): void
+    + LoadTemplate(path: string): HandlebarsTemplate
+    + RenderTemplate(templateName: string, context: object): string
+    + CompileInline(template: string): HandlebarsTemplate
+    - RegisterPartials(directory: string): void
+    - RegisterDefaultHelpers(): void
+  }
+
+  MarkdownFormatter --> TemplateEngine : uses
+  HtmlFormatter --> TemplateEngine : uses
+}
+
+@enduml

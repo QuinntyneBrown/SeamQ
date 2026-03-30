@@ -1,0 +1,58 @@
+@startuml c4-component-detector
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+LAYOUT_LEFT_RIGHT()
+
+title Component Diagram -- SeamQ.Detector Internals
+
+Container_Boundary(detector, "SeamQ.Detector") {
+
+  Component(seamDetector, "SeamDetector", ".NET Class", "Orchestrates all detection strategies, deduplicates candidates, and populates the registry.")
+
+  Component(scorer, "ConfidenceScorer", ".NET Class", "Calculates weighted confidence score (0.0-1.0) for each SeamCandidate based on evidence strength, cross-boundary usage, symbol count, and documentation.")
+
+  Component(registry, "SeamRegistry", ".NET Class", "Stores and indexes all detected seams. Supports query by ID, type, provider, consumer, and confidence threshold.")
+
+  Component_Ext(pluginStrat, "PluginContractStrategy", "ISeamDetectionStrategy", "Detects abstract classes, @Injectable interfaces, InjectionTokens, and forRoot/forChild patterns.")
+
+  Component_Ext(sharedStrat, "SharedLibraryStrategy", "ISeamDetectionStrategy", "Detects public API barrel exports consumed by other workspaces.")
+
+  Component_Ext(msgStrat, "MessageBusStrategy", "ISeamDetectionStrategy", "Detects RxJS Subject/BehaviorSubject exports, event bus services, and SignalR hub methods.")
+
+  Component_Ext(routeStrat, "RouteContractStrategy", "ISeamDetectionStrategy", "Detects loadChildren, loadComponent, route data interfaces, and guard contracts.")
+
+  Component_Ext(stateStrat, "StateContractStrategy", "ISeamDetectionStrategy", "Detects NgRx actions/selectors, shared signal state, and service-based state.")
+
+  Component_Ext(httpStrat, "HttpApiContractStrategy", "ISeamDetectionStrategy", "Detects HttpClient wrappers, DTOs, and interceptors.")
+
+  Component_Ext(customStrat, "CustomDecoratorStrategy", "ISeamDetectionStrategy", "Detects user-configured custom decorator contracts.")
+}
+
+Container_Boundary(parser, "SeamQ.Parser (External)") {
+  Component(parsedWs, "ParsedWorkspace", "Model", "Parsed workspace data including exports, imports, services, and components.")
+}
+
+Container_Boundary(cli, "SeamQ.CLI (External)") {
+  Component(scanCmd, "ScanCommand", "CLI Command", "Entry point that invokes SeamDetector.DetectAll().")
+}
+
+Rel(scanCmd, seamDetector, "Calls DetectAll()")
+Rel(seamDetector, pluginStrat, "Invokes Detect()")
+Rel(seamDetector, sharedStrat, "Invokes Detect()")
+Rel(seamDetector, msgStrat, "Invokes Detect()")
+Rel(seamDetector, routeStrat, "Invokes Detect()")
+Rel(seamDetector, stateStrat, "Invokes Detect()")
+Rel(seamDetector, httpStrat, "Invokes Detect()")
+Rel(seamDetector, customStrat, "Invokes Detect()")
+Rel(seamDetector, scorer, "Scores candidates")
+Rel(seamDetector, registry, "Registers scored seams")
+Rel(pluginStrat, parsedWs, "Reads")
+Rel(sharedStrat, parsedWs, "Reads")
+Rel(msgStrat, parsedWs, "Reads")
+Rel(routeStrat, parsedWs, "Reads")
+Rel(stateStrat, parsedWs, "Reads")
+Rel(httpStrat, parsedWs, "Reads")
+Rel(customStrat, parsedWs, "Reads")
+
+@enduml

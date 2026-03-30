@@ -1,0 +1,79 @@
+@startuml state-detection-pipeline
+!theme plain
+skinparam defaultFontSize 10
+skinparam stateFontSize 11
+skinparam pageMargin 10
+
+title Detection Pipeline State Machine
+
+[*] --> Idle
+
+state Idle {
+  Idle : No detection in progress.
+  Idle : Awaiting DetectAll() call.
+}
+
+Idle --> Loading : DetectAll(workspaces) called
+
+state Loading {
+  Loading : Validate workspace list.
+  Loading : Verify parsed data present.
+}
+
+Loading --> Detecting : Workspaces validated
+Loading --> Failed : No valid workspaces
+
+state Detecting {
+  Detecting : Iterating registered strategies.
+
+  state "Per-Strategy Execution" as PerStrategy {
+    [*] --> PluginContract
+    PluginContract --> SharedLibrary
+    SharedLibrary --> MessageBus
+    MessageBus --> RouteContract
+    RouteContract --> StateContract
+    StateContract --> HttpApiContract
+    HttpApiContract --> CustomDecorator
+    CustomDecorator --> [*]
+  }
+
+  note right of PerStrategy
+    Each strategy runs independently.
+    Failures in one strategy do not
+    block subsequent strategies.
+  end note
+}
+
+Detecting --> Scoring : All strategies complete
+
+state Scoring {
+  Scoring : ConfidenceScorer evaluates each candidate.
+  Scoring : Applies weighted factors.
+  Scoring : Assigns finalConfidence (0.0-1.0).
+}
+
+Scoring --> Deduplicating : All candidates scored
+
+state Deduplicating {
+  Deduplicating : Merge overlapping candidates.
+  Deduplicating : Keep highest-confidence duplicate.
+  Deduplicating : Combine consumer lists.
+}
+
+Deduplicating --> Complete : Registry built
+
+state Complete {
+  Complete : SeamRegistry populated.
+  Complete : Indexed by type, provider, consumer.
+  Complete : Ready for queries.
+}
+
+state Failed {
+  Failed : Error details logged.
+  Failed : Partial results may exist.
+}
+
+Complete --> [*]
+Failed --> [*]
+
+@enduml

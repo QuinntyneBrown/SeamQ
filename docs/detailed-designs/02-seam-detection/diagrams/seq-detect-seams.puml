@@ -1,0 +1,68 @@
+@startuml seq-detect-seams
+!theme plain
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 180
+skinparam defaultFontSize 10
+skinparam pageMargin 10
+
+title Seam Detection Pipeline Sequence
+
+actor "CLI / Caller" as CLI
+participant "SeamDetector" as SD
+participant "ISeamDetection\nStrategy []" as Strat
+participant "ConfidenceScorer" as CS
+participant "SeamRegistry" as SR
+
+CLI -> SD : DetectAll(workspaces)
+activate SD
+
+SD -> SD : RunStrategies(workspaces)
+activate SD #LightBlue
+
+loop for each registered strategy
+  SD -> Strat : Detect(workspaces)
+  activate Strat
+  Strat -> Strat : Analyze workspace\nexports and imports
+  Strat -> Strat : Match cross-workspace\nusage patterns
+  Strat --> SD : List<SeamCandidate>
+  deactivate Strat
+  SD -> SD : Accumulate candidates
+end
+
+deactivate SD
+
+SD -> SD : DeduplicateCandidates(allCandidates)
+note right
+  Merge candidates with
+  same provider+symbol+consumers.
+  Prefer higher raw confidence.
+end note
+
+loop for each unique candidate
+  SD -> CS : Score(candidate)
+  activate CS
+  CS -> CS : EvidenceStrengthFactor()
+  CS -> CS : CrossBoundaryFactor()
+  CS -> CS : SymbolCountFactor()
+  CS -> CS : DocumentationFactor()
+  CS --> SD : finalConfidence (0.0-1.0)
+  deactivate CS
+end
+
+loop for each scored candidate
+  SD -> SR : Register(candidate)
+  activate SR
+  SR -> SR : Index by id, type, provider
+  deactivate SR
+end
+
+SD -> SR : Build()
+activate SR
+SR -> SR : Build lookup indexes
+SR --> SD : void
+deactivate SR
+
+SD --> CLI : SeamRegistry
+deactivate SD
+
+@enduml

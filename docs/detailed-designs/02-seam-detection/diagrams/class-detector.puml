@@ -1,0 +1,106 @@
+@startuml class-detector
+!theme plain
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam defaultFontSize 10
+skinparam wrapWidth 200
+skinparam pageMargin 10
+
+title SeamDetector and Strategy Classes
+
+package "SeamQ.Detector" {
+
+  interface ISeamDetectionStrategy <<interface>> {
+    +Name : string <<get>>
+    +Detect(workspaces : IReadOnlyList<ParsedWorkspace>) : IReadOnlyList<SeamCandidate>
+  }
+
+  class SeamDetector {
+    -_strategies : IReadOnlyList<ISeamDetectionStrategy>
+    -_scorer : ConfidenceScorer
+    -_registry : SeamRegistry
+    -_logger : ILogger<SeamDetector>
+    +SeamDetector(strategies, scorer, registry, logger)
+    +DetectAll(workspaces : IReadOnlyList<ParsedWorkspace>) : SeamRegistry
+    -RunStrategies(workspaces) : List<SeamCandidate>
+    -DeduplicateCandidates(candidates) : List<SeamCandidate>
+    -ScoreAndRegister(candidates) : void
+  }
+
+  class PluginContractStrategy {
+    -_logger : ILogger
+    +Name : string = "PluginContract"
+    +Detect(workspaces) : IReadOnlyList<SeamCandidate>
+    -FindAbstractClasses(workspace) : IEnumerable<ExportedSymbol>
+    -FindInjectableInterfaces(workspace) : IEnumerable<ExportedSymbol>
+    -FindInjectionTokens(workspace) : IEnumerable<ExportedSymbol>
+    -FindForRootForChild(workspace) : IEnumerable<ExportedSymbol>
+    -MatchCrossWorkspaceUsage(symbols, workspaces) : List<SeamCandidate>
+  }
+
+  class SharedLibraryStrategy {
+    -_logger : ILogger
+    +Name : string = "SharedLibrary"
+    +Detect(workspaces) : IReadOnlyList<SeamCandidate>
+    -FindBarrelExports(workspace) : IEnumerable<BarrelExport>
+    -FindConsumers(export, workspaces) : IEnumerable<ParsedWorkspace>
+  }
+
+  class MessageBusStrategy {
+    -_logger : ILogger
+    +Name : string = "MessageBus"
+    +Detect(workspaces) : IReadOnlyList<SeamCandidate>
+    -FindSubjectExports(workspace) : IEnumerable<ExportedSymbol>
+    -FindEventBusServices(workspace) : IEnumerable<ExportedSymbol>
+    -FindSignalRHubMethods(workspace) : IEnumerable<ExportedSymbol>
+  }
+
+  class RouteContractStrategy {
+    -_logger : ILogger
+    +Name : string = "RouteContract"
+    +Detect(workspaces) : IReadOnlyList<SeamCandidate>
+    -FindLoadChildren(workspace) : IEnumerable<RouteRef>
+    -FindLoadComponent(workspace) : IEnumerable<RouteRef>
+    -FindRouteDataInterfaces(workspace) : IEnumerable<ExportedSymbol>
+    -FindGuardContracts(workspace) : IEnumerable<ExportedSymbol>
+  }
+
+  class StateContractStrategy {
+    -_logger : ILogger
+    +Name : string = "StateContract"
+    +Detect(workspaces) : IReadOnlyList<SeamCandidate>
+    -FindNgRxActions(workspace) : IEnumerable<ExportedSymbol>
+    -FindNgRxSelectors(workspace) : IEnumerable<ExportedSymbol>
+    -FindSharedServiceState(workspace) : IEnumerable<ExportedSymbol>
+    -FindSignalState(workspace) : IEnumerable<ExportedSymbol>
+  }
+
+  class HttpApiContractStrategy {
+    -_logger : ILogger
+    +Name : string = "HttpApiContract"
+    +Detect(workspaces) : IReadOnlyList<SeamCandidate>
+    -FindHttpClientWrappers(workspace) : IEnumerable<ExportedSymbol>
+    -FindDtoExports(workspace) : IEnumerable<ExportedSymbol>
+    -FindInterceptors(workspace) : IEnumerable<ExportedSymbol>
+  }
+
+  class CustomDecoratorStrategy {
+    -_config : CustomDecoratorConfig
+    -_logger : ILogger
+    +Name : string = "CustomDecorator"
+    +Detect(workspaces) : IReadOnlyList<SeamCandidate>
+    -FindDecoratedSymbols(workspace, decoratorName) : IEnumerable<ExportedSymbol>
+  }
+
+  SeamDetector o--> "1..*" ISeamDetectionStrategy : strategies
+  PluginContractStrategy ..|> ISeamDetectionStrategy
+  SharedLibraryStrategy ..|> ISeamDetectionStrategy
+  MessageBusStrategy ..|> ISeamDetectionStrategy
+  RouteContractStrategy ..|> ISeamDetectionStrategy
+  StateContractStrategy ..|> ISeamDetectionStrategy
+  HttpApiContractStrategy ..|> ISeamDetectionStrategy
+  CustomDecoratorStrategy ..|> ISeamDetectionStrategy
+}
+
+@enduml

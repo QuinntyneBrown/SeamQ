@@ -1,0 +1,85 @@
+@startuml state-generation
+!theme plain
+skinparam defaultFontSize 10
+skinparam stateAttributeFontSize 10
+skinparam pageMargin 10
+
+title ICD Generation State Machine
+
+[*] --> Idle
+
+state Idle {
+  Idle : No generation in progress
+  Idle : Awaiting GenerateAsync() call
+}
+
+Idle --> LoadingSeam : GenerateAsync(seam, options)
+
+state LoadingSeam {
+  LoadingSeam : Validating seam model
+  LoadingSeam : Resolving generation options
+  LoadingSeam : Loading custom templates (if any)
+}
+
+LoadingSeam --> GeneratingSections : Seam validated
+LoadingSeam --> Failed : Validation error
+
+state GeneratingSections {
+  GeneratingSections : Processing sections in order
+
+  state "Check Applicability" as CheckApplicable
+  state "Generate Section" as GenSection
+  state "Collect Result" as Collect
+
+  [*] --> CheckApplicable
+  CheckApplicable --> GenSection : IsApplicable = true
+  CheckApplicable --> CheckApplicable : IsApplicable = false\n(skip, next section)
+  GenSection --> Collect : Section complete
+  Collect --> CheckApplicable : More sections
+  Collect --> [*] : All sections done
+}
+
+GeneratingSections --> Formatting : All sections generated
+GeneratingSections --> Failed : Section generation error
+
+state Formatting {
+  Formatting : Applying output formatters
+
+  state "Format Markdown" as FmtMd
+  state "Format HTML" as FmtHtml
+  state "Format PDF" as FmtPdf
+
+  [*] --> FmtMd : if requested
+  [*] --> FmtHtml : if requested
+  [*] --> FmtPdf : if requested
+  FmtMd --> [*]
+  FmtHtml --> [*]
+  FmtPdf --> [*]
+}
+
+Formatting --> WritingOutput : All formats rendered
+Formatting --> Failed : Formatting error
+
+state WritingOutput {
+  WritingOutput : Writing files to output directory
+  WritingOutput : Copying diagram assets
+  WritingOutput : Generating manifest
+}
+
+WritingOutput --> Complete : Files written
+WritingOutput --> Failed : I/O error
+
+state Complete {
+  Complete : IcdDocument returned to caller
+  Complete : All output files available
+}
+
+state Failed {
+  Failed : Error details in GenerationException
+  Failed : Partial results may be available
+}
+
+Complete --> [*]
+Failed --> [*]
+
+@enduml
