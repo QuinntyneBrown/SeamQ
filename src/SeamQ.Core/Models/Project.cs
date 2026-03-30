@@ -16,4 +16,7 @@ public record ExportedSymbol
     public required string FilePath { get; init; }
     public int LineNumber { get; init; }
     public required string Kind { get; init; }
+    public string? Documentation { get; init; }
+    public string? TypeSignature { get; init; }
+    public string? ParentName { get; init; }
 }

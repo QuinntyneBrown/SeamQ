@@ -47,7 +47,9 @@ public class AngularMetadataExtractor
             Name = decl.Name,
             FilePath = decl.FilePath,
             LineNumber = decl.LineNumber,
-            Kind = GetDeclarationKind(decl)
+            Kind = GetDeclarationKind(decl),
+            Documentation = decl.Documentation,
+            TypeSignature = decl.TypeSignature
         };
 
         // For classes with Angular decorators, emit the selector as a separate symbol
@@ -83,7 +85,9 @@ public class AngularMetadataExtractor
                     Name = $"{decl.Name}.{member.Name}",
                     FilePath = decl.FilePath,
                     LineNumber = decl.LineNumber,
-                    Kind = memberKind
+                    Kind = memberKind,
+                    TypeSignature = member.TypeSignature,
+                    ParentName = decl.Name
                 };
             }
         }
