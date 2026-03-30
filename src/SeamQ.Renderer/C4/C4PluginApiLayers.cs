@@ -6,12 +6,14 @@ namespace SeamQ.Renderer.C4;
 /// <summary>
 /// Generates a C4 Component diagram showing the layered architecture
 /// of a plugin API: Registration, Contract, Binding, and Runtime layers.
+/// Uses name-based heuristics when elements aren't richly classified.
 /// </summary>
 public static class C4PluginApiLayers
 {
     public static string Generate(Seam seam)
     {
         var sb = new StringBuilder();
+        var surface = seam.ContractSurface;
 
         sb.AppendLine("@startuml");
         sb.AppendLine("!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml");
@@ -19,142 +21,137 @@ public static class C4PluginApiLayers
         sb.AppendLine($"title Plugin API Layers: {seam.Name}");
         sb.AppendLine();
 
-        // Registration Layer: InjectionTokens and AbstractClasses
-        sb.AppendLine($"System_Boundary(registration_layer, \"Registration Layer\") {{");
+        // Classify elements by layer using both kinds and name heuristics
+        var services = TypeClassifier.GetServices(surface);
+        var messages = surface.Elements.Where(TypeClassifier.IsRequestMessage).ToList();
+        var responses = surface.Elements.Where(TypeClassifier.IsResponse).ToList();
+        var enumLikes = surface.Elements.Where(e => e.ParentName is null && TypeClassifier.IsEnumLike(e)).ToList();
+        var components = surface.Elements.Where(TypeClassifier.IsComponent).ToList();
 
-        foreach (var token in seam.ContractSurface.InjectionTokens)
-        {
-            sb.AppendLine($"  Component({SanitizeId(token.Name)}, \"{token.Name}\", \"InjectionToken\", \"Provider registration token\")");
-        }
+        // Registration Layer: InjectionTokens, AbstractClasses, or Services (as registrations)
+        sb.AppendLine("System_Boundary(registration_layer, \"Registration Layer\") {");
+        var regCount = 0;
 
-        foreach (var ac in seam.ContractSurface.AbstractClasses)
+        foreach (var token in surface.InjectionTokens)
         {
-            sb.AppendLine($"  Component({SanitizeId(ac.Name)}, \"{ac.Name}\", \"AbstractClass\", \"Base contract class\")");
+            sb.AppendLine($"  Component({SanitizeId(token.Name)}, \"{token.Name}\", \"InjectionToken\", \"Provider token\")");
+            regCount++;
         }
-
-        if (!seam.ContractSurface.InjectionTokens.Any() && !seam.ContractSurface.AbstractClasses.Any())
+        foreach (var ac in surface.AbstractClasses)
         {
-            sb.AppendLine("  Component(reg_placeholder, \"(none)\", \"Registration\", \"No registration elements\")");
+            sb.AppendLine($"  Component({SanitizeId(ac.Name)}, \"{ac.Name}\", \"AbstractClass\", \"Base class\")");
+            regCount++;
         }
+        foreach (var svc in services)
+        {
+            sb.AppendLine($"  Component({SanitizeId(svc.Name)}_reg, \"{svc.Name}\", \"Service\", \"Injectable service\")");
+            regCount++;
+        }
+        if (regCount == 0)
+            sb.AppendLine("  Component(reg_none, \"(none)\", \"Registration\", \"No registrations\")");
 
         sb.AppendLine("}");
         sb.AppendLine();
 
-        // Contract Layer: Interfaces
-        sb.AppendLine($"System_Boundary(contract_layer, \"Contract Layer\") {{");
+        // Contract Layer: Interfaces and Message types (the contract surface)
+        sb.AppendLine("System_Boundary(contract_layer, \"Contract Layer\") {");
+        var contractCount = 0;
 
-        foreach (var iface in seam.ContractSurface.Interfaces)
+        foreach (var iface in surface.Interfaces)
         {
             sb.AppendLine($"  Component({SanitizeId(iface.Name)}, \"{iface.Name}\", \"Interface\", \"Contract definition\")");
+            contractCount++;
         }
-
-        if (!seam.ContractSurface.Interfaces.Any())
+        foreach (var msg in messages)
         {
-            sb.AppendLine("  Component(contract_placeholder, \"(none)\", \"Interface\", \"No contract interfaces\")");
+            sb.AppendLine($"  Component({SanitizeId(msg.Name)}, \"{msg.Name}\", \"Message\", \"Request type\")");
+            contractCount++;
         }
+        foreach (var resp in responses)
+        {
+            sb.AppendLine($"  Component({SanitizeId(resp.Name)}, \"{resp.Name}\", \"Response\", \"Response type\")");
+            contractCount++;
+        }
+        if (contractCount == 0)
+            sb.AppendLine("  Component(contract_none, \"(none)\", \"Interface\", \"No contracts\")");
 
         sb.AppendLine("}");
         sb.AppendLine();
 
-        // Binding Layer: InputBindings, OutputBindings, SignalInputs
-        sb.AppendLine($"System_Boundary(binding_layer, \"Binding Layer\") {{");
+        // Binding Layer: InputBindings, OutputBindings, SignalInputs, Components
+        sb.AppendLine("System_Boundary(binding_layer, \"Binding Layer\") {");
+        var bindingCount = 0;
 
-        foreach (var input in seam.ContractSurface.InputBindings)
+        foreach (var input in surface.InputBindings)
         {
-            sb.AppendLine($"  Component({SanitizeId(input.Name)}_input, \"{input.Name}\", \"InputBinding\", \"Data input binding\")");
+            sb.AppendLine($"  Component({SanitizeId(input.Name)}_in, \"{input.Name}\", \"InputBinding\", \"Data input\")");
+            bindingCount++;
         }
-
-        foreach (var output in seam.ContractSurface.OutputBindings)
+        foreach (var output in surface.OutputBindings)
         {
-            sb.AppendLine($"  Component({SanitizeId(output.Name)}_output, \"{output.Name}\", \"OutputBinding\", \"Event output binding\")");
+            sb.AppendLine($"  Component({SanitizeId(output.Name)}_out, \"{output.Name}\", \"OutputBinding\", \"Event output\")");
+            bindingCount++;
         }
-
-        foreach (var signal in seam.ContractSurface.SignalInputs)
+        foreach (var comp in components)
         {
-            sb.AppendLine($"  Component({SanitizeId(signal.Name)}_signal, \"{signal.Name}\", \"SignalInput\", \"Signal-based input\")");
+            sb.AppendLine($"  Component({SanitizeId(comp.Name)}_comp, \"{comp.Name}\", \"Component\", \"UI component\")");
+            bindingCount++;
         }
-
-        if (!seam.ContractSurface.InputBindings.Any() && !seam.ContractSurface.OutputBindings.Any() && !seam.ContractSurface.SignalInputs.Any())
+        foreach (var e in enumLikes)
         {
-            sb.AppendLine("  Component(binding_placeholder, \"(none)\", \"Binding\", \"No binding elements\")");
+            sb.AppendLine($"  Component({SanitizeId(e.Name)}_enum, \"{e.Name}\", \"Enum\", \"State/status type\")");
+            bindingCount++;
         }
+        if (bindingCount == 0)
+            sb.AppendLine("  Component(binding_none, \"(none)\", \"Binding\", \"No bindings\")");
 
         sb.AppendLine("}");
         sb.AppendLine();
 
-        // Runtime Layer: Methods, Observables
-        sb.AppendLine($"System_Boundary(runtime_layer, \"Runtime Layer\") {{");
+        // Runtime Layer: Methods, Observables, or remaining data types
+        sb.AppendLine("System_Boundary(runtime_layer, \"Runtime Layer\") {");
+        var runtimeCount = 0;
 
-        foreach (var method in seam.ContractSurface.Methods)
+        foreach (var method in surface.Methods)
         {
-            sb.AppendLine($"  Component({SanitizeId(method.Name)}_method, \"{method.Name}\", \"Method\", \"Runtime method call\")");
+            sb.AppendLine($"  Component({SanitizeId(method.Name)}_rt, \"{method.Name}\", \"Method\", \"Runtime method\")");
+            runtimeCount++;
         }
+        foreach (var obs in surface.Observables)
+        {
+            sb.AppendLine($"  Component({SanitizeId(obs.Name)}_rt, \"{obs.Name}\", \"Observable\", \"Data stream\")");
+            runtimeCount++;
+        }
+        // If no classified runtime elements, show data objects as the runtime data
+        if (runtimeCount == 0)
+        {
+            var dataTypes = surface.Elements
+                .Where(e => e.ParentName is null && TypeClassifier.IsDataObject(e) &&
+                            !TypeClassifier.IsService(e) && !TypeClassifier.IsComponent(e) &&
+                            !TypeClassifier.IsEnumLike(e) && !TypeClassifier.IsRequestMessage(e) &&
+                            !TypeClassifier.IsResponse(e))
+                .Take(5)
+                .ToList();
 
-        foreach (var obs in seam.ContractSurface.Observables)
-        {
-            sb.AppendLine($"  Component({SanitizeId(obs.Name)}_obs, \"{obs.Name}\", \"Observable\", \"Reactive data stream\")");
+            foreach (var dt in dataTypes)
+            {
+                sb.AppendLine($"  Component({SanitizeId(dt.Name)}_rt, \"{dt.Name}\", \"DataType\", \"Runtime data object\")");
+                runtimeCount++;
+            }
         }
-
-        if (!seam.ContractSurface.Methods.Any() && !seam.ContractSurface.Observables.Any())
-        {
-            sb.AppendLine("  Component(runtime_placeholder, \"(none)\", \"Runtime\", \"No runtime elements\")");
-        }
+        if (runtimeCount == 0)
+            sb.AppendLine("  Component(runtime_none, \"(none)\", \"Runtime\", \"No runtime elements\")");
 
         sb.AppendLine("}");
         sb.AppendLine();
 
-        // Relationships flow top-down between layers
-        // Registration -> Contract
-        foreach (var iface in seam.ContractSurface.Interfaces)
-        {
-            var registrationSource = seam.ContractSurface.InjectionTokens.FirstOrDefault()
-                ?? seam.ContractSurface.AbstractClasses.FirstOrDefault();
-
-            if (registrationSource != null)
-            {
-                sb.AppendLine($"Rel_D({SanitizeId(registrationSource.Name)}, {SanitizeId(iface.Name)}, \"defines contract\")");
-            }
-        }
-
-        // Contract -> Binding
-        var firstInterface = seam.ContractSurface.Interfaces.FirstOrDefault();
-        if (firstInterface != null)
-        {
-            foreach (var input in seam.ContractSurface.InputBindings)
-            {
-                sb.AppendLine($"Rel_D({SanitizeId(firstInterface.Name)}, {SanitizeId(input.Name)}_input, \"binds input\")");
-            }
-
-            foreach (var output in seam.ContractSurface.OutputBindings)
-            {
-                sb.AppendLine($"Rel_D({SanitizeId(firstInterface.Name)}, {SanitizeId(output.Name)}_output, \"binds output\")");
-            }
-
-            foreach (var signal in seam.ContractSurface.SignalInputs)
-            {
-                sb.AppendLine($"Rel_D({SanitizeId(firstInterface.Name)}, {SanitizeId(signal.Name)}_signal, \"binds signal\")");
-            }
-        }
-
-        // Binding -> Runtime
-        var firstBinding = seam.ContractSurface.InputBindings.FirstOrDefault()
-            ?? seam.ContractSurface.OutputBindings.FirstOrDefault();
-        var bindingId = firstBinding != null
-            ? $"{SanitizeId(firstBinding.Name)}_{(firstBinding.Kind == ContractElementKind.InputBinding ? "input" : "output")}"
-            : null;
-
-        if (bindingId != null)
-        {
-            foreach (var method in seam.ContractSurface.Methods)
-            {
-                sb.AppendLine($"Rel_D({bindingId}, {SanitizeId(method.Name)}_method, \"invokes at runtime\")");
-            }
-
-            foreach (var obs in seam.ContractSurface.Observables)
-            {
-                sb.AppendLine($"Rel_D({bindingId}, {SanitizeId(obs.Name)}_obs, \"streams data\")");
-            }
-        }
+        // Relationships flow top-down
+        if (regCount > 0 && contractCount > 0)
+            sb.AppendLine("Rel_D(registration_layer, contract_layer, \"defines\")");
+        if (contractCount > 0 && bindingCount > 0)
+            sb.AppendLine("Rel_D(contract_layer, binding_layer, \"binds\")");
+        if (bindingCount > 0 && runtimeCount > 0)
+            sb.AppendLine("Rel_D(binding_layer, runtime_layer, \"invokes\")");
 
         sb.AppendLine();
         sb.AppendLine("@enduml");

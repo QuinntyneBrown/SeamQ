@@ -5,8 +5,7 @@ namespace SeamQ.Renderer.C4;
 
 /// <summary>
 /// Generates a C4 Component diagram focused on services.
-/// Shows provider workspace components grouped by ParentName, with
-/// InjectionTokens and Interfaces as distinct component types.
+/// Shows provider workspace components grouped by ParentName or name-classified types.
 /// </summary>
 public static class C4ComponentServices
 {
@@ -20,59 +19,87 @@ public static class C4ComponentServices
         sb.AppendLine($"title Component Diagram (Services): {seam.Name}");
         sb.AppendLine();
 
-        // Provider workspace as a system boundary
         sb.AppendLine($"System_Boundary({SanitizeId(seam.Provider.Alias)}_boundary, \"{seam.Provider.Alias}\") {{");
 
-        // Collect distinct service components from Methods, Properties, and Observables by ParentName
-        var serviceElements = seam.ContractSurface.Methods
-            .Concat(seam.ContractSurface.Properties)
-            .Concat(seam.ContractSurface.Observables)
+        var surface = seam.ContractSurface;
+
+        // Collect classified service components from Methods/Properties/Observables
+        var serviceElements = surface.Methods
+            .Concat(surface.Properties)
+            .Concat(surface.Observables)
             .Where(e => !string.IsNullOrEmpty(e.ParentName))
             .GroupBy(e => e.ParentName!)
             .ToList();
 
+        var shownComponents = new HashSet<string>();
+
         foreach (var group in serviceElements)
         {
-            var memberCount = group.Count();
-            sb.AppendLine($"  Component({SanitizeId(group.Key)}, \"{group.Key}\", \"Service\", \"{memberCount} member(s)\")");
+            sb.AppendLine($"  Component({SanitizeId(group.Key)}, \"{group.Key}\", \"Service\", \"{group.Count()} member(s)\")");
+            shownComponents.Add(group.Key);
         }
 
-        // InjectionTokens as components with <<Token>> tech label
-        foreach (var token in seam.ContractSurface.InjectionTokens)
+        // Fall back: name-classified services, components, and data types
+        if (serviceElements.Count == 0)
         {
-            sb.AppendLine($"  Component({SanitizeId(token.Name)}, \"{token.Name}\", \"<<Token>>\", \"Injection token\")");
+            var services = TypeClassifier.GetServices(surface);
+            foreach (var svc in services)
+            {
+                if (shownComponents.Add(svc.Name))
+                    sb.AppendLine($"  Component({SanitizeId(svc.Name)}, \"{svc.Name}\", \"Service\", \"API service\")");
+            }
+
+            var components = surface.Elements.Where(e => TypeClassifier.IsComponent(e)).ToList();
+            foreach (var comp in components)
+            {
+                if (shownComponents.Add(comp.Name))
+                    sb.AppendLine($"  Component({SanitizeId(comp.Name)}, \"{comp.Name}\", \"Component\", \"UI component\")");
+            }
+
+            // Show key data types as components
+            var messages = surface.Elements.Where(TypeClassifier.IsRequestMessage).Take(5).ToList();
+            foreach (var msg in messages)
+            {
+                if (shownComponents.Add(msg.Name))
+                    sb.AppendLine($"  Component({SanitizeId(msg.Name)}, \"{msg.Name}\", \"Message\", \"Request type\")");
+            }
+
+            var responses = surface.Elements.Where(TypeClassifier.IsResponse).Take(5).ToList();
+            foreach (var resp in responses)
+            {
+                if (shownComponents.Add(resp.Name))
+                    sb.AppendLine($"  Component({SanitizeId(resp.Name)}, \"{resp.Name}\", \"Response\", \"Response type\")");
+            }
         }
 
-        // Interfaces as components with <<Interface>> tech label
-        foreach (var iface in seam.ContractSurface.Interfaces)
+        // InjectionTokens
+        foreach (var token in surface.InjectionTokens)
         {
-            sb.AppendLine($"  Component({SanitizeId(iface.Name)}, \"{iface.Name}\", \"<<Interface>>\", \"Contract interface\")");
+            if (shownComponents.Add(token.Name))
+                sb.AppendLine($"  Component({SanitizeId(token.Name)}, \"{token.Name}\", \"<<Token>>\", \"Injection token\")");
+        }
+
+        // Interfaces
+        foreach (var iface in surface.Interfaces)
+        {
+            if (shownComponents.Add(iface.Name))
+                sb.AppendLine($"  Component({SanitizeId(iface.Name)}, \"{iface.Name}\", \"<<Interface>>\", \"Contract interface\")");
         }
 
         sb.AppendLine("}");
         sb.AppendLine();
 
-        // Internal relationships: components that reference each other via TypeSignature
-        var allComponents = serviceElements.Select(g => g.Key).ToHashSet();
-        foreach (var iface in seam.ContractSurface.Interfaces)
-            allComponents.Add(iface.Name);
-        foreach (var token in seam.ContractSurface.InjectionTokens)
-            allComponents.Add(token.Name);
-
-        foreach (var group in serviceElements)
+        // Add relationships: services → messages they handle
+        var pairs = TypeClassifier.GetMessagePairs(surface);
+        var svcs = TypeClassifier.GetServices(surface);
+        foreach (var pair in pairs)
         {
-            foreach (var element in group)
+            var svc = TypeClassifier.FindServiceForMessage(pair.Request, svcs);
+            if (svc is not null && shownComponents.Contains(svc.Name) && shownComponents.Contains(pair.Request.Name))
             {
-                if (string.IsNullOrEmpty(element.TypeSignature)) continue;
-
-                foreach (var componentName in allComponents)
-                {
-                    if (componentName == group.Key) continue;
-                    if (element.TypeSignature.Contains(componentName))
-                    {
-                        sb.AppendLine($"Rel({SanitizeId(group.Key)}, {SanitizeId(componentName)}, \"uses\")");
-                    }
-                }
+                sb.AppendLine($"Rel({SanitizeId(svc.Name)}, {SanitizeId(pair.Request.Name)}, \"handles\")");
+                if (pair.Response is not null && shownComponents.Contains(pair.Response.Name))
+                    sb.AppendLine($"Rel({SanitizeId(svc.Name)}, {SanitizeId(pair.Response.Name)}, \"returns\")");
             }
         }
 
@@ -80,23 +107,10 @@ public static class C4ComponentServices
         foreach (var consumer in seam.Consumers)
         {
             sb.AppendLine($"System_Ext({SanitizeId(consumer.Alias)}, \"{consumer.Alias}\", \"Consumer workspace\")");
-        }
-
-        sb.AppendLine();
-
-        // Relationships from consumers to components they use
-        foreach (var consumer in seam.Consumers)
-        {
-            // Consumers interact with interfaces
-            foreach (var iface in seam.ContractSurface.Interfaces)
+            foreach (var svc in svcs.Take(3))
             {
-                sb.AppendLine($"Rel({SanitizeId(consumer.Alias)}, {SanitizeId(iface.Name)}, \"implements\")");
-            }
-
-            // Consumers interact with injection tokens
-            foreach (var token in seam.ContractSurface.InjectionTokens)
-            {
-                sb.AppendLine($"Rel({SanitizeId(consumer.Alias)}, {SanitizeId(token.Name)}, \"injects\")");
+                if (shownComponents.Contains(svc.Name))
+                    sb.AppendLine($"Rel({SanitizeId(consumer.Alias)}, {SanitizeId(svc.Name)}, \"uses\")");
             }
         }
 
