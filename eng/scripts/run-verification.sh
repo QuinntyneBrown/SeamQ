@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # run-verification.sh — 100-iteration verification loop for SeamQ CLI
 # Generates fixtures, runs CLI, audits output, logs gaps
-set -euo pipefail
+set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
@@ -58,8 +58,9 @@ audit_output() {
   local registry_file="$iter_base/.seamq/registry.json"
   local seam_count=0
   if [[ -f "$registry_file" ]]; then
-    # Count seam entries — registry is a JSON object with an array value, or a flat array
-    seam_count=$(grep -c '"Id"' "$registry_file" 2>/dev/null || echo 0)
+    # Count seam entries — case-insensitive search for "Id" or "id" fields
+    seam_count=$(grep -ci '"id"' "$registry_file" 2>/dev/null || true)
+    [[ -z "$seam_count" ]] && seam_count=0
   fi
   if (( seam_count == 0 )); then
     iter_gaps+="  - **NO_SEAMS**: No seams detected by scan\n"
