@@ -73,8 +73,9 @@ public class RouteContractStrategy : ISeamDetectionStrategy
                     SourceFile = e.FilePath,
                     LineNumber = e.LineNumber,
                     Workspace = provider.Alias,
-                    TypeSignature = null,
-                    Documentation = null
+                    TypeSignature = e.TypeSignature,
+                    Documentation = e.Documentation,
+                    ParentName = e.ParentName
                 })
                 .ToList();
 
@@ -96,12 +97,9 @@ public class RouteContractStrategy : ISeamDetectionStrategy
 
     private static IReadOnlyList<ExportedSymbol> GetAllExports(Workspace workspace)
     {
-        var exports = new List<ExportedSymbol>(workspace.Exports);
-        foreach (var project in workspace.Projects)
-        {
-            exports.AddRange(project.Exports);
-        }
-        return exports;
+        return workspace.Exports
+            .Where(e => e.Name != "*")
+            .ToList();
     }
 
     private static double CalculateRawConfidence(int consumerCount, int elementCount)
