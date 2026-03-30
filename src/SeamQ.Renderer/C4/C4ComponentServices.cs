@@ -19,7 +19,7 @@ public static class C4ComponentServices
         sb.AppendLine($"title Component Diagram (Services): {seam.Name}");
         sb.AppendLine();
 
-        sb.AppendLine($"System_Boundary({SanitizeId(seam.Provider.Alias)}_boundary, \"{seam.Provider.Alias}\") {{");
+        C4Macros.BeginBoundary(sb, $"{SanitizeId(seam.Provider.Alias)}_boundary", seam.Provider.Alias);
 
         var surface = seam.ContractSurface;
 
@@ -35,7 +35,7 @@ public static class C4ComponentServices
 
         foreach (var group in serviceElements)
         {
-            sb.AppendLine($"  Component({SanitizeId(group.Key)}, \"{group.Key}\", \"Service\", \"{group.Count()} member(s)\")");
+            C4Macros.AddComponent(sb, SanitizeId(group.Key), group.Key, "Service", $"{group.Count()} member(s)");
             shownComponents.Add(group.Key);
         }
 
@@ -46,14 +46,14 @@ public static class C4ComponentServices
             foreach (var svc in services)
             {
                 if (shownComponents.Add(svc.Name))
-                    sb.AppendLine($"  Component({SanitizeId(svc.Name)}, \"{svc.Name}\", \"Service\", \"API service\")");
+                    C4Macros.AddComponent(sb, SanitizeId(svc.Name), svc.Name, "Service", "API service");
             }
 
             var components = surface.Elements.Where(e => TypeClassifier.IsComponent(e)).ToList();
             foreach (var comp in components)
             {
                 if (shownComponents.Add(comp.Name))
-                    sb.AppendLine($"  Component({SanitizeId(comp.Name)}, \"{comp.Name}\", \"Component\", \"UI component\")");
+                    C4Macros.AddComponent(sb, SanitizeId(comp.Name), comp.Name, "Component", "UI component");
             }
 
             // Show key data types as components
@@ -61,14 +61,14 @@ public static class C4ComponentServices
             foreach (var msg in messages)
             {
                 if (shownComponents.Add(msg.Name))
-                    sb.AppendLine($"  Component({SanitizeId(msg.Name)}, \"{msg.Name}\", \"Message\", \"Request type\")");
+                    C4Macros.AddComponent(sb, SanitizeId(msg.Name), msg.Name, "Message", "Request type");
             }
 
             var responses = surface.Elements.Where(TypeClassifier.IsResponse).Take(5).ToList();
             foreach (var resp in responses)
             {
                 if (shownComponents.Add(resp.Name))
-                    sb.AppendLine($"  Component({SanitizeId(resp.Name)}, \"{resp.Name}\", \"Response\", \"Response type\")");
+                    C4Macros.AddComponent(sb, SanitizeId(resp.Name), resp.Name, "Response", "Response type");
             }
         }
 
@@ -76,17 +76,17 @@ public static class C4ComponentServices
         foreach (var token in surface.InjectionTokens)
         {
             if (shownComponents.Add(token.Name))
-                sb.AppendLine($"  Component({SanitizeId(token.Name)}, \"{token.Name}\", \"<<Token>>\", \"Injection token\")");
+                C4Macros.AddComponent(sb, SanitizeId(token.Name), token.Name, "<<Token>>", "Injection token");
         }
 
         // Interfaces
         foreach (var iface in surface.Interfaces)
         {
             if (shownComponents.Add(iface.Name))
-                sb.AppendLine($"  Component({SanitizeId(iface.Name)}, \"{iface.Name}\", \"<<Interface>>\", \"Contract interface\")");
+                C4Macros.AddComponent(sb, SanitizeId(iface.Name), iface.Name, "<<Interface>>", "Contract interface");
         }
 
-        sb.AppendLine("}");
+        C4Macros.EndBoundary(sb);
         sb.AppendLine();
 
         // Add relationships: services → messages they handle
@@ -97,20 +97,20 @@ public static class C4ComponentServices
             var svc = TypeClassifier.FindServiceForMessage(pair.Request, svcs);
             if (svc is not null && shownComponents.Contains(svc.Name) && shownComponents.Contains(pair.Request.Name))
             {
-                sb.AppendLine($"Rel({SanitizeId(svc.Name)}, {SanitizeId(pair.Request.Name)}, \"handles\")");
+                C4Macros.AddRel(sb, SanitizeId(svc.Name), SanitizeId(pair.Request.Name), "handles");
                 if (pair.Response is not null && shownComponents.Contains(pair.Response.Name))
-                    sb.AppendLine($"Rel({SanitizeId(svc.Name)}, {SanitizeId(pair.Response.Name)}, \"returns\")");
+                    C4Macros.AddRel(sb, SanitizeId(svc.Name), SanitizeId(pair.Response.Name), "returns");
             }
         }
 
         // Consumer workspaces as external systems
         foreach (var consumer in seam.Consumers)
         {
-            sb.AppendLine($"System_Ext({SanitizeId(consumer.Alias)}, \"{consumer.Alias}\", \"Consumer workspace\")");
+            C4Macros.AddSystemExt(sb, SanitizeId(consumer.Alias), consumer.Alias, "Consumer workspace");
             foreach (var svc in svcs.Take(3))
             {
                 if (shownComponents.Contains(svc.Name))
-                    sb.AppendLine($"Rel({SanitizeId(consumer.Alias)}, {SanitizeId(svc.Name)}, \"uses\")");
+                    C4Macros.AddRel(sb, SanitizeId(consumer.Alias), SanitizeId(svc.Name), "uses");
             }
         }
 

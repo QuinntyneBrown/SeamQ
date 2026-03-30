@@ -30,83 +30,83 @@ public static class C4PluginApiLayers
         var components = surface.Elements.Where(TypeClassifier.IsComponent).ToList();
 
         // Registration Layer: InjectionTokens, AbstractClasses, or Services (as registrations)
-        sb.AppendLine("System_Boundary(registration_layer, \"Registration Layer\") {");
+        C4Macros.BeginBoundary(sb, "registration_layer", "Registration Layer");
         var regCount = 0;
 
         foreach (var token in surface.InjectionTokens)
         {
-            sb.AppendLine($"  Component({SanitizeId(token.Name)}, \"{token.Name}\", \"InjectionToken\", \"Provider token\")");
+            C4Macros.AddComponent(sb, SanitizeId(token.Name), token.Name, "InjectionToken", "Provider token");
             regCount++;
         }
         foreach (var ac in surface.AbstractClasses)
         {
-            sb.AppendLine($"  Component({SanitizeId(ac.Name)}, \"{ac.Name}\", \"AbstractClass\", \"Base class\")");
+            C4Macros.AddComponent(sb, SanitizeId(ac.Name), ac.Name, "AbstractClass", "Base class");
             regCount++;
         }
         foreach (var svc in services)
         {
-            sb.AppendLine($"  Component({SanitizeId(svc.Name)}_reg, \"{svc.Name}\", \"Service\", \"Injectable service\")");
+            C4Macros.AddComponent(sb, $"{SanitizeId(svc.Name)}_reg", svc.Name, "Service", "Injectable service");
             regCount++;
         }
         if (regCount == 0)
-            sb.AppendLine("  Component(reg_none, \"(none)\", \"Registration\", \"No registrations\")");
+            C4Macros.AddComponent(sb, "reg_none", "(none)", "Registration", "No registrations");
 
-        sb.AppendLine("}");
+        C4Macros.EndBoundary(sb);
         sb.AppendLine();
 
         // Contract Layer: Interfaces and Message types (the contract surface)
-        sb.AppendLine("System_Boundary(contract_layer, \"Contract Layer\") {");
+        C4Macros.BeginBoundary(sb, "contract_layer", "Contract Layer");
         var contractCount = 0;
 
         foreach (var iface in surface.Interfaces)
         {
-            sb.AppendLine($"  Component({SanitizeId(iface.Name)}, \"{iface.Name}\", \"Interface\", \"Contract definition\")");
+            C4Macros.AddComponent(sb, SanitizeId(iface.Name), iface.Name, "Interface", "Contract definition");
             contractCount++;
         }
         foreach (var msg in messages)
         {
-            sb.AppendLine($"  Component({SanitizeId(msg.Name)}, \"{msg.Name}\", \"Message\", \"Request type\")");
+            C4Macros.AddComponent(sb, SanitizeId(msg.Name), msg.Name, "Message", "Request type");
             contractCount++;
         }
         foreach (var resp in responses)
         {
-            sb.AppendLine($"  Component({SanitizeId(resp.Name)}, \"{resp.Name}\", \"Response\", \"Response type\")");
+            C4Macros.AddComponent(sb, SanitizeId(resp.Name), resp.Name, "Response", "Response type");
             contractCount++;
         }
         if (contractCount == 0)
-            sb.AppendLine("  Component(contract_none, \"(none)\", \"Interface\", \"No contracts\")");
+            C4Macros.AddComponent(sb, "contract_none", "(none)", "Interface", "No contracts");
 
-        sb.AppendLine("}");
+        C4Macros.EndBoundary(sb);
         sb.AppendLine();
 
         // Binding Layer: InputBindings, OutputBindings, SignalInputs, Components
-        sb.AppendLine("System_Boundary(binding_layer, \"Binding Layer\") {");
+        C4Macros.BeginBoundary(sb, "binding_layer", "Binding Layer");
         var bindingCount = 0;
 
         foreach (var input in surface.InputBindings)
         {
-            sb.AppendLine($"  Component({SanitizeId(input.Name)}_in, \"{input.Name}\", \"InputBinding\", \"Data input\")");
+            C4Macros.AddComponent(sb, $"{SanitizeId(input.Name)}_in", input.Name, "InputBinding", "Data input");
             bindingCount++;
         }
         foreach (var output in surface.OutputBindings)
         {
-            sb.AppendLine($"  Component({SanitizeId(output.Name)}_out, \"{output.Name}\", \"OutputBinding\", \"Event output\")");
+            C4Macros.AddComponent(sb, $"{SanitizeId(output.Name)}_out", output.Name, "OutputBinding", "Event output");
             bindingCount++;
         }
         foreach (var comp in components)
         {
-            sb.AppendLine($"  Component({SanitizeId(comp.Name)}_comp, \"{comp.Name}\", \"Component\", \"UI component\")");
+            C4Macros.AddComponent(sb, $"{SanitizeId(comp.Name)}_comp", comp.Name, "Component", "UI component");
             bindingCount++;
         }
         foreach (var e in enumLikes)
         {
-            sb.AppendLine($"  Component({SanitizeId(e.Name)}_enum, \"{e.Name}\", \"Enum\", \"State/status type\")");
+            C4Macros.AddComponent(sb, $"{SanitizeId(e.Name)}_enum", e.Name, "Enum", "State/status type");
             bindingCount++;
         }
         if (bindingCount == 0)
-            sb.AppendLine("  Component(binding_none, \"(none)\", \"Binding\", \"No bindings\")");
+            C4Macros.AddComponent(sb, "binding_none", "(none)", "Binding", "No bindings");
 
-        sb.AppendLine("}");
+        C4Macros.EndBoundary(sb);
         sb.AppendLine();
 
         // Runtime Layer: Methods, Observables, or remaining data types
