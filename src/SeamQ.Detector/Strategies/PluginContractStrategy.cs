@@ -85,8 +85,9 @@ public class PluginContractStrategy : ISeamDetectionStrategy
                     SourceFile = e.FilePath,
                     LineNumber = e.LineNumber,
                     Workspace = provider.Alias,
-                    TypeSignature = null,
-                    Documentation = null
+                    TypeSignature = e.TypeSignature,
+                    Documentation = e.Documentation,
+                    ParentName = e.ParentName
                 })
                 .ToList();
 
@@ -111,12 +112,9 @@ public class PluginContractStrategy : ISeamDetectionStrategy
 
     private static IReadOnlyList<ExportedSymbol> GetAllExports(Workspace workspace)
     {
-        var exports = new List<ExportedSymbol>(workspace.Exports);
-        foreach (var project in workspace.Projects)
-        {
-            exports.AddRange(project.Exports);
-        }
-        return exports;
+        return workspace.Exports
+            .Where(e => e.Name != "*")
+            .ToList();
     }
 
     private static ContractElementKind MapToContractElementKind(string kind)

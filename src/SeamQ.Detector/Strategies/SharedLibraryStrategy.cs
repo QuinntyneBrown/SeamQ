@@ -78,8 +78,9 @@ public class SharedLibraryStrategy : ISeamDetectionStrategy
                     SourceFile = e.FilePath,
                     LineNumber = e.LineNumber,
                     Workspace = provider.Alias,
-                    TypeSignature = null,
-                    Documentation = null
+                    TypeSignature = e.TypeSignature,
+                    Documentation = e.Documentation,
+                    ParentName = e.ParentName
                 })
                 .ToList();
 
@@ -102,12 +103,12 @@ public class SharedLibraryStrategy : ISeamDetectionStrategy
 
     private static IReadOnlyList<ExportedSymbol> GetAllExports(Workspace workspace)
     {
-        var exports = new List<ExportedSymbol>(workspace.Exports);
-        foreach (var project in workspace.Projects)
-        {
-            exports.AddRange(project.Exports);
-        }
-        return exports;
+        // workspace.Exports already aggregates all project exports (see WorkspaceScanner line 79).
+        // Avoid doubling by not re-adding project.Exports.
+        // Also exclude wildcard barrel placeholders ("*") — the real symbols are captured separately.
+        return workspace.Exports
+            .Where(e => e.Name != "*")
+            .ToList();
     }
 
     private static ContractElementKind MapKind(string kind)
@@ -115,10 +116,18 @@ public class SharedLibraryStrategy : ISeamDetectionStrategy
         return kind.ToLowerInvariant() switch
         {
             "interface" => ContractElementKind.Interface,
+            "abstractclass" => ContractElementKind.AbstractClass,
             "class" => ContractElementKind.Type,
-            "type" or "type-alias" => ContractElementKind.Type,
+            "type" or "type-alias" or "typealias" => ContractElementKind.Type,
             "enum" => ContractElementKind.Enum,
             "function" => ContractElementKind.Method,
+            "injectable" => ContractElementKind.Type,
+            "component" or "directive" or "pipe" => ContractElementKind.Type,
+            "inputbinding" => ContractElementKind.InputBinding,
+            "outputbinding" => ContractElementKind.OutputBinding,
+            "signalinput" or "modelsignal" => ContractElementKind.SignalInput,
+            "injecteddepenency" or "injecteddependency" => ContractElementKind.Property,
+            "namedexport" or "wildcardexport" or "defaultexport" => ContractElementKind.Type,
             _ => ContractElementKind.Type
         };
     }
