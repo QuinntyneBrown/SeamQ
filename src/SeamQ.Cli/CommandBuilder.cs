@@ -41,6 +41,7 @@ public static class CommandBuilder
         rootCommand.AddCommand(DiffCommand.Create(serviceProvider));
         rootCommand.AddCommand(InitCommand.Create(serviceProvider));
         rootCommand.AddCommand(ExportCommand.Create(serviceProvider));
+        rootCommand.AddCommand(PublicApiCommand.Create(serviceProvider));
         rootCommand.AddCommand(ServeCommand.Create(serviceProvider));
 
         // Build parser with middleware pipeline
