@@ -14,8 +14,8 @@ public static class C4SystemContext
         var sb = new StringBuilder();
 
         sb.AppendLine("@startuml");
-        sb.AppendLine("!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml");
         sb.AppendLine();
+        C4Macros.AppendContextMacros(sb);
         sb.AppendLine($"title System Context: {seam.Name}");
         sb.AppendLine();
 

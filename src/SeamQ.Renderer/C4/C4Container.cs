@@ -15,8 +15,8 @@ public static class C4Container
         var sb = new StringBuilder();
 
         sb.AppendLine("@startuml");
-        sb.AppendLine("!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml");
         sb.AppendLine();
+        C4Macros.AppendContainerMacros(sb);
         sb.AppendLine($"title Container Diagram: {seam.Name}");
         sb.AppendLine();
 

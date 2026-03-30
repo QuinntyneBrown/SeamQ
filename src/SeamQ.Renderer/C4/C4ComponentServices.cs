@@ -14,8 +14,8 @@ public static class C4ComponentServices
         var sb = new StringBuilder();
 
         sb.AppendLine("@startuml");
-        sb.AppendLine("!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml");
         sb.AppendLine();
+        C4Macros.AppendComponentMacros(sb);
         sb.AppendLine($"title Component Diagram (Services): {seam.Name}");
         sb.AppendLine();
 

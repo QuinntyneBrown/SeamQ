@@ -16,8 +16,9 @@ public static class C4PluginApiLayers
         var surface = seam.ContractSurface;
 
         sb.AppendLine("@startuml");
-        sb.AppendLine("!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml");
         sb.AppendLine();
+        C4Macros.AppendComponentMacros(sb);
+        C4Macros.AppendDirectionalRelMacros(sb);
         sb.AppendLine($"title Plugin API Layers: {seam.Name}");
         sb.AppendLine();
 

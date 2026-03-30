@@ -15,8 +15,8 @@ public static class C4DataFlow
         var surface = seam.ContractSurface;
 
         sb.AppendLine("@startuml");
-        sb.AppendLine("!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml");
         sb.AppendLine();
+        C4Macros.AppendContainerMacros(sb);
         sb.AppendLine($"title Data Flow: {seam.Name}");
         sb.AppendLine();
 

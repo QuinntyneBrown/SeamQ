@@ -15,8 +15,8 @@ public static class C4Dynamic
         var surface = seam.ContractSurface;
 
         sb.AppendLine("@startuml");
-        sb.AppendLine("!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml");
         sb.AppendLine();
+        C4Macros.AppendDynamicMacros(sb);
         sb.AppendLine($"title Dynamic Diagram: {seam.Name}");
         sb.AppendLine();
 
