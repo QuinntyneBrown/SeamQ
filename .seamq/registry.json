@@ -4,7 +4,7 @@
     "name": "lib-workspace-a/plugin-contract",
     "type": "PluginContract",
     "provider": {
-      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a",
+      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a",
       "alias": "lib-workspace-a",
       "role": "Library",
       "type": "AngularCli",
@@ -12,7 +12,7 @@
         {
           "name": "shared-models",
           "type": "Library",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src",
           "exports": [
             {
               "name": "*",
@@ -34,7 +34,7 @@
             },
             {
               "name": "*",
-              "filePath": "./lib/enum1",
+              "filePath": "./lib/model3",
               "lineNumber": 3,
               "kind": "WildcardExport",
               "documentation": null,
@@ -43,7 +43,7 @@
             },
             {
               "name": "*",
-              "filePath": "./lib/token1",
+              "filePath": "./lib/model4",
               "lineNumber": 4,
               "kind": "WildcardExport",
               "documentation": null,
@@ -51,8 +51,26 @@
               "parentName": null
             },
             {
+              "name": "*",
+              "filePath": "./lib/enum1",
+              "lineNumber": 5,
+              "kind": "WildcardExport",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
+              "name": "*",
+              "filePath": "./lib/token1",
+              "lineNumber": 6,
+              "kind": "WildcardExport",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
               "name": "Status1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
               "lineNumber": 1,
               "kind": "Enum",
               "documentation": null,
@@ -61,7 +79,7 @@
             },
             {
               "name": "Model1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
               "lineNumber": 2,
               "kind": "Interface",
               "documentation": " Data transfer object for Model1",
@@ -70,7 +88,7 @@
             },
             {
               "name": "Model2",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
               "lineNumber": 2,
               "kind": "Interface",
               "documentation": " Data transfer object for Model2",
@@ -78,8 +96,26 @@
               "parentName": null
             },
             {
+              "name": "Model3",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model3.ts",
+              "lineNumber": 2,
+              "kind": "Interface",
+              "documentation": " Data transfer object for Model3",
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
+              "name": "Model4",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model4.ts",
+              "lineNumber": 2,
+              "kind": "Interface",
+              "documentation": " Data transfer object for Model4",
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
               "name": "TOKEN_1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
               "lineNumber": 4,
               "kind": "InjectionToken",
               "documentation": " Injection token for TOKEN_1",
@@ -91,7 +127,7 @@
         {
           "name": "shared-services",
           "type": "Library",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-services\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src",
           "exports": [
             {
               "name": "*",
@@ -103,8 +139,26 @@
               "parentName": null
             },
             {
+              "name": "*",
+              "filePath": "./lib/service2",
+              "lineNumber": 2,
+              "kind": "WildcardExport",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
               "name": "SharedService1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+              "lineNumber": 5,
+              "kind": "Injectable",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
+              "name": "SharedService2",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service2.ts",
               "lineNumber": 5,
               "kind": "Injectable",
               "documentation": null,
@@ -135,7 +189,7 @@
         },
         {
           "name": "*",
-          "filePath": "./lib/enum1",
+          "filePath": "./lib/model3",
           "lineNumber": 3,
           "kind": "WildcardExport",
           "documentation": null,
@@ -144,7 +198,7 @@
         },
         {
           "name": "*",
-          "filePath": "./lib/token1",
+          "filePath": "./lib/model4",
           "lineNumber": 4,
           "kind": "WildcardExport",
           "documentation": null,
@@ -152,8 +206,26 @@
           "parentName": null
         },
         {
+          "name": "*",
+          "filePath": "./lib/enum1",
+          "lineNumber": 5,
+          "kind": "WildcardExport",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
+          "name": "*",
+          "filePath": "./lib/token1",
+          "lineNumber": 6,
+          "kind": "WildcardExport",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
           "name": "Status1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
           "lineNumber": 1,
           "kind": "Enum",
           "documentation": null,
@@ -162,7 +234,7 @@
         },
         {
           "name": "Model1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
           "lineNumber": 2,
           "kind": "Interface",
           "documentation": " Data transfer object for Model1",
@@ -171,7 +243,7 @@
         },
         {
           "name": "Model2",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
           "lineNumber": 2,
           "kind": "Interface",
           "documentation": " Data transfer object for Model2",
@@ -179,8 +251,26 @@
           "parentName": null
         },
         {
+          "name": "Model3",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model3.ts",
+          "lineNumber": 2,
+          "kind": "Interface",
+          "documentation": " Data transfer object for Model3",
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
+          "name": "Model4",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model4.ts",
+          "lineNumber": 2,
+          "kind": "Interface",
+          "documentation": " Data transfer object for Model4",
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
           "name": "TOKEN_1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
           "lineNumber": 4,
           "kind": "InjectionToken",
           "documentation": " Injection token for TOKEN_1",
@@ -197,8 +287,26 @@
           "parentName": null
         },
         {
+          "name": "*",
+          "filePath": "./lib/service2",
+          "lineNumber": 2,
+          "kind": "WildcardExport",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
           "name": "SharedService1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+          "lineNumber": 5,
+          "kind": "Injectable",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
+          "name": "SharedService2",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service2.ts",
           "lineNumber": 5,
           "kind": "Injectable",
           "documentation": null,
@@ -209,7 +317,7 @@
     },
     "consumers": [
       {
-        "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b",
+        "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b",
         "alias": "lib-workspace-b",
         "role": "Library",
         "type": "AngularCli",
@@ -217,7 +325,7 @@
           {
             "name": "ui-components",
             "type": "Library",
-            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src",
+            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src",
             "exports": [
               {
                 "name": "*",
@@ -229,8 +337,17 @@
                 "parentName": null
               },
               {
+                "name": "*",
+                "filePath": "./lib/component2",
+                "lineNumber": 2,
+                "kind": "WildcardExport",
+                "documentation": null,
+                "typeSignature": null,
+                "parentName": null
+              },
+              {
                 "name": "Widget1Component",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
                 "lineNumber": 8,
                 "kind": "Class",
                 "documentation": null,
@@ -239,7 +356,7 @@
               },
               {
                 "name": "Widget1Component.input1",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
                 "lineNumber": 8,
                 "kind": "InputBinding",
                 "documentation": null,
@@ -248,19 +365,46 @@
               },
               {
                 "name": "Widget1Component.output1",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
                 "lineNumber": 8,
                 "kind": "OutputBinding",
                 "documentation": null,
                 "typeSignature": null,
                 "parentName": "Widget1Component"
+              },
+              {
+                "name": "Widget2Component",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+                "lineNumber": 8,
+                "kind": "Class",
+                "documentation": null,
+                "typeSignature": null,
+                "parentName": null
+              },
+              {
+                "name": "Widget2Component.input1",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+                "lineNumber": 8,
+                "kind": "InputBinding",
+                "documentation": null,
+                "typeSignature": "string = \u0027\u0027",
+                "parentName": "Widget2Component"
+              },
+              {
+                "name": "Widget2Component.output1",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+                "lineNumber": 8,
+                "kind": "OutputBinding",
+                "documentation": null,
+                "typeSignature": null,
+                "parentName": "Widget2Component"
               }
             ]
           },
           {
             "name": "state-management",
             "type": "Library",
-            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src",
+            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src",
             "exports": [
               {
                 "name": "*",
@@ -273,7 +417,7 @@
               },
               {
                 "name": "StoreState",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
                 "lineNumber": 2,
                 "kind": "Interface",
                 "documentation": null,
@@ -282,7 +426,7 @@
               },
               {
                 "name": "AppStore",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
                 "lineNumber": 10,
                 "kind": "Injectable",
                 "documentation": null,
@@ -303,8 +447,17 @@
             "parentName": null
           },
           {
+            "name": "*",
+            "filePath": "./lib/component2",
+            "lineNumber": 2,
+            "kind": "WildcardExport",
+            "documentation": null,
+            "typeSignature": null,
+            "parentName": null
+          },
+          {
             "name": "Widget1Component",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
             "lineNumber": 8,
             "kind": "Class",
             "documentation": null,
@@ -313,7 +466,7 @@
           },
           {
             "name": "Widget1Component.input1",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
             "lineNumber": 8,
             "kind": "InputBinding",
             "documentation": null,
@@ -322,12 +475,39 @@
           },
           {
             "name": "Widget1Component.output1",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
             "lineNumber": 8,
             "kind": "OutputBinding",
             "documentation": null,
             "typeSignature": null,
             "parentName": "Widget1Component"
+          },
+          {
+            "name": "Widget2Component",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+            "lineNumber": 8,
+            "kind": "Class",
+            "documentation": null,
+            "typeSignature": null,
+            "parentName": null
+          },
+          {
+            "name": "Widget2Component.input1",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+            "lineNumber": 8,
+            "kind": "InputBinding",
+            "documentation": null,
+            "typeSignature": "string = \u0027\u0027",
+            "parentName": "Widget2Component"
+          },
+          {
+            "name": "Widget2Component.output1",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+            "lineNumber": 8,
+            "kind": "OutputBinding",
+            "documentation": null,
+            "typeSignature": null,
+            "parentName": "Widget2Component"
           },
           {
             "name": "*",
@@ -340,7 +520,7 @@
           },
           {
             "name": "StoreState",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
             "lineNumber": 2,
             "kind": "Interface",
             "documentation": null,
@@ -349,7 +529,7 @@
           },
           {
             "name": "AppStore",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
             "lineNumber": 10,
             "kind": "Injectable",
             "documentation": null,
@@ -359,7 +539,7 @@
         ]
       },
       {
-        "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace",
+        "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace",
         "alias": "app-workspace",
         "role": "Application",
         "type": "AngularCli",
@@ -367,7 +547,7 @@
           {
             "name": "main-app",
             "type": "Application",
-            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace\\src",
+            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace\\src",
             "exports": [
               {
                 "name": "*",
@@ -389,7 +569,7 @@
               },
               {
                 "name": "DashboardComponent",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace\\src\\app\\components\\dashboard.component.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace\\src\\app\\components\\dashboard.component.ts",
                 "lineNumber": 10,
                 "kind": "Class",
                 "documentation": null,
@@ -398,7 +578,7 @@
               },
               {
                 "name": "AppService",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace\\src\\app\\services\\app.service.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace\\src\\app\\services\\app.service.ts",
                 "lineNumber": 6,
                 "kind": "Injectable",
                 "documentation": null,
@@ -429,7 +609,7 @@
           },
           {
             "name": "DashboardComponent",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace\\src\\app\\components\\dashboard.component.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace\\src\\app\\components\\dashboard.component.ts",
             "lineNumber": 10,
             "kind": "Class",
             "documentation": null,
@@ -438,7 +618,7 @@
           },
           {
             "name": "AppService",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace\\src\\app\\services\\app.service.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace\\src\\app\\services\\app.service.ts",
             "lineNumber": 6,
             "kind": "Injectable",
             "documentation": null,
@@ -448,7 +628,7 @@
         ]
       },
       {
-        "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app",
+        "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app",
         "alias": "standalone-app",
         "role": "Application",
         "type": "AngularCli",
@@ -456,7 +636,7 @@
           {
             "name": "standalone-app",
             "type": "Application",
-            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src",
+            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src",
             "exports": [
               {
                 "name": "*",
@@ -469,7 +649,7 @@
               },
               {
                 "name": "AppComponent",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
                 "lineNumber": 12,
                 "kind": "Class",
                 "documentation": null,
@@ -478,7 +658,7 @@
               },
               {
                 "name": "AppComponent.svc",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
                 "lineNumber": 12,
                 "kind": "InjectedDependency",
                 "documentation": null,
@@ -487,7 +667,7 @@
               },
               {
                 "name": "AppComponent.store",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
                 "lineNumber": 12,
                 "kind": "InjectedDependency",
                 "documentation": null,
@@ -509,7 +689,7 @@
           },
           {
             "name": "AppComponent",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
             "lineNumber": 12,
             "kind": "Class",
             "documentation": null,
@@ -518,7 +698,7 @@
           },
           {
             "name": "AppComponent.svc",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
             "lineNumber": 12,
             "kind": "InjectedDependency",
             "documentation": null,
@@ -527,7 +707,7 @@
           },
           {
             "name": "AppComponent.store",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
             "lineNumber": 12,
             "kind": "InjectedDependency",
             "documentation": null,
@@ -537,13 +717,13 @@
         ]
       }
     ],
-    "confidence": 0.81,
+    "confidence": 0.9025,
     "contractSurface": {
       "elements": [
         {
           "name": "Model1",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
@@ -553,7 +733,7 @@
         {
           "name": "Model2",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
@@ -561,9 +741,29 @@
           "parentName": null
         },
         {
+          "name": "Model3",
+          "kind": "Interface",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model3.ts",
+          "lineNumber": 2,
+          "workspace": "lib-workspace-a",
+          "typeSignature": null,
+          "documentation": " Data transfer object for Model3",
+          "parentName": null
+        },
+        {
+          "name": "Model4",
+          "kind": "Interface",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model4.ts",
+          "lineNumber": 2,
+          "workspace": "lib-workspace-a",
+          "typeSignature": null,
+          "documentation": " Data transfer object for Model4",
+          "parentName": null
+        },
+        {
           "name": "TOKEN_1",
           "kind": "InjectionToken",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
           "lineNumber": 4,
           "workspace": "lib-workspace-a",
           "typeSignature": "InjectionToken\u003CModel1\u003E",
@@ -575,7 +775,7 @@
         {
           "name": "Model1",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
@@ -585,11 +785,31 @@
         {
           "name": "Model2",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
           "documentation": " Data transfer object for Model2",
+          "parentName": null
+        },
+        {
+          "name": "Model3",
+          "kind": "Interface",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model3.ts",
+          "lineNumber": 2,
+          "workspace": "lib-workspace-a",
+          "typeSignature": null,
+          "documentation": " Data transfer object for Model3",
+          "parentName": null
+        },
+        {
+          "name": "Model4",
+          "kind": "Interface",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model4.ts",
+          "lineNumber": 2,
+          "workspace": "lib-workspace-a",
+          "typeSignature": null,
+          "documentation": " Data transfer object for Model4",
           "parentName": null
         }
       ],
@@ -597,7 +817,7 @@
         {
           "name": "TOKEN_1",
           "kind": "InjectionToken",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
           "lineNumber": 4,
           "workspace": "lib-workspace-a",
           "typeSignature": "InjectionToken\u003CModel1\u003E",
@@ -617,7 +837,7 @@
     "name": "lib-workspace-b/plugin-contract",
     "type": "PluginContract",
     "provider": {
-      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b",
+      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b",
       "alias": "lib-workspace-b",
       "role": "Library",
       "type": "AngularCli",
@@ -625,7 +845,7 @@
         {
           "name": "ui-components",
           "type": "Library",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src",
           "exports": [
             {
               "name": "*",
@@ -637,8 +857,17 @@
               "parentName": null
             },
             {
+              "name": "*",
+              "filePath": "./lib/component2",
+              "lineNumber": 2,
+              "kind": "WildcardExport",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
               "name": "Widget1Component",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
               "lineNumber": 8,
               "kind": "Class",
               "documentation": null,
@@ -647,7 +876,7 @@
             },
             {
               "name": "Widget1Component.input1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
               "lineNumber": 8,
               "kind": "InputBinding",
               "documentation": null,
@@ -656,19 +885,46 @@
             },
             {
               "name": "Widget1Component.output1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
               "lineNumber": 8,
               "kind": "OutputBinding",
               "documentation": null,
               "typeSignature": null,
               "parentName": "Widget1Component"
+            },
+            {
+              "name": "Widget2Component",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+              "lineNumber": 8,
+              "kind": "Class",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
+              "name": "Widget2Component.input1",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+              "lineNumber": 8,
+              "kind": "InputBinding",
+              "documentation": null,
+              "typeSignature": "string = \u0027\u0027",
+              "parentName": "Widget2Component"
+            },
+            {
+              "name": "Widget2Component.output1",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+              "lineNumber": 8,
+              "kind": "OutputBinding",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": "Widget2Component"
             }
           ]
         },
         {
           "name": "state-management",
           "type": "Library",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src",
           "exports": [
             {
               "name": "*",
@@ -681,7 +937,7 @@
             },
             {
               "name": "StoreState",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
               "lineNumber": 2,
               "kind": "Interface",
               "documentation": null,
@@ -690,7 +946,7 @@
             },
             {
               "name": "AppStore",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
               "lineNumber": 10,
               "kind": "Injectable",
               "documentation": null,
@@ -711,8 +967,17 @@
           "parentName": null
         },
         {
+          "name": "*",
+          "filePath": "./lib/component2",
+          "lineNumber": 2,
+          "kind": "WildcardExport",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
           "name": "Widget1Component",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "kind": "Class",
           "documentation": null,
@@ -721,7 +986,7 @@
         },
         {
           "name": "Widget1Component.input1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "kind": "InputBinding",
           "documentation": null,
@@ -730,12 +995,39 @@
         },
         {
           "name": "Widget1Component.output1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "kind": "OutputBinding",
           "documentation": null,
           "typeSignature": null,
           "parentName": "Widget1Component"
+        },
+        {
+          "name": "Widget2Component",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "kind": "Class",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
+          "name": "Widget2Component.input1",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "kind": "InputBinding",
+          "documentation": null,
+          "typeSignature": "string = \u0027\u0027",
+          "parentName": "Widget2Component"
+        },
+        {
+          "name": "Widget2Component.output1",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "kind": "OutputBinding",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": "Widget2Component"
         },
         {
           "name": "*",
@@ -748,7 +1040,7 @@
         },
         {
           "name": "StoreState",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 2,
           "kind": "Interface",
           "documentation": null,
@@ -757,7 +1049,7 @@
         },
         {
           "name": "AppStore",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 10,
           "kind": "Injectable",
           "documentation": null,
@@ -768,7 +1060,7 @@
     },
     "consumers": [
       {
-        "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace",
+        "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace",
         "alias": "app-workspace",
         "role": "Application",
         "type": "AngularCli",
@@ -776,7 +1068,7 @@
           {
             "name": "main-app",
             "type": "Application",
-            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace\\src",
+            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace\\src",
             "exports": [
               {
                 "name": "*",
@@ -798,7 +1090,7 @@
               },
               {
                 "name": "DashboardComponent",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace\\src\\app\\components\\dashboard.component.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace\\src\\app\\components\\dashboard.component.ts",
                 "lineNumber": 10,
                 "kind": "Class",
                 "documentation": null,
@@ -807,7 +1099,7 @@
               },
               {
                 "name": "AppService",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace\\src\\app\\services\\app.service.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace\\src\\app\\services\\app.service.ts",
                 "lineNumber": 6,
                 "kind": "Injectable",
                 "documentation": null,
@@ -838,7 +1130,7 @@
           },
           {
             "name": "DashboardComponent",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace\\src\\app\\components\\dashboard.component.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace\\src\\app\\components\\dashboard.component.ts",
             "lineNumber": 10,
             "kind": "Class",
             "documentation": null,
@@ -847,7 +1139,7 @@
           },
           {
             "name": "AppService",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\app-workspace\\src\\app\\services\\app.service.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\app-workspace\\src\\app\\services\\app.service.ts",
             "lineNumber": 6,
             "kind": "Injectable",
             "documentation": null,
@@ -857,7 +1149,7 @@
         ]
       },
       {
-        "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app",
+        "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app",
         "alias": "standalone-app",
         "role": "Application",
         "type": "AngularCli",
@@ -865,7 +1157,7 @@
           {
             "name": "standalone-app",
             "type": "Application",
-            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src",
+            "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src",
             "exports": [
               {
                 "name": "*",
@@ -878,7 +1170,7 @@
               },
               {
                 "name": "AppComponent",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
                 "lineNumber": 12,
                 "kind": "Class",
                 "documentation": null,
@@ -887,7 +1179,7 @@
               },
               {
                 "name": "AppComponent.svc",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
                 "lineNumber": 12,
                 "kind": "InjectedDependency",
                 "documentation": null,
@@ -896,7 +1188,7 @@
               },
               {
                 "name": "AppComponent.store",
-                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+                "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
                 "lineNumber": 12,
                 "kind": "InjectedDependency",
                 "documentation": null,
@@ -918,7 +1210,7 @@
           },
           {
             "name": "AppComponent",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
             "lineNumber": 12,
             "kind": "Class",
             "documentation": null,
@@ -927,7 +1219,7 @@
           },
           {
             "name": "AppComponent.svc",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
             "lineNumber": 12,
             "kind": "InjectedDependency",
             "documentation": null,
@@ -936,7 +1228,7 @@
           },
           {
             "name": "AppComponent.store",
-            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+            "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
             "lineNumber": 12,
             "kind": "InjectedDependency",
             "documentation": null,
@@ -952,7 +1244,7 @@
         {
           "name": "StoreState",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -964,7 +1256,7 @@
         {
           "name": "StoreState",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -985,7 +1277,7 @@
     "name": "lib-workspace-a/shared-library",
     "type": "SharedLibrary",
     "provider": {
-      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a",
+      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a",
       "alias": "lib-workspace-a",
       "role": "Library",
       "type": "AngularCli",
@@ -993,7 +1285,7 @@
         {
           "name": "shared-models",
           "type": "Library",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src",
           "exports": [
             {
               "name": "*",
@@ -1015,7 +1307,7 @@
             },
             {
               "name": "*",
-              "filePath": "./lib/enum1",
+              "filePath": "./lib/model3",
               "lineNumber": 3,
               "kind": "WildcardExport",
               "documentation": null,
@@ -1024,7 +1316,7 @@
             },
             {
               "name": "*",
-              "filePath": "./lib/token1",
+              "filePath": "./lib/model4",
               "lineNumber": 4,
               "kind": "WildcardExport",
               "documentation": null,
@@ -1032,8 +1324,26 @@
               "parentName": null
             },
             {
+              "name": "*",
+              "filePath": "./lib/enum1",
+              "lineNumber": 5,
+              "kind": "WildcardExport",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
+              "name": "*",
+              "filePath": "./lib/token1",
+              "lineNumber": 6,
+              "kind": "WildcardExport",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
               "name": "Status1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
               "lineNumber": 1,
               "kind": "Enum",
               "documentation": null,
@@ -1042,7 +1352,7 @@
             },
             {
               "name": "Model1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
               "lineNumber": 2,
               "kind": "Interface",
               "documentation": " Data transfer object for Model1",
@@ -1051,7 +1361,7 @@
             },
             {
               "name": "Model2",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
               "lineNumber": 2,
               "kind": "Interface",
               "documentation": " Data transfer object for Model2",
@@ -1059,8 +1369,26 @@
               "parentName": null
             },
             {
+              "name": "Model3",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model3.ts",
+              "lineNumber": 2,
+              "kind": "Interface",
+              "documentation": " Data transfer object for Model3",
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
+              "name": "Model4",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model4.ts",
+              "lineNumber": 2,
+              "kind": "Interface",
+              "documentation": " Data transfer object for Model4",
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
               "name": "TOKEN_1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
               "lineNumber": 4,
               "kind": "InjectionToken",
               "documentation": " Injection token for TOKEN_1",
@@ -1072,7 +1400,7 @@
         {
           "name": "shared-services",
           "type": "Library",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-services\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src",
           "exports": [
             {
               "name": "*",
@@ -1084,8 +1412,26 @@
               "parentName": null
             },
             {
+              "name": "*",
+              "filePath": "./lib/service2",
+              "lineNumber": 2,
+              "kind": "WildcardExport",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
               "name": "SharedService1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+              "lineNumber": 5,
+              "kind": "Injectable",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
+              "name": "SharedService2",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service2.ts",
               "lineNumber": 5,
               "kind": "Injectable",
               "documentation": null,
@@ -1116,7 +1462,7 @@
         },
         {
           "name": "*",
-          "filePath": "./lib/enum1",
+          "filePath": "./lib/model3",
           "lineNumber": 3,
           "kind": "WildcardExport",
           "documentation": null,
@@ -1125,7 +1471,7 @@
         },
         {
           "name": "*",
-          "filePath": "./lib/token1",
+          "filePath": "./lib/model4",
           "lineNumber": 4,
           "kind": "WildcardExport",
           "documentation": null,
@@ -1133,8 +1479,26 @@
           "parentName": null
         },
         {
+          "name": "*",
+          "filePath": "./lib/enum1",
+          "lineNumber": 5,
+          "kind": "WildcardExport",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
+          "name": "*",
+          "filePath": "./lib/token1",
+          "lineNumber": 6,
+          "kind": "WildcardExport",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
           "name": "Status1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
           "lineNumber": 1,
           "kind": "Enum",
           "documentation": null,
@@ -1143,7 +1507,7 @@
         },
         {
           "name": "Model1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
           "lineNumber": 2,
           "kind": "Interface",
           "documentation": " Data transfer object for Model1",
@@ -1152,7 +1516,7 @@
         },
         {
           "name": "Model2",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
           "lineNumber": 2,
           "kind": "Interface",
           "documentation": " Data transfer object for Model2",
@@ -1160,8 +1524,26 @@
           "parentName": null
         },
         {
+          "name": "Model3",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model3.ts",
+          "lineNumber": 2,
+          "kind": "Interface",
+          "documentation": " Data transfer object for Model3",
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
+          "name": "Model4",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model4.ts",
+          "lineNumber": 2,
+          "kind": "Interface",
+          "documentation": " Data transfer object for Model4",
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
           "name": "TOKEN_1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
           "lineNumber": 4,
           "kind": "InjectionToken",
           "documentation": " Injection token for TOKEN_1",
@@ -1178,8 +1560,26 @@
           "parentName": null
         },
         {
+          "name": "*",
+          "filePath": "./lib/service2",
+          "lineNumber": 2,
+          "kind": "WildcardExport",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
           "name": "SharedService1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+          "lineNumber": 5,
+          "kind": "Injectable",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
+          "name": "SharedService2",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service2.ts",
           "lineNumber": 5,
           "kind": "Injectable",
           "documentation": null,
@@ -1189,13 +1589,13 @@
       ]
     },
     "consumers": [],
-    "confidence": 0.36249999999999993,
+    "confidence": 0.43375,
     "contractSurface": {
       "elements": [
         {
           "name": "Status1",
           "kind": "Enum",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
           "lineNumber": 1,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
@@ -1205,7 +1605,7 @@
         {
           "name": "Model1",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
@@ -1215,7 +1615,7 @@
         {
           "name": "Model2",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
@@ -1223,9 +1623,29 @@
           "parentName": null
         },
         {
+          "name": "Model3",
+          "kind": "Interface",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model3.ts",
+          "lineNumber": 2,
+          "workspace": "lib-workspace-a",
+          "typeSignature": null,
+          "documentation": " Data transfer object for Model3",
+          "parentName": null
+        },
+        {
+          "name": "Model4",
+          "kind": "Interface",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model4.ts",
+          "lineNumber": 2,
+          "workspace": "lib-workspace-a",
+          "typeSignature": null,
+          "documentation": " Data transfer object for Model4",
+          "parentName": null
+        },
+        {
           "name": "TOKEN_1",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
           "lineNumber": 4,
           "workspace": "lib-workspace-a",
           "typeSignature": "InjectionToken\u003CModel1\u003E",
@@ -1235,7 +1655,17 @@
         {
           "name": "SharedService1",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+          "lineNumber": 5,
+          "workspace": "lib-workspace-a",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "SharedService2",
+          "kind": "Type",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service2.ts",
           "lineNumber": 5,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
@@ -1247,7 +1677,7 @@
         {
           "name": "Model1",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model1.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
@@ -1257,11 +1687,31 @@
         {
           "name": "Model2",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model2.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
           "documentation": " Data transfer object for Model2",
+          "parentName": null
+        },
+        {
+          "name": "Model3",
+          "kind": "Interface",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model3.ts",
+          "lineNumber": 2,
+          "workspace": "lib-workspace-a",
+          "typeSignature": null,
+          "documentation": " Data transfer object for Model3",
+          "parentName": null
+        },
+        {
+          "name": "Model4",
+          "kind": "Interface",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\model4.ts",
+          "lineNumber": 2,
+          "workspace": "lib-workspace-a",
+          "typeSignature": null,
+          "documentation": " Data transfer object for Model4",
           "parentName": null
         }
       ],
@@ -1274,7 +1724,7 @@
         {
           "name": "Status1",
           "kind": "Enum",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\enum1.ts",
           "lineNumber": 1,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
@@ -1284,7 +1734,7 @@
         {
           "name": "TOKEN_1",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-models\\src\\lib\\token1.ts",
           "lineNumber": 4,
           "workspace": "lib-workspace-a",
           "typeSignature": "InjectionToken\u003CModel1\u003E",
@@ -1294,7 +1744,17 @@
         {
           "name": "SharedService1",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service1.ts",
+          "lineNumber": 5,
+          "workspace": "lib-workspace-a",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "SharedService2",
+          "kind": "Type",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-a\\projects\\shared-services\\src\\lib\\service2.ts",
           "lineNumber": 5,
           "workspace": "lib-workspace-a",
           "typeSignature": null,
@@ -1309,7 +1769,7 @@
     "name": "standalone-app/state-contract",
     "type": "StateContract",
     "provider": {
-      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app",
+      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app",
       "alias": "standalone-app",
       "role": "Application",
       "type": "AngularCli",
@@ -1317,7 +1777,7 @@
         {
           "name": "standalone-app",
           "type": "Application",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src",
           "exports": [
             {
               "name": "*",
@@ -1330,7 +1790,7 @@
             },
             {
               "name": "AppComponent",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
               "lineNumber": 12,
               "kind": "Class",
               "documentation": null,
@@ -1339,7 +1799,7 @@
             },
             {
               "name": "AppComponent.svc",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
               "lineNumber": 12,
               "kind": "InjectedDependency",
               "documentation": null,
@@ -1348,7 +1808,7 @@
             },
             {
               "name": "AppComponent.store",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
               "lineNumber": 12,
               "kind": "InjectedDependency",
               "documentation": null,
@@ -1370,7 +1830,7 @@
         },
         {
           "name": "AppComponent",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
           "lineNumber": 12,
           "kind": "Class",
           "documentation": null,
@@ -1379,7 +1839,7 @@
         },
         {
           "name": "AppComponent.svc",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
           "lineNumber": 12,
           "kind": "InjectedDependency",
           "documentation": null,
@@ -1388,7 +1848,7 @@
         },
         {
           "name": "AppComponent.store",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
           "lineNumber": 12,
           "kind": "InjectedDependency",
           "documentation": null,
@@ -1404,7 +1864,7 @@
         {
           "name": "AppComponent.store",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
           "lineNumber": 12,
           "workspace": "standalone-app",
           "typeSignature": "AppStore",
@@ -1422,7 +1882,7 @@
         {
           "name": "AppComponent.store",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\standalone-app\\src\\app\\app.component.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\standalone-app\\src\\app\\app.component.ts",
           "lineNumber": 12,
           "workspace": "standalone-app",
           "typeSignature": "AppStore",
@@ -1437,7 +1897,7 @@
     "name": "lib-workspace-b/shared-library",
     "type": "SharedLibrary",
     "provider": {
-      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b",
+      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b",
       "alias": "lib-workspace-b",
       "role": "Library",
       "type": "AngularCli",
@@ -1445,7 +1905,7 @@
         {
           "name": "ui-components",
           "type": "Library",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src",
           "exports": [
             {
               "name": "*",
@@ -1457,8 +1917,17 @@
               "parentName": null
             },
             {
+              "name": "*",
+              "filePath": "./lib/component2",
+              "lineNumber": 2,
+              "kind": "WildcardExport",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
               "name": "Widget1Component",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
               "lineNumber": 8,
               "kind": "Class",
               "documentation": null,
@@ -1467,7 +1936,7 @@
             },
             {
               "name": "Widget1Component.input1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
               "lineNumber": 8,
               "kind": "InputBinding",
               "documentation": null,
@@ -1476,19 +1945,46 @@
             },
             {
               "name": "Widget1Component.output1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
               "lineNumber": 8,
               "kind": "OutputBinding",
               "documentation": null,
               "typeSignature": null,
               "parentName": "Widget1Component"
+            },
+            {
+              "name": "Widget2Component",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+              "lineNumber": 8,
+              "kind": "Class",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
+              "name": "Widget2Component.input1",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+              "lineNumber": 8,
+              "kind": "InputBinding",
+              "documentation": null,
+              "typeSignature": "string = \u0027\u0027",
+              "parentName": "Widget2Component"
+            },
+            {
+              "name": "Widget2Component.output1",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+              "lineNumber": 8,
+              "kind": "OutputBinding",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": "Widget2Component"
             }
           ]
         },
         {
           "name": "state-management",
           "type": "Library",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src",
           "exports": [
             {
               "name": "*",
@@ -1501,7 +1997,7 @@
             },
             {
               "name": "StoreState",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
               "lineNumber": 2,
               "kind": "Interface",
               "documentation": null,
@@ -1510,7 +2006,7 @@
             },
             {
               "name": "AppStore",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
               "lineNumber": 10,
               "kind": "Injectable",
               "documentation": null,
@@ -1531,8 +2027,17 @@
           "parentName": null
         },
         {
+          "name": "*",
+          "filePath": "./lib/component2",
+          "lineNumber": 2,
+          "kind": "WildcardExport",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
           "name": "Widget1Component",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "kind": "Class",
           "documentation": null,
@@ -1541,7 +2046,7 @@
         },
         {
           "name": "Widget1Component.input1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "kind": "InputBinding",
           "documentation": null,
@@ -1550,12 +2055,39 @@
         },
         {
           "name": "Widget1Component.output1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "kind": "OutputBinding",
           "documentation": null,
           "typeSignature": null,
           "parentName": "Widget1Component"
+        },
+        {
+          "name": "Widget2Component",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "kind": "Class",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
+          "name": "Widget2Component.input1",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "kind": "InputBinding",
+          "documentation": null,
+          "typeSignature": "string = \u0027\u0027",
+          "parentName": "Widget2Component"
+        },
+        {
+          "name": "Widget2Component.output1",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "kind": "OutputBinding",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": "Widget2Component"
         },
         {
           "name": "*",
@@ -1568,7 +2100,7 @@
         },
         {
           "name": "StoreState",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 2,
           "kind": "Interface",
           "documentation": null,
@@ -1577,7 +2109,7 @@
         },
         {
           "name": "AppStore",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 10,
           "kind": "Injectable",
           "documentation": null,
@@ -1587,13 +2119,13 @@
       ]
     },
     "consumers": [],
-    "confidence": 0.27249999999999996,
+    "confidence": 0.34,
     "contractSurface": {
       "elements": [
         {
           "name": "Widget1Component",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -1603,7 +2135,7 @@
         {
           "name": "Widget1Component.input1",
           "kind": "InputBinding",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "workspace": "lib-workspace-b",
           "typeSignature": "string = \u0027\u0027",
@@ -1613,7 +2145,7 @@
         {
           "name": "Widget1Component.output1",
           "kind": "OutputBinding",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -1621,9 +2153,39 @@
           "parentName": "Widget1Component"
         },
         {
+          "name": "Widget2Component",
+          "kind": "Type",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "workspace": "lib-workspace-b",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "Widget2Component.input1",
+          "kind": "InputBinding",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "workspace": "lib-workspace-b",
+          "typeSignature": "string = \u0027\u0027",
+          "documentation": null,
+          "parentName": "Widget2Component"
+        },
+        {
+          "name": "Widget2Component.output1",
+          "kind": "OutputBinding",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "workspace": "lib-workspace-b",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": "Widget2Component"
+        },
+        {
           "name": "StoreState",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -1633,7 +2195,7 @@
         {
           "name": "AppStore",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 10,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -1645,7 +2207,7 @@
         {
           "name": "StoreState",
           "kind": "Interface",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -1659,24 +2221,44 @@
         {
           "name": "Widget1Component.input1",
           "kind": "InputBinding",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "workspace": "lib-workspace-b",
           "typeSignature": "string = \u0027\u0027",
           "documentation": null,
           "parentName": "Widget1Component"
+        },
+        {
+          "name": "Widget2Component.input1",
+          "kind": "InputBinding",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "workspace": "lib-workspace-b",
+          "typeSignature": "string = \u0027\u0027",
+          "documentation": null,
+          "parentName": "Widget2Component"
         }
       ],
       "outputBindings": [
         {
           "name": "Widget1Component.output1",
           "kind": "OutputBinding",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
           "documentation": null,
           "parentName": "Widget1Component"
+        },
+        {
+          "name": "Widget2Component.output1",
+          "kind": "OutputBinding",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "workspace": "lib-workspace-b",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": "Widget2Component"
         }
       ],
       "methods": [],
@@ -1684,7 +2266,17 @@
         {
           "name": "Widget1Component",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "lineNumber": 8,
+          "workspace": "lib-workspace-b",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "Widget2Component",
+          "kind": "Type",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
           "lineNumber": 8,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -1694,7 +2286,7 @@
         {
           "name": "AppStore",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 10,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -1709,7 +2301,7 @@
     "name": "lib-workspace-b/state-contract",
     "type": "StateContract",
     "provider": {
-      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b",
+      "path": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b",
       "alias": "lib-workspace-b",
       "role": "Library",
       "type": "AngularCli",
@@ -1717,7 +2309,7 @@
         {
           "name": "ui-components",
           "type": "Library",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src",
           "exports": [
             {
               "name": "*",
@@ -1729,8 +2321,17 @@
               "parentName": null
             },
             {
+              "name": "*",
+              "filePath": "./lib/component2",
+              "lineNumber": 2,
+              "kind": "WildcardExport",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
               "name": "Widget1Component",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
               "lineNumber": 8,
               "kind": "Class",
               "documentation": null,
@@ -1739,7 +2340,7 @@
             },
             {
               "name": "Widget1Component.input1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
               "lineNumber": 8,
               "kind": "InputBinding",
               "documentation": null,
@@ -1748,19 +2349,46 @@
             },
             {
               "name": "Widget1Component.output1",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
               "lineNumber": 8,
               "kind": "OutputBinding",
               "documentation": null,
               "typeSignature": null,
               "parentName": "Widget1Component"
+            },
+            {
+              "name": "Widget2Component",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+              "lineNumber": 8,
+              "kind": "Class",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": null
+            },
+            {
+              "name": "Widget2Component.input1",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+              "lineNumber": 8,
+              "kind": "InputBinding",
+              "documentation": null,
+              "typeSignature": "string = \u0027\u0027",
+              "parentName": "Widget2Component"
+            },
+            {
+              "name": "Widget2Component.output1",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+              "lineNumber": 8,
+              "kind": "OutputBinding",
+              "documentation": null,
+              "typeSignature": null,
+              "parentName": "Widget2Component"
             }
           ]
         },
         {
           "name": "state-management",
           "type": "Library",
-          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src",
+          "sourceRoot": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src",
           "exports": [
             {
               "name": "*",
@@ -1773,7 +2401,7 @@
             },
             {
               "name": "StoreState",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
               "lineNumber": 2,
               "kind": "Interface",
               "documentation": null,
@@ -1782,7 +2410,7 @@
             },
             {
               "name": "AppStore",
-              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+              "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
               "lineNumber": 10,
               "kind": "Injectable",
               "documentation": null,
@@ -1803,8 +2431,17 @@
           "parentName": null
         },
         {
+          "name": "*",
+          "filePath": "./lib/component2",
+          "lineNumber": 2,
+          "kind": "WildcardExport",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
           "name": "Widget1Component",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "kind": "Class",
           "documentation": null,
@@ -1813,7 +2450,7 @@
         },
         {
           "name": "Widget1Component.input1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "kind": "InputBinding",
           "documentation": null,
@@ -1822,12 +2459,39 @@
         },
         {
           "name": "Widget1Component.output1",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component1.ts",
           "lineNumber": 8,
           "kind": "OutputBinding",
           "documentation": null,
           "typeSignature": null,
           "parentName": "Widget1Component"
+        },
+        {
+          "name": "Widget2Component",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "kind": "Class",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": null
+        },
+        {
+          "name": "Widget2Component.input1",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "kind": "InputBinding",
+          "documentation": null,
+          "typeSignature": "string = \u0027\u0027",
+          "parentName": "Widget2Component"
+        },
+        {
+          "name": "Widget2Component.output1",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\ui-components\\src\\lib\\component2.ts",
+          "lineNumber": 8,
+          "kind": "OutputBinding",
+          "documentation": null,
+          "typeSignature": null,
+          "parentName": "Widget2Component"
         },
         {
           "name": "*",
@@ -1840,7 +2504,7 @@
         },
         {
           "name": "StoreState",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 2,
           "kind": "Interface",
           "documentation": null,
@@ -1849,7 +2513,7 @@
         },
         {
           "name": "AppStore",
-          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "filePath": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 10,
           "kind": "Injectable",
           "documentation": null,
@@ -1865,7 +2529,7 @@
         {
           "name": "StoreState",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -1875,7 +2539,7 @@
         {
           "name": "AppStore",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 10,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -1893,7 +2557,7 @@
         {
           "name": "StoreState",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 2,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
@@ -1903,7 +2567,7 @@
         {
           "name": "AppStore",
           "kind": "Type",
-          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-3\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
+          "sourceFile": "C:\\Users\\quinn\\AppData\\Local\\Temp\\seamq-verify\\iter-10\\lib-workspace-b\\projects\\state-management\\src\\lib\\store.ts",
           "lineNumber": 10,
           "workspace": "lib-workspace-b",
           "typeSignature": null,
