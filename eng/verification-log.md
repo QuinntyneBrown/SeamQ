@@ -12,3 +12,12 @@ Iterations: 1–10
 | 6 | 0 | 6 | 12 | Y | Y | Y | 2 |
 | 7 | 0 | 6 | 12 | Y | Y | Y | 2 |
 | 8 | 0 | 6 | 12 | Y | Y | Y | 2 |
+| 9 | 0 | 6 | 12 | Y | Y | Y | 2 |
+| 10 | 0 | 6 | 12 | Y | Y | Y | 2 |
+
+## Summary
+- **Total iterations**: 10
+- **Total seams detected**: 0
+- **Total ICDs generated**: 60
+- **Total diagrams generated**: 120
+- **Total gaps found**: 20
