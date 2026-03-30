@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "projects": {
+    "ui-components": {
+      "projectType": "library",
+      "sourceRoot": "libs/components/src",
+      "root": "libs/components"
+    },
+    "design-tokens": {
+      "projectType": "library",
+      "sourceRoot": "libs/design-tokens/src",
+      "root": "libs/design-tokens"
+    }
+  }
+}

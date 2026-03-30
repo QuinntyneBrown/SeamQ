@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@dashboard/tile-api": ["libs/tile-api/src/public-api.ts"]
+    },
+    "target": "ES2022",
+    "module": "ES2022",
+    "strict": true
+  }
+}

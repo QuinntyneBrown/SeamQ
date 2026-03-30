@@ -15,7 +15,7 @@ public static class DiffCommand
 
         command.SetHandler(async (baselinePath) =>
         {
-            throw new NotImplementedException("Diff command not yet implemented");
+            await Task.CompletedTask; throw new NotImplementedException("Diff command not yet implemented");
         }, baselineArgument);
 
         return command;

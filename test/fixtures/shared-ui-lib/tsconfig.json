@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@shared/components": ["libs/components/src/public-api.ts"],
+      "@shared/design-tokens": ["libs/design-tokens/src/public-api.ts"]
+    }
+  }
+}

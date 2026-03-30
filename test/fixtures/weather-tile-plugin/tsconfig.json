@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@dashboard/tile-api": ["../dashboard-framework/libs/tile-api/src/public-api.ts"]
+    }
+  }
+}

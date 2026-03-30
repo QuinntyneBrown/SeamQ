@@ -22,7 +22,7 @@ public static class GenerateCommand
 
         command.SetHandler(async (seamId, all, formats) =>
         {
-            throw new NotImplementedException("Generate command not yet implemented");
+            await Task.CompletedTask; throw new NotImplementedException("Generate command not yet implemented");
         }, seamIdArgument, allOption, formatOption);
 
         return command;

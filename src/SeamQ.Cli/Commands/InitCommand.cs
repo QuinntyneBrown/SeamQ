@@ -10,7 +10,7 @@ public static class InitCommand
 
         command.SetHandler(async () =>
         {
-            throw new NotImplementedException("Init command not yet implemented");
+            await Task.CompletedTask; throw new NotImplementedException("Init command not yet implemented");
         });
 
         return command;

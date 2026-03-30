@@ -17,7 +17,7 @@ public static class ValidateCommand
 
         command.SetHandler(async (seamId, all) =>
         {
-            throw new NotImplementedException("Validate command not yet implemented");
+            await Task.CompletedTask; throw new NotImplementedException("Validate command not yet implemented");
         }, seamIdArgument, allOption);
 
         return command;

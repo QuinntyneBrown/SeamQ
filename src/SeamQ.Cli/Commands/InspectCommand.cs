@@ -15,7 +15,7 @@ public static class InspectCommand
 
         command.SetHandler(async (seamId) =>
         {
-            throw new NotImplementedException("Inspect command not yet implemented");
+            await Task.CompletedTask; throw new NotImplementedException("Inspect command not yet implemented");
         }, seamIdArgument);
 
         return command;

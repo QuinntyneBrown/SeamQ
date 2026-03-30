@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "projects": {
+    "weather-tile": {
+      "projectType": "application",
+      "sourceRoot": "src",
+      "root": ""
+    }
+  }
+}

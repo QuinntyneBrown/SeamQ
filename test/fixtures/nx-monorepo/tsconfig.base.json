@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@myorg/shared-models": ["libs/shared-models/src/index.ts"],
+      "@myorg/shared-services": ["libs/shared-services/src/index.ts"]
+    }
+  }
+}

@@ -19,7 +19,7 @@ public static class DiagramCommand
 
         command.SetHandler(async (seamId, all, type) =>
         {
-            throw new NotImplementedException("Diagram command not yet implemented");
+            await Task.CompletedTask; throw new NotImplementedException("Diagram command not yet implemented");
         }, seamIdArgument, allOption, typeOption);
 
         return command;

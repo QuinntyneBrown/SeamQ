@@ -8,7 +8,7 @@ namespace SeamQ.Cli;
 /// </summary>
 public static class CommandBuilder
 {
-    public static RootCommand BuildRootCommand()
+    public static RootCommand BuildRootCommand(IServiceProvider serviceProvider)
     {
         var rootCommand = new RootCommand("seamq — static analysis tool for angular workspace interface boundaries");
 
@@ -26,16 +26,16 @@ public static class CommandBuilder
         rootCommand.AddGlobalOption(configOption);
 
         // Commands
-        rootCommand.AddCommand(ScanCommand.Create());
-        rootCommand.AddCommand(ListCommand.Create());
-        rootCommand.AddCommand(GenerateCommand.Create());
-        rootCommand.AddCommand(DiagramCommand.Create());
-        rootCommand.AddCommand(InspectCommand.Create());
-        rootCommand.AddCommand(ValidateCommand.Create());
-        rootCommand.AddCommand(DiffCommand.Create());
-        rootCommand.AddCommand(InitCommand.Create());
-        rootCommand.AddCommand(ExportCommand.Create());
-        rootCommand.AddCommand(ServeCommand.Create());
+        rootCommand.AddCommand(ScanCommand.Create(serviceProvider));
+        rootCommand.AddCommand(ListCommand.Create(serviceProvider));
+        rootCommand.AddCommand(GenerateCommand.Create(serviceProvider));
+        rootCommand.AddCommand(DiagramCommand.Create(serviceProvider));
+        rootCommand.AddCommand(InspectCommand.Create(serviceProvider));
+        rootCommand.AddCommand(ValidateCommand.Create(serviceProvider));
+        rootCommand.AddCommand(DiffCommand.Create(serviceProvider));
+        rootCommand.AddCommand(InitCommand.Create(serviceProvider));
+        rootCommand.AddCommand(ExportCommand.Create(serviceProvider));
+        rootCommand.AddCommand(ServeCommand.Create(serviceProvider));
 
         return rootCommand;
     }

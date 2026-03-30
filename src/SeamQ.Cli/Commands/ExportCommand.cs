@@ -19,7 +19,7 @@ public static class ExportCommand
 
         command.SetHandler(async (seamId, all, format) =>
         {
-            throw new NotImplementedException("Export command not yet implemented");
+            await Task.CompletedTask; throw new NotImplementedException("Export command not yet implemented");
         }, seamIdArgument, allOption, formatOption);
 
         return command;
