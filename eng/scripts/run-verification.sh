@@ -132,15 +132,53 @@ audit_output() {
     # These checks are informational for now
   fi
 
-  # G9: at higher iterations, expect more diagram types
-  if (( iter >= 20 )); then
+  # G9: check diagram type diversity
+  if (( puml_count > 0 )); then
     local class_diag_count seq_diag_count c4_diag_count
-    class_diag_count=$(find "$output_dir" -name "*class*" -o -name "*api*" 2>/dev/null | wc -l)
-    seq_diag_count=$(find "$output_dir" -name "*seq*" -o -name "*lifecycle*" 2>/dev/null | wc -l)
-    c4_diag_count=$(find "$output_dir" -name "*c4*" -o -name "*context*" -o -name "*container*" 2>/dev/null | wc -l)
+    class_diag_count=$(find "$output_dir" -name "*ClassApiSurface*" 2>/dev/null | wc -l)
+    seq_diag_count=$(find "$output_dir" -name "*SeqPlugin*" 2>/dev/null | wc -l)
+    c4_diag_count=$(find "$output_dir" -name "*C4*" 2>/dev/null | wc -l)
 
     if (( class_diag_count == 0 )); then
-      iter_gaps+="  - **NO_CLASS_DIAGRAMS**: Expected class diagrams at iter ${iter}\n"
+      iter_gaps+="  - **NO_CLASS_DIAGRAMS**: Expected class diagrams\n"
+      ((gaps++)) || true
+    fi
+    if (( seq_diag_count == 0 )) && (( iter >= 5 )); then
+      iter_gaps+="  - **NO_SEQ_DIAGRAMS**: Expected sequence diagrams at iter ${iter}\n"
+      ((gaps++)) || true
+    fi
+    if (( c4_diag_count == 0 )) && (( iter >= 5 )); then
+      iter_gaps+="  - **NO_C4_DIAGRAMS**: Expected C4 diagrams at iter ${iter}\n"
+      ((gaps++)) || true
+    fi
+  fi
+
+  # G10: at higher iterations expect InjectionToken detection
+  if (( iter >= 10 )) && (( icd_count > 0 )); then
+    local has_token
+    has_token=$(grep -rl "InjectionToken\|Injection Token" "$output_dir" 2>/dev/null | wc -l)
+    if (( has_token == 0 )); then
+      iter_gaps+="  - **NO_INJECTION_TOKENS**: Expected InjectionToken detection at iter ${iter}\n"
+      ((gaps++)) || true
+    fi
+  fi
+
+  # G11: at higher iterations expect Input/Output bindings
+  if (( iter >= 10 )) && (( icd_count > 0 )); then
+    local has_inputs
+    has_inputs=$(grep -rl "Input.*Output\|Component Input\|input binding\|InputBinding" "$output_dir" 2>/dev/null | wc -l)
+    if (( has_inputs == 0 )); then
+      iter_gaps+="  - **NO_IO_BINDINGS**: Expected Input/Output binding detection at iter ${iter}\n"
+      ((gaps++)) || true
+    fi
+  fi
+
+  # G12: check for TSDoc propagation in ICDs
+  if (( icd_count > 0 )); then
+    local has_docs
+    has_docs=$(grep -c "description\|Documentation\|transfer object\|Field.*description" "$sample_icd" 2>/dev/null || echo 0)
+    if (( has_docs < 2 )); then
+      iter_gaps+="  - **WEAK_TSDOC**: ICD has few documentation entries (${has_docs})\n"
       ((gaps++)) || true
     fi
   fi
@@ -150,10 +188,8 @@ audit_output() {
     echo -e "\n### Iteration ${iter} (${gaps} gaps)\n${iter_gaps}" >> "$GAP_FILE"
   fi
 
-  echo "$gaps"
-  echo "$seam_count"
-  echo "$icd_count"
-  echo "$puml_count"
+  # Return as single pipe-delimited line
+  echo "${gaps}|${seam_count}|${icd_count}|${puml_count}"
 }
 
 ########################################################################
@@ -217,7 +253,7 @@ for iter in $(seq "$START_ITER" "$MAX_ITER"); do
 
   # Step 5: Audit output
   audit_results=$(audit_output "$iter" "$OUTPUT_DIR" "$scan_exit" "$gen_exit" "$diag_exit")
-  IFS=$'\n' read -r -d '' gap_count seam_count icd_count puml_count <<< "$audit_results" || true
+  IFS='|' read -r gap_count seam_count icd_count puml_count <<< "$audit_results"
 
   # Record in log
   scan_ok=$([[ "$scan_exit" == "0" ]] && echo "Y" || echo "N")
