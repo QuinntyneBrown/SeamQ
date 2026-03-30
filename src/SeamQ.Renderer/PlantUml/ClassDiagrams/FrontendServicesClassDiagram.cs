@@ -14,66 +14,58 @@ public static class FrontendServicesClassDiagram
 
         var surface = seam.ContractSurface;
 
-        // Collect methods and properties that belong to a service (have a ParentName)
-        var serviceMembers = surface.Methods
-            .Concat(surface.Properties)
-            .Where(e => !string.IsNullOrEmpty(e.ParentName))
-            .GroupBy(e => e.ParentName!)
+        // Use TypeClassifier to get service types and group with members
+        var services = TypeClassifier.GetServices(surface);
+        var grouped = TypeClassifier.GroupWithMembers(surface.Elements);
+
+        // Show services with their members
+        foreach (var svc in services)
+        {
+            var entry = grouped.FirstOrDefault(g => g.Parent.Name == svc.Name);
+            var members = entry.Members.Count > 0
+                ? entry.Members.Select(FormatMember)
+                : null;
+            encoder.AddClass(svc.Name, members);
+        }
+
+        // Show components that have members (they consume services)
+        var components = grouped
+            .Where(g => TypeClassifier.IsComponent(g.Parent) && g.Members.Count > 0)
             .ToList();
 
-        // If no classified methods/properties, fall back to name-based heuristic on Types
-        if (serviceMembers.Count == 0)
+        foreach (var comp in components)
         {
-            // Group child elements by parent, or find service-like types
-            var serviceTypes = surface.Elements
-                .Where(e => e.Name.Contains("Service", StringComparison.OrdinalIgnoreCase) &&
-                            e.ParentName is null)
-                .ToList();
+            encoder.AddClass(comp.Parent.Name, comp.Members.Select(FormatMember));
+        }
 
-            var childElements = surface.Elements
-                .Where(e => e.ParentName is not null)
-                .GroupBy(e => e.ParentName!)
-                .ToList();
-
-            if (childElements.Count > 0)
+        // Add relationships: components → services (via member TypeSignature)
+        var serviceNames = services.Select(s => s.Name).ToHashSet();
+        foreach (var comp in components)
+        {
+            foreach (var member in comp.Members)
             {
-                serviceMembers = childElements;
-            }
-            else
-            {
-                // Render service types as standalone classes
-                foreach (var svc in serviceTypes)
+                if (member.TypeSignature is null) continue;
+                foreach (var svcName in serviceNames)
                 {
-                    encoder.AddClass(svc.Name);
+                    if (member.TypeSignature.Contains(svcName, StringComparison.Ordinal))
+                    {
+                        encoder.AddRelationship(comp.Parent.Name, svcName, "-->", "uses");
+                    }
                 }
             }
         }
 
-        var serviceNames = serviceMembers.Select(g => g.Key).ToHashSet();
-
-        // Render each service as a class with its members
-        foreach (var group in serviceMembers)
+        // Show message pairs: Service → handles → Message/Response
+        var pairs = TypeClassifier.GetMessagePairs(surface);
+        foreach (var pair in pairs)
         {
-            var members = group.Select(e => FormatMember(e));
-            encoder.AddClass(group.Key, members);
-        }
-
-        // Add relationships when a method's TypeSignature references another service
-        foreach (var group in serviceMembers)
-        {
-            foreach (var element in group)
+            var svc = TypeClassifier.FindServiceForMessage(pair.Request, services);
+            if (svc is not null)
             {
-                if (string.IsNullOrEmpty(element.TypeSignature))
-                    continue;
-
-                foreach (var otherService in serviceNames)
+                encoder.AddRelationship(svc.Name, pair.Request.Name, "-->", "handles");
+                if (pair.Response is not null)
                 {
-                    if (otherService != group.Key &&
-                        element.TypeSignature.Contains(otherService))
-                    {
-                        encoder.AddRelationship(
-                            group.Key, otherService, "-->", "uses");
-                    }
+                    encoder.AddRelationship(svc.Name, pair.Response.Name, "-->", "returns");
                 }
             }
         }
@@ -85,8 +77,12 @@ public static class FrontendServicesClassDiagram
     private static string FormatMember(ContractElement element)
     {
         var signature = element.TypeSignature ?? "void";
+        // Strip parent prefix from member name for readability
+        var name = element.ParentName is not null && element.Name.StartsWith(element.ParentName + ".")
+            ? element.Name[(element.ParentName.Length + 1)..]
+            : element.Name;
         return element.Kind == ContractElementKind.Method
-            ? $"+{element.Name}(): {signature}"
-            : $"+{element.Name}: {signature}";
+            ? $"+{name}(): {signature}"
+            : $"+{name}: {signature}";
     }
 }

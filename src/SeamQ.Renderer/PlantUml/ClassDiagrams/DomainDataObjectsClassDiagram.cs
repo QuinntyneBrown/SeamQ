@@ -3,7 +3,8 @@ using SeamQ.Core.Models;
 namespace SeamQ.Renderer.PlantUml.ClassDiagrams;
 
 /// <summary>
-/// Generates a class diagram showing domain data objects, enums, and data-shape interfaces.
+/// Generates a class diagram showing domain data objects — types, interfaces,
+/// and enums used as data shapes at the seam boundary.
 /// </summary>
 public static class DomainDataObjectsClassDiagram
 {
@@ -13,73 +14,113 @@ public static class DomainDataObjectsClassDiagram
         encoder.StartClassDiagram($"Domain Data Objects: {seam.Name}");
 
         var surface = seam.ContractSurface;
+        var grouped = TypeClassifier.GroupWithMembers(surface.Elements);
 
-        // Collect all type and enum names for relationship detection
-        var allTypeNames = surface.Types
-            .Select(t => t.Name)
-            .Concat(surface.Interfaces
-                .Where(i => HasDataMembers(surface, i))
-                .Select(i => i.Name))
-            .ToHashSet();
+        // Only show data objects — filter out services and components
+        var dataObjects = grouped
+            .Where(g => TypeClassifier.IsDataObject(g.Parent) &&
+                        !TypeClassifier.IsService(g.Parent) &&
+                        !TypeClassifier.IsComponent(g.Parent))
+            .ToList();
 
-        // Show non-enum types as classes with their child properties
-        foreach (var type in surface.Types.Where(t => t.Kind != ContractElementKind.Enum))
+        // Also include data shapes from properly classified elements
+        var classifiedTypes = surface.Types.Where(t => t.Kind != ContractElementKind.Enum).ToList();
+        var classifiedEnums = surface.Types.Where(t => t.Kind == ContractElementKind.Enum).ToList();
+        var classifiedInterfaces = surface.Interfaces
+            .Where(i => surface.Elements.Any(e =>
+                e.ParentName == i.Name &&
+                e.Kind is ContractElementKind.Property or ContractElementKind.Method))
+            .ToList();
+
+        var shownNames = new HashSet<string>();
+
+        // Show data objects from heuristic classification
+        foreach (var (parent, members) in dataObjects)
+        {
+            if (shownNames.Contains(parent.Name)) continue;
+
+            if (TypeClassifier.IsEnumLike(parent))
+            {
+                encoder.AddEnum(parent.Name);
+            }
+            else if (members.Count > 0)
+            {
+                var memberStrings = members.Select(m =>
+                {
+                    var name = m.Name.StartsWith(parent.Name + ".") ? m.Name[(parent.Name.Length + 1)..] : m.Name;
+                    return $"+{name}: {m.TypeSignature ?? "any"}";
+                });
+                encoder.AddClass(parent.Name, memberStrings);
+            }
+            else
+            {
+                encoder.AddClass(parent.Name);
+            }
+            shownNames.Add(parent.Name);
+        }
+
+        // Show properly classified types
+        foreach (var type in classifiedTypes.Where(t => !shownNames.Contains(t.Name)))
         {
             var members = surface.Elements
                 .Where(e => e.ParentName == type.Name &&
                             e.Kind is ContractElementKind.Property or ContractElementKind.Method)
-                .Select(e => FormatMember(e));
-
+                .Select(FormatMember);
             encoder.AddClass(type.Name, members);
+            shownNames.Add(type.Name);
         }
 
-        // Show enums with their child values
-        foreach (var enumType in surface.Types.Where(t => t.Kind == ContractElementKind.Enum))
+        // Show properly classified enums
+        foreach (var e in classifiedEnums.Where(e => !shownNames.Contains(e.Name)))
         {
             var values = surface.Elements
-                .Where(e => e.ParentName == enumType.Name && e.Kind == ContractElementKind.Property)
-                .Select(e => e.Name);
-
-            encoder.AddEnum(enumType.Name, values);
+                .Where(el => el.ParentName == e.Name && el.Kind == ContractElementKind.Property)
+                .Select(el => el.Name);
+            encoder.AddEnum(e.Name, values);
+            shownNames.Add(e.Name);
         }
 
-        // Show interfaces that have property/method children (data shapes)
-        foreach (var iface in surface.Interfaces.Where(i => HasDataMembers(surface, i)))
+        // Show data-shape interfaces
+        foreach (var iface in classifiedInterfaces.Where(i => !shownNames.Contains(i.Name)))
         {
             var members = surface.Elements
                 .Where(e => e.ParentName == iface.Name &&
                             e.Kind is ContractElementKind.Property or ContractElementKind.Method)
-                .Select(e => FormatMember(e));
-
+                .Select(FormatMember);
             encoder.AddInterface(iface.Name, members);
+            shownNames.Add(iface.Name);
         }
 
-        // Add composition relationships when a property's TypeSignature references another type
-        foreach (var element in surface.Elements.Where(e =>
-            e.Kind == ContractElementKind.Property &&
-            !string.IsNullOrEmpty(e.ParentName) &&
-            !string.IsNullOrEmpty(e.TypeSignature)))
+        // Add composition/pairing relationships
+        foreach (var (parent, members) in dataObjects)
         {
-            foreach (var typeName in allTypeNames)
+            foreach (var member in members)
             {
-                if (typeName != element.ParentName &&
-                    element.TypeSignature!.Contains(typeName))
+                if (member.TypeSignature is null) continue;
+                foreach (var otherName in shownNames)
                 {
-                    encoder.AddRelationship(
-                        element.ParentName!, typeName, "*--", "contains");
+                    if (otherName != parent.Name && member.TypeSignature.Contains(otherName, StringComparison.Ordinal))
+                    {
+                        encoder.AddRelationship(parent.Name, otherName, "*--", "contains");
+                    }
                 }
+            }
+        }
+
+        // Add request→response pair relationships
+        var pairs = TypeClassifier.GetMessagePairs(surface);
+        foreach (var pair in pairs)
+        {
+            if (pair.Response is not null &&
+                shownNames.Contains(pair.Request.Name) &&
+                shownNames.Contains(pair.Response.Name))
+            {
+                encoder.AddRelationship(pair.Request.Name, pair.Response.Name, "-->", "produces");
             }
         }
 
         encoder.EndDiagram();
         return encoder.Build();
-    }
-
-    private static bool HasDataMembers(ContractSurface surface, ContractElement iface)
-    {
-        return surface.Elements.Any(e =>
-            e.ParentName == iface.Name &&
-            e.Kind is ContractElementKind.Property or ContractElementKind.Method);
     }
 
     private static string FormatMember(ContractElement element)
