@@ -164,6 +164,10 @@ dotnet test
 - **No telemetry** -- No network calls unless PlantUML server rendering is explicitly configured.
 - **Data locality** -- Source code is processed entirely in-memory and never leaves the local machine.
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
+
 ## License
 
-See [LICENSE](LICENSE) for details.
+This project is licensed under the [MIT License](LICENSE).
