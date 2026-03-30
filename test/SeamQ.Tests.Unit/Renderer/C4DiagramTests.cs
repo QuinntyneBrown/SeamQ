@@ -13,7 +13,8 @@ public class C4DiagramTests
 
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
-        result.Should().Contain("C4_Context.puml");
+        result.Should().NotContain("!include");
+        result.Should().Contain("!procedure System(");
         result.Should().Contain("TestApp");
         result.Should().Contain("PluginA");
     }
@@ -26,7 +27,8 @@ public class C4DiagramTests
 
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
-        result.Should().Contain("C4_Container.puml");
+        result.Should().NotContain("!include");
+        result.Should().Contain("!procedure Container(");
         result.Should().Contain("core");
         result.Should().Contain("shell");
     }
@@ -39,8 +41,8 @@ public class C4DiagramTests
 
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
-        result.Should().Contain("C4_Component.puml");
-        result.Should().Contain("Component");
+        result.Should().NotContain("!include");
+        result.Should().Contain("!procedure Component(");
     }
 
     [Fact]
@@ -51,7 +53,8 @@ public class C4DiagramTests
 
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
-        result.Should().Contain("C4_Component.puml");
+        result.Should().NotContain("!include");
+        result.Should().Contain("!procedure Component(");
         result.Should().Contain("Registration Layer");
         result.Should().Contain("Contract Layer");
     }
@@ -64,8 +67,8 @@ public class C4DiagramTests
 
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
-        result.Should().Contain("C4_Dynamic.puml");
-        result.Should().Contain("RelIndex");
+        result.Should().NotContain("!include");
+        result.Should().Contain("!procedure RelIndex(");
     }
 
     [Fact]
@@ -76,7 +79,8 @@ public class C4DiagramTests
 
         result.Should().StartWith("@startuml");
         result.Should().EndWith("@enduml\r\n");
-        result.Should().Contain("C4_Container.puml");
+        result.Should().NotContain("!include");
+        result.Should().Contain("!procedure Container(");
         result.Should().Contain("Data Flow");
     }
 
@@ -91,5 +95,18 @@ public class C4DiagramTests
         C4PluginApiLayers.Generate(seam).Should().Contain("@startuml").And.Contain("@enduml");
         C4Dynamic.Generate(seam).Should().Contain("@startuml").And.Contain("@enduml");
         C4DataFlow.Generate(seam).Should().Contain("@startuml").And.Contain("@enduml");
+    }
+
+    [Fact]
+    public void AllC4Diagrams_AreStandalone_NoIncludes()
+    {
+        var seam = SeamTestFactory.CreatePluginSeam();
+
+        C4SystemContext.Generate(seam).Should().NotContain("!include");
+        C4Container.Generate(seam).Should().NotContain("!include");
+        C4ComponentServices.Generate(seam).Should().NotContain("!include");
+        C4PluginApiLayers.Generate(seam).Should().NotContain("!include");
+        C4Dynamic.Generate(seam).Should().NotContain("!include");
+        C4DataFlow.Generate(seam).Should().NotContain("!include");
     }
 }
