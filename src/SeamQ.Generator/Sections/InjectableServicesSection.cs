@@ -9,9 +9,30 @@ public class InjectableServicesSection : IIcdSection
 
     public Task<string> GenerateAsync(Seam seam, CancellationToken cancellationToken = default)
     {
-        var interfaces = seam.ContractSurface.Interfaces.ToList();
+        // Injectable services are elements that have child methods/properties (ParentName matches)
+        // or interfaces/abstract classes that have method children.
+        var methods = seam.ContractSurface.Methods.ToList();
+        var properties = seam.ContractSurface.Elements
+            .Where(e => e.Kind == ContractElementKind.Property)
+            .ToList();
 
-        if (interfaces.Count == 0)
+        // Find parent types that have methods or properties — these are service-like
+        var serviceParentNames = methods.Select(m => m.ParentName)
+            .Concat(properties.Select(p => p.ParentName))
+            .Where(n => n is not null)
+            .ToHashSet();
+
+        var services = seam.ContractSurface.Elements
+            .Where(e => serviceParentNames.Contains(e.Name) ||
+                        // Also include interfaces/abstract classes with methods
+                        (e.Kind is ContractElementKind.Interface or ContractElementKind.AbstractClass
+                         && methods.Any(m => m.ParentName == e.Name)))
+            .DistinctBy(e => e.Name)
+            .ToList();
+
+        // If no services found with methods, fall back: show interfaces that look like service contracts
+        // (have methods as siblings from the same parent)
+        if (services.Count == 0)
         {
             return Task.FromResult("""
                 ## 8. Injectable Services
@@ -20,25 +41,28 @@ public class InjectableServicesSection : IIcdSection
                 """);
         }
 
-        var methods = seam.ContractSurface.Methods.ToList();
         var sections = new List<string>();
 
-        foreach (var iface in interfaces)
+        foreach (var svc in services)
         {
-            var ifaceMethods = methods
-                .Where(m => m.ParentName == iface.Name)
+            var svcMethods = methods
+                .Where(m => m.ParentName == svc.Name)
+                .ToList();
+            var svcProperties = properties
+                .Where(p => p.ParentName == svc.Name)
                 .ToList();
 
             var header = $"""
-                ### {iface.Name}
+                ### {svc.Name}
 
-                - **Source:** `{iface.SourceFile}:{iface.LineNumber}`
-                - **Documentation:** {iface.Documentation ?? "*No documentation available*"}
+                - **Source:** `{svc.SourceFile}:{svc.LineNumber}`
+                - **Kind:** {svc.Kind}
+                - **Documentation:** {svc.Documentation ?? "*No documentation available*"}
                 """;
 
-            if (ifaceMethods.Count > 0)
+            if (svcMethods.Count > 0)
             {
-                var methodRows = ifaceMethods.Select(m =>
+                var methodRows = svcMethods.Select(m =>
                     $"| `{EscapePipe(m.Name)}` | `{EscapePipe(m.TypeSignature ?? "void")}` | {EscapePipe(m.Documentation ?? "-")} |");
 
                 header += $"""
@@ -49,9 +73,24 @@ public class InjectableServicesSection : IIcdSection
                     {string.Join("\n", methodRows)}
                     """;
             }
-            else
+
+            if (svcProperties.Count > 0)
             {
-                header += "\n\n*No methods detected for this interface.*";
+                var propRows = svcProperties.Select(p =>
+                    $"| `{EscapePipe(p.Name)}` | `{EscapePipe(p.TypeSignature ?? "-")}` | {EscapePipe(p.Documentation ?? "-")} |");
+
+                header += $"""
+
+
+                    | Property | Type | Description |
+                    |----------|------|-------------|
+                    {string.Join("\n", propRows)}
+                    """;
+            }
+
+            if (svcMethods.Count == 0 && svcProperties.Count == 0)
+            {
+                header += "\n\n*No methods or properties detected for this service.*";
             }
 
             sections.Add(header);

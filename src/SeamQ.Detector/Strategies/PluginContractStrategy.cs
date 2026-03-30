@@ -14,7 +14,7 @@ public class PluginContractStrategy : ISeamDetectionStrategy
 
     private static readonly HashSet<string> PluginKinds = new(StringComparer.OrdinalIgnoreCase)
     {
-        "interface", "abstract class", "abstractclass", "injection-token", "injectiontoken"
+        "interface", "abstract class", "abstractclass", "injection-token", "injectiontoken", "InjectionToken"
     };
 
     private static readonly HashSet<string> ForRootPatterns = new(StringComparer.OrdinalIgnoreCase)
@@ -124,6 +124,10 @@ public class PluginContractStrategy : ISeamDetectionStrategy
             "interface" => ContractElementKind.Interface,
             "abstract class" or "abstractclass" => ContractElementKind.AbstractClass,
             "injection-token" or "injectiontoken" => ContractElementKind.InjectionToken,
+            "injectable" => ContractElementKind.Type,
+            "inputbinding" => ContractElementKind.InputBinding,
+            "outputbinding" => ContractElementKind.OutputBinding,
+            "signalinput" or "modelsignal" => ContractElementKind.SignalInput,
             _ => ContractElementKind.Type
         };
     }

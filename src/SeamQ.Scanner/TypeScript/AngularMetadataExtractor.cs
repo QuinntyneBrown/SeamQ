@@ -107,6 +107,7 @@ public class AngularMetadataExtractor
             DeclarationKind.Class => "Class",
             DeclarationKind.Enum => "Enum",
             DeclarationKind.TypeAlias => "TypeAlias",
+            DeclarationKind.InjectionToken => "InjectionToken",
             _ => "Unknown"
         };
     }
