@@ -15,7 +15,7 @@ for i in $(seq 1 $1); do
 
     # 2. Rebuild and reinstall
     cd "$SEAMQ_DIR"
-    cmd //c "C:\\projects\\SeamQ\\rebuild-install.bat" > /dev/null 2>&1
+    cmd //c "C:\\projects\\SeamQ\\eng\\scripts\\rebuild-install.bat" > /dev/null 2>&1
     echo "  [OK] Rebuilt and installed"
 
     # 3. Scan
