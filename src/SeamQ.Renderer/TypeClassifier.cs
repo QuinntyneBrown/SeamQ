@@ -74,23 +74,38 @@ internal static class TypeClassifier
 
         return messages.Select(msg =>
         {
-            // Try to find matching response: CommandMessage → CommandResponse
-            var prefix = msg.Name.Replace("Message", "").Replace("Request", "");
-            var response = responses.FirstOrDefault(r =>
-                r.Name.StartsWith(prefix, StringComparison.Ordinal));
+            var prefix = ExtractPrefix(msg.Name);
+            var response = !string.IsNullOrEmpty(prefix)
+                ? responses.FirstOrDefault(r => r.Name.StartsWith(prefix, StringComparison.Ordinal))
+                : null;
             return (Request: msg, Response: response);
         }).ToList();
     }
 
     /// <summary>
     /// Finds the service that likely handles a given message type by name prefix matching.
-    /// E.g., CommandMessage → CommandService
+    /// E.g., CommandMessage → CommandService, RequestMessage → RequestService
     /// </summary>
     public static ContractElement? FindServiceForMessage(ContractElement message, IEnumerable<ContractElement> services)
     {
-        var prefix = message.Name.Replace("Message", "").Replace("Request", "");
+        var prefix = ExtractPrefix(message.Name);
+        if (string.IsNullOrEmpty(prefix)) return null;
         return services.FirstOrDefault(s =>
             s.Name.StartsWith(prefix, StringComparison.Ordinal) &&
             s.Name.EndsWith("Service", StringComparison.Ordinal));
+    }
+
+    /// <summary>
+    /// Extracts the domain prefix from a message/request type name.
+    /// CommandMessage → Command, QueryMessage → Query, RequestMessage → Request,
+    /// HistoricalTelemetryRequest → HistoricalTelemetry
+    /// </summary>
+    private static string ExtractPrefix(string name)
+    {
+        if (name.EndsWith("Message", StringComparison.Ordinal))
+            return name[..^"Message".Length];
+        if (name.EndsWith("Request", StringComparison.Ordinal))
+            return name[..^"Request".Length];
+        return name;
     }
 }
