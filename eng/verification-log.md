@@ -100,3 +100,14 @@ Iterations: 1–100
 | 94 | 9 | 9 | 18 | Y | Y | Y | 0 |
 | 95 | 9 | 9 | 18 | Y | Y | Y | 0 |
 | 96 | 9 | 9 | 18 | Y | Y | Y | 0 |
+| 97 | 9 | 9 | 18 | Y | Y | Y | 0 |
+| 98 | 9 | 9 | 18 | Y | Y | Y | 0 |
+| 99 | 9 | 9 | 18 | Y | Y | Y | 0 |
+| 100 | 9 | 9 | 18 | Y | Y | Y | 0 |
+
+## Summary
+- **Total iterations**: 100
+- **Total seams detected**: 838
+- **Total ICDs generated**: 838
+- **Total diagrams generated**: 1681
+- **Total gaps found**: 0
