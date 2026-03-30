@@ -58,8 +58,8 @@ audit_output() {
   local registry_file="$iter_base/.seamq/registry.json"
   local seam_count=0
   if [[ -f "$registry_file" ]]; then
-    # Count top-level array items
-    seam_count=$(python3 -c "import json,sys; d=json.load(open(sys.argv[1])); print(len(d))" "$registry_file" 2>/dev/null || echo 0)
+    # Count seam entries — registry is a JSON object with an array value, or a flat array
+    seam_count=$(grep -c '"Id"' "$registry_file" 2>/dev/null || echo 0)
   fi
   if (( seam_count == 0 )); then
     iter_gaps+="  - **NO_SEAMS**: No seams detected by scan\n"
@@ -104,7 +104,7 @@ audit_output() {
     sample_icd=$(find "$output_dir" -name "*.md" -type f | head -1)
 
     # Check for key ICD sections from PRD
-    local sections=("Introduction" "Interface" "Contract" "Traceability")
+    local sections=("Purpose" "Interface" "Contract" "Traceability")
     for section in "${sections[@]}"; do
       if ! grep -qi "$section" "$sample_icd" 2>/dev/null; then
         iter_gaps+="  - **MISSING_SECTION**: ICD missing section containing '${section}'\n"
