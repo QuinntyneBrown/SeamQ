@@ -13,8 +13,9 @@ public static class GeneratorServiceCollectionExtensions
     /// </summary>
     public static IServiceCollection AddSeamQGenerator(this IServiceCollection services)
     {
-        // Core generator
+        // Core generators
         services.AddTransient<IIcdGenerator, IcdGenerator>();
+        services.AddTransient<IPublicApiGenerator, PublicApiGenerator>();
 
         // Sections (ordered by their Order property at runtime)
         services.AddTransient<IIcdSection, IntroductionSection>();
