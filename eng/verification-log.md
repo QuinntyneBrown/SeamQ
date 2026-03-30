@@ -18,3 +18,21 @@ Iterations: 1–25
 | 12 | 0 | 0 | 0 | Y | Y | Y | 0 |
 | 13 | 0 | 0 | 0 | Y | Y | Y | 0 |
 | 14 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 15 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 16 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 17 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 18 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 19 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 20 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 21 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 22 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 23 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 24 | 0 | 0 | 0 | Y | Y | Y | 0 |
+| 25 | 0 | 0 | 0 | Y | Y | Y | 0 |
+
+## Summary
+- **Total iterations**: 25
+- **Total seams detected**: 0
+- **Total ICDs generated**: 0
+- **Total diagrams generated**: 0
+- **Total gaps found**: 0
