@@ -1,10 +1,14 @@
 using System.CommandLine;
+using Microsoft.Extensions.DependencyInjection;
+using SeamQ.Cli.Rendering;
+using SeamQ.Core.Models;
+using SeamQ.Detector;
 
 namespace SeamQ.Cli.Commands;
 
 public static class InspectCommand
 {
-    public static Command Create()
+    public static Command Create(IServiceProvider serviceProvider)
     {
         var seamIdArgument = new Argument<string>("seam-id", "Seam ID to inspect");
 
@@ -15,9 +19,77 @@ public static class InspectCommand
 
         command.SetHandler(async (seamId) =>
         {
-            await Task.CompletedTask; throw new NotImplementedException("Inspect command not yet implemented");
+            var renderer = serviceProvider.GetRequiredService<IConsoleRenderer>();
+            var registry = serviceProvider.GetRequiredService<SeamRegistry>();
+
+            var seam = registry.GetById(seamId);
+            if (seam is null)
+            {
+                // Try prefix match
+                var all = registry.GetAll();
+                var candidates = all.Where(s => s.Id.StartsWith(seamId, StringComparison.OrdinalIgnoreCase)).ToList();
+                if (candidates.Count == 1)
+                    seam = candidates[0];
+                else if (candidates.Count > 1)
+                {
+                    renderer.WriteError($"Ambiguous seam ID '{seamId}'. Matches: {string.Join(", ", candidates.Select(s => s.Id))}");
+                    return;
+                }
+                else
+                {
+                    renderer.WriteError($"Seam '{seamId}' not found. Run 'seamq scan' first.");
+                    return;
+                }
+            }
+
+            // Header
+            renderer.WriteHeader(seam.Name);
+            renderer.WriteKeyValue("id", seam.Id);
+            renderer.WriteKeyValue("type", FormatSeamType(seam.Type));
+            renderer.WriteKeyValue("provider", seam.Provider.Alias);
+            renderer.WriteKeyValue("consumers", string.Join(", ", seam.Consumers.Select(c => c.Alias)));
+            renderer.WriteKeyValue("confidence", seam.Confidence.ToString("P0"));
+            renderer.WriteKeyValue("elements", seam.ContractSurface.Elements.Count.ToString());
+            renderer.WriteLine();
+
+            // Contract surface grouped by category
+            PrintElementGroup(renderer, "Interfaces", seam.ContractSurface.Interfaces);
+            PrintElementGroup(renderer, "Abstract Classes", seam.ContractSurface.AbstractClasses);
+            PrintElementGroup(renderer, "Injection Tokens", seam.ContractSurface.InjectionTokens);
+            PrintElementGroup(renderer, "Input Bindings", seam.ContractSurface.InputBindings);
+            PrintElementGroup(renderer, "Output Bindings", seam.ContractSurface.OutputBindings);
+            PrintElementGroup(renderer, "Methods", seam.ContractSurface.Methods);
+            PrintElementGroup(renderer, "Types", seam.ContractSurface.Types);
+
+            await Task.CompletedTask;
         }, seamIdArgument);
 
         return command;
     }
+
+    private static void PrintElementGroup(IConsoleRenderer renderer, string groupName, IEnumerable<ContractElement> elements)
+    {
+        var list = elements.ToList();
+        if (list.Count == 0) return;
+
+        renderer.WriteInfo($"  {groupName} ({list.Count})");
+        foreach (var el in list.OrderBy(e => e.Name))
+        {
+            var sig = el.TypeSignature is not null ? $" : {el.TypeSignature}" : "";
+            renderer.WriteLine($"    {el.Name}{sig}");
+            renderer.WriteMuted($"      {el.SourceFile}:{el.LineNumber}");
+        }
+        renderer.WriteLine();
+    }
+
+    private static string FormatSeamType(SeamType type) => type switch
+    {
+        SeamType.PluginContract => "plugin-contract",
+        SeamType.SharedLibrary => "shared-library",
+        SeamType.MessageBus => "message-bus",
+        SeamType.RouteContract => "route-contract",
+        SeamType.StateContract => "state-contract",
+        SeamType.HttpApiContract => "http-api-contract",
+        _ => type.ToString()
+    };
 }

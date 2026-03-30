@@ -1,10 +1,16 @@
 using System.CommandLine;
+using Microsoft.Extensions.DependencyInjection;
+using SeamQ.Cli.Rendering;
+using SeamQ.Core.Abstractions;
+using SeamQ.Core.Configuration;
+using SeamQ.Core.Models;
+using SeamQ.Detector;
 
 namespace SeamQ.Cli.Commands;
 
 public static class GenerateCommand
 {
-    public static Command Create()
+    public static Command Create(IServiceProvider serviceProvider)
     {
         var seamIdArgument = new Argument<string?>("seam-id", () => null, "Seam ID to generate ICD for");
         var allOption = new Option<bool>("--all", "Generate ICDs for all detected seams");
@@ -22,7 +28,61 @@ public static class GenerateCommand
 
         command.SetHandler(async (seamId, all, formats) =>
         {
-            await Task.CompletedTask; throw new NotImplementedException("Generate command not yet implemented");
+            var renderer = serviceProvider.GetRequiredService<IConsoleRenderer>();
+            var generator = serviceProvider.GetRequiredService<IIcdGenerator>();
+            var registry = serviceProvider.GetRequiredService<SeamRegistry>();
+            var config = serviceProvider.GetRequiredService<SeamQConfig>();
+
+            var outputDir = Path.GetFullPath(config.Output.Directory);
+
+            // Determine which seams to generate for
+            List<Seam> seamsToGenerate;
+            if (all)
+            {
+                seamsToGenerate = registry.GetAll().ToList();
+                if (seamsToGenerate.Count == 0)
+                {
+                    renderer.WriteWarning("No seams in registry. Run 'seamq scan' first.");
+                    return;
+                }
+            }
+            else if (seamId is not null)
+            {
+                var seam = registry.GetById(seamId);
+                if (seam is null)
+                {
+                    renderer.WriteError($"Seam '{seamId}' not found. Run 'seamq scan' first.");
+                    return;
+                }
+                seamsToGenerate = new List<Seam> { seam };
+            }
+            else
+            {
+                renderer.WriteError("Provide a seam ID or use --all to generate for all seams.");
+                return;
+            }
+
+            // Use configured formats if none provided via CLI
+            var outputFormats = formats.Length > 0 ? formats.ToList() : config.Output.Formats.ToList();
+
+            foreach (var seam in seamsToGenerate)
+            {
+                var seamOutputDir = Path.Combine(outputDir, seam.Id);
+                await generator.GenerateAsync(seam, seamOutputDir, outputFormats);
+                renderer.WriteSuccess($"generated ICD for {seam.Name}");
+
+                // List generated files
+                if (Directory.Exists(seamOutputDir))
+                {
+                    foreach (var file in Directory.GetFiles(seamOutputDir))
+                    {
+                        renderer.WriteMuted($"  {Path.GetRelativePath(Directory.GetCurrentDirectory(), file)}");
+                    }
+                }
+            }
+
+            renderer.WriteLine();
+            renderer.WriteInfo($"generated {seamsToGenerate.Count} ICD(s) in {outputDir}");
         }, seamIdArgument, allOption, formatOption);
 
         return command;
