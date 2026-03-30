@@ -21,11 +21,11 @@ public static class C4Dynamic
         sb.AppendLine();
 
         // Participants
-        sb.AppendLine($"System({SanitizeId(seam.Provider.Alias)}, \"{seam.Provider.Alias}\", \"Provider workspace\")");
-        sb.AppendLine($"System({SanitizeId(seam.Id)}_contract, \"Contract Surface\", \"Shared contract definitions\")");
+        C4Macros.AddSystem(sb, SanitizeId(seam.Provider.Alias), seam.Provider.Alias, "Provider workspace");
+        C4Macros.AddSystem(sb, $"{SanitizeId(seam.Id)}_contract", "Contract Surface", "Shared contract definitions");
 
         foreach (var consumer in seam.Consumers)
-            sb.AppendLine($"System_Ext({SanitizeId(consumer.Alias)}, \"{consumer.Alias}\", \"Consumer workspace\")");
+            C4Macros.AddSystemExt(sb, SanitizeId(consumer.Alias), consumer.Alias, "Consumer workspace");
 
         sb.AppendLine();
 
@@ -40,23 +40,23 @@ public static class C4Dynamic
         if (registrationElements.Count > 0)
         {
             var names = string.Join(", ", registrationElements.Select(e => e.Name).Take(3));
-            sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {SanitizeId(seam.Id)}_contract, \"Registers: {names}{(registrationElements.Count > 3 ? "..." : "")}\")");
+            C4Macros.AddRelIndex(sb, step, SanitizeId(seam.Provider.Alias), $"{SanitizeId(seam.Id)}_contract", $"Registers: {names}{(registrationElements.Count > 3 ? "..." : "")}");
         }
         else if (services.Count > 0)
         {
             var names = string.Join(", ", services.Select(s => s.Name).Take(3));
-            sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {SanitizeId(seam.Id)}_contract, \"Registers services: {names}{(services.Count > 3 ? "..." : "")}\")");
+            C4Macros.AddRelIndex(sb, step, SanitizeId(seam.Provider.Alias), $"{SanitizeId(seam.Id)}_contract", $"Registers services: {names}{(services.Count > 3 ? "..." : "")}");
         }
         else
         {
-            sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {SanitizeId(seam.Id)}_contract, \"Registers contract surface\")");
+            C4Macros.AddRelIndex(sb, step, SanitizeId(seam.Provider.Alias), $"{SanitizeId(seam.Id)}_contract", "Registers contract surface");
         }
         step++;
 
         // Step 2: Consumer discovers contract
         foreach (var consumer in seam.Consumers)
         {
-            sb.AppendLine($"RelIndex({step}, {SanitizeId(consumer.Alias)}, {SanitizeId(seam.Id)}_contract, \"Discovers contract\")");
+            C4Macros.AddRelIndex(sb, step, SanitizeId(consumer.Alias), $"{SanitizeId(seam.Id)}_contract", "Discovers contract");
             step++;
         }
 
@@ -68,12 +68,12 @@ public static class C4Dynamic
                 var svc = TypeClassifier.FindServiceForMessage(pair.Request, services);
                 var svcName = svc?.Name ?? "Service";
                 var source = seam.Consumers.Count > 0 ? SanitizeId(seam.Consumers[0].Alias) : SanitizeId(seam.Provider.Alias);
-                sb.AppendLine($"RelIndex({step}, {source}, {SanitizeId(seam.Provider.Alias)}, \"{svcName}.send({pair.Request.Name})\")");
+                C4Macros.AddRelIndex(sb, step, source, SanitizeId(seam.Provider.Alias), $"{svcName}.send({pair.Request.Name})");
                 step++;
 
                 if (pair.Response is not null)
                 {
-                    sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {source}, \"Returns {pair.Response.Name}\")");
+                    C4Macros.AddRelIndex(sb, step, SanitizeId(seam.Provider.Alias), source, $"Returns {pair.Response.Name}");
                     step++;
                 }
             }
@@ -84,7 +84,7 @@ public static class C4Dynamic
             var source = seam.Consumers.Count > 0 ? SanitizeId(seam.Consumers[0].Alias) : SanitizeId(seam.Id) + "_contract";
             foreach (var svc in services.Take(3))
             {
-                sb.AppendLine($"RelIndex({step}, {source}, {SanitizeId(seam.Provider.Alias)}, \"Invokes {svc.Name}\")");
+                C4Macros.AddRelIndex(sb, step, source, SanitizeId(seam.Provider.Alias), $"Invokes {svc.Name}");
                 step++;
             }
         }
@@ -96,7 +96,7 @@ public static class C4Dynamic
             foreach (var consumer in seam.Consumers)
             {
                 var names = string.Join(", ", bindings.Select(b => b.Name).Take(3));
-                sb.AppendLine($"RelIndex({step}, {SanitizeId(consumer.Alias)}, {SanitizeId(seam.Provider.Alias)}, \"Binds: {names}{(bindings.Count > 3 ? "..." : "")}\")");
+                C4Macros.AddRelIndex(sb, step, SanitizeId(consumer.Alias), SanitizeId(seam.Provider.Alias), $"Binds: {names}{(bindings.Count > 3 ? "..." : "")}");
                 step++;
             }
         }
@@ -108,7 +108,7 @@ public static class C4Dynamic
             foreach (var consumer in seam.Consumers)
             {
                 var names = string.Join(", ", observables.Select(o => o.Name).Take(3));
-                sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {SanitizeId(consumer.Alias)}, \"Streams: {names}{(observables.Count > 3 ? "..." : "")}\")");
+                C4Macros.AddRelIndex(sb, step, SanitizeId(seam.Provider.Alias), SanitizeId(consumer.Alias), $"Streams: {names}{(observables.Count > 3 ? "..." : "")}");
                 step++;
             }
         }

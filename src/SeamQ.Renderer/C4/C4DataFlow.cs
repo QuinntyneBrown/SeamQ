@@ -21,30 +21,30 @@ public static class C4DataFlow
         sb.AppendLine();
 
         // Provider workspace boundary
-        sb.AppendLine($"System_Boundary({SanitizeId(seam.Provider.Alias)}_boundary, \"{seam.Provider.Alias}\") {{");
+        C4Macros.BeginBoundary(sb, $"{SanitizeId(seam.Provider.Alias)}_boundary", seam.Provider.Alias);
 
         // Services as containers
         var services = TypeClassifier.GetServices(surface);
         foreach (var svc in services)
-            sb.AppendLine($"  Container({SanitizeId(svc.Name)}, \"{svc.Name}\", \"Service\", \"API service\")");
+            C4Macros.AddContainer(sb, SanitizeId(svc.Name), svc.Name, "Service", "API service");
 
         // Messages as data containers
         var messages = surface.Elements.Where(TypeClassifier.IsRequestMessage).ToList();
         foreach (var msg in messages)
-            sb.AppendLine($"  ContainerDb({SanitizeId(msg.Name)}_data, \"{msg.Name}\", \"Message\", \"Request payload\")");
+            C4Macros.AddContainerDb(sb, $"{SanitizeId(msg.Name)}_data", msg.Name, "Message", "Request payload");
 
         // Responses as data containers
         var responses = surface.Elements.Where(TypeClassifier.IsResponse).ToList();
         foreach (var resp in responses)
-            sb.AppendLine($"  ContainerDb({SanitizeId(resp.Name)}_data, \"{resp.Name}\", \"Response\", \"Response payload\")");
+            C4Macros.AddContainerDb(sb, $"{SanitizeId(resp.Name)}_data", resp.Name, "Response", "Response payload");
 
         // Observables as data streams
         foreach (var obs in surface.Observables)
-            sb.AppendLine($"  ContainerDb({SanitizeId(obs.Name)}_stream, \"{obs.Name}\", \"Observable\", \"Data stream\")");
+            C4Macros.AddContainerDb(sb, $"{SanitizeId(obs.Name)}_stream", obs.Name, "Observable", "Data stream");
 
         // Actions as trigger containers
         foreach (var action in surface.Actions)
-            sb.AppendLine($"  Container({SanitizeId(action.Name)}_action, \"{action.Name}\", \"Action\", \"State trigger\")");
+            C4Macros.AddContainer(sb, $"{SanitizeId(action.Name)}_action", action.Name, "Action", "State trigger");
 
         // If nothing specific, show projects
         if (services.Count == 0 && messages.Count == 0 && !surface.Observables.Any() && !surface.Actions.Any())
@@ -52,17 +52,17 @@ public static class C4DataFlow
             foreach (var project in seam.Provider.Projects)
             {
                 var tech = project.Type == ProjectType.Library ? "Library" : "Application";
-                sb.AppendLine($"  Container({SanitizeId(project.Name)}, \"{project.Name}\", \"{tech}\", \"Provider project\")");
+                C4Macros.AddContainer(sb, SanitizeId(project.Name), project.Name, tech, "Provider project");
             }
         }
 
-        sb.AppendLine("}");
+        C4Macros.EndBoundary(sb);
         sb.AppendLine();
 
         // Consumer workspaces
         foreach (var consumer in seam.Consumers)
         {
-            sb.AppendLine($"System_Ext({SanitizeId(consumer.Alias)}, \"{consumer.Alias}\", \"Consumer workspace\")");
+            C4Macros.AddSystemExt(sb, SanitizeId(consumer.Alias), consumer.Alias, "Consumer workspace");
         }
 
         sb.AppendLine();

@@ -110,17 +110,17 @@ public static class C4PluginApiLayers
         sb.AppendLine();
 
         // Runtime Layer: Methods, Observables, or remaining data types
-        sb.AppendLine("System_Boundary(runtime_layer, \"Runtime Layer\") {");
+        C4Macros.BeginBoundary(sb, "runtime_layer", "Runtime Layer");
         var runtimeCount = 0;
 
         foreach (var method in surface.Methods)
         {
-            sb.AppendLine($"  Component({SanitizeId(method.Name)}_rt, \"{method.Name}\", \"Method\", \"Runtime method\")");
+            C4Macros.AddComponent(sb, $"{SanitizeId(method.Name)}_rt", method.Name, "Method", "Runtime method");
             runtimeCount++;
         }
         foreach (var obs in surface.Observables)
         {
-            sb.AppendLine($"  Component({SanitizeId(obs.Name)}_rt, \"{obs.Name}\", \"Observable\", \"Data stream\")");
+            C4Macros.AddComponent(sb, $"{SanitizeId(obs.Name)}_rt", obs.Name, "Observable", "Data stream");
             runtimeCount++;
         }
         // If no classified runtime elements, show data objects as the runtime data
@@ -136,23 +136,23 @@ public static class C4PluginApiLayers
 
             foreach (var dt in dataTypes)
             {
-                sb.AppendLine($"  Component({SanitizeId(dt.Name)}_rt, \"{dt.Name}\", \"DataType\", \"Runtime data object\")");
+                C4Macros.AddComponent(sb, $"{SanitizeId(dt.Name)}_rt", dt.Name, "DataType", "Runtime data object");
                 runtimeCount++;
             }
         }
         if (runtimeCount == 0)
-            sb.AppendLine("  Component(runtime_none, \"(none)\", \"Runtime\", \"No runtime elements\")");
+            C4Macros.AddComponent(sb, "runtime_none", "(none)", "Runtime", "No runtime elements");
 
-        sb.AppendLine("}");
+        C4Macros.EndBoundary(sb);
         sb.AppendLine();
 
         // Relationships flow top-down
         if (regCount > 0 && contractCount > 0)
-            sb.AppendLine("Rel_D(registration_layer, contract_layer, \"defines\")");
+            C4Macros.AddRelDown(sb, "registration_layer", "contract_layer", "defines");
         if (contractCount > 0 && bindingCount > 0)
-            sb.AppendLine("Rel_D(contract_layer, binding_layer, \"binds\")");
+            C4Macros.AddRelDown(sb, "contract_layer", "binding_layer", "binds");
         if (bindingCount > 0 && runtimeCount > 0)
-            sb.AppendLine("Rel_D(binding_layer, runtime_layer, \"invokes\")");
+            C4Macros.AddRelDown(sb, "binding_layer", "runtime_layer", "invokes");
 
         sb.AppendLine();
         sb.AppendLine("@enduml");
