@@ -57,7 +57,8 @@ public class IcdGenerator : IIcdGenerator
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            if (!formatterLookup.TryGetValue(format, out var formatter))
+            var resolvedFormat = NormalizeFormat(format);
+            if (!formatterLookup.TryGetValue(resolvedFormat, out var formatter))
             {
                 throw new InvalidOperationException(
                     $"No output formatter registered for format '{format}'. " +
@@ -71,6 +72,13 @@ public class IcdGenerator : IIcdGenerator
             await File.WriteAllTextAsync(filePath, formattedContent, Encoding.UTF8, cancellationToken);
         }
     }
+
+    private static string NormalizeFormat(string format) => format.ToLowerInvariant() switch
+    {
+        "md" => "markdown",
+        "htm" => "html",
+        _ => format.ToLowerInvariant()
+    };
 
     private static string SanitizeFileName(string name)
     {
