@@ -5,6 +5,7 @@ using SeamQ.Core.Abstractions;
 using SeamQ.Core.Configuration;
 using SeamQ.Core.Models;
 using SeamQ.Detector;
+using ExitCodes = SeamQ.Core.Models.ExitCodes;
 
 namespace SeamQ.Cli.Commands;
 
@@ -40,6 +41,7 @@ public static class ExportCommand
                 if (seamsToExport.Count == 0)
                 {
                     renderer.WriteWarning("No seams in registry. Run 'seamq scan' first.");
+                    Environment.ExitCode = ExitCodes.PartialFailure;
                     return;
                 }
             }
@@ -49,6 +51,7 @@ public static class ExportCommand
                 if (seam is null)
                 {
                     renderer.WriteError($"Seam '{seamId}' not found. Run 'seamq scan' first.");
+                    Environment.ExitCode = ExitCodes.FatalError;
                     return;
                 }
                 seamsToExport = new List<Seam> { seam };
@@ -56,6 +59,7 @@ public static class ExportCommand
             else
             {
                 renderer.WriteError("Provide a seam ID or use --all to export all seams.");
+                Environment.ExitCode = ExitCodes.FatalError;
                 return;
             }
 

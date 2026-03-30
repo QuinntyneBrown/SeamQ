@@ -5,6 +5,7 @@ using SeamQ.Core.Abstractions;
 using SeamQ.Core.Configuration;
 using SeamQ.Core.Models;
 using SeamQ.Detector;
+using ExitCodes = SeamQ.Core.Models.ExitCodes;
 
 namespace SeamQ.Cli.Commands;
 
@@ -43,6 +44,7 @@ public static class GenerateCommand
                 if (seamsToGenerate.Count == 0)
                 {
                     renderer.WriteWarning("No seams in registry. Run 'seamq scan' first.");
+                    Environment.ExitCode = ExitCodes.PartialFailure;
                     return;
                 }
             }
@@ -52,6 +54,7 @@ public static class GenerateCommand
                 if (seam is null)
                 {
                     renderer.WriteError($"Seam '{seamId}' not found. Run 'seamq scan' first.");
+                    Environment.ExitCode = ExitCodes.FatalError;
                     return;
                 }
                 seamsToGenerate = new List<Seam> { seam };
@@ -59,6 +62,7 @@ public static class GenerateCommand
             else
             {
                 renderer.WriteError("Provide a seam ID or use --all to generate for all seams.");
+                Environment.ExitCode = ExitCodes.FatalError;
                 return;
             }
 

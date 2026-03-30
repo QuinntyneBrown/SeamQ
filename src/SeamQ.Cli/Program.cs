@@ -1,4 +1,4 @@
-using System.CommandLine;
+using System.CommandLine.Parsing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SeamQ.Cli;
@@ -18,6 +18,9 @@ services.AddLogging(builder => builder.AddConsole().SetMinimumLevel(LogLevel.War
 // CLI rendering
 services.AddSingleton<IConsoleRenderer, ConsoleRenderer>();
 
+// Global options context
+services.AddSingleton<GlobalContext>();
+
 // Core configuration
 services.AddSeamQServices();
 
@@ -34,5 +37,13 @@ services.AddSingleton<SeamQ.Core.Abstractions.IDataExporter, SeamQ.Generator.Jso
 
 var serviceProvider = services.BuildServiceProvider();
 
-var rootCommand = CommandBuilder.BuildRootCommand(serviceProvider);
-return await rootCommand.InvokeAsync(args);
+// Auto-load persisted registry if it exists
+var registry = serviceProvider.GetRequiredService<SeamQ.Detector.SeamRegistry>();
+var registryPath = SeamQ.Detector.SeamRegistry.DefaultRegistryPath;
+if (File.Exists(registryPath))
+{
+    await registry.LoadFromFileAsync(registryPath);
+}
+
+CommandBuilder.BuildRootCommand(serviceProvider, out var parser);
+return await parser.InvokeAsync(args);

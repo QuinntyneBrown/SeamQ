@@ -5,6 +5,7 @@ using SeamQ.Core.Abstractions;
 using SeamQ.Core.Configuration;
 using SeamQ.Core.Models;
 using SeamQ.Detector;
+using ExitCodes = SeamQ.Core.Models.ExitCodes;
 
 namespace SeamQ.Cli.Commands;
 
@@ -34,6 +35,7 @@ public static class ListCommand
             if (seams.Count == 0)
             {
                 renderer.WriteWarning("No seams in registry. Run 'seamq scan' first.");
+                Environment.ExitCode = ExitCodes.PartialFailure;
                 return;
             }
 
@@ -71,7 +73,7 @@ public static class ListCommand
                 FormatSeamType(s.Type),
                 s.Provider.Alias,
                 string.Join(", ", s.Consumers.Select(c => c.Alias)),
-                s.Confidence.ToString("P0")
+                s.Confidence.ToString("F2")
             });
 
             renderer.WriteTable(headers, rows);

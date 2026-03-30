@@ -1,4 +1,6 @@
 using System.Collections.Concurrent;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using SeamQ.Core.Models;
 
 namespace SeamQ.Detector;
@@ -96,4 +98,46 @@ public class SeamRegistry
     /// Gets the total number of registered seams.
     /// </summary>
     public int Count => _seams.Count;
+
+    private static readonly JsonSerializerOptions s_jsonOptions = new()
+    {
+        WriteIndented = true,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        Converters = { new JsonStringEnumConverter() }
+    };
+
+    /// <summary>
+    /// Serializes all seams to a JSON file at the specified path.
+    /// Creates the parent directory if it does not exist.
+    /// </summary>
+    public async Task SaveToFileAsync(string path)
+    {
+        var fullPath = Path.GetFullPath(path);
+        Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
+        var seams = _seams.Values.ToList();
+        var json = JsonSerializer.Serialize(seams, s_jsonOptions);
+        await File.WriteAllTextAsync(fullPath, json);
+    }
+
+    /// <summary>
+    /// Deserializes seams from a JSON file and loads them into the registry.
+    /// Existing entries are replaced on ID collision.
+    /// </summary>
+    public async Task LoadFromFileAsync(string path)
+    {
+        var fullPath = Path.GetFullPath(path);
+        if (!File.Exists(fullPath)) return;
+        var json = await File.ReadAllTextAsync(fullPath);
+        var seams = JsonSerializer.Deserialize<List<Seam>>(json, s_jsonOptions);
+        if (seams is not null)
+        {
+            RegisterAll(seams);
+        }
+    }
+
+    /// <summary>
+    /// Default registry file path relative to the current working directory.
+    /// </summary>
+    public static string DefaultRegistryPath =>
+        Path.Combine(Directory.GetCurrentDirectory(), ".seamq", "registry.json");
 }

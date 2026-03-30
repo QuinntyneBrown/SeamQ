@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SeamQ.Cli.Rendering;
 using SeamQ.Core.Abstractions;
 using SeamQ.Detector;
+using ExitCodes = SeamQ.Core.Models.ExitCodes;
 
 namespace SeamQ.Cli.Commands;
 
@@ -27,6 +28,7 @@ public static class DiffCommand
             if (currentSeams.Count == 0)
             {
                 renderer.WriteWarning("No seams in registry. Run 'seamq scan' first.");
+                Environment.ExitCode = ExitCodes.PartialFailure;
                 return;
             }
 
@@ -34,6 +36,7 @@ public static class DiffCommand
             if (!File.Exists(fullBaselinePath))
             {
                 renderer.WriteError($"Baseline file not found: {fullBaselinePath}");
+                Environment.ExitCode = ExitCodes.FatalError;
                 return;
             }
 

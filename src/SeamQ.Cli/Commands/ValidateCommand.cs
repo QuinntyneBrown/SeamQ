@@ -4,6 +4,7 @@ using SeamQ.Cli.Rendering;
 using SeamQ.Core.Abstractions;
 using SeamQ.Core.Models;
 using SeamQ.Detector;
+using ExitCodes = SeamQ.Core.Models.ExitCodes;
 
 namespace SeamQ.Cli.Commands;
 
@@ -34,6 +35,7 @@ public static class ValidateCommand
                 if (seamsToValidate.Count == 0)
                 {
                     renderer.WriteWarning("No seams in registry. Run 'seamq scan' first.");
+                    Environment.ExitCode = ExitCodes.PartialFailure;
                     return;
                 }
             }
@@ -43,6 +45,7 @@ public static class ValidateCommand
                 if (seam is null)
                 {
                     renderer.WriteError($"Seam '{seamId}' not found. Run 'seamq scan' first.");
+                    Environment.ExitCode = ExitCodes.FatalError;
                     return;
                 }
                 seamsToValidate = new List<Seam> { seam };
@@ -50,6 +53,7 @@ public static class ValidateCommand
             else
             {
                 renderer.WriteError("Provide a seam ID or use --all to validate all seams.");
+                Environment.ExitCode = ExitCodes.FatalError;
                 return;
             }
 
@@ -94,6 +98,7 @@ public static class ValidateCommand
             else
             {
                 renderer.WriteInfo($"validated {seamsToValidate.Count} seam(s): {totalErrors} errors, {totalWarnings} warnings.");
+                Environment.ExitCode = totalErrors > 0 ? ExitCodes.FatalError : ExitCodes.PartialFailure;
             }
         }, seamIdArgument, allOption);
 

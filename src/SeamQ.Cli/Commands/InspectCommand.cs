@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SeamQ.Cli.Rendering;
 using SeamQ.Core.Models;
 using SeamQ.Detector;
+using ExitCodes = SeamQ.Core.Models.ExitCodes;
 
 namespace SeamQ.Cli.Commands;
 
@@ -33,11 +34,13 @@ public static class InspectCommand
                 else if (candidates.Count > 1)
                 {
                     renderer.WriteError($"Ambiguous seam ID '{seamId}'. Matches: {string.Join(", ", candidates.Select(s => s.Id))}");
+                    Environment.ExitCode = ExitCodes.FatalError;
                     return;
                 }
                 else
                 {
                     renderer.WriteError($"Seam '{seamId}' not found. Run 'seamq scan' first.");
+                    Environment.ExitCode = ExitCodes.FatalError;
                     return;
                 }
             }

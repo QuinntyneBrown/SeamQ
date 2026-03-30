@@ -5,6 +5,7 @@ using SeamQ.Core.Abstractions;
 using SeamQ.Core.Configuration;
 using SeamQ.Core.Models;
 using SeamQ.Detector;
+using ExitCodes = SeamQ.Core.Models.ExitCodes;
 
 namespace SeamQ.Cli.Commands;
 
@@ -47,39 +48,63 @@ public static class ScanCommand
             if (workspacePaths.Length == 0)
             {
                 renderer.WriteError("No workspace paths provided. Pass paths as arguments or configure them in seamq.config.json.");
+                Environment.ExitCode = ExitCodes.FatalError;
                 return;
             }
 
-            // Scan each workspace
-            var workspaces = new List<Workspace>();
-            foreach (var wsPath in workspacePaths)
+            try
             {
-                var fullPath = Path.GetFullPath(wsPath);
-                var workspace = await scanner.ScanAsync(fullPath);
-                workspaces.Add(workspace);
-                renderer.WriteSuccess($"scanned {workspace.Alias} ({workspace.Projects.Count} projects, {workspace.Exports.Count} exports)");
-            }
-
-            // Detect seams
-            var seams = await detector.DetectAsync(workspaces);
-            registry.RegisterAll(seams);
-
-            renderer.WriteLine();
-            renderer.WriteInfo($"found {seams.Count} seams across {workspaces.Count} workspaces.");
-
-            // Save baseline if requested
-            if (saveBaseline is not null)
-            {
-                var json = System.Text.Json.JsonSerializer.Serialize(seams, new System.Text.Json.JsonSerializerOptions
+                // Scan each workspace
+                var workspaces = new List<Workspace>();
+                foreach (var wsPath in workspacePaths)
                 {
-                    WriteIndented = true,
-                    PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase,
-                    Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter() }
-                });
-                var baselinePath = Path.GetFullPath(saveBaseline);
-                Directory.CreateDirectory(Path.GetDirectoryName(baselinePath)!);
-                await File.WriteAllTextAsync(baselinePath, json);
-                renderer.WriteMuted($"baseline saved to {baselinePath}");
+                    var fullPath = Path.GetFullPath(wsPath);
+                    var workspace = await scanner.ScanAsync(fullPath);
+                    workspaces.Add(workspace);
+                    renderer.WriteSuccess($"scanned {workspace.Alias} ({workspace.Projects.Count} projects, {workspace.Exports.Count} exports)");
+                }
+
+                // Detect seams
+                var seams = await detector.DetectAsync(workspaces);
+                registry.RegisterAll(seams);
+
+                // Persist registry to disk so other commands can load it
+                var registryPath = SeamRegistry.DefaultRegistryPath;
+                await registry.SaveToFileAsync(registryPath);
+
+                renderer.WriteLine();
+                renderer.WriteInfo($"found {seams.Count} seams across {workspaces.Count} workspaces.");
+                renderer.WriteMuted("run 'seamq list' to view detected seams.");
+
+                // Save baseline if requested
+                if (saveBaseline is not null)
+                {
+                    var json = System.Text.Json.JsonSerializer.Serialize(seams, new System.Text.Json.JsonSerializerOptions
+                    {
+                        WriteIndented = true,
+                        PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase,
+                        Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter() }
+                    });
+                    var baselinePath = Path.GetFullPath(saveBaseline);
+                    Directory.CreateDirectory(Path.GetDirectoryName(baselinePath)!);
+                    await File.WriteAllTextAsync(baselinePath, json);
+                    renderer.WriteMuted($"baseline saved to {baselinePath}");
+                }
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                renderer.WriteError($"Directory not found: {ex.Message}");
+                Environment.ExitCode = ExitCodes.FatalError;
+            }
+            catch (IOException ex)
+            {
+                renderer.WriteError($"I/O error during scan: {ex.Message}");
+                Environment.ExitCode = ExitCodes.FatalError;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                renderer.WriteError($"Access denied: {ex.Message}");
+                Environment.ExitCode = ExitCodes.FatalError;
             }
         }, pathsArgument, saveBaselineOption, noCacheOption, excludeOption);
 
