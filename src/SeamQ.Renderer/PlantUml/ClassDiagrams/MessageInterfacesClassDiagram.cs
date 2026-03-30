@@ -3,7 +3,8 @@ using SeamQ.Core.Models;
 namespace SeamQ.Renderer.PlantUml.ClassDiagrams;
 
 /// <summary>
-/// Generates a class diagram showing message interfaces: actions, observables, and selectors.
+/// Generates a class diagram showing message interfaces: request/response types,
+/// actions, observables, and selectors.
 /// </summary>
 public static class MessageInterfacesClassDiagram
 {
@@ -14,105 +15,92 @@ public static class MessageInterfacesClassDiagram
 
         var surface = seam.ContractSurface;
 
-        // Group actions by ParentName if available, otherwise render standalone
-        var groupedActions = surface.Actions
-            .GroupBy(a => a.ParentName ?? string.Empty)
-            .ToList();
-
-        foreach (var group in groupedActions)
+        // Show properly classified actions
+        foreach (var action in surface.Actions)
         {
-            if (!string.IsNullOrEmpty(group.Key))
-            {
-                encoder.AddRawLine($"package \"{group.Key}\" {{");
-            }
-
-            foreach (var action in group)
-            {
-                encoder.AddRawLine($"class {SanitizeName(action.Name)} <<Action>> {{");
-                if (!string.IsNullOrEmpty(action.TypeSignature))
-                {
-                    encoder.AddRawLine($"  {action.TypeSignature}");
-                }
-                encoder.AddRawLine("}");
-                encoder.AddBlankLine();
-            }
-
-            if (!string.IsNullOrEmpty(group.Key))
-            {
-                encoder.AddRawLine("}");
-                encoder.AddBlankLine();
-            }
-        }
-
-        // Group observables by ParentName if available, otherwise render standalone
-        var groupedObservables = surface.Observables
-            .GroupBy(o => o.ParentName ?? string.Empty)
-            .ToList();
-
-        foreach (var group in groupedObservables)
-        {
-            if (!string.IsNullOrEmpty(group.Key))
-            {
-                encoder.AddRawLine($"package \"{group.Key}\" {{");
-            }
-
-            foreach (var observable in group)
-            {
-                encoder.AddRawLine($"class {SanitizeName(observable.Name)} <<Observable>> {{");
-                if (!string.IsNullOrEmpty(observable.TypeSignature))
-                {
-                    encoder.AddRawLine($"  {observable.TypeSignature}");
-                }
-                encoder.AddRawLine("}");
-                encoder.AddBlankLine();
-            }
-
-            if (!string.IsNullOrEmpty(group.Key))
-            {
-                encoder.AddRawLine("}");
-                encoder.AddBlankLine();
-            }
-        }
-
-        // Show selectors as stereotyped classes
-        foreach (var selector in surface.Selectors)
-        {
-            encoder.AddRawLine($"class {SanitizeName(selector.Name)} <<Selector>> {{");
-            if (!string.IsNullOrEmpty(selector.TypeSignature))
-            {
-                encoder.AddRawLine($"  {selector.TypeSignature}");
-            }
+            encoder.AddRawLine($"class {SanitizeName(action.Name)} <<Action>> {{");
+            if (!string.IsNullOrEmpty(action.TypeSignature))
+                encoder.AddRawLine($"  {action.TypeSignature}");
             encoder.AddRawLine("}");
             encoder.AddBlankLine();
         }
 
-        // Add relationships: selectors reading from observables/actions when TypeSignature matches
+        // Show properly classified observables
+        foreach (var observable in surface.Observables)
+        {
+            encoder.AddRawLine($"class {SanitizeName(observable.Name)} <<Observable>> {{");
+            if (!string.IsNullOrEmpty(observable.TypeSignature))
+                encoder.AddRawLine($"  {observable.TypeSignature}");
+            encoder.AddRawLine("}");
+            encoder.AddBlankLine();
+        }
+
+        // Show properly classified selectors
         foreach (var selector in surface.Selectors)
         {
-            if (string.IsNullOrEmpty(selector.TypeSignature))
-                continue;
+            encoder.AddRawLine($"class {SanitizeName(selector.Name)} <<Selector>> {{");
+            if (!string.IsNullOrEmpty(selector.TypeSignature))
+                encoder.AddRawLine($"  {selector.TypeSignature}");
+            encoder.AddRawLine("}");
+            encoder.AddBlankLine();
+        }
 
-            foreach (var action in surface.Actions)
+        // Fall back to name-based heuristic: show Message/Request types as <<Message>>,
+        // Response types as <<Response>>
+        var messages = surface.Elements.Where(TypeClassifier.IsRequestMessage).ToList();
+        var responses = surface.Elements.Where(TypeClassifier.IsResponse).ToList();
+
+        if (messages.Count > 0 || responses.Count > 0)
+        {
+            encoder.AddRawLine("' --- Message Types ---");
+            encoder.AddBlankLine();
+
+            foreach (var msg in messages)
             {
-                if (selector.TypeSignature.Contains(action.Name))
+                var members = TypeClassifier.GroupWithMembers(surface.Elements)
+                    .FirstOrDefault(g => g.Parent.Name == msg.Name);
+
+                encoder.AddRawLine($"class {SanitizeName(msg.Name)} <<Message>> {{");
+                if (members.Members is not null)
                 {
-                    encoder.AddRelationship(
-                        SanitizeName(selector.Name),
-                        SanitizeName(action.Name),
-                        "..>",
-                        "reads");
+                    foreach (var m in members.Members)
+                    {
+                        var name = m.Name.StartsWith(msg.Name + ".") ? m.Name[(msg.Name.Length + 1)..] : m.Name;
+                        encoder.AddRawLine($"  +{name}: {m.TypeSignature ?? "any"}");
+                    }
                 }
+                encoder.AddRawLine("}");
+                encoder.AddBlankLine();
             }
 
-            foreach (var observable in surface.Observables)
+            foreach (var resp in responses)
             {
-                if (selector.TypeSignature.Contains(observable.Name))
+                var members = TypeClassifier.GroupWithMembers(surface.Elements)
+                    .FirstOrDefault(g => g.Parent.Name == resp.Name);
+
+                encoder.AddRawLine($"class {SanitizeName(resp.Name)} <<Response>> {{");
+                if (members.Members is not null)
+                {
+                    foreach (var m in members.Members)
+                    {
+                        var name = m.Name.StartsWith(resp.Name + ".") ? m.Name[(resp.Name.Length + 1)..] : m.Name;
+                        encoder.AddRawLine($"  +{name}: {m.TypeSignature ?? "any"}");
+                    }
+                }
+                encoder.AddRawLine("}");
+                encoder.AddBlankLine();
+            }
+
+            // Add request → response relationships
+            var pairs = TypeClassifier.GetMessagePairs(surface);
+            foreach (var pair in pairs)
+            {
+                if (pair.Response is not null)
                 {
                     encoder.AddRelationship(
-                        SanitizeName(selector.Name),
-                        SanitizeName(observable.Name),
-                        "..>",
-                        "reads");
+                        SanitizeName(pair.Request.Name),
+                        SanitizeName(pair.Response.Name),
+                        "-->", "produces");
                 }
             }
         }

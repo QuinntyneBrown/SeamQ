@@ -14,122 +14,86 @@ public static class CommandFlowSequence
         encoder.StartSequenceDiagram($"Command Flow: {seam.Name}");
 
         var consumer = seam.Consumers.FirstOrDefault()?.Alias ?? "Consumer";
+        var surface = seam.ContractSurface;
 
-        // Add participants
         encoder.AddParticipant(consumer);
         encoder.AddParticipant("Command Service", "CmdSvc");
         encoder.AddParticipant("Event Bus", "EventBus");
-
         encoder.AddBlankLine();
 
-        // Find command-related methods
-        var commandMethods = seam.ContractSurface.Methods
+        // Try classified methods first
+        var commandMethods = surface.Methods
             .Where(m =>
-                (m.Name?.Contains("command", StringComparison.OrdinalIgnoreCase) ?? false) ||
-                (m.Name?.Contains("Command", StringComparison.Ordinal) ?? false) ||
-                (m.ParentName?.Contains("Command", StringComparison.Ordinal) ?? false) ||
-                (m.ParentName?.Contains("command", StringComparison.Ordinal) ?? false))
+                m.Name.Contains("command", StringComparison.OrdinalIgnoreCase) ||
+                m.Name.Contains("execute", StringComparison.OrdinalIgnoreCase) ||
+                m.ParentName?.Contains("Command", StringComparison.Ordinal) == true)
             .Take(8)
             .ToList();
 
-        // Fall back to all methods if no command-specific ones found
         if (commandMethods.Count == 0)
-        {
-            commandMethods = seam.ContractSurface.Methods.Take(6).ToList();
-        }
+            commandMethods = surface.Methods.Take(6).ToList();
 
-        var outputBindings = seam.ContractSurface.OutputBindings.Take(5).ToList();
-
-        // If still no methods, use name-heuristic on Types
-        if (commandMethods.Count == 0)
-        {
-            var commandTypes = seam.ContractSurface.Elements
-                .Where(e => e.ParentName is null &&
-                            e.Name.Contains("Command", StringComparison.OrdinalIgnoreCase))
-                .Take(6)
-                .ToList();
-
-            if (commandTypes.Count > 0)
-            {
-                encoder.AddRawLine("== Command Dispatch ==");
-                foreach (var ct in commandTypes.Take(4))
-                {
-                    encoder.AddMessage(consumer, "CmdSvc", $"dispatch({ct.Name})");
-                    encoder.AddActivation("CmdSvc");
-                    encoder.AddMessage("CmdSvc", "CmdSvc", "validate()");
-                    encoder.AddMessage("CmdSvc", "CmdSvc", "execute()");
-                    encoder.AddMessage("CmdSvc", "EventBus", "emit(completed)");
-                    encoder.AddMessage("CmdSvc", consumer, "result", isReturn: true);
-                    encoder.AddDeactivation("CmdSvc");
-                    encoder.AddBlankLine();
-                }
-                encoder.EndDiagram();
-                return encoder.Build();
-            }
-        }
+        var outputBindings = surface.OutputBindings.Take(5).ToList();
 
         if (commandMethods.Count > 0)
         {
             encoder.AddRawLine("== Command Dispatch ==");
-
             foreach (var method in commandMethods.Take(6))
             {
-                // Command → Validate → Execute → Response
                 encoder.AddMessage(consumer, "CmdSvc", $"{method.Name}()");
                 encoder.AddActivation("CmdSvc");
-
                 encoder.AddMessage("CmdSvc", "CmdSvc", "validate()");
                 encoder.AddMessage("CmdSvc", "CmdSvc", "execute()");
-
-                // Emit events via output bindings after execution
                 if (outputBindings.Count > 0)
-                {
                     foreach (var output in outputBindings.Take(2))
-                    {
                         encoder.AddMessage("CmdSvc", "EventBus", $"emit({output.Name})");
-                    }
-                }
-
                 encoder.AddMessage("CmdSvc", consumer, "result", isReturn: true);
                 encoder.AddDeactivation("CmdSvc");
-
                 encoder.AddBlankLine();
             }
         }
         else
         {
-            // No methods — show generic command flow
-            encoder.AddRawLine("== Command ==");
-            encoder.AddMessage(consumer, "CmdSvc", "dispatch(command)");
-            encoder.AddActivation("CmdSvc");
-            encoder.AddMessage("CmdSvc", "CmdSvc", "validate()");
-            encoder.AddMessage("CmdSvc", "CmdSvc", "execute()");
+            // Name-heuristic: find CommandService + CommandMessage → CommandResponse
+            var cmdService = surface.Elements.FirstOrDefault(e =>
+                e.ParentName is null && e.Name.Equals("CommandService", StringComparison.Ordinal));
+            var cmdMessages = surface.Elements
+                .Where(e => TypeClassifier.IsRequestMessage(e) &&
+                            e.Name.Contains("Command", StringComparison.Ordinal))
+                .Take(4)
+                .ToList();
+            var cmdResponse = surface.Elements.FirstOrDefault(e =>
+                TypeClassifier.IsResponse(e) && e.Name.Contains("Command", StringComparison.Ordinal));
 
-            if (outputBindings.Count > 0)
+            if (cmdService is not null || cmdMessages.Count > 0)
             {
-                foreach (var output in outputBindings.Take(3))
+                var svcName = cmdService?.Name ?? "CommandService";
+                var respName = cmdResponse?.Name ?? "CommandResponse";
+
+                encoder.AddRawLine("== Command Dispatch ==");
+                foreach (var msg in cmdMessages.DefaultIfEmpty(null!))
                 {
-                    encoder.AddMessage("CmdSvc", "EventBus", $"emit({output.Name})");
+                    var msgName = msg?.Name ?? "CommandMessage";
+                    encoder.AddMessage(consumer, "CmdSvc", $"{svcName}.execute({msgName})");
+                    encoder.AddActivation("CmdSvc");
+                    encoder.AddMessage("CmdSvc", "CmdSvc", "validate()");
+                    encoder.AddMessage("CmdSvc", "CmdSvc", "execute()");
+                    encoder.AddMessage("CmdSvc", "EventBus", "emit(commandCompleted)");
+                    encoder.AddMessage("CmdSvc", consumer, respName, isReturn: true);
+                    encoder.AddDeactivation("CmdSvc");
+                    encoder.AddBlankLine();
                 }
             }
             else
             {
+                encoder.AddRawLine("== Command ==");
+                encoder.AddMessage(consumer, "CmdSvc", "dispatch(command)");
+                encoder.AddActivation("CmdSvc");
+                encoder.AddMessage("CmdSvc", "CmdSvc", "validate()");
+                encoder.AddMessage("CmdSvc", "CmdSvc", "execute()");
                 encoder.AddMessage("CmdSvc", "EventBus", "emit(commandCompleted)");
-            }
-
-            encoder.AddMessage("CmdSvc", consumer, "result", isReturn: true);
-            encoder.AddDeactivation("CmdSvc");
-            encoder.AddNote("No specific command methods found in contract surface");
-        }
-
-        // Show remaining output bindings as event summary if many
-        if (outputBindings.Count > 2 && commandMethods.Count > 0)
-        {
-            encoder.AddBlankLine();
-            encoder.AddRawLine("== Event Emissions ==");
-            foreach (var output in outputBindings.Skip(2).Take(5))
-            {
-                encoder.AddMessage("CmdSvc", "EventBus", $"emit({output.Name})");
+                encoder.AddMessage("CmdSvc", consumer, "result", isReturn: true);
+                encoder.AddDeactivation("CmdSvc");
             }
         }
 
