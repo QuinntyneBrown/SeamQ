@@ -30,8 +30,9 @@ public static class DiagramCommand
             var diagramRenderer = serviceProvider.GetRequiredService<IDiagramRenderer>();
             var registry = serviceProvider.GetRequiredService<SeamRegistry>();
             var config = serviceProvider.GetRequiredService<SeamQConfig>();
+            var globalContext = serviceProvider.GetRequiredService<GlobalContext>();
 
-            var outputDir = Path.GetFullPath(config.Output.Directory);
+            var outputDir = Path.GetFullPath(globalContext.OutputDir ?? config.Output.Directory);
 
             // Determine which seams to diagram
             List<Seam> seams;

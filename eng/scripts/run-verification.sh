@@ -52,7 +52,10 @@ audit_output() {
   fi
 
   # G2: must detect at least 1 seam
-  local registry_file="$HOME/.seamq/registry.json"
+  # Registry is written to CWD/.seamq/registry.json — CWD is the iter dir during scan
+  local iter_base
+  iter_base="$(dirname "$output_dir")"
+  local registry_file="$iter_base/.seamq/registry.json"
   local seam_count=0
   if [[ -f "$registry_file" ]]; then
     # Count top-level array items
@@ -185,6 +188,9 @@ for iter in $(seq "$START_ITER" "$MAX_ITER"); do
   mkdir -p "$ITER_DIR"
   bash "$SCRIPT_DIR/generate-fixture.sh" "$iter" "$ITER_DIR" > /dev/null 2>&1
 
+  # Run all CLI commands from the iteration directory so registry + output land there
+  pushd "$ITER_DIR" > /dev/null
+
   # Step 2: Run seamq scan
   scan_exit=0
   seamq scan \
@@ -206,6 +212,8 @@ for iter in $(seq "$START_ITER" "$MAX_ITER"); do
   seamq diagram --all \
     --output-dir "$OUTPUT_DIR" \
     --quiet 2>/dev/null || diag_exit=$?
+
+  popd > /dev/null
 
   # Step 5: Audit output
   audit_results=$(audit_output "$iter" "$OUTPUT_DIR" "$scan_exit" "$gen_exit" "$diag_exit")
