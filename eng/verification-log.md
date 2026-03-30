@@ -1,23 +1,14 @@
 # SeamQ Verification Log
-Generated: 2026-03-30T10:06:59Z
+Generated: 2026-03-30T10:09:33Z
 Iterations: 1–10
 
 | Iter | Seams Found | ICDs Generated | Diagrams Generated | Scan OK | Gen OK | Diag OK | Gaps |
 |------|-------------|----------------|-------------------|---------|--------|---------|------|
-| 1 | 0 | 0 | 0 | Y | Y | Y | 3 |
-| 2 | 0 | 0 | 0 | Y | Y | Y | 3 |
-| 3 | 0 | 0 | 0 | Y | Y | Y | 3 |
-| 4 | 0 | 0 | 0 | Y | Y | Y | 3 |
-| 5 | 0 | 0 | 0 | Y | Y | Y | 3 |
-| 6 | 0 | 0 | 0 | Y | Y | Y | 3 |
-| 7 | 0 | 0 | 0 | Y | Y | Y | 3 |
-| 8 | 0 | 0 | 0 | Y | Y | Y | 3 |
-| 9 | 0 | 0 | 0 | Y | Y | Y | 3 |
-| 10 | 0 | 0 | 0 | Y | Y | Y | 3 |
-
-## Summary
-- **Total iterations**: 10
-- **Total seams detected**: 0
-- **Total ICDs generated**: 0
-- **Total diagrams generated**: 0
-- **Total gaps found**: 30
+| 1 | 0 | 6 | 12 | Y | Y | Y | 2 |
+| 2 | 0 | 6 | 12 | Y | Y | Y | 2 |
+| 3 | 0 | 6 | 12 | Y | Y | Y | 2 |
+| 4 | 0 | 6 | 12 | Y | Y | Y | 2 |
+| 5 | 0 | 6 | 12 | Y | Y | Y | 2 |
+| 6 | 0 | 6 | 12 | Y | Y | Y | 2 |
+| 7 | 0 | 6 | 12 | Y | Y | Y | 2 |
+| 8 | 0 | 6 | 12 | Y | Y | Y | 2 |
