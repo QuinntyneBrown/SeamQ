@@ -74,9 +74,9 @@ public static class C4DataFlow
             var svc = TypeClassifier.FindServiceForMessage(pair.Request, services);
             if (svc is not null)
             {
-                sb.AppendLine($"Rel({SanitizeId(svc.Name)}, {SanitizeId(pair.Request.Name)}_data, \"accepts\", \"Input\")");
+                C4Macros.AddRel(sb, SanitizeId(svc.Name), $"{SanitizeId(pair.Request.Name)}_data", "accepts", "Input");
                 if (pair.Response is not null)
-                    sb.AppendLine($"Rel({SanitizeId(svc.Name)}, {SanitizeId(pair.Response.Name)}_data, \"returns\", \"Output\")");
+                    C4Macros.AddRel(sb, SanitizeId(svc.Name), $"{SanitizeId(pair.Response.Name)}_data", "returns", "Output");
             }
         }
 
@@ -84,7 +84,7 @@ public static class C4DataFlow
         foreach (var consumer in seam.Consumers)
         {
             foreach (var svc in services.Take(3))
-                sb.AppendLine($"Rel({SanitizeId(consumer.Alias)}, {SanitizeId(svc.Name)}, \"uses\")");
+                C4Macros.AddRel(sb, SanitizeId(consumer.Alias), SanitizeId(svc.Name), "uses");
         }
 
         // Observable data flow relationships
@@ -92,10 +92,10 @@ public static class C4DataFlow
         {
             var firstSvc = services.FirstOrDefault();
             if (firstSvc is not null)
-                sb.AppendLine($"Rel({SanitizeId(firstSvc.Name)}, {SanitizeId(obs.Name)}_stream, \"emits\", \"Observable\")");
+                C4Macros.AddRel(sb, SanitizeId(firstSvc.Name), $"{SanitizeId(obs.Name)}_stream", "emits", "Observable");
 
             foreach (var consumer in seam.Consumers)
-                sb.AppendLine($"Rel({SanitizeId(consumer.Alias)}, {SanitizeId(obs.Name)}_stream, \"subscribes\")");
+                C4Macros.AddRel(sb, SanitizeId(consumer.Alias), $"{SanitizeId(obs.Name)}_stream", "subscribes");
         }
 
         sb.AppendLine();
