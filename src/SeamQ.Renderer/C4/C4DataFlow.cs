@@ -5,14 +5,14 @@ namespace SeamQ.Renderer.C4;
 
 /// <summary>
 /// Generates a C4 Container-level diagram showing data flow through the system.
-/// Observables represent data flow paths, Actions are trigger points,
-/// and Selectors are consumption points for consumer workspaces.
+/// Shows message/response flows between services, with name-heuristic fallbacks.
 /// </summary>
 public static class C4DataFlow
 {
     public static string Generate(Seam seam)
     {
         var sb = new StringBuilder();
+        var surface = seam.ContractSurface;
 
         sb.AppendLine("@startuml");
         sb.AppendLine("!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml");
@@ -20,32 +20,40 @@ public static class C4DataFlow
         sb.AppendLine($"title Data Flow: {seam.Name}");
         sb.AppendLine();
 
-        // Provider workspace as a system boundary with project containers
+        // Provider workspace boundary
         sb.AppendLine($"System_Boundary({SanitizeId(seam.Provider.Alias)}_boundary, \"{seam.Provider.Alias}\") {{");
 
-        if (seam.Provider.Projects.Count > 0)
+        // Services as containers
+        var services = TypeClassifier.GetServices(surface);
+        foreach (var svc in services)
+            sb.AppendLine($"  Container({SanitizeId(svc.Name)}, \"{svc.Name}\", \"Service\", \"API service\")");
+
+        // Messages as data containers
+        var messages = surface.Elements.Where(TypeClassifier.IsRequestMessage).ToList();
+        foreach (var msg in messages)
+            sb.AppendLine($"  ContainerDb({SanitizeId(msg.Name)}_data, \"{msg.Name}\", \"Message\", \"Request payload\")");
+
+        // Responses as data containers
+        var responses = surface.Elements.Where(TypeClassifier.IsResponse).ToList();
+        foreach (var resp in responses)
+            sb.AppendLine($"  ContainerDb({SanitizeId(resp.Name)}_data, \"{resp.Name}\", \"Response\", \"Response payload\")");
+
+        // Observables as data streams
+        foreach (var obs in surface.Observables)
+            sb.AppendLine($"  ContainerDb({SanitizeId(obs.Name)}_stream, \"{obs.Name}\", \"Observable\", \"Data stream\")");
+
+        // Actions as trigger containers
+        foreach (var action in surface.Actions)
+            sb.AppendLine($"  Container({SanitizeId(action.Name)}_action, \"{action.Name}\", \"Action\", \"State trigger\")");
+
+        // If nothing specific, show projects
+        if (services.Count == 0 && messages.Count == 0 && !surface.Observables.Any() && !surface.Actions.Any())
         {
             foreach (var project in seam.Provider.Projects)
             {
                 var tech = project.Type == ProjectType.Library ? "Library" : "Application";
                 sb.AppendLine($"  Container({SanitizeId(project.Name)}, \"{project.Name}\", \"{tech}\", \"Provider project\")");
             }
-        }
-        else
-        {
-            sb.AppendLine($"  Container({SanitizeId(seam.Provider.Alias)}_main, \"{seam.Provider.Alias}\", \"Provider\", \"Provider workspace\")");
-        }
-
-        // Observables as data stores / streams
-        foreach (var obs in seam.ContractSurface.Observables)
-        {
-            sb.AppendLine($"  ContainerDb({SanitizeId(obs.Name)}_stream, \"{obs.Name}\", \"Observable\", \"Reactive data stream\")");
-        }
-
-        // Actions as trigger containers
-        foreach (var action in seam.ContractSurface.Actions)
-        {
-            sb.AppendLine($"  Container({SanitizeId(action.Name)}_action, \"{action.Name}\", \"Action\", \"State trigger\")");
         }
 
         sb.AppendLine("}");
@@ -54,76 +62,40 @@ public static class C4DataFlow
         // Consumer workspaces
         foreach (var consumer in seam.Consumers)
         {
-            sb.AppendLine($"System_Boundary({SanitizeId(consumer.Alias)}_boundary, \"{consumer.Alias}\") {{");
-
-            if (consumer.Projects.Count > 0)
-            {
-                foreach (var project in consumer.Projects)
-                {
-                    var tech = project.Type == ProjectType.Library ? "Library" : "Application";
-                    sb.AppendLine($"  Container({SanitizeId(project.Name)}, \"{project.Name}\", \"{tech}\", \"Consumer project\")");
-                }
-            }
-            else
-            {
-                sb.AppendLine($"  Container({SanitizeId(consumer.Alias)}_main, \"{consumer.Alias}\", \"Consumer\", \"Consumer workspace\")");
-            }
-
-            sb.AppendLine("}");
-            sb.AppendLine();
+            sb.AppendLine($"System_Ext({SanitizeId(consumer.Alias)}, \"{consumer.Alias}\", \"Consumer workspace\")");
         }
 
-        // Relationships: Provider projects -> Observables (data production)
-        var providerId = seam.Provider.Projects.Count > 0
-            ? SanitizeId(seam.Provider.Projects[0].Name)
-            : $"{SanitizeId(seam.Provider.Alias)}_main";
+        sb.AppendLine();
 
-        foreach (var obs in seam.ContractSurface.Observables)
+        // Relationships: services ↔ message/response pairs
+        var pairs = TypeClassifier.GetMessagePairs(surface);
+        foreach (var pair in pairs)
         {
-            sb.AppendLine($"Rel({providerId}, {SanitizeId(obs.Name)}_stream, \"emits data\", \"Observable\")");
+            var svc = TypeClassifier.FindServiceForMessage(pair.Request, services);
+            if (svc is not null)
+            {
+                sb.AppendLine($"Rel({SanitizeId(svc.Name)}, {SanitizeId(pair.Request.Name)}_data, \"accepts\", \"Input\")");
+                if (pair.Response is not null)
+                    sb.AppendLine($"Rel({SanitizeId(svc.Name)}, {SanitizeId(pair.Response.Name)}_data, \"returns\", \"Output\")");
+            }
         }
 
-        // Relationships: Provider projects -> Actions (trigger dispatch)
-        foreach (var action in seam.ContractSurface.Actions)
-        {
-            sb.AppendLine($"Rel({providerId}, {SanitizeId(action.Name)}_action, \"dispatches\", \"Action\")");
-        }
-
-        // Relationships: Consumers consume data via Selectors
-        var selectors = seam.ContractSurface.Selectors.ToList();
-
+        // Relationships: consumers → services
         foreach (var consumer in seam.Consumers)
         {
-            var consumerId = consumer.Projects.Count > 0
-                ? SanitizeId(consumer.Projects[0].Name)
-                : $"{SanitizeId(consumer.Alias)}_main";
+            foreach (var svc in services.Take(3))
+                sb.AppendLine($"Rel({SanitizeId(consumer.Alias)}, {SanitizeId(svc.Name)}, \"uses\")");
+        }
 
-            if (selectors.Count > 0)
-            {
-                foreach (var selector in selectors)
-                {
-                    // Selectors read from observable streams
-                    var targetStream = seam.ContractSurface.Observables.FirstOrDefault();
-                    if (targetStream != null)
-                    {
-                        sb.AppendLine($"Rel({consumerId}, {SanitizeId(targetStream.Name)}_stream, \"selects via {selector.Name}\", \"Selector\")");
-                    }
-                }
-            }
-            else
-            {
-                // Fallback: consumers consume observables directly
-                foreach (var obs in seam.ContractSurface.Observables)
-                {
-                    sb.AppendLine($"Rel({consumerId}, {SanitizeId(obs.Name)}_stream, \"subscribes\", \"Observable\")");
-                }
-            }
+        // Observable data flow relationships
+        foreach (var obs in surface.Observables)
+        {
+            var firstSvc = services.FirstOrDefault();
+            if (firstSvc is not null)
+                sb.AppendLine($"Rel({SanitizeId(firstSvc.Name)}, {SanitizeId(obs.Name)}_stream, \"emits\", \"Observable\")");
 
-            // Consumers can trigger actions
-            foreach (var action in seam.ContractSurface.Actions)
-            {
-                sb.AppendLine($"Rel({consumerId}, {SanitizeId(action.Name)}_action, \"triggers\", \"Action\")");
-            }
+            foreach (var consumer in seam.Consumers)
+                sb.AppendLine($"Rel({SanitizeId(consumer.Alias)}, {SanitizeId(obs.Name)}_stream, \"subscribes\")");
         }
 
         sb.AppendLine();

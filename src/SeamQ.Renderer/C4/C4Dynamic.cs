@@ -12,6 +12,7 @@ public static class C4Dynamic
     public static string Generate(Seam seam)
     {
         var sb = new StringBuilder();
+        var surface = seam.ContractSurface;
 
         sb.AppendLine("@startuml");
         sb.AppendLine("!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml");
@@ -24,31 +25,32 @@ public static class C4Dynamic
         sb.AppendLine($"System({SanitizeId(seam.Id)}_contract, \"Contract Surface\", \"Shared contract definitions\")");
 
         foreach (var consumer in seam.Consumers)
-        {
             sb.AppendLine($"System_Ext({SanitizeId(consumer.Alias)}, \"{consumer.Alias}\", \"Consumer workspace\")");
-        }
 
         sb.AppendLine();
 
         var step = 1;
 
-        // Step 1: Provider registers contracts
-        var registrationElements = seam.ContractSurface.InjectionTokens
-            .Concat(seam.ContractSurface.Interfaces)
-            .Concat(seam.ContractSurface.AbstractClasses)
-            .ToList();
+        // Use both classified and name-heuristic data
+        var services = TypeClassifier.GetServices(surface);
+        var pairs = TypeClassifier.GetMessagePairs(surface);
+        var registrationElements = surface.InjectionTokens.Concat(surface.Interfaces).Concat(surface.AbstractClasses).ToList();
 
+        // Step 1: Provider registers contract surface
         if (registrationElements.Count > 0)
         {
             var names = string.Join(", ", registrationElements.Select(e => e.Name).Take(3));
-            var suffix = registrationElements.Count > 3 ? "..." : "";
-            sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {SanitizeId(seam.Id)}_contract, \"Registers contracts: {names}{suffix}\")");
+            sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {SanitizeId(seam.Id)}_contract, \"Registers: {names}{(registrationElements.Count > 3 ? "..." : "")}\")");
+        }
+        else if (services.Count > 0)
+        {
+            var names = string.Join(", ", services.Select(s => s.Name).Take(3));
+            sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {SanitizeId(seam.Id)}_contract, \"Registers services: {names}{(services.Count > 3 ? "..." : "")}\")");
         }
         else
         {
             sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {SanitizeId(seam.Id)}_contract, \"Registers contract surface\")");
         }
-
         step++;
 
         // Step 2: Consumer discovers contract
@@ -58,45 +60,55 @@ public static class C4Dynamic
             step++;
         }
 
-        // Step 3: Consumer binds inputs
-        var bindings = seam.ContractSurface.InputBindings
-            .Concat(seam.ContractSurface.OutputBindings)
-            .Concat(seam.ContractSurface.SignalInputs)
-            .ToList();
+        // Step 3: Service handles messages (from pairs)
+        if (pairs.Count > 0)
+        {
+            foreach (var pair in pairs.Take(4))
+            {
+                var svc = TypeClassifier.FindServiceForMessage(pair.Request, services);
+                var svcName = svc?.Name ?? "Service";
+                var source = seam.Consumers.Count > 0 ? SanitizeId(seam.Consumers[0].Alias) : SanitizeId(seam.Provider.Alias);
+                sb.AppendLine($"RelIndex({step}, {source}, {SanitizeId(seam.Provider.Alias)}, \"{svcName}.send({pair.Request.Name})\")");
+                step++;
 
+                if (pair.Response is not null)
+                {
+                    sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {source}, \"Returns {pair.Response.Name}\")");
+                    step++;
+                }
+            }
+        }
+        else if (services.Count > 0)
+        {
+            // Show service invocation
+            var source = seam.Consumers.Count > 0 ? SanitizeId(seam.Consumers[0].Alias) : SanitizeId(seam.Id) + "_contract";
+            foreach (var svc in services.Take(3))
+            {
+                sb.AppendLine($"RelIndex({step}, {source}, {SanitizeId(seam.Provider.Alias)}, \"Invokes {svc.Name}\")");
+                step++;
+            }
+        }
+
+        // Step N: Bindings/component interactions
+        var bindings = surface.InputBindings.Concat(surface.OutputBindings).Concat(surface.SignalInputs).ToList();
         if (bindings.Count > 0)
         {
             foreach (var consumer in seam.Consumers)
             {
-                var bindingNames = string.Join(", ", bindings.Select(b => b.Name).Take(3));
-                var suffix = bindings.Count > 3 ? "..." : "";
-                sb.AppendLine($"RelIndex({step}, {SanitizeId(consumer.Alias)}, {SanitizeId(seam.Provider.Alias)}, \"Binds inputs: {bindingNames}{suffix}\")");
+                var names = string.Join(", ", bindings.Select(b => b.Name).Take(3));
+                sb.AppendLine($"RelIndex({step}, {SanitizeId(consumer.Alias)}, {SanitizeId(seam.Provider.Alias)}, \"Binds: {names}{(bindings.Count > 3 ? "..." : "")}\")");
                 step++;
             }
         }
 
-        // Step 4: Runtime method calls
-        var methods = seam.ContractSurface.Methods.ToList();
-        if (methods.Count > 0)
-        {
-            foreach (var consumer in seam.Consumers)
-            {
-                var methodNames = string.Join(", ", methods.Select(m => m.Name).Take(3));
-                var suffix = methods.Count > 3 ? "..." : "";
-                sb.AppendLine($"RelIndex({step}, {SanitizeId(consumer.Alias)}, {SanitizeId(seam.Provider.Alias)}, \"Calls methods: {methodNames}{suffix}\")");
-                step++;
-            }
-        }
-
-        // Step 5: Observable data flow
-        var observables = seam.ContractSurface.Observables.ToList();
+        // Step N: Observable data flow
+        var observables = surface.Observables.ToList();
         if (observables.Count > 0)
         {
             foreach (var consumer in seam.Consumers)
             {
-                var obsNames = string.Join(", ", observables.Select(o => o.Name).Take(3));
-                var suffix = observables.Count > 3 ? "..." : "";
-                sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {SanitizeId(consumer.Alias)}, \"Streams data: {obsNames}{suffix}\")");
+                var names = string.Join(", ", observables.Select(o => o.Name).Take(3));
+                sb.AppendLine($"RelIndex({step}, {SanitizeId(seam.Provider.Alias)}, {SanitizeId(consumer.Alias)}, \"Streams: {names}{(observables.Count > 3 ? "..." : "")}\")");
                 step++;
             }
         }
