@@ -68,7 +68,7 @@ public static class DiagramCommand
             foreach (var seam in seams)
             {
                 var seamOutputDir = Path.Combine(outputDir, seam.Id, "diagrams");
-                var generatedFiles = await diagramRenderer.RenderAsync(seam, seamOutputDir);
+                var generatedFiles = await diagramRenderer.RenderAsync(seam, seamOutputDir, type);
                 totalFiles += generatedFiles.Count;
                 renderer.WriteSuccess($"generated {generatedFiles.Count} diagram(s) for {seam.Name}");
                 foreach (var file in generatedFiles)

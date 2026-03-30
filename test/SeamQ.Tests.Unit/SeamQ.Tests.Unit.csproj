@@ -26,6 +26,7 @@
     <ProjectReference Include="..\..\src\SeamQ.Core\SeamQ.Core.csproj" />
     <ProjectReference Include="..\..\src\SeamQ.Scanner\SeamQ.Scanner.csproj" />
     <ProjectReference Include="..\..\src\SeamQ.Detector\SeamQ.Detector.csproj" />
+    <ProjectReference Include="..\..\src\SeamQ.Renderer\SeamQ.Renderer.csproj" />
   </ItemGroup>
 
 </Project>

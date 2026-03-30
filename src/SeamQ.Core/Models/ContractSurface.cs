@@ -11,4 +11,10 @@ public record ContractSurface
     public IEnumerable<ContractElement> OutputBindings => Elements.Where(e => e.Kind == ContractElementKind.OutputBinding);
     public IEnumerable<ContractElement> Methods => Elements.Where(e => e.Kind == ContractElementKind.Method);
     public IEnumerable<ContractElement> Types => Elements.Where(e => e.Kind is ContractElementKind.Type or ContractElementKind.Enum);
+    public IEnumerable<ContractElement> Observables => Elements.Where(e => e.Kind == ContractElementKind.Observable);
+    public IEnumerable<ContractElement> Properties => Elements.Where(e => e.Kind == ContractElementKind.Property);
+    public IEnumerable<ContractElement> SignalInputs => Elements.Where(e => e.Kind == ContractElementKind.SignalInput);
+    public IEnumerable<ContractElement> Routes => Elements.Where(e => e.Kind == ContractElementKind.Route);
+    public IEnumerable<ContractElement> Actions => Elements.Where(e => e.Kind == ContractElementKind.Action);
+    public IEnumerable<ContractElement> Selectors => Elements.Where(e => e.Kind == ContractElementKind.Selector);
 }
