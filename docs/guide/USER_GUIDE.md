@@ -6,7 +6,10 @@ SeamQ is a .NET CLI tool that statically analyzes Angular workspaces to detect i
 
 ## Table of Contents
 
+- [Prerequisites](#prerequisites)
 - [Installation](#installation)
+  - [Install SeamQ](#install-seamq)
+  - [Install PlantUML for Diagram Rendering](#install-plantuml-for-diagram-rendering)
 - [Quick Start](#quick-start)
 - [Scanning Workspaces](#scanning-workspaces)
 - [Listing Detected Seams](#listing-detected-seams)
@@ -15,22 +18,58 @@ SeamQ is a .NET CLI tool that statically analyzes Angular workspaces to detect i
   - [Class Diagrams](#class-diagrams)
   - [Sequence Diagrams](#sequence-diagrams)
   - [C4 Architecture Diagrams](#c4-architecture-diagrams)
+- [Generating API Documentation](#generating-api-documentation)
 - [Inspecting Seams](#inspecting-seams)
 - [Validating Contracts](#validating-contracts)
 - [Baseline Diffing](#baseline-diffing)
 - [Exporting Data](#exporting-data)
+- [Browsing Results](#browsing-results)
 - [Configuration](#configuration)
 - [Rendering Diagrams to PNG/SVG](#rendering-diagrams-to-pngsvg)
+  - [What You Need Installed](#what-you-need-installed)
+  - [Installing Java](#installing-java)
+  - [Installing Graphviz](#installing-graphviz)
+  - [Installing PlantUML](#installing-plantuml)
+  - [Rendering with PlantUML JAR](#rendering-with-plantuml-jar)
+  - [Rendering with Docker](#rendering-with-docker)
+  - [Rendering in VS Code](#rendering-in-vs-code)
+  - [Rendering in IntelliJ / WebStorm](#rendering-in-intellij--webstorm)
+  - [Batch Rendering Scripts](#batch-rendering-scripts)
+  - [Troubleshooting Rendering](#troubleshooting-rendering)
 - [CLI Reference](#cli-reference)
+- [Scenarios](#scenarios)
+
+---
+
+## Prerequisites
+
+Before installing SeamQ, ensure you have:
+
+| Dependency | Version | Required | Purpose |
+|------------|---------|----------|---------|
+| [.NET SDK](https://dotnet.microsoft.com/download) | 8.0+ | Yes | Runtime for SeamQ CLI |
+| [Java JRE/JDK](https://adoptium.net/) | 11+ | For rendering | Required by PlantUML to convert `.puml` to PNG/SVG |
+| [PlantUML](https://plantuml.com/download) | Latest | For rendering | Converts `.puml` diagram source to images |
+| [Graphviz](https://graphviz.org/download/) | 2.38+ | For rendering | Layout engine used by PlantUML for class/C4 diagrams |
+
+> **Note:** Java, PlantUML, and Graphviz are only needed if you want to render `.puml` files into PNG or SVG images. SeamQ generates valid PlantUML source files without any of these. You can also preview `.puml` files directly in VS Code or IntelliJ with the appropriate extension.
 
 ---
 
 ## Installation
 
-Install SeamQ as a global .NET tool:
+### Install SeamQ
+
+Install SeamQ as a global .NET tool from NuGet:
 
 ```bash
-dotnet tool install --global seamq
+dotnet tool install --global SeamQ
+```
+
+Update to the latest version:
+
+```bash
+dotnet tool update --global SeamQ
 ```
 
 Verify the installation:
@@ -38,6 +77,116 @@ Verify the installation:
 ```bash
 seamq --version
 ```
+
+Uninstall:
+
+```bash
+dotnet tool uninstall --global SeamQ
+```
+
+### Install PlantUML for Diagram Rendering
+
+SeamQ generates `.puml` source files for all diagrams. To render these into PNG or SVG images, you need Java, Graphviz, and PlantUML installed.
+
+#### Windows
+
+**Option A: Using winget**
+
+```bash
+# Install Java (Eclipse Temurin JDK)
+winget install EclipseAdoptium.Temurin.21.JDK
+
+# Install Graphviz
+winget install Graphviz.Graphviz
+
+# Download plantuml.jar
+# Visit https://plantuml.com/download and save plantuml.jar to a known location
+# Example: C:\tools\plantuml.jar
+```
+
+**Option B: Using Chocolatey**
+
+```bash
+choco install temurin21
+choco install graphviz
+choco install plantuml
+```
+
+With Chocolatey, `plantuml` is available as a command directly:
+
+```bash
+plantuml -tpng my-diagram.puml
+```
+
+**Option C: Using Scoop**
+
+```bash
+scoop bucket add java
+scoop install temurin21-jdk
+scoop install graphviz
+# Download plantuml.jar manually from https://plantuml.com/download
+```
+
+#### macOS
+
+```bash
+# Using Homebrew
+brew install --cask temurin
+brew install graphviz
+brew install plantuml
+```
+
+After installation, `plantuml` is available as a command:
+
+```bash
+plantuml -tpng my-diagram.puml
+```
+
+#### Linux (Debian/Ubuntu)
+
+```bash
+# Install Java and Graphviz
+sudo apt update
+sudo apt install default-jre graphviz
+
+# Download PlantUML JAR
+wget https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar -O ~/plantuml.jar
+
+# Create a convenience alias (add to ~/.bashrc or ~/.zshrc)
+alias plantuml="java -jar ~/plantuml.jar"
+```
+
+#### Linux (Fedora/RHEL)
+
+```bash
+sudo dnf install java-21-openjdk graphviz
+wget https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar -O ~/plantuml.jar
+```
+
+#### Docker (no local install needed)
+
+If you prefer not to install Java or Graphviz locally, use the official PlantUML Docker image:
+
+```bash
+docker run --rm -v $(pwd):/data plantuml/plantuml -tpng /data/*.puml
+```
+
+#### Verify your PlantUML installation
+
+```bash
+# Check Java
+java -version
+
+# Check Graphviz
+dot -V
+
+# Check PlantUML
+java -jar plantuml.jar -version
+# or if installed via package manager:
+plantuml -version
+```
+
+You should see version output from all three. If Graphviz is missing, PlantUML will warn you and some diagram types (class diagrams, C4 diagrams) will fail to render.
 
 ---
 
@@ -70,8 +219,12 @@ seamq list
 # Generate everything
 seamq generate --all --format md html --output-dir ./docs-out
 seamq diagram --all --output-dir ./docs-out
+seamq doc --all --output-dir ./docs-out
 seamq validate --all
 seamq export --all --output-dir ./docs-out
+
+# Render diagrams to PNG
+java -jar plantuml.jar -tpng ./docs-out/*/diagrams/*.puml
 
 # Browse the results
 seamq serve
@@ -176,6 +329,13 @@ seamq generate --all --format md
 
 ```bash
 seamq generate --all --format md html
+```
+
+### Generate PDF or Word documents
+
+```bash
+seamq generate --all --format pdf
+seamq generate --all --format docx
 ```
 
 ### Generate for a specific seam
@@ -365,6 +525,29 @@ seamq diagram --all --type c4-code
 
 ---
 
+## Generating API Documentation
+
+### API Reference (`doc`)
+
+Generate API reference documentation with embedded PlantUML diagrams for each seam. If PlantUML is installed, diagrams are automatically rendered to PNG.
+
+```bash
+seamq doc --all                           # All seams
+seamq doc --all --format md               # Markdown format
+seamq doc 68e7766a4dd5f012                # Specific seam
+seamq doc --all --output-dir ./api-docs   # Custom output directory
+```
+
+### Public API (`public-api`)
+
+Generate public API surface documentation for Angular projects, listing all exported components, services, interfaces, types, and methods.
+
+```bash
+seamq public-api
+```
+
+---
+
 ## Inspecting Seams
 
 Get detailed contract surface information for a specific seam:
@@ -375,7 +558,7 @@ seamq inspect 68e7766a4dd5f012
 
 Output includes:
 - Seam metadata (type, provider, consumers, confidence score)
-- All contract elements grouped by category
+- All contract elements grouped by category: Components, Services, Directives, Pipes, Interfaces, Abstract Classes, Enumerations, Injection Tokens, Input Bindings, Output Bindings, Signal Inputs, Properties, Methods, Types
 - Source file paths and line numbers for each element
 
 ### Example output
@@ -389,17 +572,19 @@ consumers   (none)
 confidence  40%
 elements    19
 
-  Types (19)
-    CommandMessage
-      projects/api/src/lib/models/command-message.ts:1
-    CommandResponse
-      projects/api/src/lib/models/command-message.ts:7
+  Services (3)
     CommandService
       projects/api/src/lib/services/command.service.ts:9
     QueryService
       projects/api/src/lib/services/query.service.ts:7
     RequestService
       projects/api/src/lib/services/request.service.ts:7
+
+  Interfaces (2)
+    CommandMessage
+      projects/api/src/lib/models/command-message.ts:1
+    CommandResponse
+      projects/api/src/lib/models/command-message.ts:7
     ...
 ```
 
@@ -496,6 +681,17 @@ Each seam exports three JSON files:
 
 ---
 
+## Browsing Results
+
+Launch a local web server to browse generated ICDs and diagrams:
+
+```bash
+seamq serve                    # Default: http://localhost:5050
+seamq serve --port 8080        # Custom port
+```
+
+---
+
 ## Configuration
 
 Create a `seamq.config.json` for persistent settings:
@@ -517,7 +713,12 @@ seamq init
   ],
   "output": {
     "directory": "./seamq-output",
-    "formats": ["md", "html"]
+    "formats": ["md", "html"],
+    "diagrams": {
+      "renderFormat": "svg",
+      "plantumlServer": "local",
+      "theme": "plain"
+    }
   },
   "analysis": {
     "maxDepth": 10,
@@ -563,45 +764,219 @@ seamq generate --all --output-dir ./custom-output
 
 ## Rendering Diagrams to PNG/SVG
 
-SeamQ outputs `.puml` source files. To render them as images:
+SeamQ outputs `.puml` source files. This section explains everything you need to render them as images.
 
-### Using PlantUML JAR
+### What You Need Installed
+
+To render `.puml` files to PNG or SVG images, you need three things:
+
+1. **Java** (JRE 11+) -- the runtime PlantUML runs on
+2. **Graphviz** (2.38+) -- the layout engine for class diagrams and C4 diagrams
+3. **PlantUML** (the JAR file or a package manager install)
+
+Sequence diagrams do not require Graphviz, but class diagrams and C4 diagrams do.
+
+### Installing Java
+
+PlantUML requires Java 11 or later. We recommend Eclipse Temurin (formerly AdoptOpenJDK).
+
+| Platform | Command |
+|----------|---------|
+| Windows (winget) | `winget install EclipseAdoptium.Temurin.21.JDK` |
+| Windows (Chocolatey) | `choco install temurin21` |
+| Windows (Scoop) | `scoop bucket add java && scoop install temurin21-jdk` |
+| macOS (Homebrew) | `brew install --cask temurin` |
+| Ubuntu/Debian | `sudo apt install default-jre` |
+| Fedora/RHEL | `sudo dnf install java-21-openjdk` |
+
+Verify: `java -version`
+
+### Installing Graphviz
+
+Graphviz provides the `dot` layout engine that PlantUML uses for class diagrams and C4 diagrams.
+
+| Platform | Command |
+|----------|---------|
+| Windows (winget) | `winget install Graphviz.Graphviz` |
+| Windows (Chocolatey) | `choco install graphviz` |
+| Windows (Scoop) | `scoop install graphviz` |
+| macOS (Homebrew) | `brew install graphviz` |
+| Ubuntu/Debian | `sudo apt install graphviz` |
+| Fedora/RHEL | `sudo dnf install graphviz` |
+
+Verify: `dot -V`
+
+> **Important:** After installing Graphviz on Windows, you may need to restart your terminal or add the Graphviz `bin` directory to your PATH. PlantUML will print a warning if it cannot find `dot`.
+
+### Installing PlantUML
+
+**Option A: Download the JAR (all platforms)**
+
+Download `plantuml.jar` from [plantuml.com/download](https://plantuml.com/download) or from the [GitHub releases](https://github.com/plantuml/plantuml/releases).
 
 ```bash
-# Install PlantUML (requires Java)
-# Download from https://plantuml.com/download
+# Place it somewhere convenient
+# Windows example:
+mkdir C:\tools
+# Save plantuml.jar to C:\tools\plantuml.jar
 
-# Render a single diagram
+# Linux/macOS example:
+wget https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar -O ~/plantuml.jar
+```
+
+Usage with the JAR:
+
+```bash
+java -jar plantuml.jar -tpng diagram.puml
+java -jar C:\tools\plantuml.jar -tsvg diagram.puml
+```
+
+**Option B: Package manager (wraps the JAR)**
+
+| Platform | Command | Usage |
+|----------|---------|-------|
+| Windows (Chocolatey) | `choco install plantuml` | `plantuml -tpng diagram.puml` |
+| macOS (Homebrew) | `brew install plantuml` | `plantuml -tpng diagram.puml` |
+
+Package managers install a wrapper script so you can use `plantuml` directly instead of `java -jar plantuml.jar`.
+
+**Option C: Docker (no Java or Graphviz needed locally)**
+
+```bash
+docker run --rm -v $(pwd):/data plantuml/plantuml -tpng /data/diagram.puml
+```
+
+Verify your installation:
+
+```bash
+java -jar plantuml.jar -version
+# or
+plantuml -version
+```
+
+### Rendering with PlantUML JAR
+
+#### Render a single diagram to PNG
+
+```bash
 java -jar plantuml.jar -tpng my-diagram.puml
+```
 
-# Render all diagrams in a directory
+This creates `my-diagram.png` in the same directory.
+
+#### Render a single diagram to SVG
+
+```bash
+java -jar plantuml.jar -tsvg my-diagram.puml
+```
+
+#### Render all diagrams in the output directory
+
+```bash
 java -jar plantuml.jar -tpng ./seamq-output/*/diagrams/*.puml
-
-# Render as SVG
-java -jar plantuml.jar -tsvg ./seamq-output/*/diagrams/*.puml
 ```
 
-### Batch render all diagrams
+#### Render with a specific output directory
 
 ```bash
-# Generate diagrams
-seamq diagram --all --output-dir ./output
+java -jar plantuml.jar -tpng -o ./rendered ./seamq-output/*/diagrams/*.puml
+```
 
-# Render all to PNG
-for f in ./output/*/diagrams/*.puml; do
-  java -jar plantuml.jar -tpng "$f"
+#### Render with higher resolution
+
+```bash
+java -DPLANTUML_LIMIT_SIZE=16384 -jar plantuml.jar -tpng my-diagram.puml
+```
+
+### Rendering with Docker
+
+No Java or Graphviz installation required.
+
+#### Render all diagrams
+
+```bash
+docker run --rm -v $(pwd):/data plantuml/plantuml -tpng /data/seamq-output/*/diagrams/*.puml
+```
+
+#### Render as SVG
+
+```bash
+docker run --rm -v $(pwd):/data plantuml/plantuml -tsvg /data/seamq-output/*/diagrams/*.puml
+```
+
+#### Windows (PowerShell)
+
+```powershell
+docker run --rm -v ${PWD}:/data plantuml/plantuml -tpng /data/seamq-output/*/diagrams/*.puml
+```
+
+### Rendering in VS Code
+
+1. Install the [PlantUML extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml) by jebbs
+2. Open any `.puml` file
+3. Press `Alt+D` to open the preview pane
+4. Right-click in the preview to export as PNG, SVG, or other formats
+
+The extension can use a local PlantUML JAR or an online server. For offline use, configure in VS Code settings:
+
+```json
+{
+  "plantuml.render": "Local",
+  "plantuml.jar": "C:\\tools\\plantuml.jar"
+}
+```
+
+### Rendering in IntelliJ / WebStorm
+
+1. Install the **PlantUML Integration** plugin from the JetBrains marketplace
+2. Open any `.puml` file
+3. The preview panel renders automatically on the right side
+4. Requires Java and Graphviz to be installed locally
+
+### Batch Rendering Scripts
+
+#### Bash (Linux/macOS)
+
+```bash
+#!/bin/bash
+# render-all.sh - Render all SeamQ diagrams to PNG
+OUTPUT_DIR="./seamq-output"
+PLANTUML_JAR="${PLANTUML_JAR:-plantuml.jar}"
+
+for f in "$OUTPUT_DIR"/*/diagrams/*.puml; do
+  echo "Rendering: $f"
+  java -jar "$PLANTUML_JAR" -tpng "$f"
 done
+
+echo "Done. PNG files created alongside .puml files."
 ```
 
-### Using Docker
+#### PowerShell (Windows)
 
-```bash
-docker run --rm -v $(pwd):/data plantuml/plantuml -tpng /data/output/*/diagrams/*.puml
+```powershell
+# render-all.ps1 - Render all SeamQ diagrams to PNG
+$outputDir = ".\seamq-output"
+$plantumlJar = $env:PLANTUML_JAR ?? "plantuml.jar"
+
+Get-ChildItem -Path $outputDir -Filter "*.puml" -Recurse | ForEach-Object {
+    Write-Host "Rendering: $($_.FullName)"
+    java -jar $plantumlJar -tpng $_.FullName
+}
+
+Write-Host "Done."
 ```
 
-### Using VS Code
+### Troubleshooting Rendering
 
-Install the "PlantUML" extension by jebbs. Open any `.puml` file and press `Alt+D` to preview.
+| Problem | Solution |
+|---------|----------|
+| `Error: No Java runtime present` | Install Java 11+ and ensure `java` is on your PATH |
+| `Cannot find Graphviz` | Install Graphviz and ensure `dot` is on your PATH. Restart your terminal after installing. |
+| `Error: File not found: plantuml.jar` | Provide the full path: `java -jar C:\tools\plantuml.jar -tpng ...` |
+| Sequence diagrams render but class diagrams don't | Install Graphviz -- class/C4 diagrams require it, sequence diagrams do not |
+| Diagram renders but looks cut off | Increase the size limit: `java -DPLANTUML_LIMIT_SIZE=16384 -jar plantuml.jar ...` |
+| Docker: permission denied on output files | Add `--user $(id -u):$(id -g)` to the docker run command |
+| VS Code preview shows nothing | Check that the PlantUML extension is configured to use a local JAR or that Java is on your PATH |
 
 ---
 
@@ -625,13 +1000,15 @@ Install the "PlantUML" extension by jebbs. Open any `.puml` file and press `Alt+
 |---------|-------------|
 | `scan <paths...>` | Scan workspaces and build seam registry |
 | `list` | List all detected seams |
-| `generate [seam-id]` | Generate ICD documents |
+| `generate [seam-id]` | Generate ICD documents (Markdown, HTML, PDF, DOCX) |
 | `diagram [seam-id]` | Generate PlantUML diagrams |
 | `inspect <seam-id>` | Print detailed contract surface |
 | `validate [seam-id]` | Check consumer contract compliance |
 | `diff <baseline-path>` | Compare scan against a baseline |
 | `init` | Generate seamq.config.json interactively |
 | `export [seam-id]` | Export raw seam data as JSON |
+| `doc [seam-id]` | Generate API reference docs with PlantUML diagrams |
+| `public-api` | Generate public API documentation |
 | `serve` | Launch local web server to browse ICDs |
 
 ### Diagram Types
@@ -667,7 +1044,13 @@ seamq scan . --verbose                  # Analyze
 seamq list                              # See what was found
 seamq generate --all --format md html   # Generate ICDs
 seamq diagram --all                     # Generate diagrams
-seamq serve                             # Browse results at localhost:5050
+seamq doc --all                         # Generate API docs
+
+# Render diagrams to PNG
+java -jar plantuml.jar -tpng ./seamq-output/*/diagrams/*.puml
+
+# Browse results
+seamq serve                             # Open http://localhost:5050
 ```
 
 ### Scenario 2: CI/CD contract change detection
@@ -685,21 +1068,26 @@ seamq diff previous-baseline.json
 seamq scan ./app
 seamq list                                    # Note the seam ID
 seamq diagram abc123 --type sequence          # Only sequence diagrams
+
+# Render
+java -jar plantuml.jar -tpng ./seamq-output/abc123/diagrams/*.puml
 ```
 
-### Scenario 4: Full documentation export
+### Scenario 4: Full documentation export with rendered diagrams
 
 ```bash
 seamq scan ./app --output-dir ./docs
 seamq generate --all --format md html --output-dir ./docs
 seamq diagram --all --output-dir ./docs
+seamq doc --all --output-dir ./docs
 seamq export --all --output-dir ./docs
-seamq validate --all --output-dir ./docs
+seamq validate --all
 
-# Render diagrams to images
-for f in ./docs/*/diagrams/*.puml; do
-  java -jar plantuml.jar -tpng "$f"
-done
+# Render all diagrams to PNG
+java -jar plantuml.jar -tpng ./docs/*/diagrams/*.puml
+
+# Or use Docker if Java is not installed
+docker run --rm -v $(pwd):/data plantuml/plantuml -tpng /data/docs/*/diagrams/*.puml
 ```
 
 ### Scenario 5: Monitor contract surface changes during development
@@ -715,4 +1103,18 @@ seamq diff sprint-start.json
 # Review: generate updated docs
 seamq generate --all --format html --output-dir ./review-docs
 seamq diagram --all --output-dir ./review-docs
+
+# Render for review
+java -jar plantuml.jar -tpng ./review-docs/*/diagrams/*.puml
+```
+
+### Scenario 6: Quick preview without installing Java
+
+```bash
+# Generate diagrams
+seamq diagram --all
+
+# Preview in VS Code (requires PlantUML extension)
+code ./seamq-output/*/diagrams/*.puml
+# Press Alt+D in any .puml file to preview
 ```
