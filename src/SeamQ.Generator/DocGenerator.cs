@@ -477,6 +477,8 @@ public class DocGenerator : IDocGenerator
             return ($"{name}()", "void");
 
         var typeSig = method.TypeSignature;
+
+        // Handle arrow function signatures: (params) => ReturnType
         var arrowIndex = typeSig.IndexOf("=>", StringComparison.Ordinal);
         if (arrowIndex >= 0)
         {
@@ -485,8 +487,33 @@ public class DocGenerator : IDocGenerator
             return ($"{name}({paramsPart})", returnPart);
         }
 
+        // Handle parser-style method signatures: (params): ReturnType
+        if (typeSig.StartsWith('('))
+        {
+            var closeParen = FindMatchingParen(typeSig, 0);
+            if (closeParen > 0)
+            {
+                var paramsPart = typeSig[1..closeParen].Trim();
+                var rest = typeSig[(closeParen + 1)..].Trim();
+                var returnType = rest.StartsWith(':') ? rest[1..].Trim() : rest;
+                if (string.IsNullOrWhiteSpace(returnType)) returnType = "void";
+                return ($"{name}({paramsPart})", returnType);
+            }
+        }
+
         // TypeSignature is just the return type
         return ($"{name}()", typeSig);
+    }
+
+    private static int FindMatchingParen(string text, int openIndex)
+    {
+        var depth = 0;
+        for (var i = openIndex; i < text.Length; i++)
+        {
+            if (text[i] == '(') depth++;
+            else if (text[i] == ')') { depth--; if (depth == 0) return i; }
+        }
+        return -1;
     }
 
     /// <summary>

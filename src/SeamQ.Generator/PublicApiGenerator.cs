@@ -135,6 +135,12 @@ public class PublicApiGenerator : IPublicApiGenerator
 
         foreach (var export in exports)
         {
+            // Skip barrel re-exports and selectors — not part of public API surface
+            var kindLower = export.Kind?.ToLowerInvariant() ?? "";
+            if (kindLower is "wildcardexport" or "namedexport" or "defaultexport"
+                || kindLower.EndsWith("selector"))
+                continue;
+
             var category = MapKindToCategory(export.Kind);
             if (!groups.TryGetValue(category, out var list))
             {
