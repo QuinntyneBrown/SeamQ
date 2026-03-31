@@ -37,6 +37,21 @@ public static class GenerateCommand
 
             var outputDir = Path.GetFullPath(globalContext.OutputDir ?? config.Output.Directory);
 
+            // Prompt mode: scan configured workspaces and generate code + prompt files
+            if (globalContext.PromptMode)
+            {
+                var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
+                var scanner = serviceProvider.GetRequiredService<IWorkspaceScanner>();
+                var wsPaths = config.Workspaces.Select(w => w.Path).ToArray();
+                var formatStr = formats.Length > 0 ? string.Join(", ", formats) : "Markdown";
+                foreach (var wsPath in wsPaths)
+                {
+                    var workspace = await scanner.ScanAsync(Path.GetFullPath(wsPath));
+                    await promptGen.GenerateAsync(workspace, "generate", outputDir, formatStr);
+                }
+                return;
+            }
+
             // Determine which seams to generate for
             List<Seam> seamsToGenerate;
             if (all)

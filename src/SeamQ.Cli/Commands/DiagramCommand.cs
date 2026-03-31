@@ -34,6 +34,20 @@ public static class DiagramCommand
 
             var outputDir = Path.GetFullPath(globalContext.OutputDir ?? config.Output.Directory);
 
+            // Prompt mode: scan configured workspaces and generate code + prompt files
+            if (globalContext.PromptMode)
+            {
+                var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
+                var scanner = serviceProvider.GetRequiredService<IWorkspaceScanner>();
+                var wsPaths = config.Workspaces.Select(w => w.Path).ToArray();
+                foreach (var wsPath in wsPaths)
+                {
+                    var workspace = await scanner.ScanAsync(Path.GetFullPath(wsPath));
+                    await promptGen.GenerateAsync(workspace, "diagram", outputDir, type);
+                }
+                return;
+            }
+
             // Determine which seams to diagram
             List<Seam> seams;
             if (all)

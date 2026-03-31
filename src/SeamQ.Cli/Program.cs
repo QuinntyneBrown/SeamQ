@@ -21,6 +21,9 @@ services.AddSingleton<IConsoleRenderer, ConsoleRenderer>();
 // Global options context
 services.AddSingleton<GlobalContext>();
 
+// Prompt file generator for --prompt mode
+services.AddSingleton<PromptFileGenerator>();
+
 // Core configuration
 services.AddSeamQServices();
 

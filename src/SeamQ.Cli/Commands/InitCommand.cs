@@ -2,6 +2,7 @@ using System.CommandLine;
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using SeamQ.Cli.Rendering;
+using SeamQ.Core.Abstractions;
 using SeamQ.Core.Configuration;
 
 namespace SeamQ.Cli.Commands;
@@ -15,6 +16,18 @@ public static class InitCommand
         command.SetHandler(async () =>
         {
             var renderer = serviceProvider.GetRequiredService<IConsoleRenderer>();
+            var globalContext = serviceProvider.GetRequiredService<GlobalContext>();
+
+            // Prompt mode: scan current directory and generate code + prompt files
+            if (globalContext.PromptMode)
+            {
+                var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
+                var scanner = serviceProvider.GetRequiredService<IWorkspaceScanner>();
+                var outputDir = Path.GetFullPath(globalContext.OutputDir ?? ".");
+                var workspace = await scanner.ScanAsync(Directory.GetCurrentDirectory());
+                await promptGen.GenerateAsync(workspace, "init", outputDir);
+                return;
+            }
 
             var configPath = Path.Combine(Directory.GetCurrentDirectory(), "seamq.config.json");
 

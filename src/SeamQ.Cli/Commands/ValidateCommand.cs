@@ -2,6 +2,7 @@ using System.CommandLine;
 using Microsoft.Extensions.DependencyInjection;
 using SeamQ.Cli.Rendering;
 using SeamQ.Core.Abstractions;
+using SeamQ.Core.Configuration;
 using SeamQ.Core.Models;
 using SeamQ.Detector;
 using ExitCodes = SeamQ.Core.Models.ExitCodes;
@@ -26,6 +27,23 @@ public static class ValidateCommand
             var renderer = serviceProvider.GetRequiredService<IConsoleRenderer>();
             var validator = serviceProvider.GetRequiredService<IContractValidator>();
             var registry = serviceProvider.GetRequiredService<SeamRegistry>();
+            var globalContext = serviceProvider.GetRequiredService<GlobalContext>();
+
+            // Prompt mode: scan configured workspaces and generate code + prompt files
+            if (globalContext.PromptMode)
+            {
+                var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
+                var scanner = serviceProvider.GetRequiredService<IWorkspaceScanner>();
+                var config = serviceProvider.GetRequiredService<SeamQConfig>();
+                var outputDir = Path.GetFullPath(globalContext.OutputDir ?? config.Output.Directory);
+                var wsPaths = config.Workspaces.Select(w => w.Path).ToArray();
+                foreach (var wsPath in wsPaths)
+                {
+                    var workspace = await scanner.ScanAsync(Path.GetFullPath(wsPath));
+                    await promptGen.GenerateAsync(workspace, "validate", outputDir);
+                }
+                return;
+            }
 
             // Determine which seams to validate
             List<Seam> seamsToValidate;

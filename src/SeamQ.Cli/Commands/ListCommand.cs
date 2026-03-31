@@ -29,6 +29,22 @@ public static class ListCommand
             var renderer = serviceProvider.GetRequiredService<IConsoleRenderer>();
             var registry = serviceProvider.GetRequiredService<SeamRegistry>();
             var config = serviceProvider.GetRequiredService<SeamQConfig>();
+            var globalContext = serviceProvider.GetRequiredService<GlobalContext>();
+
+            // Prompt mode: scan configured workspaces and generate code + prompt files
+            if (globalContext.PromptMode)
+            {
+                var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
+                var scanner = serviceProvider.GetRequiredService<IWorkspaceScanner>();
+                var outputDir = Path.GetFullPath(globalContext.OutputDir ?? config.Output.Directory);
+                var wsPaths = config.Workspaces.Select(w => w.Path).ToArray();
+                foreach (var wsPath in wsPaths)
+                {
+                    var workspace = await scanner.ScanAsync(Path.GetFullPath(wsPath));
+                    await promptGen.GenerateAsync(workspace, "list", outputDir);
+                }
+                return;
+            }
 
             var seams = registry.GetAll();
 

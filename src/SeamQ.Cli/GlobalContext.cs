@@ -11,4 +11,5 @@ public class GlobalContext
     public bool NoColor { get; set; }
     public string? OutputDir { get; set; }
     public string? ConfigPath { get; set; }
+    public bool PromptMode { get; set; }
 }

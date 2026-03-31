@@ -25,11 +25,13 @@ public static class CommandBuilder
         var noColorOption = new Option<bool>("--no-color", "Disable ANSI color codes");
         var outputDirOption = new Option<string?>("--output-dir", "Override output directory");
         var configOption = new Option<string?>("--config", "Specify custom config file");
+        var promptOption = new Option<bool>(new[] { "-p", "--prompt" }, "Generate annotated code file and LLM prompt instead of running the command");
         rootCommand.AddGlobalOption(verboseOption);
         rootCommand.AddGlobalOption(quietOption);
         rootCommand.AddGlobalOption(noColorOption);
         rootCommand.AddGlobalOption(outputDirOption);
         rootCommand.AddGlobalOption(configOption);
+        rootCommand.AddGlobalOption(promptOption);
 
         // Commands
         rootCommand.AddCommand(ScanCommand.Create(serviceProvider));
@@ -57,6 +59,7 @@ public static class CommandBuilder
                 gc.NoColor = context.ParseResult.GetValueForOption(noColorOption);
                 gc.OutputDir = context.ParseResult.GetValueForOption(outputDirOption);
                 gc.ConfigPath = context.ParseResult.GetValueForOption(configOption);
+                gc.PromptMode = context.ParseResult.GetValueForOption(promptOption);
 
                 // Apply no-color to renderer
                 var consoleRenderer = serviceProvider.GetRequiredService<IConsoleRenderer>();

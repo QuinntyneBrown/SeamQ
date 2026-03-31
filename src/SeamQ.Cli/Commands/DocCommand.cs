@@ -50,6 +50,19 @@ public static class DocCommand
 
             try
             {
+                // Prompt mode: scan workspaces then generate code + prompt files
+                if (globalContext.PromptMode)
+                {
+                    var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
+                    foreach (var wsPath in workspacePaths)
+                    {
+                        var fullPath = Path.GetFullPath(wsPath);
+                        var workspace = await scanner.ScanAsync(fullPath);
+                        await promptGen.GenerateAsync(workspace, "doc", outputDir);
+                    }
+                    return;
+                }
+
                 var totalFiles = 0;
 
                 foreach (var wsPath in workspacePaths)

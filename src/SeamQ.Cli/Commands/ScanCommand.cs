@@ -64,6 +64,18 @@ public static class ScanCommand
                     renderer.WriteSuccess($"scanned {workspace.Alias} ({workspace.Projects.Count} projects, {workspace.Exports.Count} exports)");
                 }
 
+                // Prompt mode: generate code + prompt files instead of detecting seams
+                var globalContext = serviceProvider.GetRequiredService<GlobalContext>();
+                if (globalContext.PromptMode)
+                {
+                    var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
+                    var outputDir = Path.GetFullPath(globalContext.OutputDir
+                        ?? serviceProvider.GetRequiredService<SeamQConfig>().Output.Directory);
+                    foreach (var ws in workspaces)
+                        await promptGen.GenerateAsync(ws, "scan", outputDir);
+                    return;
+                }
+
                 // Detect seams
                 var seams = await detector.DetectAsync(workspaces);
                 registry.RegisterAll(seams);

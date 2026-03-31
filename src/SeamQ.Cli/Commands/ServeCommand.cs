@@ -21,6 +21,15 @@ public static class ServeCommand
         {
             var renderer = serviceProvider.GetRequiredService<IConsoleRenderer>();
             var config = serviceProvider.GetRequiredService<SeamQConfig>();
+            var globalContext = serviceProvider.GetRequiredService<GlobalContext>();
+
+            // Prompt mode: not applicable for interactive serve command
+            if (globalContext.PromptMode)
+            {
+                var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
+                promptGen.WriteUnsupportedWarning("serve");
+                return;
+            }
 
             var outputDir = Path.GetFullPath(config.Output.Directory);
 

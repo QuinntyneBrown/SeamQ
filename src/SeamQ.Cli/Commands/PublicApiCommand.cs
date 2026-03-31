@@ -50,6 +50,19 @@ public static class PublicApiCommand
 
             try
             {
+                // Prompt mode: scan workspaces then generate code + prompt files
+                if (globalContext.PromptMode)
+                {
+                    var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
+                    foreach (var wsPath in workspacePaths)
+                    {
+                        var fullPath = Path.GetFullPath(wsPath);
+                        var workspace = await scanner.ScanAsync(fullPath);
+                        await promptGen.GenerateAsync(workspace, "public-api", outputDir);
+                    }
+                    return;
+                }
+
                 var totalFiles = 0;
 
                 foreach (var wsPath in workspacePaths)
