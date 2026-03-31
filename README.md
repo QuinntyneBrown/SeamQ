@@ -365,13 +365,17 @@ SeamQ/
 ├── test/
 │   ├── SeamQ.Tests.Unit/       # Unit tests (xUnit, FluentAssertions, NSubstitute)
 │   ├── SeamQ.Tests.Integration/# Pipeline integration tests
-│   └── SeamQ.Tests.E2E/        # End-to-end CLI tests
-├── templates/                  # Handlebars ICD templates (Markdown, HTML, MIL-STD-498)
-├── themes/                     # PlantUML themes (default, dark)
-└── docs/
-    ├── guide/                  # User guide
-    ├── specs/                  # L1/L2 requirement specifications
-    └── detailed-designs/       # Feature-level designs with PlantUML diagrams
+│   ├── SeamQ.Tests.E2E/        # End-to-end CLI tests
+│   └── fixtures/               # Sample Angular/Nx workspaces for testing
+├── eng/
+│   └── scripts/                # Build, install, and verification scripts
+├── docs/
+│   ├── guide/                  # User guide with images
+│   ├── specs/                  # L1/L2 requirement specifications
+│   ├── detailed-designs/       # Feature-level designs with PlantUML diagrams
+│   ├── verification/           # Iteration verification logs
+│   └── solution-structure.md   # Detailed solution structure reference
+└── nupkg/                      # Packaged NuGet tool output
 ```
 
 ## Dependencies
@@ -381,7 +385,8 @@ SeamQ/
 | `System.CommandLine` | 2.0.0-beta4 | CLI parsing and command routing |
 | `Microsoft.Extensions.DependencyInjection` | 10.0.5 | Dependency injection |
 | `Microsoft.Extensions.Hosting` | 10.0.5 | Host builder and configuration |
-| `Microsoft.Extensions.Logging` | 8.0.2 | Structured logging |
+| `Microsoft.Extensions.DependencyInjection.Abstractions` | 8.0.2 | DI abstractions for library projects |
+| `Microsoft.Extensions.Logging.Abstractions` | 8.0.2 | Structured logging abstractions |
 
 ## Tech Stack
 
