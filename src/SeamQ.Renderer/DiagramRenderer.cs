@@ -90,8 +90,8 @@ public sealed class DiagramRenderer : IDiagramRenderer
             diagrams.Add(DiagramType.ClassFrontendServices);
         }
 
-        // Domain data objects: when there are types or interfaces with child properties
-        if (surface.Types.Any() || surface.Elements.Any(e => e.Kind == ContractElementKind.Property))
+        // Domain data objects: when there are types, enums, or interfaces with child properties
+        if (surface.Types.Any() || surface.Enumerations.Any() || surface.Elements.Any(e => e.Kind == ContractElementKind.Property))
         {
             diagrams.Add(DiagramType.ClassDomainDataObjects);
         }
