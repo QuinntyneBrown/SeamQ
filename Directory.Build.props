@@ -5,5 +5,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Version>1.1.0</Version>
+    <Authors>Quinntyne Brown</Authors>
+    <Description>Static analysis tool for Angular workspace interface boundaries. Detects seams, generates ICDs, PlantUML diagrams, and API documentation.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/QuinntyneBrown/SeamQ</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/QuinntyneBrown/SeamQ</RepositoryUrl>
+    <PackageTags>angular;typescript;static-analysis;icd;plantuml;documentation</PackageTags>
   </PropertyGroup>
 </Project>
