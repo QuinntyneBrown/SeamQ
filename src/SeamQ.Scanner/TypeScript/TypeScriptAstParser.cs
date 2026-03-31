@@ -42,8 +42,8 @@ public partial class TypeScriptAstParser
     [GeneratedRegex(@"@(Component|Injectable|Directive|Pipe|NgModule)\s*\(", RegexOptions.Multiline)]
     private static partial Regex DecoratorRegex();
 
-    // @Input() propertyName  or  @Input('alias') propertyName
-    [GeneratedRegex(@"@Input\([^)]*\)\s*(?:set\s+)?(\w+)\s*[!?]?\s*[:;=]?\s*(.*?)$", RegexOptions.Multiline)]
+    // @Input() propertyName: Type = default;  or  @Input('alias') propertyName = default;
+    [GeneratedRegex(@"@Input\([^)]*\)\s*(?:set\s+)?(\w+)\s*[!?]?\s*(?::\s*([^;=]+?))?(?:\s*=\s*([^;]+))?\s*;", RegexOptions.Multiline)]
     private static partial Regex InputDecoratorRegex();
 
     // @Output() propertyName: Type = ...  or  @Output() propertyName = new EventEmitter<Type>()
@@ -298,14 +298,33 @@ public partial class TypeScriptAstParser
         var members = new List<ParsedMember>();
         foreach (Match match in InputDecoratorRegex().Matches(blockContent))
         {
+            // Prefer explicit type annotation (group 2) over default value (group 3)
+            var typeAnnotation = match.Groups[2].Success ? match.Groups[2].Value.Trim() : null;
+            var defaultValue = match.Groups[3].Success ? match.Groups[3].Value.Trim() : null;
+
+            // Infer type from default value if no explicit type
+            var typeSignature = typeAnnotation ?? InferTypeFromDefault(defaultValue);
+
             members.Add(new ParsedMember
             {
                 Name = match.Groups[1].Value,
                 Kind = MemberKind.InputBinding,
-                TypeSignature = match.Groups[2].Value.TrimEnd(';').Trim()
+                TypeSignature = typeSignature
             });
         }
         return members;
+    }
+
+    private static string? InferTypeFromDefault(string? defaultValue)
+    {
+        if (string.IsNullOrWhiteSpace(defaultValue)) return null;
+        if (defaultValue is "true" or "false") return "boolean";
+        if (defaultValue.StartsWith('\'') || defaultValue.StartsWith('"')) return "string";
+        if (defaultValue is "null") return "any";
+        if (defaultValue is "[]") return "any[]";
+        if (defaultValue is "{}" or "{ }") return "object";
+        if (double.TryParse(defaultValue, out _)) return "number";
+        return defaultValue;
     }
 
     private List<ParsedMember> ParseOutputBindings(string blockContent, string filePath, int classLine)
