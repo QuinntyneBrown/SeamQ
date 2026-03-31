@@ -58,14 +58,14 @@ public partial class TypeScriptAstParser
     [GeneratedRegex(@"(\w+)\s*=\s*inject\s*(?:<([^>]*)>)?\s*\(\s*(\w+)?", RegexOptions.Multiline)]
     private static partial Regex InjectCallRegex();
 
-    // Interface/class member: propertyName: Type;  or  propertyName?: Type;
+    // Interface/class member: [public|private|protected|readonly] propertyName: Type;
     // Only match at the class member level (2-4 spaces or 1 tab indentation)
-    [GeneratedRegex(@"^(?:\s{2,4}|\t)(\w+)\s*[?!]?\s*:\s*(.+?)\s*;", RegexOptions.Multiline)]
+    [GeneratedRegex(@"^(?:\s{2,4}|\t)(?:(?:public|private|protected|static|readonly|override|abstract)\s+)*(\w+)\s*[?!]?\s*:\s*(.+?)\s*;", RegexOptions.Multiline)]
     private static partial Regex PropertyMemberRegex();
 
-    // Interface/class method: methodName(params): ReturnType  or  async methodName(params): ReturnType { ... }
+    // Interface/class method: [public|private|protected] [async] methodName(params): ReturnType
     // Only match at the class member level (2-4 spaces or 1 tab indentation, not deeply nested)
-    [GeneratedRegex(@"^(?:\s{2,4}|\t)(?:async\s+)?(\w+)\s*(?:<[^>]*>)?\s*\(([^)]*)\)\s*(?::\s*([^;{]+))?", RegexOptions.Multiline)]
+    [GeneratedRegex(@"^(?:\s{2,4}|\t)(?:(?:public|private|protected|static|readonly|override|abstract)\s+)*(?:async\s+)?(\w+)\s*(?:<[^>]*>)?\s*\(([^)]*)\)\s*(?::\s*([^;{]+))?", RegexOptions.Multiline)]
     private static partial Regex MethodMemberRegex();
 
     // export const FOO = new InjectionToken<Type>('...')
