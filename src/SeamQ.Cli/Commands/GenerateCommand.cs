@@ -42,7 +42,7 @@ public static class GenerateCommand
             {
                 var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
                 var scanner = serviceProvider.GetRequiredService<IWorkspaceScanner>();
-                var wsPaths = config.Workspaces.Select(w => w.Path).ToArray();
+                var wsPaths = PromptFileGenerator.ResolveWorkspacePaths(config, registry);
                 var formatStr = formats.Length > 0 ? string.Join(", ", formats) : "Markdown";
                 foreach (var wsPath in wsPaths)
                 {

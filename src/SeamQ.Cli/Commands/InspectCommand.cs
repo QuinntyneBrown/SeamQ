@@ -32,8 +32,9 @@ public static class InspectCommand
                 var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
                 var scanner = serviceProvider.GetRequiredService<IWorkspaceScanner>();
                 var config = serviceProvider.GetRequiredService<SeamQConfig>();
+                var reg = serviceProvider.GetRequiredService<SeamRegistry>();
                 var outputDir = Path.GetFullPath(globalContext.OutputDir ?? config.Output.Directory);
-                var wsPaths = config.Workspaces.Select(w => w.Path).ToArray();
+                var wsPaths = PromptFileGenerator.ResolveWorkspacePaths(config, reg);
                 foreach (var wsPath in wsPaths)
                 {
                     var workspace = await scanner.ScanAsync(Path.GetFullPath(wsPath));

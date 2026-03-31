@@ -37,7 +37,7 @@ public static class ListCommand
                 var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
                 var scanner = serviceProvider.GetRequiredService<IWorkspaceScanner>();
                 var outputDir = Path.GetFullPath(globalContext.OutputDir ?? config.Output.Directory);
-                var wsPaths = config.Workspaces.Select(w => w.Path).ToArray();
+                var wsPaths = PromptFileGenerator.ResolveWorkspacePaths(config, registry);
                 foreach (var wsPath in wsPaths)
                 {
                     var workspace = await scanner.ScanAsync(Path.GetFullPath(wsPath));

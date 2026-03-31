@@ -39,7 +39,7 @@ public static class ExportCommand
             {
                 var promptGen = serviceProvider.GetRequiredService<PromptFileGenerator>();
                 var scanner = serviceProvider.GetRequiredService<IWorkspaceScanner>();
-                var wsPaths = config.Workspaces.Select(w => w.Path).ToArray();
+                var wsPaths = PromptFileGenerator.ResolveWorkspacePaths(config, registry);
                 foreach (var wsPath in wsPaths)
                 {
                     var workspace = await scanner.ScanAsync(Path.GetFullPath(wsPath));
