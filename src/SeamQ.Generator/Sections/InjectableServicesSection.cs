@@ -23,7 +23,8 @@ public class InjectableServicesSection : IIcdSection
             .ToHashSet();
 
         var services = seam.ContractSurface.Elements
-            .Where(e => serviceParentNames.Contains(e.Name) ||
+            .Where(e => e.Kind == ContractElementKind.Injectable ||
+                        serviceParentNames.Contains(e.Name) ||
                         // Also include interfaces/abstract classes with methods
                         (e.Kind is ContractElementKind.Interface or ContractElementKind.AbstractClass
                          && methods.Any(m => m.ParentName == e.Name)))

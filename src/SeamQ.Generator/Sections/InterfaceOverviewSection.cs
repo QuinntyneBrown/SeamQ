@@ -13,13 +13,18 @@ public class InterfaceOverviewSection : IIcdSection
 
         var layers = new List<(string Layer, string Description, int Count)>
         {
+            ("Components", "Angular components", surface.Components.Count()),
+            ("Services", "Injectable services", surface.Services.Count()),
             ("Interfaces", "Abstract service contracts", surface.Interfaces.Count()),
             ("Abstract Classes", "Base class contracts", surface.AbstractClasses.Count()),
+            ("Enumerations", "Enum type definitions", surface.Enumerations.Count()),
             ("Injection Tokens", "DI registration tokens", surface.InjectionTokens.Count()),
             ("Input Bindings", "Component input properties", surface.InputBindings.Count()),
             ("Output Bindings", "Component output events", surface.OutputBindings.Count()),
+            ("Signal Inputs", "Signal-based inputs", surface.SignalInputs.Count()),
+            ("Properties", "Data properties", surface.Properties.Count()),
             ("Methods", "Callable API methods", surface.Methods.Count()),
-            ("Types", "Shared data types and enums", surface.Types.Count()),
+            ("Types", "Shared data types", surface.Types.Count()),
         };
 
         var rows = string.Join("\n", layers
