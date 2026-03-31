@@ -212,6 +212,23 @@ public partial class TypeScriptAstParser
             var typeExpression = match.Groups[3].Value.TrimEnd(';').Trim();
             var doc = TsDocParser.ExtractDocComment(lines, lineNumber - 1);
 
+            // If type alias defines an object shape, extract its members
+            var members = new List<ParsedMember>();
+            if (typeExpression.StartsWith('{'))
+            {
+                // Find the opening brace in the original content after the '='
+                var eqIndex = content.IndexOf('=', match.Index + match.Groups[1].Length);
+                if (eqIndex >= 0)
+                {
+                    var braceStart = content.IndexOf('{', eqIndex);
+                    if (braceStart >= 0)
+                    {
+                        var bodyContent = ExtractBlock(content, braceStart);
+                        members = ParseMembers(bodyContent);
+                    }
+                }
+            }
+
             declarations.Add(new ParsedDeclaration
             {
                 Name = name,
@@ -219,6 +236,7 @@ public partial class TypeScriptAstParser
                 FilePath = filePath,
                 LineNumber = lineNumber,
                 TypeSignature = typeExpression,
+                Members = members,
                 Documentation = doc
             });
         }

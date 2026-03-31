@@ -408,9 +408,9 @@ public class DocGenerator : IDocGenerator
             "injectable" => "Injectable service",
             "interface" => $"Interface defining the shape of {GetSimpleName(symbol.Name)}",
             "enum" or "enumeration" => $"Enumeration defining {GetSimpleName(symbol.Name)} values",
-            "typealias" or "type" => !string.IsNullOrWhiteSpace(symbol.TypeSignature)
+            "typealias" or "type" => !string.IsNullOrWhiteSpace(symbol.TypeSignature) && !symbol.TypeSignature.StartsWith('{')
                 ? $"Type alias for {symbol.TypeSignature}"
-                : $"Type alias for {GetSimpleName(symbol.Name)}",
+                : $"Data type defining the shape of {GetSimpleName(symbol.Name)}",
             "injectiontoken" => !string.IsNullOrWhiteSpace(symbol.TypeSignature)
                 ? $"Injection token of type {symbol.TypeSignature}"
                 : $"Injection token for {GetSimpleName(symbol.Name)}",
