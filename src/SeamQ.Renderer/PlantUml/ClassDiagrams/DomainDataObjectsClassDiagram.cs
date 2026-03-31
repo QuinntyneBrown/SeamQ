@@ -24,8 +24,8 @@ public static class DomainDataObjectsClassDiagram
             .ToList();
 
         // Also include data shapes from properly classified elements
-        var classifiedTypes = surface.Types.Where(t => t.Kind != ContractElementKind.Enum).ToList();
-        var classifiedEnums = surface.Types.Where(t => t.Kind == ContractElementKind.Enum).ToList();
+        var classifiedTypes = surface.Types.ToList();
+        var classifiedEnums = surface.Enumerations.ToList();
         var classifiedInterfaces = surface.Interfaces
             .Where(i => surface.Elements.Any(e =>
                 e.ParentName == i.Name &&

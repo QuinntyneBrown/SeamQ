@@ -36,17 +36,16 @@ public static class ApiSurfaceClassDiagram
             encoder.AddClass($"abstract {abstractClass.Name}", members);
         }
 
-        // Add types and enums
+        // Add types
         foreach (var type in surface.Types)
         {
-            if (type.Kind == ContractElementKind.Enum)
-            {
-                encoder.AddEnum(type.Name);
-            }
-            else
-            {
-                encoder.AddClass(type.Name);
-            }
+            encoder.AddClass(type.Name);
+        }
+
+        // Add enumerations
+        foreach (var enumType in surface.Enumerations)
+        {
+            encoder.AddEnum(enumType.Name);
         }
 
         // Add injection tokens as stereotyped classes
