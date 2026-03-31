@@ -27,5 +27,9 @@ public enum ContractElementKind
     Enum,
     Route,
     Action,
-    Selector
+    Selector,
+    Component,
+    Injectable,
+    Directive,
+    Pipe
 }

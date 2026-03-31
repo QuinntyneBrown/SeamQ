@@ -115,16 +115,23 @@ public class HttpApiContractStrategy : ISeamDetectionStrategy
 
     private static ContractElementKind MapToContractElementKind(ExportedSymbol symbol)
     {
-        if (DtoPatterns.Any(p => symbol.Name.Contains(p, StringComparison.OrdinalIgnoreCase)))
-            return ContractElementKind.Type;
-
-        if (symbol.Kind.Equals("interface", StringComparison.OrdinalIgnoreCase))
-            return ContractElementKind.Interface;
-
-        if (symbol.Kind.Equals("class", StringComparison.OrdinalIgnoreCase))
-            return ContractElementKind.Type;
-
-        return ContractElementKind.Method;
+        return symbol.Kind.ToLowerInvariant() switch
+        {
+            "interface" => ContractElementKind.Interface,
+            "enum" => ContractElementKind.Enum,
+            "injectable" => ContractElementKind.Injectable,
+            "component" => ContractElementKind.Component,
+            "directive" => ContractElementKind.Directive,
+            "pipe" => ContractElementKind.Pipe,
+            "abstractclass" => ContractElementKind.AbstractClass,
+            "inputbinding" => ContractElementKind.InputBinding,
+            "outputbinding" => ContractElementKind.OutputBinding,
+            "signalinput" or "modelsignal" => ContractElementKind.SignalInput,
+            "injectiontoken" => ContractElementKind.InjectionToken,
+            "method" => ContractElementKind.Method,
+            "property" => ContractElementKind.Property,
+            _ => ContractElementKind.Type
+        };
     }
 
     private static double CalculateRawConfidence(int consumerCount, int httpCount, int dtoCount)

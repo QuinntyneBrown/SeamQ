@@ -65,7 +65,7 @@ public class AngularMetadataExtractor
             };
         }
 
-        // Emit input/output/signal bindings as individual symbols
+        // Emit all members as individual symbols
         foreach (var member in decl.Members)
         {
             var memberKind = member.Kind switch
@@ -75,21 +75,20 @@ public class AngularMetadataExtractor
                 MemberKind.SignalInput => "SignalInput",
                 MemberKind.ModelSignal => "ModelSignal",
                 MemberKind.InjectedDependency => "InjectedDependency",
-                _ => null
+                MemberKind.Property => "Property",
+                MemberKind.Method => "Method",
+                _ => "Property"
             };
 
-            if (memberKind is not null)
+            yield return new ExportedSymbol
             {
-                yield return new ExportedSymbol
-                {
-                    Name = $"{decl.Name}.{member.Name}",
-                    FilePath = decl.FilePath,
-                    LineNumber = decl.LineNumber,
-                    Kind = memberKind,
-                    TypeSignature = member.TypeSignature,
-                    ParentName = decl.Name
-                };
-            }
+                Name = $"{decl.Name}.{member.Name}",
+                FilePath = decl.FilePath,
+                LineNumber = decl.LineNumber,
+                Kind = memberKind,
+                TypeSignature = member.TypeSignature,
+                ParentName = decl.Name
+            };
         }
     }
 

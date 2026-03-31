@@ -46,8 +46,8 @@ public partial class TypeScriptAstParser
     [GeneratedRegex(@"@Input\([^)]*\)\s*(?:set\s+)?(\w+)\s*[!?]?\s*[:;=]?\s*(.*?)$", RegexOptions.Multiline)]
     private static partial Regex InputDecoratorRegex();
 
-    // @Output() propertyName
-    [GeneratedRegex(@"@Output\([^)]*\)\s*(\w+)\s*[!?]?\s*[:=]", RegexOptions.Multiline)]
+    // @Output() propertyName: Type = ...  or  @Output() propertyName = new EventEmitter<Type>()
+    [GeneratedRegex(@"@Output\([^)]*\)\s*(\w+)\s*[!?]?\s*(?::\s*(.+?)\s*[;=]|=\s*new\s+EventEmitter\s*(?:<([^>]*)>)?)", RegexOptions.Multiline)]
     private static partial Regex OutputDecoratorRegex();
 
     // Signal inputs: input(), input<Type>(), input.required<Type>(), model(), model<Type>()
@@ -297,10 +297,14 @@ public partial class TypeScriptAstParser
         var members = new List<ParsedMember>();
         foreach (Match match in OutputDecoratorRegex().Matches(blockContent))
         {
+            var typeAnnotation = match.Groups[2].Success ? match.Groups[2].Value.Trim() : null;
+            var eventEmitterType = match.Groups[3].Success ? $"EventEmitter<{match.Groups[3].Value}>" : null;
+
             members.Add(new ParsedMember
             {
                 Name = match.Groups[1].Value,
-                Kind = MemberKind.OutputBinding
+                Kind = MemberKind.OutputBinding,
+                TypeSignature = typeAnnotation ?? eventEmitterType ?? "EventEmitter<void>"
             });
         }
         return members;
@@ -347,7 +351,7 @@ public partial class TypeScriptAstParser
     private static string? FindDecoratorAbove(string[] lines, int lineIndex)
     {
         // Walk backwards from the line to find Angular decorator
-        for (var i = lineIndex - 1; i >= Math.Max(0, lineIndex - 20); i--)
+        for (var i = lineIndex - 1; i >= Math.Max(0, lineIndex - 100); i--)
         {
             var trimmed = lines[i].Trim();
 
@@ -357,18 +361,8 @@ public partial class TypeScriptAstParser
                 return match.Groups[1].Value;
             }
 
-            // Stop if we hit a line that isn't decorator-related
-            if (!string.IsNullOrEmpty(trimmed) &&
-                !trimmed.StartsWith('@') &&
-                !trimmed.StartsWith('*') &&
-                !trimmed.StartsWith("//") &&
-                !trimmed.StartsWith("/*") &&
-                !trimmed.EndsWith("*/") &&
-                !trimmed.EndsWith(",") &&
-                !trimmed.EndsWith("{") &&
-                !trimmed.EndsWith("}") &&
-                !trimmed.EndsWith("(") &&
-                !trimmed.EndsWith(")"))
+            // Stop if we hit another export statement or top-level declaration
+            if (trimmed.StartsWith("export ") || trimmed.StartsWith("import "))
             {
                 break;
             }

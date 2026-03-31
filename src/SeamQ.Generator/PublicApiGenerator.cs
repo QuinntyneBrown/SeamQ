@@ -147,9 +147,11 @@ public class PublicApiGenerator : IPublicApiGenerator
         // Return in a deterministic display order
         var ordering = new[]
         {
+            "Components", "Services", "Directives", "Pipes",
             "Classes", "Abstract Classes", "Interfaces", "Enumerations",
             "Type Aliases", "Injection Tokens", "Methods", "Properties",
-            "Input Bindings", "Output Bindings", "Signal Inputs", "Observables",
+            "Input Bindings", "Output Bindings", "Signal Inputs",
+            "Injected Dependencies", "Observables",
             "Actions", "Selectors", "Other"
         };
 
@@ -178,6 +180,10 @@ public class PublicApiGenerator : IPublicApiGenerator
         {
             "class" => "Classes",
             "abstractclass" or "abstract class" => "Abstract Classes",
+            "component" => "Components",
+            "injectable" => "Services",
+            "directive" => "Directives",
+            "pipe" => "Pipes",
             "interface" => "Interfaces",
             "enum" or "enumeration" => "Enumerations",
             "typealias" or "type alias" or "type" => "Type Aliases",
@@ -187,6 +193,7 @@ public class PublicApiGenerator : IPublicApiGenerator
             "inputbinding" or "input binding" or "input" => "Input Bindings",
             "outputbinding" or "output binding" or "output" => "Output Bindings",
             "signalinput" or "signal input" or "modelsignal" or "model signal" => "Signal Inputs",
+            "injecteddependency" or "injected dependency" => "Injected Dependencies",
             "observable" => "Observables",
             "action" => "Actions",
             "selector" => "Selectors",

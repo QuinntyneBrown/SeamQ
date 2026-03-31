@@ -74,7 +74,7 @@ public static class ChangeClassifier
     /// </summary>
     private static string GetElementKey(ContractElement element)
     {
-        return $"{element.Kind}:{element.ParentName ?? ""}:{element.Name}";
+        return $"{element.Kind}:{element.ParentName ?? ""}:{element.Name}:{element.SourceFile ?? ""}";
     }
 
     /// <summary>

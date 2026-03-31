@@ -53,8 +53,8 @@ public static class ListCommand
             if (provider is not null)
                 filtered = filtered.Where(s => s.Provider.Alias.Contains(provider, StringComparison.OrdinalIgnoreCase));
 
-            var minConfidence = confidence ?? config.Analysis.ConfidenceThreshold;
-            filtered = filtered.Where(s => s.Confidence >= minConfidence);
+            if (confidence is not null)
+                filtered = filtered.Where(s => s.Confidence >= confidence.Value);
 
             var results = filtered.OrderByDescending(s => s.Confidence).ToList();
 

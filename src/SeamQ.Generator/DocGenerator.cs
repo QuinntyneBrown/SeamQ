@@ -575,6 +575,11 @@ public class DocGenerator : IDocGenerator
         foreach (var member in group.Members)
         {
             if (!string.IsNullOrWhiteSpace(member.TypeSignature) &&
+                member.Kind.Equals("InjectedDependency", StringComparison.OrdinalIgnoreCase))
+            {
+                encoder.AddRelationship(simpleName, member.TypeSignature, "-->", "depends");
+            }
+            else if (!string.IsNullOrWhiteSpace(member.TypeSignature) &&
                 member.Kind.Equals("Property", StringComparison.OrdinalIgnoreCase) &&
                 member.TypeSignature.EndsWith("Service", StringComparison.OrdinalIgnoreCase))
             {
