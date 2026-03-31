@@ -122,12 +122,18 @@ public class PluginContractStrategy : ISeamDetectionStrategy
         return kind.ToLowerInvariant() switch
         {
             "interface" => ContractElementKind.Interface,
-            "abstract class" or "abstractclass" => ContractElementKind.AbstractClass,
-            "injection-token" or "injectiontoken" => ContractElementKind.InjectionToken,
-            "injectable" => ContractElementKind.Type,
+            "abstractclass" => ContractElementKind.AbstractClass,
+            "injectiontoken" => ContractElementKind.InjectionToken,
+            "enum" => ContractElementKind.Enum,
+            "injectable" => ContractElementKind.Injectable,
+            "component" => ContractElementKind.Component,
+            "directive" => ContractElementKind.Directive,
+            "pipe" => ContractElementKind.Pipe,
             "inputbinding" => ContractElementKind.InputBinding,
             "outputbinding" => ContractElementKind.OutputBinding,
             "signalinput" or "modelsignal" => ContractElementKind.SignalInput,
+            "method" => ContractElementKind.Method,
+            "property" => ContractElementKind.Property,
             _ => ContractElementKind.Type
         };
     }
