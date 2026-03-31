@@ -65,7 +65,8 @@ public partial class TypeScriptAstParser
 
     // Interface/class method: [public|private|protected] [async] methodName(params): ReturnType
     // Only match at the class member level (2-4 spaces or 1 tab indentation, not deeply nested)
-    [GeneratedRegex(@"^(?:\s{2,4}|\t)(?:(?:public|private|protected|static|readonly|override|abstract)\s+)*(?:async\s+)?(\w+)\s*(?:<[^>]*>)?\s*\(([^)]*)\)\s*(?::\s*([^;{]+))?", RegexOptions.Multiline)]
+    // Capture return type up to end of line (trimming trailing { or ;)
+    [GeneratedRegex(@"^(?:\s{2,4}|\t)(?:(?:public|private|protected|static|readonly|override|abstract)\s+)*(?:async\s+)?(\w+)\s*(?:<[^>]*>)?\s*\(([^)]*)\)\s*(?::\s*(.+?))\s*[{;]?\s*$", RegexOptions.Multiline)]
     private static partial Regex MethodMemberRegex();
 
     // export const FOO = new InjectionToken<Type>('...')
