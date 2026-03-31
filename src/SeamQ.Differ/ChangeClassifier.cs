@@ -17,8 +17,12 @@ public static class ChangeClassifier
     {
         var changes = new List<SeamChange>();
 
-        var baselineByKey = baseline.Elements.ToDictionary(e => GetElementKey(e));
-        var currentByKey = current.Elements.ToDictionary(e => GetElementKey(e));
+        var baselineByKey = baseline.Elements
+            .GroupBy(e => GetElementKey(e))
+            .ToDictionary(g => g.Key, g => g.First());
+        var currentByKey = current.Elements
+            .GroupBy(e => GetElementKey(e))
+            .ToDictionary(g => g.Key, g => g.First());
 
         // Find added elements (in current but not in baseline)
         foreach (var (key, element) in currentByKey)
