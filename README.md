@@ -29,7 +29,48 @@ SeamQ scans Angular and Nx monorepo workspaces, identifies where types, services
 
 ## Installation
 
-### Install from NuGet
+### Automated Setup (from scratch)
+
+If you have a fresh Windows machine with nothing installed, run the full setup script:
+
+```cmd
+eng\scripts\setup-all.bat
+```
+
+This installs .NET SDK 8.0, Node.js, Java JDK 21, Graphviz, PlantUML, and SeamQ -- all from official sources, no winget or Chocolatey required. Run as Administrator for system-wide installs.
+
+**macOS / Linux:**
+
+```bash
+chmod +x eng/scripts/setup-all.sh
+./eng/scripts/setup-all.sh
+```
+
+### Verify environment
+
+```cmd
+eng\scripts\verify-setup.bat
+```
+
+```bash
+# macOS / Linux
+./eng/scripts/verify-setup.sh
+```
+
+### Install individual dependencies
+
+Each dependency has its own script in `eng/scripts/` that can be run independently:
+
+| Script | Installs | Required |
+|--------|----------|----------|
+| `install-dotnet.bat` | .NET SDK 8.0 | Yes |
+| `install-node.bat` | Node.js LTS | Yes (for Angular workspaces) |
+| `install-java.bat` | Eclipse Temurin JDK 21 | For diagram rendering |
+| `install-graphviz.bat` | Graphviz | For diagram rendering |
+| `install-plantuml.bat` | PlantUML JAR | For diagram rendering |
+| `install-seamq.bat` | SeamQ CLI from NuGet | Yes |
+
+### Install from NuGet (if .NET is already installed)
 
 ```bash
 dotnet tool install --global SeamQ
@@ -47,33 +88,15 @@ dotnet tool update --global SeamQ
 seamq --version
 ```
 
-### Install PlantUML (optional, for diagram rendering)
+### Manual PlantUML setup (optional, for diagram rendering)
 
-PlantUML requires Java and optionally Graphviz to render diagrams.
-
-**Windows (winget):**
-
-```bash
-winget install EclipseAdoptium.Temurin.21.JDK
-winget install Graphviz.Graphviz
-```
-
-Then download `plantuml.jar` from [plantuml.com/download](https://plantuml.com/download) and place it on your PATH or in a known location.
-
-**Windows (Chocolatey):**
-
-```bash
-choco install temurin21
-choco install graphviz
-choco install plantuml
-```
+PlantUML requires Java and optionally Graphviz to render diagrams. The `install-plantuml.bat` script handles this automatically, but you can also install manually:
 
 **macOS (Homebrew):**
 
 ```bash
 brew install --cask temurin
-brew install graphviz
-brew install plantuml
+brew install graphviz plantuml
 ```
 
 **Linux (apt):**
@@ -368,7 +391,15 @@ SeamQ/
 │   ├── SeamQ.Tests.E2E/        # End-to-end CLI tests
 │   └── fixtures/               # Sample Angular/Nx workspaces for testing
 ├── eng/
-│   └── scripts/                # Build, install, and verification scripts
+│   └── scripts/                # Setup, build, and verification scripts
+│       ├── setup-all.bat/.sh   #   Full environment setup (installs everything)
+│       ├── install-dotnet.bat  #   .NET SDK 8.0 installer
+│       ├── install-node.bat    #   Node.js LTS installer
+│       ├── install-java.bat    #   Eclipse Temurin JDK 21 installer
+│       ├── install-graphviz.bat#   Graphviz installer
+│       ├── install-plantuml.bat#   PlantUML JAR downloader
+│       ├── install-seamq.bat   #   SeamQ CLI installer (from NuGet)
+│       └── verify-setup.bat/.sh#   Environment verification
 ├── docs/
 │   ├── guide/                  # User guide with images
 │   ├── specs/                  # L1/L2 requirement specifications
