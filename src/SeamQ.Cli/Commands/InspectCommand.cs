@@ -56,11 +56,18 @@ public static class InspectCommand
             renderer.WriteLine();
 
             // Contract surface grouped by category
+            PrintElementGroup(renderer, "Components", seam.ContractSurface.Components);
+            PrintElementGroup(renderer, "Services", seam.ContractSurface.Services);
+            PrintElementGroup(renderer, "Directives", seam.ContractSurface.Directives);
+            PrintElementGroup(renderer, "Pipes", seam.ContractSurface.Pipes);
             PrintElementGroup(renderer, "Interfaces", seam.ContractSurface.Interfaces);
             PrintElementGroup(renderer, "Abstract Classes", seam.ContractSurface.AbstractClasses);
+            PrintElementGroup(renderer, "Enumerations", seam.ContractSurface.Enumerations);
             PrintElementGroup(renderer, "Injection Tokens", seam.ContractSurface.InjectionTokens);
             PrintElementGroup(renderer, "Input Bindings", seam.ContractSurface.InputBindings);
             PrintElementGroup(renderer, "Output Bindings", seam.ContractSurface.OutputBindings);
+            PrintElementGroup(renderer, "Signal Inputs", seam.ContractSurface.SignalInputs);
+            PrintElementGroup(renderer, "Properties", seam.ContractSurface.Properties);
             PrintElementGroup(renderer, "Methods", seam.ContractSurface.Methods);
             PrintElementGroup(renderer, "Types", seam.ContractSurface.Types);
 
