@@ -62,8 +62,8 @@ public partial class TypeScriptAstParser
     [GeneratedRegex(@"^\s+(\w+)\s*[?!]?\s*:\s*(.+?)\s*;", RegexOptions.Multiline)]
     private static partial Regex PropertyMemberRegex();
 
-    // Interface/class method: methodName(params): ReturnType;  or  methodName(params): ReturnType { ... }
-    [GeneratedRegex(@"^\s+(\w+)\s*(?:<[^>]*>)?\s*\(([^)]*)\)\s*:\s*([^;{]+)", RegexOptions.Multiline)]
+    // Interface/class method: methodName(params): ReturnType  or  async methodName(params): ReturnType { ... }
+    [GeneratedRegex(@"^\s+(?:async\s+)?(\w+)\s*(?:<[^>]*>)?\s*\(([^)]*)\)\s*(?::\s*([^;{]+))?", RegexOptions.Multiline)]
     private static partial Regex MethodMemberRegex();
 
     // export const FOO = new InjectionToken<Type>('...')
@@ -250,11 +250,12 @@ public partial class TypeScriptAstParser
         // Methods first (more specific pattern)
         foreach (Match match in MethodMemberRegex().Matches(blockContent))
         {
+            var returnType = match.Groups[3].Success ? match.Groups[3].Value.Trim() : "void";
             members.Add(new ParsedMember
             {
                 Name = match.Groups[1].Value,
                 Kind = MemberKind.Method,
-                TypeSignature = $"({match.Groups[2].Value.Trim()}): {match.Groups[3].Value.Trim()}"
+                TypeSignature = $"({match.Groups[2].Value.Trim()}): {returnType}"
             });
         }
 
