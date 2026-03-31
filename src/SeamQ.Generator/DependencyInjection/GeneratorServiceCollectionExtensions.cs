@@ -17,6 +17,7 @@ public static class GeneratorServiceCollectionExtensions
         services.AddTransient<IIcdGenerator, IcdGenerator>();
         services.AddTransient<IPublicApiGenerator, PublicApiGenerator>();
         services.AddTransient<IDocGenerator, DocGenerator>();
+        services.AddTransient<IPublicIcdGenerator, PublicIcdGenerator>();
 
         // Sections (ordered by their Order property at runtime)
         services.AddTransient<IIcdSection, IntroductionSection>();

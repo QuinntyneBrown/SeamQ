@@ -154,6 +154,7 @@ public sealed class PromptFileGenerator
             "export" => BuildExportPrompt(workspace, codeFileName),
             "doc" => BuildDocPrompt(workspace, codeFileName),
             "public-api" => BuildPublicApiPrompt(workspace, codeFileName),
+            "public-icd" => BuildPublicIcdPrompt(workspace, codeFileName),
             "init" => BuildInitPrompt(workspace, codeFileName),
             _ => BuildGenericPrompt(commandName, workspace, codeFileName)
         };
@@ -703,6 +704,101 @@ public sealed class PromptFileGenerator
             - Do NOT document internal implementation details
             - Do NOT invent exports not present in the code
             - Include exact TypeScript signatures
+            """;
+    }
+
+    private static string BuildPublicIcdPrompt(Workspace workspace, string codeFileName)
+    {
+        return $$"""
+            # Role
+
+            You are an Expert Systems Architect specializing in Interface Control Documents for Angular applications and libraries.
+
+            # Task
+
+            Analyze the uploaded code file (`{{codeFileName}}`) which contains the complete source of the **{{workspace.Alias}}** workspace ({{workspace.Type}}).
+
+            Generate a comprehensive **Public Interface Control Document (ICD)** in Markdown for each project in the workspace. If the workspace has only one project, generate a single ICD for the entire application.
+
+            ## Required ICD Structure
+
+            ### 1. Overview
+            - Project name, type (Application/Library), workspace context
+            - Summary table of public surface: count of Components, Services, Interfaces, Classes, Enums, Types, Injection Tokens
+            - Brief auto-generated description of the project's purpose based on its exports
+
+            ### 2. Type Descriptions
+            For EVERY publicly exported type, organized by category (Components, Services, Classes, Interfaces, Enumerations, Type Aliases, Injection Tokens):
+
+            Each type entry must include:
+            - Name, kind, source file path
+            - Extends/implements relationships
+            - JSDoc description or auto-generated description
+            - **Members table**: name, kind (Property/Input/Output/Signal/Observable), type signature, description
+            - **Methods table**: full signature, return type, description
+
+            ### 3. Sequence Diagrams (PlantUML)
+            Generate PlantUML sequence diagrams for ALL observable behaviors:
+
+            - **Service Interaction**: show consumer calling each service's public methods with return types
+            - **Component Lifecycle**: show Angular framework instantiating components, binding inputs, triggering lifecycle hooks, emitting outputs
+            - **Data Flow**: show observable subscription patterns, stream emissions
+            - **HTTP/API Interaction**: show HTTP service call chains (consumer → service → backend → response)
+
+            Each diagram must use valid PlantUML syntax:
+            ```plantuml
+            @startuml
+            title Diagram Title
+            participant "Name" as alias
+            "from" -> "to" : message
+            activate "to"
+            "to" --> "from" : response
+            deactivate "to"
+            @enduml
+            ```
+
+            ### 4. Class Diagrams (PlantUML)
+            Generate PlantUML class diagrams:
+
+            - **Master Class Diagram**: all exported types grouped by category in `package` blocks
+            - **Per-Category Diagrams**: separate diagram for each category with 2+ types
+
+            Each diagram must show:
+            - Class/interface/enum definitions with all public members
+            - Access modifiers: `+` public
+            - Relationships: `--|>` extends, `..|>` implements, `-->` depends
+            - Stereotypes for special members: `<<input>>`, `<<output>>`, `<<signal>>`
+
+            ### 5. C4 Architecture Diagrams (PlantUML)
+            Generate all four C4 levels:
+
+            - **System Context**: the project as main system, other workspace projects as external systems
+            - **Container**: all projects in the workspace as containers within a system boundary
+            - **Component**: type categories (Services, Components, etc.) as components within the project
+            - **Code**: detailed class diagram equivalent
+
+            Use PlantUML rectangles with stereotypes and color coding:
+            ```plantuml
+            @startuml
+            skinparam rectangle {
+              BackgroundColor<<system>> #438DD5
+              FontColor<<system>> white
+            }
+            rectangle "Name\n[Type]" as alias <<system>>
+            @enduml
+            ```
+
+            # Rules
+
+            - Do NOT invent types, methods, properties, or relationships not present in the code
+            - Do NOT omit any publicly exported type — the ICD must be exhaustive
+            - Do NOT include private or internal (non-exported) members
+            - Do NOT generate documentation for node_modules dependencies
+            - Use exact TypeScript type signatures, not simplified versions
+            - Every PlantUML diagram must be valid syntax with @startuml/@enduml
+            - Barrel re-exports (index.ts, public-api.ts) should be traversed, not documented as types
+            - For each type, include the source file path and line number
+            - Escape pipe characters in Markdown tables
             """;
     }
 
