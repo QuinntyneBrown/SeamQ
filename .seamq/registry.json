@@ -159,15 +159,6 @@
               "parentName": "DashboardPageComponent"
             },
             {
-              "name": "DashboardPageComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
-              "lineNumber": 101,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckTimer): void",
-              "parentName": "DashboardPageComponent"
-            },
-            {
               "name": "DashboardPageComponent.setTimeout",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
               "lineNumber": 101,
@@ -1462,24 +1453,6 @@
               "parentName": "CommandService"
             },
             {
-              "name": "CommandService.timeout",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(30000): void",
-              "parentName": "CommandService"
-            },
-            {
-              "name": "CommandService.catchError",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "((): void",
-              "parentName": "CommandService"
-            },
-            {
               "name": "ConfigurationService",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
               "lineNumber": 9,
@@ -1651,15 +1624,6 @@
               "parentName": "ReviewTelemetryService"
             },
             {
-              "name": "ReviewTelemetryService.map",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
-              "lineNumber": 18,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(response =\u003E {\r\n        if (!response.success): void",
-              "parentName": "ReviewTelemetryService"
-            },
-            {
               "name": "TelemetryService",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
               "lineNumber": 9,
@@ -1687,30 +1651,12 @@
               "parentName": "TelemetryService"
             },
             {
-              "name": "TelemetryService.cancelAnimationFrame",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.rafId): void",
-              "parentName": "TelemetryService"
-            },
-            {
               "name": "TelemetryService.subscribe",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
               "lineNumber": 9,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cui: string): Observable\u003CCuiRecord\u003E",
-              "parentName": "TelemetryService"
-            },
-            {
-              "name": "TelemetryService.mergeMap",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(batch =\u003E batch.filter(r =\u003E r.cui === cui): void",
               "parentName": "TelemetryService"
             },
             {
@@ -3764,15 +3710,6 @@
               "parentName": "SubscriptionDetailComponent"
             },
             {
-              "name": "SubscriptionDetailComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
-              "lineNumber": 23,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "SubscriptionDetailComponent"
-            },
-            {
               "name": "SubscriptionDetailComponent.checkStaleStatus",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
               "lineNumber": 23,
@@ -4554,30 +4491,12 @@
               "parentName": "TableTileContentComponent"
             },
             {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
               "name": "TableTileContentComponent.subscribeToBatch",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
               "lineNumber": 138,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cuiKeys: string[]): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -5371,30 +5290,12 @@
               "parentName": "TableTileContentComponent"
             },
             {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
               "name": "TableTileContentComponent.subscribeToBatch",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
               "lineNumber": 138,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cuiKeys: string[]): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -5657,15 +5558,6 @@
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(): void",
-          "parentName": "DashboardPageComponent"
-        },
-        {
-          "name": "DashboardPageComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
-          "lineNumber": 101,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckTimer): void",
           "parentName": "DashboardPageComponent"
         },
         {
@@ -6956,24 +6848,6 @@
           "parentName": "CommandService"
         },
         {
-          "name": "CommandService.timeout",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(30000): void",
-          "parentName": "CommandService"
-        },
-        {
-          "name": "CommandService.catchError",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "((): void",
-          "parentName": "CommandService"
-        },
-        {
           "name": "ConfigurationService",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
           "lineNumber": 9,
@@ -7145,15 +7019,6 @@
           "parentName": "ReviewTelemetryService"
         },
         {
-          "name": "ReviewTelemetryService.map",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
-          "lineNumber": 18,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(response =\u003E {\r\n        if (!response.success): void",
-          "parentName": "ReviewTelemetryService"
-        },
-        {
           "name": "TelemetryService",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
           "lineNumber": 9,
@@ -7181,30 +7046,12 @@
           "parentName": "TelemetryService"
         },
         {
-          "name": "TelemetryService.cancelAnimationFrame",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.rafId): void",
-          "parentName": "TelemetryService"
-        },
-        {
           "name": "TelemetryService.subscribe",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
           "lineNumber": 9,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cui: string): Observable\u003CCuiRecord\u003E",
-          "parentName": "TelemetryService"
-        },
-        {
-          "name": "TelemetryService.mergeMap",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(batch =\u003E batch.filter(r =\u003E r.cui === cui): void",
           "parentName": "TelemetryService"
         },
         {
@@ -9251,15 +9098,6 @@
           "parentName": "SubscriptionDetailComponent"
         },
         {
-          "name": "SubscriptionDetailComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
-          "lineNumber": 23,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "SubscriptionDetailComponent"
-        },
-        {
           "name": "SubscriptionDetailComponent.checkStaleStatus",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
           "lineNumber": 23,
@@ -10034,30 +9872,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cuiKeys: string[]): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -10844,30 +10664,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cuiKeys: string[]): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -11355,26 +11157,6 @@
           "parentName": "CommandService"
         },
         {
-          "name": "CommandService.timeout",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(30000): void",
-          "documentation": null,
-          "parentName": "CommandService"
-        },
-        {
-          "name": "CommandService.catchError",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "((): void",
-          "documentation": null,
-          "parentName": "CommandService"
-        },
-        {
           "name": "QueryService",
           "kind": "Injectable",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\query.service.ts",
@@ -11720,26 +11502,6 @@
           "lineNumber": 9,
           "workspace": "Dashboard.Web",
           "typeSignature": "(command: CommandMessage): Observable\u003CCommandResponseDetail\u003E",
-          "documentation": null,
-          "parentName": "CommandService"
-        },
-        {
-          "name": "CommandService.timeout",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(30000): void",
-          "documentation": null,
-          "parentName": "CommandService"
-        },
-        {
-          "name": "CommandService.catchError",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "((): void",
           "documentation": null,
           "parentName": "CommandService"
         },
@@ -12352,15 +12114,6 @@
               "parentName": "DashboardPageComponent"
             },
             {
-              "name": "DashboardPageComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
-              "lineNumber": 101,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckTimer): void",
-              "parentName": "DashboardPageComponent"
-            },
-            {
               "name": "DashboardPageComponent.setTimeout",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
               "lineNumber": 101,
@@ -13655,24 +13408,6 @@
               "parentName": "CommandService"
             },
             {
-              "name": "CommandService.timeout",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(30000): void",
-              "parentName": "CommandService"
-            },
-            {
-              "name": "CommandService.catchError",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "((): void",
-              "parentName": "CommandService"
-            },
-            {
               "name": "ConfigurationService",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
               "lineNumber": 9,
@@ -13844,15 +13579,6 @@
               "parentName": "ReviewTelemetryService"
             },
             {
-              "name": "ReviewTelemetryService.map",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
-              "lineNumber": 18,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(response =\u003E {\r\n        if (!response.success): void",
-              "parentName": "ReviewTelemetryService"
-            },
-            {
               "name": "TelemetryService",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
               "lineNumber": 9,
@@ -13880,30 +13606,12 @@
               "parentName": "TelemetryService"
             },
             {
-              "name": "TelemetryService.cancelAnimationFrame",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.rafId): void",
-              "parentName": "TelemetryService"
-            },
-            {
               "name": "TelemetryService.subscribe",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
               "lineNumber": 9,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cui: string): Observable\u003CCuiRecord\u003E",
-              "parentName": "TelemetryService"
-            },
-            {
-              "name": "TelemetryService.mergeMap",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(batch =\u003E batch.filter(r =\u003E r.cui === cui): void",
               "parentName": "TelemetryService"
             },
             {
@@ -15957,15 +15665,6 @@
               "parentName": "SubscriptionDetailComponent"
             },
             {
-              "name": "SubscriptionDetailComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
-              "lineNumber": 23,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "SubscriptionDetailComponent"
-            },
-            {
               "name": "SubscriptionDetailComponent.checkStaleStatus",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
               "lineNumber": 23,
@@ -16747,30 +16446,12 @@
               "parentName": "TableTileContentComponent"
             },
             {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
               "name": "TableTileContentComponent.subscribeToBatch",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
               "lineNumber": 138,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cuiKeys: string[]): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -17564,30 +17245,12 @@
               "parentName": "TableTileContentComponent"
             },
             {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
               "name": "TableTileContentComponent.subscribeToBatch",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
               "lineNumber": 138,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cuiKeys: string[]): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -17850,15 +17513,6 @@
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(): void",
-          "parentName": "DashboardPageComponent"
-        },
-        {
-          "name": "DashboardPageComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
-          "lineNumber": 101,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckTimer): void",
           "parentName": "DashboardPageComponent"
         },
         {
@@ -19149,24 +18803,6 @@
           "parentName": "CommandService"
         },
         {
-          "name": "CommandService.timeout",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(30000): void",
-          "parentName": "CommandService"
-        },
-        {
-          "name": "CommandService.catchError",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "((): void",
-          "parentName": "CommandService"
-        },
-        {
           "name": "ConfigurationService",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
           "lineNumber": 9,
@@ -19338,15 +18974,6 @@
           "parentName": "ReviewTelemetryService"
         },
         {
-          "name": "ReviewTelemetryService.map",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
-          "lineNumber": 18,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(response =\u003E {\r\n        if (!response.success): void",
-          "parentName": "ReviewTelemetryService"
-        },
-        {
           "name": "TelemetryService",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
           "lineNumber": 9,
@@ -19374,30 +19001,12 @@
           "parentName": "TelemetryService"
         },
         {
-          "name": "TelemetryService.cancelAnimationFrame",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.rafId): void",
-          "parentName": "TelemetryService"
-        },
-        {
           "name": "TelemetryService.subscribe",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
           "lineNumber": 9,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cui: string): Observable\u003CCuiRecord\u003E",
-          "parentName": "TelemetryService"
-        },
-        {
-          "name": "TelemetryService.mergeMap",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(batch =\u003E batch.filter(r =\u003E r.cui === cui): void",
           "parentName": "TelemetryService"
         },
         {
@@ -21444,15 +21053,6 @@
           "parentName": "SubscriptionDetailComponent"
         },
         {
-          "name": "SubscriptionDetailComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
-          "lineNumber": 23,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "SubscriptionDetailComponent"
-        },
-        {
           "name": "SubscriptionDetailComponent.checkStaleStatus",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
           "lineNumber": 23,
@@ -22227,30 +21827,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cuiKeys: string[]): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -23037,30 +22619,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cuiKeys: string[]): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -23174,7 +22738,7 @@
       ]
     },
     "consumers": [],
-    "confidence": 0.37081227436823105,
+    "confidence": 0.37082872928176797,
     "contractSurface": {
       "elements": [
         {
@@ -23334,16 +22898,6 @@
           "lineNumber": 101,
           "workspace": "Dashboard.Web",
           "typeSignature": "(): void",
-          "documentation": null,
-          "parentName": "DashboardPageComponent"
-        },
-        {
-          "name": "DashboardPageComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
-          "lineNumber": 101,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckTimer): void",
           "documentation": null,
           "parentName": "DashboardPageComponent"
         },
@@ -24528,26 +24082,6 @@
           "parentName": "CommandService"
         },
         {
-          "name": "CommandService.timeout",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(30000): void",
-          "documentation": null,
-          "parentName": "CommandService"
-        },
-        {
-          "name": "CommandService.catchError",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "((): void",
-          "documentation": null,
-          "parentName": "CommandService"
-        },
-        {
           "name": "ConfigurationService",
           "kind": "Injectable",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
@@ -24738,16 +24272,6 @@
           "parentName": "ReviewTelemetryService"
         },
         {
-          "name": "ReviewTelemetryService.map",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
-          "lineNumber": 18,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(response =\u003E {\r\n        if (!response.success): void",
-          "documentation": null,
-          "parentName": "ReviewTelemetryService"
-        },
-        {
           "name": "TelemetryService",
           "kind": "Injectable",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
@@ -24778,32 +24302,12 @@
           "parentName": "TelemetryService"
         },
         {
-          "name": "TelemetryService.cancelAnimationFrame",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.rafId): void",
-          "documentation": null,
-          "parentName": "TelemetryService"
-        },
-        {
           "name": "TelemetryService.subscribe",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
           "lineNumber": 9,
           "workspace": "Dashboard.Web",
           "typeSignature": "(cui: string): Observable\u003CCuiRecord\u003E",
-          "documentation": null,
-          "parentName": "TelemetryService"
-        },
-        {
-          "name": "TelemetryService.mergeMap",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(batch =\u003E batch.filter(r =\u003E r.cui === cui): void",
           "documentation": null,
           "parentName": "TelemetryService"
         },
@@ -26938,16 +26442,6 @@
           "parentName": "SubscriptionDetailComponent"
         },
         {
-          "name": "SubscriptionDetailComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
-          "lineNumber": 23,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckInterval): void",
-          "documentation": null,
-          "parentName": "SubscriptionDetailComponent"
-        },
-        {
           "name": "SubscriptionDetailComponent.checkStaleStatus",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
@@ -27728,32 +27222,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckInterval): void",
-          "documentation": null,
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
           "typeSignature": "(cuiKeys: string[]): void",
-          "documentation": null,
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckInterval): void",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28568,32 +28042,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckInterval): void",
-          "documentation": null,
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
           "typeSignature": "(cuiKeys: string[]): void",
-          "documentation": null,
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckInterval): void",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -30089,16 +29543,6 @@
           "parentName": "DashboardPageComponent"
         },
         {
-          "name": "DashboardPageComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
-          "lineNumber": 101,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckTimer): void",
-          "documentation": null,
-          "parentName": "DashboardPageComponent"
-        },
-        {
           "name": "DashboardPageComponent.setTimeout",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
@@ -30199,26 +29643,6 @@
           "parentName": "CommandService"
         },
         {
-          "name": "CommandService.timeout",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(30000): void",
-          "documentation": null,
-          "parentName": "CommandService"
-        },
-        {
-          "name": "CommandService.catchError",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "((): void",
-          "documentation": null,
-          "parentName": "CommandService"
-        },
-        {
           "name": "ConfigurationService.list",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
@@ -30299,16 +29723,6 @@
           "parentName": "ReviewTelemetryService"
         },
         {
-          "name": "ReviewTelemetryService.map",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
-          "lineNumber": 18,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(response =\u003E {\r\n        if (!response.success): void",
-          "documentation": null,
-          "parentName": "ReviewTelemetryService"
-        },
-        {
           "name": "TelemetryService.connect",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
@@ -30329,32 +29743,12 @@
           "parentName": "TelemetryService"
         },
         {
-          "name": "TelemetryService.cancelAnimationFrame",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.rafId): void",
-          "documentation": null,
-          "parentName": "TelemetryService"
-        },
-        {
           "name": "TelemetryService.subscribe",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
           "lineNumber": 9,
           "workspace": "Dashboard.Web",
           "typeSignature": "(cui: string): Observable\u003CCuiRecord\u003E",
-          "documentation": null,
-          "parentName": "TelemetryService"
-        },
-        {
-          "name": "TelemetryService.mergeMap",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(batch =\u003E batch.filter(r =\u003E r.cui === cui): void",
           "documentation": null,
           "parentName": "TelemetryService"
         },
@@ -31249,16 +30643,6 @@
           "parentName": "SubscriptionDetailComponent"
         },
         {
-          "name": "SubscriptionDetailComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
-          "lineNumber": 23,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckInterval): void",
-          "documentation": null,
-          "parentName": "SubscriptionDetailComponent"
-        },
-        {
           "name": "SubscriptionDetailComponent.checkStaleStatus",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
@@ -31389,32 +30773,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckInterval): void",
-          "documentation": null,
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
           "typeSignature": "(cuiKeys: string[]): void",
-          "documentation": null,
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckInterval): void",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -31689,32 +31053,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckInterval): void",
-          "documentation": null,
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "kind": "Method",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
           "typeSignature": "(cuiKeys: string[]): void",
-          "documentation": null,
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "kind": "Method",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "workspace": "Dashboard.Web",
-          "typeSignature": "(this.staleCheckInterval): void",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -34448,15 +33792,6 @@
               "parentName": "DashboardPageComponent"
             },
             {
-              "name": "DashboardPageComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
-              "lineNumber": 101,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckTimer): void",
-              "parentName": "DashboardPageComponent"
-            },
-            {
               "name": "DashboardPageComponent.setTimeout",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
               "lineNumber": 101,
@@ -35751,24 +35086,6 @@
               "parentName": "CommandService"
             },
             {
-              "name": "CommandService.timeout",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(30000): void",
-              "parentName": "CommandService"
-            },
-            {
-              "name": "CommandService.catchError",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "((): void",
-              "parentName": "CommandService"
-            },
-            {
               "name": "ConfigurationService",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
               "lineNumber": 9,
@@ -35940,15 +35257,6 @@
               "parentName": "ReviewTelemetryService"
             },
             {
-              "name": "ReviewTelemetryService.map",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
-              "lineNumber": 18,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(response =\u003E {\r\n        if (!response.success): void",
-              "parentName": "ReviewTelemetryService"
-            },
-            {
               "name": "TelemetryService",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
               "lineNumber": 9,
@@ -35976,30 +35284,12 @@
               "parentName": "TelemetryService"
             },
             {
-              "name": "TelemetryService.cancelAnimationFrame",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.rafId): void",
-              "parentName": "TelemetryService"
-            },
-            {
               "name": "TelemetryService.subscribe",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
               "lineNumber": 9,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cui: string): Observable\u003CCuiRecord\u003E",
-              "parentName": "TelemetryService"
-            },
-            {
-              "name": "TelemetryService.mergeMap",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(batch =\u003E batch.filter(r =\u003E r.cui === cui): void",
               "parentName": "TelemetryService"
             },
             {
@@ -38053,15 +37343,6 @@
               "parentName": "SubscriptionDetailComponent"
             },
             {
-              "name": "SubscriptionDetailComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
-              "lineNumber": 23,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "SubscriptionDetailComponent"
-            },
-            {
               "name": "SubscriptionDetailComponent.checkStaleStatus",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
               "lineNumber": 23,
@@ -38843,30 +38124,12 @@
               "parentName": "TableTileContentComponent"
             },
             {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
               "name": "TableTileContentComponent.subscribeToBatch",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
               "lineNumber": 138,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cuiKeys: string[]): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -39660,30 +38923,12 @@
               "parentName": "TableTileContentComponent"
             },
             {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
               "name": "TableTileContentComponent.subscribeToBatch",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
               "lineNumber": 138,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cuiKeys: string[]): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -39946,15 +39191,6 @@
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(): void",
-          "parentName": "DashboardPageComponent"
-        },
-        {
-          "name": "DashboardPageComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
-          "lineNumber": 101,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckTimer): void",
           "parentName": "DashboardPageComponent"
         },
         {
@@ -41245,24 +40481,6 @@
           "parentName": "CommandService"
         },
         {
-          "name": "CommandService.timeout",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(30000): void",
-          "parentName": "CommandService"
-        },
-        {
-          "name": "CommandService.catchError",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "((): void",
-          "parentName": "CommandService"
-        },
-        {
           "name": "ConfigurationService",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
           "lineNumber": 9,
@@ -41434,15 +40652,6 @@
           "parentName": "ReviewTelemetryService"
         },
         {
-          "name": "ReviewTelemetryService.map",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
-          "lineNumber": 18,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(response =\u003E {\r\n        if (!response.success): void",
-          "parentName": "ReviewTelemetryService"
-        },
-        {
           "name": "TelemetryService",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
           "lineNumber": 9,
@@ -41470,30 +40679,12 @@
           "parentName": "TelemetryService"
         },
         {
-          "name": "TelemetryService.cancelAnimationFrame",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.rafId): void",
-          "parentName": "TelemetryService"
-        },
-        {
           "name": "TelemetryService.subscribe",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
           "lineNumber": 9,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cui: string): Observable\u003CCuiRecord\u003E",
-          "parentName": "TelemetryService"
-        },
-        {
-          "name": "TelemetryService.mergeMap",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(batch =\u003E batch.filter(r =\u003E r.cui === cui): void",
           "parentName": "TelemetryService"
         },
         {
@@ -43540,15 +42731,6 @@
           "parentName": "SubscriptionDetailComponent"
         },
         {
-          "name": "SubscriptionDetailComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
-          "lineNumber": 23,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "SubscriptionDetailComponent"
-        },
-        {
           "name": "SubscriptionDetailComponent.checkStaleStatus",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
           "lineNumber": 23,
@@ -44323,30 +43505,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cuiKeys: string[]): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -45133,30 +44297,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cuiKeys: string[]): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -46296,15 +45442,6 @@
               "parentName": "DashboardPageComponent"
             },
             {
-              "name": "DashboardPageComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
-              "lineNumber": 101,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckTimer): void",
-              "parentName": "DashboardPageComponent"
-            },
-            {
               "name": "DashboardPageComponent.setTimeout",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
               "lineNumber": 101,
@@ -47599,24 +46736,6 @@
               "parentName": "CommandService"
             },
             {
-              "name": "CommandService.timeout",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(30000): void",
-              "parentName": "CommandService"
-            },
-            {
-              "name": "CommandService.catchError",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "((): void",
-              "parentName": "CommandService"
-            },
-            {
               "name": "ConfigurationService",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
               "lineNumber": 9,
@@ -47788,15 +46907,6 @@
               "parentName": "ReviewTelemetryService"
             },
             {
-              "name": "ReviewTelemetryService.map",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
-              "lineNumber": 18,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(response =\u003E {\r\n        if (!response.success): void",
-              "parentName": "ReviewTelemetryService"
-            },
-            {
               "name": "TelemetryService",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
               "lineNumber": 9,
@@ -47824,30 +46934,12 @@
               "parentName": "TelemetryService"
             },
             {
-              "name": "TelemetryService.cancelAnimationFrame",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.rafId): void",
-              "parentName": "TelemetryService"
-            },
-            {
               "name": "TelemetryService.subscribe",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
               "lineNumber": 9,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cui: string): Observable\u003CCuiRecord\u003E",
-              "parentName": "TelemetryService"
-            },
-            {
-              "name": "TelemetryService.mergeMap",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-              "lineNumber": 9,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(batch =\u003E batch.filter(r =\u003E r.cui === cui): void",
               "parentName": "TelemetryService"
             },
             {
@@ -49901,15 +48993,6 @@
               "parentName": "SubscriptionDetailComponent"
             },
             {
-              "name": "SubscriptionDetailComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
-              "lineNumber": 23,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "SubscriptionDetailComponent"
-            },
-            {
               "name": "SubscriptionDetailComponent.checkStaleStatus",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
               "lineNumber": 23,
@@ -50691,30 +49774,12 @@
               "parentName": "TableTileContentComponent"
             },
             {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
               "name": "TableTileContentComponent.subscribeToBatch",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
               "lineNumber": 138,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cuiKeys: string[]): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -51508,30 +50573,12 @@
               "parentName": "TableTileContentComponent"
             },
             {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
               "name": "TableTileContentComponent.subscribeToBatch",
               "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
               "lineNumber": 138,
               "kind": "Method",
               "documentation": null,
               "typeSignature": "(cuiKeys: string[]): void",
-              "parentName": "TableTileContentComponent"
-            },
-            {
-              "name": "TableTileContentComponent.clearInterval",
-              "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-              "lineNumber": 138,
-              "kind": "Method",
-              "documentation": null,
-              "typeSignature": "(this.staleCheckInterval): void",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -51794,15 +50841,6 @@
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(): void",
-          "parentName": "DashboardPageComponent"
-        },
-        {
-          "name": "DashboardPageComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
-          "lineNumber": 101,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckTimer): void",
           "parentName": "DashboardPageComponent"
         },
         {
@@ -53093,24 +52131,6 @@
           "parentName": "CommandService"
         },
         {
-          "name": "CommandService.timeout",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(30000): void",
-          "parentName": "CommandService"
-        },
-        {
-          "name": "CommandService.catchError",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "((): void",
-          "parentName": "CommandService"
-        },
-        {
           "name": "ConfigurationService",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
           "lineNumber": 9,
@@ -53282,15 +52302,6 @@
           "parentName": "ReviewTelemetryService"
         },
         {
-          "name": "ReviewTelemetryService.map",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
-          "lineNumber": 18,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(response =\u003E {\r\n        if (!response.success): void",
-          "parentName": "ReviewTelemetryService"
-        },
-        {
           "name": "TelemetryService",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
           "lineNumber": 9,
@@ -53318,30 +52329,12 @@
           "parentName": "TelemetryService"
         },
         {
-          "name": "TelemetryService.cancelAnimationFrame",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.rafId): void",
-          "parentName": "TelemetryService"
-        },
-        {
           "name": "TelemetryService.subscribe",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
           "lineNumber": 9,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cui: string): Observable\u003CCuiRecord\u003E",
-          "parentName": "TelemetryService"
-        },
-        {
-          "name": "TelemetryService.mergeMap",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
-          "lineNumber": 9,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(batch =\u003E batch.filter(r =\u003E r.cui === cui): void",
           "parentName": "TelemetryService"
         },
         {
@@ -55388,15 +54381,6 @@
           "parentName": "SubscriptionDetailComponent"
         },
         {
-          "name": "SubscriptionDetailComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
-          "lineNumber": 23,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "SubscriptionDetailComponent"
-        },
-        {
           "name": "SubscriptionDetailComponent.checkStaleStatus",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
           "lineNumber": 23,
@@ -56171,30 +55155,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cuiKeys: string[]): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -56981,30 +55947,12 @@
           "parentName": "TableTileContentComponent"
         },
         {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
           "name": "TableTileContentComponent.subscribeToBatch",
           "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "kind": "Method",
           "documentation": null,
           "typeSignature": "(cuiKeys: string[]): void",
-          "parentName": "TableTileContentComponent"
-        },
-        {
-          "name": "TableTileContentComponent.clearInterval",
-          "filePath": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
-          "lineNumber": 138,
-          "kind": "Method",
-          "documentation": null,
-          "typeSignature": "(this.staleCheckInterval): void",
           "parentName": "TableTileContentComponent"
         },
         {
