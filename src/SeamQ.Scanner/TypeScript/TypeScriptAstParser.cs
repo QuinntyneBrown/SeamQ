@@ -243,6 +243,15 @@ public partial class TypeScriptAstParser
         return declarations;
     }
 
+    private static readonly HashSet<string> JsKeywords = new(StringComparer.Ordinal)
+    {
+        "if", "for", "while", "switch", "catch", "return", "throw", "new", "delete",
+        "typeof", "instanceof", "void", "yield", "await", "try", "else", "do",
+        "break", "continue", "case", "default", "finally", "with", "debugger",
+        "constructor", "super", "this", "import", "export", "from", "class",
+        "function", "var", "let", "const", "of", "in"
+    };
+
     private List<ParsedMember> ParseMembers(string blockContent)
     {
         var members = new List<ParsedMember>();
@@ -250,10 +259,14 @@ public partial class TypeScriptAstParser
         // Methods first (more specific pattern)
         foreach (Match match in MethodMemberRegex().Matches(blockContent))
         {
+            var name = match.Groups[1].Value;
+            if (JsKeywords.Contains(name))
+                continue;
+
             var returnType = match.Groups[3].Success ? match.Groups[3].Value.Trim() : "void";
             members.Add(new ParsedMember
             {
-                Name = match.Groups[1].Value,
+                Name = name,
                 Kind = MemberKind.Method,
                 TypeSignature = $"({match.Groups[2].Value.Trim()}): {returnType}"
             });
@@ -264,8 +277,8 @@ public partial class TypeScriptAstParser
         foreach (Match match in PropertyMemberRegex().Matches(blockContent))
         {
             var name = match.Groups[1].Value;
-            if (methodNames.Contains(name))
-                continue; // Already captured as a method
+            if (methodNames.Contains(name) || JsKeywords.Contains(name))
+                continue; // Already captured as a method or is a keyword
 
             members.Add(new ParsedMember
             {
