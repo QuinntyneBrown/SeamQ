@@ -11132,7 +11132,8 @@
           "parentName": "CommandButtonComponent"
         }
       ],
-      "types": [
+      "types": [],
+      "enumerations": [
         {
           "name": "CommandStatus",
           "kind": "Enum",
@@ -11164,6 +11165,52 @@
           "parentName": null
         }
       ],
+      "components": [
+        {
+          "name": "CommandButtonComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
+          "lineNumber": 57,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        }
+      ],
+      "services": [
+        {
+          "name": "CommandService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
+          "lineNumber": 9,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "QueryService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\query.service.ts",
+          "lineNumber": 7,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "RequestService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\request.service.ts",
+          "lineNumber": 7,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        }
+      ],
+      "directives": [],
+      "pipes": [],
       "observables": [],
       "properties": [
         {
@@ -29780,66 +29827,6 @@
       ],
       "types": [
         {
-          "name": "AdvisoryState",
-          "kind": "Enum",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\advisory-message.ts",
-          "lineNumber": 1,
-          "workspace": "Dashboard.Web",
-          "typeSignature": null,
-          "documentation": null,
-          "parentName": null
-        },
-        {
-          "name": "AdvisorySeverity",
-          "kind": "Enum",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\advisory-message.ts",
-          "lineNumber": 6,
-          "workspace": "Dashboard.Web",
-          "typeSignature": null,
-          "documentation": null,
-          "parentName": null
-        },
-        {
-          "name": "CommandStatus",
-          "kind": "Enum",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\command-response-detail.ts",
-          "lineNumber": 1,
-          "workspace": "Dashboard.Web",
-          "typeSignature": null,
-          "documentation": null,
-          "parentName": null
-        },
-        {
-          "name": "CommandUIState",
-          "kind": "Enum",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\command-response-detail.ts",
-          "lineNumber": 7,
-          "workspace": "Dashboard.Web",
-          "typeSignature": null,
-          "documentation": null,
-          "parentName": null
-        },
-        {
-          "name": "ConnectionState",
-          "kind": "Enum",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\connection-state.ts",
-          "lineNumber": 1,
-          "workspace": "Dashboard.Web",
-          "typeSignature": null,
-          "documentation": null,
-          "parentName": null
-        },
-        {
-          "name": "ErrorResponseCode",
-          "kind": "Enum",
-          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\error-response-code.ts",
-          "lineNumber": 1,
-          "workspace": "Dashboard.Web",
-          "typeSignature": null,
-          "documentation": null,
-          "parentName": null
-        },
-        {
           "name": "TelemetryDataPoint",
           "kind": "Type",
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\telemetry-data-point.ts",
@@ -29980,6 +29967,414 @@
           "parentName": null
         }
       ],
+      "enumerations": [
+        {
+          "name": "AdvisoryState",
+          "kind": "Enum",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\advisory-message.ts",
+          "lineNumber": 1,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "AdvisorySeverity",
+          "kind": "Enum",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\advisory-message.ts",
+          "lineNumber": 6,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "CommandStatus",
+          "kind": "Enum",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\command-response-detail.ts",
+          "lineNumber": 1,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "CommandUIState",
+          "kind": "Enum",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\command-response-detail.ts",
+          "lineNumber": 7,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ConnectionState",
+          "kind": "Enum",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\connection-state.ts",
+          "lineNumber": 1,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ErrorResponseCode",
+          "kind": "Enum",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\models\\error-response-code.ts",
+          "lineNumber": 1,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        }
+      ],
+      "components": [
+        {
+          "name": "AppComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\app.component.ts",
+          "lineNumber": 75,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "DashboardPageComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\dashboard-page\\dashboard-page.component.ts",
+          "lineNumber": 101,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "TilePickerPanelComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\dashboard\\src\\app\\tile-picker-panel\\tile-picker-panel.component.ts",
+          "lineNumber": 85,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ConfigDeleteConfirmDialogComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\config-delete-confirm-dialog\\config-delete-confirm-dialog.component.ts",
+          "lineNumber": 36,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ConfigManagementDialogComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\config-management-dialog\\config-management-dialog.component.ts",
+          "lineNumber": 23,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ConfigPickerDialogComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\config-picker-dialog\\config-picker-dialog.component.ts",
+          "lineNumber": 41,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ConfigurableChartTileComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
+          "lineNumber": 29,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ConfigurableTableTileComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-table-tile\\configurable-table-tile.component.ts",
+          "lineNumber": 29,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ConfigurableTileComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
+          "lineNumber": 29,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ReviewTileComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\review-tile\\review-tile.component.ts",
+          "lineNumber": 30,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "SubscriptionDetailComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
+          "lineNumber": 23,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ChartTileContentComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
+          "lineNumber": 69,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "CommandButtonComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
+          "lineNumber": 57,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "DashboardHeaderComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\dashboard-header\\dashboard-header.component.ts",
+          "lineNumber": 92,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "EmptyTileComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\empty-tile\\empty-tile.component.ts",
+          "lineNumber": 42,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ErrorBannerComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\error-banner\\error-banner.component.ts",
+          "lineNumber": 43,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "NotificationSnackbarComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\notification-snackbar\\notification-snackbar.component.ts",
+          "lineNumber": 61,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "TileHeaderComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
+          "lineNumber": 65,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ChartTileContentComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
+          "lineNumber": 69,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ReviewTileComponent",
+          "kind": "Component",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\review-tile\\review-tile.component.ts",
+          "lineNumber": 27,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        }
+      ],
+      "services": [
+        {
+          "name": "AdvisoryService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\advisory.service.ts",
+          "lineNumber": 7,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "CommandService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\command.service.ts",
+          "lineNumber": 9,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ConfigurationService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\configuration.service.ts",
+          "lineNumber": 9,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "CuiMetadataService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\cui-metadata.service.ts",
+          "lineNumber": 261,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "QueryService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\query.service.ts",
+          "lineNumber": 7,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "RequestService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\request.service.ts",
+          "lineNumber": 7,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "ReviewTelemetryService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\review-telemetry.service.ts",
+          "lineNumber": 18,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "TelemetryService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\api\\src\\lib\\services\\telemetry.service.ts",
+          "lineNumber": 9,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "DashboardStore",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\services\\dashboard-store.ts",
+          "lineNumber": 23,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "HistoricalTelemetryOrchestrator",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\services\\historical-telemetry-orchestrator.ts",
+          "lineNumber": 25,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "SubscriptionRegistryService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\services\\subscription-registry.service.ts",
+          "lineNumber": 5,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "TelemetryStore",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\services\\telemetry-store.ts",
+          "lineNumber": 20,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "TileConfigurationService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\services\\tile-configuration.service.ts",
+          "lineNumber": 11,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        },
+        {
+          "name": "TilePluginRegistryService",
+          "kind": "Injectable",
+          "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\services\\tile-plugin-registry.ts",
+          "lineNumber": 8,
+          "workspace": "Dashboard.Web",
+          "typeSignature": null,
+          "documentation": null,
+          "parentName": null
+        }
+      ],
+      "directives": [],
+      "pipes": [],
       "observables": [],
       "properties": [
         {
@@ -43172,6 +43567,11 @@
       "outputBindings": [],
       "methods": [],
       "types": [],
+      "enumerations": [],
+      "components": [],
+      "services": [],
+      "directives": [],
+      "pipes": [],
       "observables": [],
       "properties": [],
       "signalInputs": [],
@@ -54092,6 +54492,11 @@
           "parentName": "TelemetryStore"
         }
       ],
+      "enumerations": [],
+      "components": [],
+      "services": [],
+      "directives": [],
+      "pipes": [],
       "observables": [],
       "properties": [
         {

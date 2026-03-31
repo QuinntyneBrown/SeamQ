@@ -141,7 +141,7 @@ public class PublicApiGenerator : IPublicApiGenerator
                 || kindLower.EndsWith("selector"))
                 continue;
 
-            var category = MapKindToCategory(export.Kind);
+            var category = MapKindToCategory(export.Kind ?? "Other");
             if (!groups.TryGetValue(category, out var list))
             {
                 list = [];
