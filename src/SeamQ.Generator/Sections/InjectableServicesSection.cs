@@ -24,10 +24,13 @@ public class InjectableServicesSection : IIcdSection
 
         var services = seam.ContractSurface.Elements
             .Where(e => e.Kind == ContractElementKind.Injectable ||
-                        serviceParentNames.Contains(e.Name) ||
-                        // Also include interfaces/abstract classes with methods
-                        (e.Kind is ContractElementKind.Interface or ContractElementKind.AbstractClass
-                         && methods.Any(m => m.ParentName == e.Name)))
+                        e.Kind == ContractElementKind.Component ||
+                        // Include types that have child methods (service-like)
+                        (serviceParentNames.Contains(e.Name) &&
+                         e.Kind is not ContractElementKind.Interface
+                            and not ContractElementKind.Enum
+                            and not ContractElementKind.Property
+                            and not ContractElementKind.Method))
             .DistinctBy(e => e.Name)
             .ToList();
 

@@ -452,21 +452,31 @@ public class DocGenerator : IDocGenerator
     private static string BuildMethodDescription(ExportedSymbol symbol)
     {
         if (string.IsNullOrWhiteSpace(symbol.TypeSignature))
-            return $"Method {GetMemberName(symbol)}";
+            return "-";
 
         var typeSig = symbol.TypeSignature;
 
-        // Try to extract return type from signatures like "Observable<any>" or "(p: Type) => ReturnType"
+        // Handle arrow function: (params) => ReturnType
         var arrowIndex = typeSig.IndexOf("=>", StringComparison.Ordinal);
         if (arrowIndex >= 0)
         {
-            var paramsPart = typeSig[..arrowIndex].Trim().Trim('(', ')').Trim();
             var returnPart = typeSig[(arrowIndex + 2)..].Trim();
-            return $"Accepts {paramsPart} and returns {returnPart}";
+            return string.IsNullOrWhiteSpace(returnPart) ? "-" : $"Returns {returnPart}";
         }
 
-        // Simple return type
-        return $"Accepts parameters and returns {typeSig}";
+        // Handle parser-style: (params): ReturnType
+        if (typeSig.StartsWith('('))
+        {
+            var closeParen = FindMatchingParen(typeSig, 0);
+            if (closeParen > 0)
+            {
+                var rest = typeSig[(closeParen + 1)..].Trim();
+                var returnType = rest.StartsWith(':') ? rest[1..].Trim() : rest;
+                return string.IsNullOrWhiteSpace(returnType) ? "-" : $"Returns {returnType}";
+            }
+        }
+
+        return "-";
     }
 
     private static (string Signature, string ReturnType) ParseMethodSignature(ExportedSymbol method)
