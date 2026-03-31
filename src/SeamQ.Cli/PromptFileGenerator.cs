@@ -873,6 +873,25 @@ public sealed class PromptFileGenerator
             """;
     }
 
+    /// <summary>
+    /// Resolves workspace paths from config, falling back to the registry when config has no workspaces.
+    /// </summary>
+    public static string[] ResolveWorkspacePaths(
+        SeamQ.Core.Configuration.SeamQConfig config,
+        SeamQ.Detector.SeamRegistry registry)
+    {
+        var configPaths = config.Workspaces.Select(w => w.Path).ToArray();
+        if (configPaths.Length > 0)
+            return configPaths;
+
+        // Fall back to unique workspace paths from the registry
+        return registry.GetAll()
+            .Select(s => s.Provider.Path)
+            .Where(p => !string.IsNullOrWhiteSpace(p))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
     private static string SanitizeAlias(string alias)
     {
         var sanitized = alias.Replace(' ', '-').Replace('/', '-').Replace('\\', '-');
