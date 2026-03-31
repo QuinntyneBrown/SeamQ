@@ -3112,7 +3112,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -3121,7 +3121,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -3130,7 +3130,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -3139,7 +3139,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -3148,7 +3148,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -3256,7 +3256,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -3265,7 +3265,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -3274,7 +3274,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -3283,7 +3283,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -3391,7 +3391,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -3400,7 +3400,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -3409,7 +3409,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -3418,7 +3418,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -3427,7 +3427,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -3751,7 +3751,7 @@
               "lineNumber": 23,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "SubscriptionDetailComponent"
             },
             {
@@ -4019,7 +4019,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "ChartTileConfig[] = [];",
+              "typeSignature": "ChartTileConfig[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4028,7 +4028,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4037,7 +4037,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4046,7 +4046,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4055,7 +4055,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4064,7 +4064,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4109,7 +4109,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027Send\u0027;",
+              "typeSignature": "string",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -4118,7 +4118,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CommandMessage;",
+              "typeSignature": "CommandMessage",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -4127,7 +4127,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string;",
+              "typeSignature": "string",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -4145,7 +4145,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027;",
+              "typeSignature": "string",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -4154,7 +4154,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027Disconnected\u0027;",
+              "typeSignature": "string",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -4163,7 +4163,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -4172,7 +4172,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -4208,7 +4208,7 @@
               "lineNumber": 42,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027chart\u0027",
+              "typeSignature": "string",
               "parentName": "EmptyTileComponent"
             },
             {
@@ -4235,7 +4235,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -4244,7 +4244,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -4253,7 +4253,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -4325,7 +4325,7 @@
               "lineNumber": 61,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "Notification = { type: \u0027info\u0027, message: \u0027\u0027 }",
+              "typeSignature": "Notification",
               "parentName": "NotificationSnackbarComponent"
             },
             {
@@ -4559,7 +4559,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+              "typeSignature": "TableTileConfig[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -4568,7 +4568,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -4577,7 +4577,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -4586,7 +4586,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -4595,7 +4595,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -4604,7 +4604,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -4622,7 +4622,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027;",
+              "typeSignature": "string",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -4631,7 +4631,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -4640,7 +4640,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "0;",
+              "typeSignature": "number",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -4649,7 +4649,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -4658,7 +4658,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -4667,7 +4667,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -4935,7 +4935,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "ChartTileConfig[] = [];",
+              "typeSignature": "ChartTileConfig[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4944,7 +4944,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4953,7 +4953,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4962,7 +4962,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4971,7 +4971,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -4980,7 +4980,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -5358,7 +5358,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+              "typeSignature": "TableTileConfig[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -5367,7 +5367,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -5376,7 +5376,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -5385,7 +5385,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -5394,7 +5394,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -5403,7 +5403,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             }
           ]
@@ -8500,7 +8500,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -8509,7 +8509,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -8518,7 +8518,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -8527,7 +8527,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -8536,7 +8536,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -8644,7 +8644,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -8653,7 +8653,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -8662,7 +8662,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -8671,7 +8671,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -8779,7 +8779,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -8788,7 +8788,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -8797,7 +8797,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -8806,7 +8806,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -8815,7 +8815,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -9139,7 +9139,7 @@
           "lineNumber": 23,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "SubscriptionDetailComponent"
         },
         {
@@ -9400,7 +9400,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -9409,7 +9409,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -9418,7 +9418,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -9427,7 +9427,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -9436,7 +9436,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -9445,7 +9445,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -9490,7 +9490,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027Send\u0027;",
+          "typeSignature": "string",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -9499,7 +9499,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CommandMessage;",
+          "typeSignature": "CommandMessage",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -9508,7 +9508,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string;",
+          "typeSignature": "string",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -9526,7 +9526,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -9535,7 +9535,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027Disconnected\u0027;",
+          "typeSignature": "string",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -9544,7 +9544,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -9553,7 +9553,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -9589,7 +9589,7 @@
           "lineNumber": 42,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027chart\u0027",
+          "typeSignature": "string",
           "parentName": "EmptyTileComponent"
         },
         {
@@ -9616,7 +9616,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -9625,7 +9625,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -9634,7 +9634,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -9706,7 +9706,7 @@
           "lineNumber": 61,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "Notification = { type: \u0027info\u0027, message: \u0027\u0027 }",
+          "typeSignature": "Notification",
           "parentName": "NotificationSnackbarComponent"
         },
         {
@@ -9940,7 +9940,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -9949,7 +9949,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -9958,7 +9958,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -9967,7 +9967,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -9976,7 +9976,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -9985,7 +9985,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -10003,7 +10003,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -10012,7 +10012,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -10021,7 +10021,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "0;",
+          "typeSignature": "number",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -10030,7 +10030,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -10039,7 +10039,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -10048,7 +10048,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -10309,7 +10309,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -10318,7 +10318,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -10327,7 +10327,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -10336,7 +10336,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -10345,7 +10345,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -10354,7 +10354,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -10732,7 +10732,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -10741,7 +10741,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -10750,7 +10750,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -10759,7 +10759,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -10768,7 +10768,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -10777,7 +10777,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         }
       ]
@@ -11332,7 +11332,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027Send\u0027;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         },
@@ -11342,7 +11342,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CommandMessage;",
+          "typeSignature": "CommandMessage",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         },
@@ -11352,7 +11352,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         }
@@ -11458,7 +11458,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027Send\u0027;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         },
@@ -11468,7 +11468,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CommandMessage;",
+          "typeSignature": "CommandMessage",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         },
@@ -11478,7 +11478,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         }
@@ -15067,7 +15067,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -15076,7 +15076,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -15085,7 +15085,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -15094,7 +15094,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -15103,7 +15103,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -15211,7 +15211,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -15220,7 +15220,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -15229,7 +15229,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -15238,7 +15238,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -15346,7 +15346,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -15355,7 +15355,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -15364,7 +15364,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -15373,7 +15373,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -15382,7 +15382,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -15706,7 +15706,7 @@
               "lineNumber": 23,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "SubscriptionDetailComponent"
             },
             {
@@ -15974,7 +15974,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "ChartTileConfig[] = [];",
+              "typeSignature": "ChartTileConfig[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -15983,7 +15983,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -15992,7 +15992,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -16001,7 +16001,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -16010,7 +16010,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -16019,7 +16019,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -16064,7 +16064,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027Send\u0027;",
+              "typeSignature": "string",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -16073,7 +16073,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CommandMessage;",
+              "typeSignature": "CommandMessage",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -16082,7 +16082,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string;",
+              "typeSignature": "string",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -16100,7 +16100,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027;",
+              "typeSignature": "string",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -16109,7 +16109,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027Disconnected\u0027;",
+              "typeSignature": "string",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -16118,7 +16118,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -16127,7 +16127,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -16163,7 +16163,7 @@
               "lineNumber": 42,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027chart\u0027",
+              "typeSignature": "string",
               "parentName": "EmptyTileComponent"
             },
             {
@@ -16190,7 +16190,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -16199,7 +16199,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -16208,7 +16208,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -16280,7 +16280,7 @@
               "lineNumber": 61,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "Notification = { type: \u0027info\u0027, message: \u0027\u0027 }",
+              "typeSignature": "Notification",
               "parentName": "NotificationSnackbarComponent"
             },
             {
@@ -16514,7 +16514,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+              "typeSignature": "TableTileConfig[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -16523,7 +16523,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -16532,7 +16532,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -16541,7 +16541,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -16550,7 +16550,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -16559,7 +16559,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -16577,7 +16577,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027;",
+              "typeSignature": "string",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -16586,7 +16586,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -16595,7 +16595,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "0;",
+              "typeSignature": "number",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -16604,7 +16604,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -16613,7 +16613,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -16622,7 +16622,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -16890,7 +16890,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "ChartTileConfig[] = [];",
+              "typeSignature": "ChartTileConfig[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -16899,7 +16899,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -16908,7 +16908,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -16917,7 +16917,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -16926,7 +16926,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -16935,7 +16935,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -17313,7 +17313,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+              "typeSignature": "TableTileConfig[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -17322,7 +17322,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -17331,7 +17331,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -17340,7 +17340,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -17349,7 +17349,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -17358,7 +17358,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             }
           ]
@@ -20455,7 +20455,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -20464,7 +20464,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -20473,7 +20473,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -20482,7 +20482,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -20491,7 +20491,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -20599,7 +20599,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -20608,7 +20608,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -20617,7 +20617,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -20626,7 +20626,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -20734,7 +20734,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -20743,7 +20743,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -20752,7 +20752,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -20761,7 +20761,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -20770,7 +20770,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -21094,7 +21094,7 @@
           "lineNumber": 23,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "SubscriptionDetailComponent"
         },
         {
@@ -21355,7 +21355,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -21364,7 +21364,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -21373,7 +21373,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -21382,7 +21382,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -21391,7 +21391,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -21400,7 +21400,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -21445,7 +21445,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027Send\u0027;",
+          "typeSignature": "string",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -21454,7 +21454,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CommandMessage;",
+          "typeSignature": "CommandMessage",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -21463,7 +21463,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string;",
+          "typeSignature": "string",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -21481,7 +21481,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -21490,7 +21490,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027Disconnected\u0027;",
+          "typeSignature": "string",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -21499,7 +21499,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -21508,7 +21508,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -21544,7 +21544,7 @@
           "lineNumber": 42,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027chart\u0027",
+          "typeSignature": "string",
           "parentName": "EmptyTileComponent"
         },
         {
@@ -21571,7 +21571,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -21580,7 +21580,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -21589,7 +21589,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -21661,7 +21661,7 @@
           "lineNumber": 61,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "Notification = { type: \u0027info\u0027, message: \u0027\u0027 }",
+          "typeSignature": "Notification",
           "parentName": "NotificationSnackbarComponent"
         },
         {
@@ -21895,7 +21895,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -21904,7 +21904,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -21913,7 +21913,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -21922,7 +21922,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -21931,7 +21931,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -21940,7 +21940,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -21958,7 +21958,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -21967,7 +21967,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -21976,7 +21976,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "0;",
+          "typeSignature": "number",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -21985,7 +21985,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -21994,7 +21994,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -22003,7 +22003,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -22264,7 +22264,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -22273,7 +22273,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -22282,7 +22282,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -22291,7 +22291,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -22300,7 +22300,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -22309,7 +22309,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -22687,7 +22687,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -22696,7 +22696,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -22705,7 +22705,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -22714,7 +22714,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -22723,7 +22723,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -22732,7 +22732,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         }
       ]
@@ -25777,7 +25777,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "documentation": null,
           "parentName": "ConfigurableChartTileComponent"
         },
@@ -25787,7 +25787,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableChartTileComponent"
         },
@@ -25797,7 +25797,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableChartTileComponent"
         },
@@ -25807,7 +25807,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "documentation": null,
           "parentName": "ConfigurableChartTileComponent"
         },
@@ -25817,7 +25817,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableChartTileComponent"
         },
@@ -25937,7 +25937,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-table-tile\\configurable-table-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "documentation": null,
           "parentName": "ConfigurableTableTileComponent"
         },
@@ -25947,7 +25947,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-table-tile\\configurable-table-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableTableTileComponent"
         },
@@ -25957,7 +25957,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-table-tile\\configurable-table-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableTableTileComponent"
         },
@@ -25967,7 +25967,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-table-tile\\configurable-table-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "documentation": null,
           "parentName": "ConfigurableTableTileComponent"
         },
@@ -26087,7 +26087,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "documentation": null,
           "parentName": "ConfigurableTileComponent"
         },
@@ -26097,7 +26097,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableTileComponent"
         },
@@ -26107,7 +26107,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableTileComponent"
         },
@@ -26117,7 +26117,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "documentation": null,
           "parentName": "ConfigurableTileComponent"
         },
@@ -26127,7 +26127,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableTileComponent"
         },
@@ -26487,7 +26487,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
           "lineNumber": 23,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "documentation": null,
           "parentName": "SubscriptionDetailComponent"
         },
@@ -26697,7 +26697,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -26707,7 +26707,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -26717,7 +26717,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -26727,7 +26727,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -26737,7 +26737,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -26747,7 +26747,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -26797,7 +26797,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027Send\u0027;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         },
@@ -26807,7 +26807,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CommandMessage;",
+          "typeSignature": "CommandMessage",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         },
@@ -26817,7 +26817,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         },
@@ -26837,7 +26837,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\dashboard-header\\dashboard-header.component.ts",
           "lineNumber": 92,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "DashboardHeaderComponent"
         },
@@ -26847,7 +26847,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\dashboard-header\\dashboard-header.component.ts",
           "lineNumber": 92,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027Disconnected\u0027;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "DashboardHeaderComponent"
         },
@@ -26857,7 +26857,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\dashboard-header\\dashboard-header.component.ts",
           "lineNumber": 92,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "DashboardHeaderComponent"
         },
@@ -26867,7 +26867,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\dashboard-header\\dashboard-header.component.ts",
           "lineNumber": 92,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "DashboardHeaderComponent"
         },
@@ -26907,7 +26907,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\empty-tile\\empty-tile.component.ts",
           "lineNumber": 42,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027chart\u0027",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "EmptyTileComponent"
         },
@@ -26937,7 +26937,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\error-banner\\error-banner.component.ts",
           "lineNumber": 43,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "ErrorBannerComponent"
         },
@@ -26947,7 +26947,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\error-banner\\error-banner.component.ts",
           "lineNumber": 43,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "ErrorBannerComponent"
         },
@@ -26957,7 +26957,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\error-banner\\error-banner.component.ts",
           "lineNumber": 43,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "ErrorBannerComponent"
         },
@@ -27037,7 +27037,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\notification-snackbar\\notification-snackbar.component.ts",
           "lineNumber": 61,
           "workspace": "Dashboard.Web",
-          "typeSignature": "Notification = { type: \u0027info\u0027, message: \u0027\u0027 }",
+          "typeSignature": "Notification",
           "documentation": null,
           "parentName": "NotificationSnackbarComponent"
         },
@@ -27297,7 +27297,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -27307,7 +27307,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -27317,7 +27317,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -27327,7 +27327,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -27337,7 +27337,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -27347,7 +27347,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -27367,7 +27367,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -27377,7 +27377,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -27387,7 +27387,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "0;",
+          "typeSignature": "number",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -27397,7 +27397,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -27407,7 +27407,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -27417,7 +27417,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -27647,7 +27647,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -27657,7 +27657,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -27667,7 +27667,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -27677,7 +27677,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -27687,7 +27687,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -27697,7 +27697,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -28117,7 +28117,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28127,7 +28127,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28137,7 +28137,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28147,7 +28147,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28157,7 +28157,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28167,7 +28167,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         }
@@ -28604,7 +28604,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "documentation": null,
           "parentName": "ConfigurableChartTileComponent"
         },
@@ -28614,7 +28614,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableChartTileComponent"
         },
@@ -28624,7 +28624,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableChartTileComponent"
         },
@@ -28634,7 +28634,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "documentation": null,
           "parentName": "ConfigurableChartTileComponent"
         },
@@ -28644,7 +28644,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-chart-tile\\configurable-chart-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableChartTileComponent"
         },
@@ -28654,7 +28654,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-table-tile\\configurable-table-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "documentation": null,
           "parentName": "ConfigurableTableTileComponent"
         },
@@ -28664,7 +28664,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-table-tile\\configurable-table-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableTableTileComponent"
         },
@@ -28674,7 +28674,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-table-tile\\configurable-table-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableTableTileComponent"
         },
@@ -28684,7 +28684,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-table-tile\\configurable-table-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "documentation": null,
           "parentName": "ConfigurableTableTileComponent"
         },
@@ -28694,7 +28694,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "documentation": null,
           "parentName": "ConfigurableTileComponent"
         },
@@ -28704,7 +28704,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableTileComponent"
         },
@@ -28714,7 +28714,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableTileComponent"
         },
@@ -28724,7 +28724,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "documentation": null,
           "parentName": "ConfigurableTileComponent"
         },
@@ -28734,7 +28734,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\configurable-tile\\configurable-tile.component.ts",
           "lineNumber": 29,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ConfigurableTileComponent"
         },
@@ -28744,7 +28744,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\domain\\src\\lib\\components\\subscription-detail\\subscription-detail.component.ts",
           "lineNumber": 23,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "documentation": null,
           "parentName": "SubscriptionDetailComponent"
         },
@@ -28754,7 +28754,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -28764,7 +28764,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -28774,7 +28774,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -28784,7 +28784,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -28794,7 +28794,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -28804,7 +28804,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -28814,7 +28814,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027Send\u0027;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         },
@@ -28824,7 +28824,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CommandMessage;",
+          "typeSignature": "CommandMessage",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         },
@@ -28834,7 +28834,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\command-button\\command-button.component.ts",
           "lineNumber": 57,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "CommandButtonComponent"
         },
@@ -28844,7 +28844,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\dashboard-header\\dashboard-header.component.ts",
           "lineNumber": 92,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "DashboardHeaderComponent"
         },
@@ -28854,7 +28854,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\dashboard-header\\dashboard-header.component.ts",
           "lineNumber": 92,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027Disconnected\u0027;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "DashboardHeaderComponent"
         },
@@ -28864,7 +28864,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\dashboard-header\\dashboard-header.component.ts",
           "lineNumber": 92,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "DashboardHeaderComponent"
         },
@@ -28874,7 +28874,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\dashboard-header\\dashboard-header.component.ts",
           "lineNumber": 92,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "DashboardHeaderComponent"
         },
@@ -28884,7 +28884,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\empty-tile\\empty-tile.component.ts",
           "lineNumber": 42,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027chart\u0027",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "EmptyTileComponent"
         },
@@ -28894,7 +28894,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\error-banner\\error-banner.component.ts",
           "lineNumber": 43,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "ErrorBannerComponent"
         },
@@ -28904,7 +28904,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\error-banner\\error-banner.component.ts",
           "lineNumber": 43,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "ErrorBannerComponent"
         },
@@ -28914,7 +28914,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\error-banner\\error-banner.component.ts",
           "lineNumber": 43,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "ErrorBannerComponent"
         },
@@ -28924,7 +28924,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\notification-snackbar\\notification-snackbar.component.ts",
           "lineNumber": 61,
           "workspace": "Dashboard.Web",
-          "typeSignature": "Notification = { type: \u0027info\u0027, message: \u0027\u0027 }",
+          "typeSignature": "Notification",
           "documentation": null,
           "parentName": "NotificationSnackbarComponent"
         },
@@ -28934,7 +28934,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28944,7 +28944,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28954,7 +28954,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28964,7 +28964,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28974,7 +28974,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28984,7 +28984,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -28994,7 +28994,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -29004,7 +29004,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -29014,7 +29014,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "0;",
+          "typeSignature": "number",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -29024,7 +29024,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -29034,7 +29034,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -29044,7 +29044,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\tile-header\\tile-header.component.ts",
           "lineNumber": 65,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TileHeaderComponent"
         },
@@ -29054,7 +29054,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -29064,7 +29064,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -29074,7 +29074,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -29084,7 +29084,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -29094,7 +29094,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -29104,7 +29104,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\chart-tile-content\\chart-tile-content.component.ts",
           "lineNumber": 69,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "ChartTileContentComponent"
         },
@@ -29114,7 +29114,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -29124,7 +29124,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -29134,7 +29134,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -29144,7 +29144,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -29154,7 +29154,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         },
@@ -29164,7 +29164,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\gcc-tiles\\src\\lib\\table-tile-content\\table-tile-content.component.ts",
           "lineNumber": 138,
           "workspace": "Dashboard.Web",
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "documentation": null,
           "parentName": "TableTileContentComponent"
         }
@@ -36745,7 +36745,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -36754,7 +36754,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -36763,7 +36763,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -36772,7 +36772,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -36781,7 +36781,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -36889,7 +36889,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -36898,7 +36898,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -36907,7 +36907,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -36916,7 +36916,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -37024,7 +37024,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -37033,7 +37033,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -37042,7 +37042,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -37051,7 +37051,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -37060,7 +37060,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -37384,7 +37384,7 @@
               "lineNumber": 23,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "SubscriptionDetailComponent"
             },
             {
@@ -37652,7 +37652,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "ChartTileConfig[] = [];",
+              "typeSignature": "ChartTileConfig[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -37661,7 +37661,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -37670,7 +37670,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -37679,7 +37679,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -37688,7 +37688,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -37697,7 +37697,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -37742,7 +37742,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027Send\u0027;",
+              "typeSignature": "string",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -37751,7 +37751,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CommandMessage;",
+              "typeSignature": "CommandMessage",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -37760,7 +37760,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string;",
+              "typeSignature": "string",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -37778,7 +37778,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027;",
+              "typeSignature": "string",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -37787,7 +37787,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027Disconnected\u0027;",
+              "typeSignature": "string",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -37796,7 +37796,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -37805,7 +37805,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -37841,7 +37841,7 @@
               "lineNumber": 42,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027chart\u0027",
+              "typeSignature": "string",
               "parentName": "EmptyTileComponent"
             },
             {
@@ -37868,7 +37868,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -37877,7 +37877,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -37886,7 +37886,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -37958,7 +37958,7 @@
               "lineNumber": 61,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "Notification = { type: \u0027info\u0027, message: \u0027\u0027 }",
+              "typeSignature": "Notification",
               "parentName": "NotificationSnackbarComponent"
             },
             {
@@ -38192,7 +38192,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+              "typeSignature": "TableTileConfig[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -38201,7 +38201,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -38210,7 +38210,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -38219,7 +38219,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -38228,7 +38228,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -38237,7 +38237,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -38255,7 +38255,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027;",
+              "typeSignature": "string",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -38264,7 +38264,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -38273,7 +38273,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "0;",
+              "typeSignature": "number",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -38282,7 +38282,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -38291,7 +38291,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -38300,7 +38300,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -38568,7 +38568,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "ChartTileConfig[] = [];",
+              "typeSignature": "ChartTileConfig[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -38577,7 +38577,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -38586,7 +38586,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -38595,7 +38595,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -38604,7 +38604,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -38613,7 +38613,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -38991,7 +38991,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+              "typeSignature": "TableTileConfig[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -39000,7 +39000,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -39009,7 +39009,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -39018,7 +39018,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -39027,7 +39027,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -39036,7 +39036,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             }
           ]
@@ -42133,7 +42133,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -42142,7 +42142,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -42151,7 +42151,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -42160,7 +42160,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -42169,7 +42169,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -42277,7 +42277,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -42286,7 +42286,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -42295,7 +42295,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -42304,7 +42304,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -42412,7 +42412,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -42421,7 +42421,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -42430,7 +42430,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -42439,7 +42439,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -42448,7 +42448,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -42772,7 +42772,7 @@
           "lineNumber": 23,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "SubscriptionDetailComponent"
         },
         {
@@ -43033,7 +43033,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43042,7 +43042,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43051,7 +43051,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43060,7 +43060,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43069,7 +43069,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43078,7 +43078,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43123,7 +43123,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027Send\u0027;",
+          "typeSignature": "string",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -43132,7 +43132,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CommandMessage;",
+          "typeSignature": "CommandMessage",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -43141,7 +43141,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string;",
+          "typeSignature": "string",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -43159,7 +43159,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -43168,7 +43168,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027Disconnected\u0027;",
+          "typeSignature": "string",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -43177,7 +43177,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -43186,7 +43186,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -43222,7 +43222,7 @@
           "lineNumber": 42,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027chart\u0027",
+          "typeSignature": "string",
           "parentName": "EmptyTileComponent"
         },
         {
@@ -43249,7 +43249,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -43258,7 +43258,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -43267,7 +43267,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -43339,7 +43339,7 @@
           "lineNumber": 61,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "Notification = { type: \u0027info\u0027, message: \u0027\u0027 }",
+          "typeSignature": "Notification",
           "parentName": "NotificationSnackbarComponent"
         },
         {
@@ -43573,7 +43573,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -43582,7 +43582,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -43591,7 +43591,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -43600,7 +43600,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -43609,7 +43609,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -43618,7 +43618,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -43636,7 +43636,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -43645,7 +43645,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -43654,7 +43654,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "0;",
+          "typeSignature": "number",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -43663,7 +43663,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -43672,7 +43672,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -43681,7 +43681,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -43942,7 +43942,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43951,7 +43951,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43960,7 +43960,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43969,7 +43969,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43978,7 +43978,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -43987,7 +43987,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -44365,7 +44365,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -44374,7 +44374,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -44383,7 +44383,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -44392,7 +44392,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -44401,7 +44401,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -44410,7 +44410,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         }
       ]
@@ -48395,7 +48395,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -48404,7 +48404,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -48413,7 +48413,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -48422,7 +48422,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -48431,7 +48431,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableChartTileComponent"
             },
             {
@@ -48539,7 +48539,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -48548,7 +48548,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -48557,7 +48557,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -48566,7 +48566,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableTableTileComponent"
             },
             {
@@ -48674,7 +48674,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TileState = {",
+              "typeSignature": "TileState",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -48683,7 +48683,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -48692,7 +48692,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -48701,7 +48701,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -48710,7 +48710,7 @@
               "lineNumber": 29,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ConfigurableTileComponent"
             },
             {
@@ -49034,7 +49034,7 @@
               "lineNumber": 23,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "SubscriptionDetailComponent"
             },
             {
@@ -49302,7 +49302,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "ChartTileConfig[] = [];",
+              "typeSignature": "ChartTileConfig[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -49311,7 +49311,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -49320,7 +49320,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -49329,7 +49329,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -49338,7 +49338,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -49347,7 +49347,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -49392,7 +49392,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027Send\u0027;",
+              "typeSignature": "string",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -49401,7 +49401,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CommandMessage;",
+              "typeSignature": "CommandMessage",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -49410,7 +49410,7 @@
               "lineNumber": 57,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string;",
+              "typeSignature": "string",
               "parentName": "CommandButtonComponent"
             },
             {
@@ -49428,7 +49428,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027;",
+              "typeSignature": "string",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -49437,7 +49437,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027Disconnected\u0027;",
+              "typeSignature": "string",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -49446,7 +49446,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -49455,7 +49455,7 @@
               "lineNumber": 92,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "DashboardHeaderComponent"
             },
             {
@@ -49491,7 +49491,7 @@
               "lineNumber": 42,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027chart\u0027",
+              "typeSignature": "string",
               "parentName": "EmptyTileComponent"
             },
             {
@@ -49518,7 +49518,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -49527,7 +49527,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -49536,7 +49536,7 @@
               "lineNumber": 43,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027",
+              "typeSignature": "string",
               "parentName": "ErrorBannerComponent"
             },
             {
@@ -49608,7 +49608,7 @@
               "lineNumber": 61,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "Notification = { type: \u0027info\u0027, message: \u0027\u0027 }",
+              "typeSignature": "Notification",
               "parentName": "NotificationSnackbarComponent"
             },
             {
@@ -49842,7 +49842,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+              "typeSignature": "TableTileConfig[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -49851,7 +49851,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -49860,7 +49860,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -49869,7 +49869,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -49878,7 +49878,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -49887,7 +49887,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -49905,7 +49905,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027\u0027;",
+              "typeSignature": "string",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -49914,7 +49914,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -49923,7 +49923,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "0;",
+              "typeSignature": "number",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -49932,7 +49932,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+              "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -49941,7 +49941,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -49950,7 +49950,7 @@
               "lineNumber": 65,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TileHeaderComponent"
             },
             {
@@ -50218,7 +50218,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "ChartTileConfig[] = [];",
+              "typeSignature": "ChartTileConfig[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -50227,7 +50227,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -50236,7 +50236,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -50245,7 +50245,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -50254,7 +50254,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -50263,7 +50263,7 @@
               "lineNumber": 69,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "ChartTileContentComponent"
             },
             {
@@ -50641,7 +50641,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+              "typeSignature": "TableTileConfig[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -50650,7 +50650,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string[] = [];",
+              "typeSignature": "string[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -50659,7 +50659,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -50668,7 +50668,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "CuiRecord[] = [];",
+              "typeSignature": "CuiRecord[]",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -50677,7 +50677,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "string | null = null;",
+              "typeSignature": "string | null",
               "parentName": "TableTileContentComponent"
             },
             {
@@ -50686,7 +50686,7 @@
               "lineNumber": 138,
               "kind": "InputBinding",
               "documentation": null,
-              "typeSignature": "false;",
+              "typeSignature": "boolean",
               "parentName": "TableTileContentComponent"
             }
           ]
@@ -53783,7 +53783,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -53792,7 +53792,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -53801,7 +53801,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -53810,7 +53810,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -53819,7 +53819,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableChartTileComponent"
         },
         {
@@ -53927,7 +53927,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -53936,7 +53936,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -53945,7 +53945,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -53954,7 +53954,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableTableTileComponent"
         },
         {
@@ -54062,7 +54062,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TileState = {",
+          "typeSignature": "TileState",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -54071,7 +54071,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -54080,7 +54080,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -54089,7 +54089,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -54098,7 +54098,7 @@
           "lineNumber": 29,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ConfigurableTileComponent"
         },
         {
@@ -54422,7 +54422,7 @@
           "lineNumber": 23,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "SubscriptionDetailComponent"
         },
         {
@@ -54683,7 +54683,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -54692,7 +54692,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -54701,7 +54701,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -54710,7 +54710,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -54719,7 +54719,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -54728,7 +54728,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -54773,7 +54773,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027Send\u0027;",
+          "typeSignature": "string",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -54782,7 +54782,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CommandMessage;",
+          "typeSignature": "CommandMessage",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -54791,7 +54791,7 @@
           "lineNumber": 57,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string;",
+          "typeSignature": "string",
           "parentName": "CommandButtonComponent"
         },
         {
@@ -54809,7 +54809,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -54818,7 +54818,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027Disconnected\u0027;",
+          "typeSignature": "string",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -54827,7 +54827,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -54836,7 +54836,7 @@
           "lineNumber": 92,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "DashboardHeaderComponent"
         },
         {
@@ -54872,7 +54872,7 @@
           "lineNumber": 42,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027chart\u0027",
+          "typeSignature": "string",
           "parentName": "EmptyTileComponent"
         },
         {
@@ -54899,7 +54899,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -54908,7 +54908,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -54917,7 +54917,7 @@
           "lineNumber": 43,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "parentName": "ErrorBannerComponent"
         },
         {
@@ -54989,7 +54989,7 @@
           "lineNumber": 61,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "Notification = { type: \u0027info\u0027, message: \u0027\u0027 }",
+          "typeSignature": "Notification",
           "parentName": "NotificationSnackbarComponent"
         },
         {
@@ -55223,7 +55223,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -55232,7 +55232,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -55241,7 +55241,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -55250,7 +55250,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -55259,7 +55259,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -55268,7 +55268,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -55286,7 +55286,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027\u0027;",
+          "typeSignature": "string",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -55295,7 +55295,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -55304,7 +55304,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "0;",
+          "typeSignature": "number",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -55313,7 +55313,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027 = \u0027active\u0027;",
+          "typeSignature": "\u0027active\u0027 | \u0027stale\u0027 | \u0027error\u0027",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -55322,7 +55322,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -55331,7 +55331,7 @@
           "lineNumber": 65,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TileHeaderComponent"
         },
         {
@@ -55592,7 +55592,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "ChartTileConfig[] = [];",
+          "typeSignature": "ChartTileConfig[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -55601,7 +55601,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -55610,7 +55610,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -55619,7 +55619,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -55628,7 +55628,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -55637,7 +55637,7 @@
           "lineNumber": 69,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "ChartTileContentComponent"
         },
         {
@@ -56015,7 +56015,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "TableTileConfig[] = [{ columns: [], data: [] }];",
+          "typeSignature": "TableTileConfig[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -56024,7 +56024,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string[] = [];",
+          "typeSignature": "string[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -56033,7 +56033,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -56042,7 +56042,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "CuiRecord[] = [];",
+          "typeSignature": "CuiRecord[]",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -56051,7 +56051,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "string | null = null;",
+          "typeSignature": "string | null",
           "parentName": "TableTileContentComponent"
         },
         {
@@ -56060,7 +56060,7 @@
           "lineNumber": 138,
           "kind": "InputBinding",
           "documentation": null,
-          "typeSignature": "false;",
+          "typeSignature": "boolean",
           "parentName": "TableTileContentComponent"
         }
       ]
@@ -56485,7 +56485,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\error-banner\\error-banner.component.ts",
           "lineNumber": 43,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "ErrorBannerComponent"
         },
@@ -57095,7 +57095,7 @@
           "sourceFile": "C:\\projects\\Dashboard\\src\\Dashboard.Web\\projects\\components\\src\\lib\\error-banner\\error-banner.component.ts",
           "lineNumber": 43,
           "workspace": "Dashboard.Web",
-          "typeSignature": "\u0027\u0027",
+          "typeSignature": "string",
           "documentation": null,
           "parentName": "ErrorBannerComponent"
         },
